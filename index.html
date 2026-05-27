@@ -596,39 +596,40 @@ textarea{resize:vertical;min-height:68px;}
   <div class="empty" id="rk-emp"><div class="ei">🏆</div><p data-i18n="emp_rk">No data.</p></div></div>
 </div>
 
-<!-- SP CONNECTION -->
+<!-- GITHUB STORAGE -->
 <div class="pg" id="pg-pa">
-  <div class="pgh"><div><h1 data-i18n="n_pa">SharePoint — Direct connection</h1><p data-i18n="pa_sub">Real-time sync via SharePoint REST API. No Power Automate needed.</p></div></div>
+  <div class="pgh"><div><h1>GitHub — Database</h1><p>All data is stored in GitHub. All users share the same data in real time.</p></div></div>
   <div class="sp-ban">
-    <h3 data-i18n="pa_wh">SharePoint REST API</h3>
-    <p data-i18n="pa_why">This app reads and writes directly to SharePoint Lists. Every save is instantly visible to all users.</p>
-    <div class="sp-st w" id="pa-status-badge">⏳ Checking connection…</div>
+    <h3>GitHub Storage</h3>
+    <p>Data is saved as JSON files in your GitHub repository. Every save is instantly visible to all users who reload.</p>
+    <div class="sp-st ok" id="pa-status-badge">✅ Connected — RafaelMesquitaMarques/supplierq</div>
   </div>
   <div class="pa-step">
     <div class="pa-n">✓</div>
     <h3>Connection details</h3>
-    <p>Site: <code>https://foliotinc.sharepoint.com/sites/usines</code></p>
-    <p style="margin-top:5px">Lists: <code>QualityInspections</code> · <code>QualityNCRs</code> · <code>QualitySuppliers</code></p>
-    <p style="margin-top:5px;color:var(--grn);font-size:12px">✅ No configuration needed — the app connects automatically when opened from SharePoint.</p>
+    <p>Repository: <code>RafaelMesquitaMarques/supplierq</code></p>
+    <p style="margin-top:5px">Data files: <code>data/QS.json</code> · <code>data/NL.json</code> · <code>data/QM.json</code></p>
+    <p style="margin-top:5px;color:var(--grn);font-size:12px">✅ Every save writes directly to GitHub. All users see the same data.</p>
     <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-      <button class="btn bp bs" onclick="manualSync()" data-i18n="btn_spa">↻ Reload from SharePoint</button>
-      <button class="btn bg bs" onclick="testSpConn()" data-i18n="btn_tpa">Test connection</button>
+      <button class="btn bp bs" onclick="manualSync()">↻ Reload from GitHub</button>
+      <button class="btn bg bs" onclick="testGHConn()">Test connection</button>
     </div>
+    <div id="pa-test-res" style="margin-top:9px;font-size:13px;display:none"></div>
   </div>
   <div class="pa-step">
     <div class="pa-n">2</div>
-    <h3 data-i18n="pa_s6">Push existing local data</h3>
-    <p style="margin-bottom:10px">Use this once to migrate existing local data to SharePoint.</p>
-    <button class="btn bp bs" onclick="pushAllToSP()" data-i18n="btn_push">⬆ Push all local data to SharePoint</button>
+    <h3>Push existing local data</h3>
+    <p style="margin-bottom:10px">Use this once to migrate any existing local data to GitHub.</p>
+    <button class="btn bp bs" onclick="pushAllToGH()">⬆ Push all local data to GitHub</button>
     <div id="push-log" style="margin-top:9px;font-size:12px;font-family:var(--fm);color:var(--muted);max-height:120px;overflow-y:auto;background:var(--surf2);padding:8px;border-radius:var(--r)"></div>
   </div>
   <div class="pa-step">
     <div class="pa-n">3</div>
     <h3>How it works</h3>
     <p style="line-height:1.8">
-      • Every new inspection, NCR, or supplier is saved <strong>directly to SharePoint</strong><br/>
-      • All users see the same data in real time<br/>
-      • A local backup is always kept in the browser (fallback)<br/>
+      • Every save writes a JSON file to GitHub automatically<br/>
+      • All users share the same data — inspections, NCRs, suppliers<br/>
+      • A local backup is always kept in the browser as fallback<br/>
       • The sync indicator in the header shows the connection status
     </p>
   </div>
@@ -690,246 +691,189 @@ textarea{resize:vertical;min-height:68px;}
 <div class="mo" id="mo-email" onclick="cmo('mo-email',event)">
   <div class="mo-box" onclick="event.stopPropagation()">
     <div class="mo-h"><h2>📧 <span data-i18n="email_preview">Email preview</span></h2><button class="mo-x" onclick="cmo('mo-email')">✕</button></div>
-    <div id="mo-email-b"></div>
-    <div style="display:flex;gap:7px;margin-top:14px;padding-top:12px;border-top:1px solid var(--brd)">
-      <button class="btn bp bs" onclick="copyEmail()" data-i18n="btn_copy_email">Copy text</button>
-      <button class="btn bg bs" onclick="openOutlook()" data-i18n="btn_outlook">Open in Outlook</button>
-    </div>
-  </div>
-</div>
-<div id="toast"></div>
 <script>
 // ════════════════════════════════════════════════════════════════
-// SUPPLIERQ v3 — SharePoint REST API direct storage
-// Site: https://foliotinc.sharepoint.com/sites/usines
-// Lists: QualityInspections | QualityNCRs | QualitySuppliers
-// Each record = one SP list item: Title=ref, JsonData=JSON string
+// SUPPLIERQ v4 — GitHub as database
+// Repo: RafaelMesquitaMarques/supplierq
+// Data stored as: data/QS.json, data/NL.json, data/QM.json
+// Each file: { inspections:[], ncrs:[], suppliers:[] }
 // ════════════════════════════════════════════════════════════════
 
-const SP_SITE = 'https://foliotinc.sharepoint.com/sites/usines';
-const SP_LISTS = {
-  inspections: 'QualityInspections',
-  ncrs: 'QualityNCRs',
-  suppliers: 'QualitySuppliers'
-};
+const GH_OWNER = 'RafaelMesquitaMarques';
+const GH_REPO  = 'supplierq';
+const GH_TOKEN = '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';
+const GH_API   = 'https://api.github.com';
 
-// ── SharePoint REST helpers ───────────────────────────────────
-let _digestCache = null;
-let _digestExpiry = 0;
-
-async function getDigest() {
-  if (_digestCache && Date.now() < _digestExpiry) return _digestCache;
-  const res = await fetch(`${SP_SITE}/_api/contextinfo`, {
-    method: 'POST',
-    headers: { Accept: 'application/json;odata=verbose' },
-    credentials: 'include'
+// ── GitHub API helpers ────────────────────────────────────────
+async function ghGet(path) {
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
   });
-  const data = await res.json();
-  _digestCache = data.d.GetContextWebInformation.FormDigestValue;
-  _digestExpiry = Date.now() + 25 * 60 * 1000; // 25 min
-  return _digestCache;
-}
-
-async function spGet(listName, filter = '') {
-  const url = `${SP_SITE}/_api/web/lists/getbytitle('${listName}')/items?$select=Id,Title,JsonData&$top=5000${filter ? '&$filter=' + filter : ''}`;
-  const res = await fetch(url, {
-    headers: { Accept: 'application/json;odata=verbose' },
-    credentials: 'include'
-  });
-  if (!res.ok) throw new Error(`GET ${listName} failed: ${res.status}`);
-  const data = await res.json();
-  return data.d.results;
-}
-
-async function spCreate(listName, title, jsonData) {
-  const digest = await getDigest();
-  const body = JSON.stringify({
-    __metadata: { type: `SP.Data.${listName}ListItem` },
-    Title: title,
-    JsonData: JSON.stringify(jsonData)
-  });
-  const res = await fetch(`${SP_SITE}/_api/web/lists/getbytitle('${listName}')/items`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json;odata=verbose',
-      'Content-Type': 'application/json;odata=verbose',
-      'X-RequestDigest': digest
-    },
-    credentials: 'include',
-    body
-  });
-  if (!res.ok) throw new Error(`CREATE ${listName} failed: ${res.status}`);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`GH GET ${path}: ${res.status}`);
   return await res.json();
 }
 
-async function spUpdate(listName, itemId, title, jsonData) {
-  const digest = await getDigest();
-  const body = JSON.stringify({
-    __metadata: { type: `SP.Data.${listName}ListItem` },
-    Title: title,
-    JsonData: JSON.stringify(jsonData)
-  });
-  const res = await fetch(`${SP_SITE}/_api/web/lists/getbytitle('${listName}')/items(${itemId})`, {
-    method: 'POST',
+async function ghPut(path, content, sha) {
+  const body = {
+    message: `SupplierQ data update — ${new Date().toISOString().slice(0,16)}`,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+    ...(sha ? { sha } : {})
+  };
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    method: 'PUT',
     headers: {
-      Accept: 'application/json;odata=verbose',
-      'Content-Type': 'application/json;odata=verbose',
-      'X-RequestDigest': digest,
-      'X-HTTP-Method': 'MERGE',
-      'IF-MATCH': '*'
+      Authorization: `token ${GH_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
     },
-    credentials: 'include',
-    body
+    body: JSON.stringify(body)
   });
-  if (!res.ok && res.status !== 204) throw new Error(`UPDATE ${listName} failed: ${res.status}`);
+  if (!res.ok) throw new Error(`GH PUT ${path}: ${res.status}`);
+  return await res.json();
 }
 
-async function spDelete(listName, itemId) {
-  const digest = await getDigest();
-  const res = await fetch(`${SP_SITE}/_api/web/lists/getbytitle('${listName}')/items(${itemId})`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json;odata=verbose',
-      'X-RequestDigest': digest,
-      'X-HTTP-Method': 'DELETE',
-      'IF-MATCH': '*'
-    },
-    credentials: 'include'
-  });
-  if (!res.ok && res.status !== 204) throw new Error(`DELETE ${listName} failed: ${res.status}`);
-}
-
-// ── In-memory cache (avoids re-fetching on every render) ──────
-const _cache = { inspections: null, ncrs: null, suppliers: null };
-const _spIds = { inspections: {}, ncrs: {}, suppliers: {} }; // ref -> SP item Id
-let _spReady = false; // true once first load succeeded
+// ── In-memory cache ───────────────────────────────────────────
+const _cache = {};   // { QS: { inspections:[], ncrs:[], suppliers:[], _sha:'' } }
+const _shas  = {};   // { 'data/QS.json': sha }
 
 function setSS(s) {
   const d = document.getElementById('sdot'), l = document.getElementById('slbl');
   if (!d || !l) return;
   d.className = 'sdot' + (s === 's' ? ' s' : s === 'e' ? ' e' : '');
-  l.textContent = s === 's' ? 'Syncing…' : s === 'ok' ? 'Synced' : s === 'e' ? 'Error' : 'Sync';
+  l.textContent = s === 's' ? 'Saving…' : s === 'ok' ? 'Saved' : s === 'e' ? 'Error' : 'Sync';
 }
 
-// ── LOAD all data from SharePoint ─────────────────────────────
-async function spLoadAll() {
+// ── Load site data from GitHub ────────────────────────────────
+async function ghLoad(s) {
+  const path = `data/${s}.json`;
   setSS('s');
   try {
-    for (const [type, listName] of Object.entries(SP_LISTS)) {
-      const items = await spGet(listName, `Site eq '${site}'`);
-      _cache[type] = [];
-      _spIds[type] = {};
-      for (const item of items) {
-        try {
-          const rec = JSON.parse(item.JsonData);
-          _cache[type].push(rec);
-          _spIds[type][rec.id || rec.name] = item.Id;
-        } catch { /* skip malformed */ }
-      }
-    }
-    _spReady = true;
-    setSS('ok');
-    setTimeout(() => setSS(''), 2000);
-    return true;
-  } catch (e) {
-    console.error('SP load error:', e);
-    setSS('e');
-    // Fall back to localStorage
-    for (const type of ['inspections','ncrs','suppliers']) {
-      if (!_cache[type]) _cache[type] = ldLocal(type);
-    }
-    return false;
-  }
-}
-
-// ── SAVE one record to SharePoint ─────────────────────────────
-async function spSave(type, record) {
-  const listName = SP_LISTS[type];
-  const key = record.id || record.name;
-  const title = record.ref || record.name || String(key);
-  setSS('s');
-  try {
-    const existingId = _spIds[type][key];
-    if (existingId) {
-      await spUpdate(listName, existingId, title, record);
+    const file = await ghGet(path);
+    if (file) {
+      const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+      _cache[s] = JSON.parse(decoded);
+      _shas[path] = file.sha;
     } else {
-      const res = await spCreate(listName, title, record);
-      _spIds[type][key] = res.d.Id;
+      _cache[s] = { inspections: [], ncrs: [], suppliers: [] };
     }
     setSS('ok');
     setTimeout(() => setSS(''), 2000);
   } catch (e) {
-    console.error('SP save error:', e);
+    console.error('GH load error:', e);
     setSS('e');
-    toast('⚠️ SharePoint sync error — saved locally');
+    // fallback to localStorage
+    if (!_cache[s]) {
+      _cache[s] = {
+        inspections: ldLocal('inspections', s),
+        ncrs: ldLocal('ncrs', s),
+        suppliers: ldLocal('suppliers', s)
+      };
+    }
   }
 }
 
-// ── REMOVE one record from SharePoint ─────────────────────────
-async function spRemove(type, key) {
-  const listName = SP_LISTS[type];
-  const itemId = _spIds[type][key];
-  if (!itemId) return;
+// ── Save site data to GitHub ──────────────────────────────────
+async function ghSave(s) {
+  const path = `data/${s}.json`;
+  setSS('s');
   try {
-    await spDelete(listName, itemId);
-    delete _spIds[type][key];
+    const result = await ghPut(path, _cache[s], _shas[path]);
+    _shas[path] = result.content.sha;
+    // also save locally as backup
+    svLocalAll(s);
+    setSS('ok');
+    setTimeout(() => setSS(''), 2000);
   } catch (e) {
-    console.error('SP delete error:', e);
+    console.error('GH save error:', e);
+    setSS('e');
+    toast('⚠️ GitHub sync error — saved locally');
+    svLocalAll(s);
   }
 }
 
-// ── localStorage fallback ─────────────────────────────────────
-function ldLocal(type) {
-  try { return JSON.parse(localStorage.getItem(`sqm_${type}_${site}`)) || []; }
-  catch { return []; }
-}
-function svLocal(type, arr) {
-  localStorage.setItem(`sqm_${type}_${site}`, JSON.stringify(arr));
+function svLocalAll(s) {
+  if (!_cache[s]) return;
+  localStorage.setItem(`sqm_inspections_${s}`, JSON.stringify(_cache[s].inspections || []));
+  localStorage.setItem(`sqm_ncrs_${s}`, JSON.stringify(_cache[s].ncrs || []));
+  localStorage.setItem(`sqm_suppliers_${s}`, JSON.stringify(_cache[s].suppliers || []));
 }
 
-// ── PUBLIC DATA API (replaces old ld/sv functions) ───────────
+function ldLocal(type, s) {
+  try { return JSON.parse(localStorage.getItem(`sqm_${type}_${s}`)) || []; } catch { return []; }
+}
+
+// ── PUBLIC DATA API ───────────────────────────────────────────
 function ld(type) {
-  if (_cache[type]) return _cache[type];
-  return ldLocal(type);
+  if (_cache[site]) return _cache[site][type] || [];
+  return ldLocal(type, site);
 }
 
-async function sv(type, arr) {
-  _cache[type] = arr;
-  svLocal(type, arr); // always keep local backup
-}
-
-// Called when saving a single new/updated record
 async function svRecord(type, record) {
-  const arr = ld(type);
+  if (!_cache[site]) _cache[site] = { inspections: [], ncrs: [], suppliers: [] };
+  const arr = _cache[site][type] || [];
   const idx = arr.findIndex(r => (r.id || r.name) === (record.id || record.name));
   if (idx >= 0) arr[idx] = record; else arr.unshift(record);
-  _cache[type] = arr;
-  svLocal(type, arr);
-  await spSave(type, record); // async, non-blocking UI
+  _cache[site][type] = arr;
+  await ghSave(site);
 }
 
-// Called when deleting a record
 async function rmRecord(type, key) {
-  _cache[type] = ld(type).filter(r => (r.id || r.name) !== key);
-  svLocal(type, _cache[type]);
-  await spRemove(type, key);
+  if (!_cache[site]) return;
+  _cache[site][type] = (_cache[site][type] || []).filter(r => (r.id || r.name) !== key);
+  await ghSave(site);
 }
 
 function ldS(type, s) {
-  // For consolidated view — load from cache if same site, else localStorage
-  if (s === site && _cache[type]) return _cache[type];
-  try { return JSON.parse(localStorage.getItem(`sqm_${type}_${s}`)) || []; }
-  catch { return []; }
+  if (_cache[s]) return _cache[s][type] || [];
+  return ldLocal(type, s);
 }
 
 function ldC(k, d) { try { const v = localStorage.getItem('sqm_cfg_' + k); return v ? JSON.parse(v) : d; } catch { return d; } }
 function svC(k, v) { localStorage.setItem('sqm_cfg_' + k, JSON.stringify(v)); }
 
-// ── Manual sync button ─────────────────────────────────────────
+// ── Manual sync ───────────────────────────────────────────────
 async function manualSync() {
-  await spLoadAll();
+  await ghLoad(site);
   refresh();
-  toast(t('t_sy'));
+  toast('Synced from GitHub ✓');
+}
+
+async function testGHConn() {
+  const el = document.getElementById('pa-test-res');
+  if (el) { el.style.display = 'block'; el.textContent = 'Testing…'; el.style.color = 'var(--muted)'; }
+  try {
+    const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}`, {
+      headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    const data = await res.json();
+    if (el) { el.style.color = 'var(--grn)'; el.textContent = `✅ Connected — ${data.full_name} (${data.visibility})`; }
+  } catch (e) {
+    if (el) { el.style.color = 'var(--red)'; el.textContent = `❌ ${e.message}`; }
+  }
+}
+
+async function pushAllToGH() {
+  const lg = document.getElementById('push-log'); lg.innerHTML = '';
+  for (const s of ['QS', 'NL', 'QM']) {
+    lg.innerHTML += `Pushing ${s}…<br/>`;
+    _cache[s] = {
+      inspections: ldLocal('inspections', s),
+      ncrs: ldLocal('ncrs', s),
+      suppliers: ldLocal('suppliers', s)
+    };
+    try {
+      const path = `data/${s}.json`;
+      const existing = await ghGet(path);
+      if (existing) _shas[path] = existing.sha;
+      await ghSave(s);
+      lg.innerHTML += `✅ ${s}: ${_cache[s].inspections.length} inspections, ${_cache[s].ncrs.length} NCRs, ${_cache[s].suppliers.length} suppliers<br/>`;
+    } catch (e) {
+      lg.innerHTML += `❌ ${s}: ${e.message}<br/>`;
+    }
+  }
+  lg.innerHTML += '<strong>Done!</strong>';
+  toast('Pushed to GitHub ✓');
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -939,7 +883,7 @@ const TR={
 en:{sb_rec:'Reception',sb_ncr:'Non-Conformances',sb_sup:'Suppliers',sb_sc:'Scorecard',sb_set:'Settings',
 n_id:'Dashboard',n_in:'New inspection',n_il:'All inspections',n_nd:'NCR Dashboard',n_nn:'New NCR',n_nl:'All NCRs',
 n_sl:'Supplier list',n_sn:'Add supplier',n_cd:'Consolidated',n_sc:'Scorecards',n_rk:'Ranking',
-n_pa:'SP Connection',n_wt:'Score weights',n_ex:'Export JSON',n_im:'Import JSON',
+n_pa:'GitHub Storage',n_wt:'Score weights',n_ex:'Export JSON',n_im:'Import JSON',
 id_sub:'Receiving quality',k_tot:'Total',k_site:'This site',k_pass:'Pass',k_nc:'Non-conformance',k_wfd:'Waiting decision',k_pend:'Pending',
 k_open:'Open NCRs',k_inp:'In progress',k_clo:'Closed',k_res:'Resolved',k_avg:'Avg. days open',
 k_all:'All sites',k_sup:'Suppliers',k_ppm:'Parts per million',k_ar:'Pass rate',
@@ -968,10 +912,6 @@ f_snm:'Name',f_scd:'Code',f_sct:'Contact',f_crt:'Certifications',
 f_sco:'Country',f_sem:'Email',f_spr:'Products',fc_si:'General info',fc_sq:'Quality & certification',
 st_ap:'Approved',st_co:'Conditional',st_bl:'Blocked',f_adt:'Last audit',f_asc:'Audit score %',btn_ss:'Save supplier',
 ch_acc:'Pass rate by site',ch_def:'NCRs by defect type',
-pa_sub:'SharePoint direct connection status.',pa_wh:'SharePoint REST API',pa_loc:'Connecting…',
-pa_why:'This app reads and writes directly to SharePoint Lists using the REST API. No Power Automate needed.',
-pa_s5:'Connection details',pa_s6:'Manual operations',
-btn_spa:'Reload from SharePoint',btn_tpa:'Test connection',btn_push:'⬆ Push all local data to SP',
 wt_sub:'KPI contribution.',fc_wt:'KPI weights',w_acc:'Pass rate',w_ncr:'NCR frequency',w_aud:'Audit score',
 fc_th:'Grade thresholds',btn_sw:'Save weights',btn_st:'Save thresholds',
 btn_del:'Delete',btn_mip:'Mark in progress',btn_mcl:'Mark closed',btn_ref:'View',
@@ -980,7 +920,7 @@ t_is:'Inspection saved ✓',t_ns:'NCR saved ✓',t_ss:'Supplier saved ✓',t_del
 fr:{sb_rec:'Réception',sb_ncr:'Non-Conformités',sb_sup:'Fournisseurs',sb_sc:'Scorecard',sb_set:'Paramètres',
 n_id:'Tableau de bord',n_in:'Nouvelle inspection',n_il:'Toutes les inspections',n_nd:'Tableau de bord NC',n_nn:'Nouvelle NC',n_nl:'Toutes les NC',
 n_sl:'Liste fournisseurs',n_sn:'Ajouter fournisseur',n_cd:'Consolidé',n_sc:'Scorecards',n_rk:'Classement',
-n_pa:'Connexion SP',n_wt:'Pondération',n_ex:'Exporter JSON',n_im:'Importer JSON',
+n_pa:'GitHub Storage',n_wt:'Pondération',n_ex:'Exporter JSON',n_im:'Importer JSON',
 id_sub:'Qualité réception',k_tot:'Total',k_site:'Ce site',k_pass:'Conforme',k_nc:'Non-conformité',k_wfd:'Attente décision',k_pend:'En cours',
 k_open:'NC ouvertes',k_inp:'En cours',k_clo:'Fermées',k_res:'Résolues',k_avg:'Jours moy.',
 k_all:'Tous les sites',k_sup:'Fournisseurs',k_ppm:'Parties par million',k_ar:'Taux conforme',
@@ -1009,10 +949,6 @@ f_snm:'Nom',f_scd:'Code',f_sct:'Contact',f_crt:'Certifications',
 f_sco:'Pays',f_sem:'E-mail',f_spr:'Produits',fc_si:'Informations générales',fc_sq:'Qualité & certification',
 st_ap:'Approuvé',st_co:'Conditionnel',st_bl:'Bloqué',f_adt:'Dernier audit',f_asc:'Score audit %',btn_ss:'Enregistrer fournisseur',
 ch_acc:'Taux conforme par site',ch_def:'NC par type de défaut',
-pa_sub:'Statut de la connexion SharePoint directe.',pa_wh:'SharePoint REST API',pa_loc:'Connexion en cours…',
-pa_why:"Cette app lit et écrit directement dans les listes SharePoint via l'API REST. Pas besoin de Power Automate.",
-pa_s5:'Détails de connexion',pa_s6:'Opérations manuelles',
-btn_spa:'Recharger depuis SharePoint',btn_tpa:'Tester la connexion',btn_push:'⬆ Envoyer données locales vers SP',
 wt_sub:'Contribution de chaque KPI.',fc_wt:'Pondération KPI',w_acc:'Taux conforme',w_ncr:'Fréquence NC',w_aud:'Score audit',
 fc_th:'Seuils des notes',btn_sw:'Enregistrer',btn_st:'Enregistrer',
 btn_del:'Supprimer',btn_mip:'Marquer en cours',btn_mcl:'Marquer fermée',btn_ref:'Voir',
@@ -1023,32 +959,20 @@ function t(k){return TR[lang][k]||k;}
 function i18n(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(el.tagName==='OPTION')el.textContent=t(k);else el.innerHTML=t(k);});document.getElementById('langBtn').textContent=lang==='en'?'FR':'EN';}
 function toggleLang(){lang=lang==='en'?'fr':'en';i18n();refresh();}
 
-// ══════════════════════════════════════════════════════════════
 // SITE & NAV
-// ══════════════════════════════════════════════════════════════
 let site='QS';
 function selectSite(s,e){
-  if(e)e.stopPropagation();
-  site=s;
+  if(e)e.stopPropagation();site=s;
   document.getElementById('siteLabel').textContent=s;
   document.querySelectorAll('.site-opt').forEach(o=>o.classList.toggle('active',o.dataset.site===s));
   document.getElementById('siteDD').classList.remove('open');
-  // Clear cache for new site so it reloads from SP
-  _cache.inspections=null;_cache.ncrs=null;_cache.suppliers=null;
-  spLoadAll().then(()=>{ refresh();updBadge(); });
+  ghLoad(s).then(()=>{refresh();updBadge();});
 }
 function toggleDD(){document.getElementById('siteDD').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!document.getElementById('siteBadge').contains(e.target))document.getElementById('siteDD').classList.remove('open');});
 const modMap={id:'Inspection',in:'Inspection',il:'Inspection',nd:'NCR',nn:'NCR',nl:'NCR',sl:'Suppliers',sn:'Suppliers',cd:'Scorecard',sc:'Scorecard',rk:'Scorecard',pa:'Settings',wt:'Settings'};
 let curPg='id';
-function go(id,navEl){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
-  document.getElementById('pg-'+id).classList.add('active');
-  if(navEl)navEl.classList.add('active');
-  curPg=id;document.getElementById('hdr-mod').textContent=modMap[id]||'SupplierQ';
-  loadPg(id);
-}
+function go(id,navEl){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.getElementById('pg-'+id).classList.add('active');if(navEl)navEl.classList.add('active');curPg=id;document.getElementById('hdr-mod').textContent=modMap[id]||'SupplierQ';loadPg(id);}
 function loadPg(id){
   if(id==='id')renderID();else if(id==='il')renderIL();
   else if(id==='in'){today('f-dt');today('f-rdt');updRef();popSup('f-sp');}
@@ -1056,93 +980,38 @@ function loadPg(id){
   else if(id==='nn'){today('n-dt');today('n-du');popSup('n-sp');}
   else if(id==='sl')renderSL();else if(id==='cd')renderCD();
   else if(id==='sc')renderSC();else if(id==='rk')renderRK();
-  else if(id==='pa')renderPAStatus();else if(id==='wt')loadWT();
+  else if(id==='pa'){}else if(id==='wt')loadWT();
 }
 function refresh(){loadPg(curPg);}
 function today(id){const d=new Date(),p=n=>String(n).padStart(2,'0');const el=document.getElementById(id);if(el)el.value=`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;}
-
-// Report number — Foliot format: QS20260519-02-7000009677
 function updRef(){const dt=(document.getElementById('f-dt')?.value||'').replace(/-/g,'');const dn=String(document.getElementById('f-dn')?.value||1).padStart(2,'0');const pn=(document.getElementById('f-pn')?.value||'').trim();const el=document.getElementById('preview-ref');if(el)el.textContent=(dt&&pn)?`${site}${dt}-${dn}-${pn}`:'—';}
 function buildRef(){const dt=(document.getElementById('f-dt')?.value||'').replace(/-/g,'');const dn=String(document.getElementById('f-dn')?.value||1).padStart(2,'0');const pn=(document.getElementById('f-pn')?.value||'').trim()||'0';return `${site}${dt}-${dn}-${pn}`;}
-
-// Defects
 function togD(item){const cb=item.querySelector('input[type=checkbox]');cb.checked=!cb.checked;item.classList.toggle('chk',cb.checked);}
 function getDefects(){const defects=[];document.querySelectorAll('.di').forEach(item=>{const cb=item.querySelector('input[type=checkbox]');if(cb?.checked){const qty=item.querySelector('.di-qty')?.value;defects.push({key:cb.dataset.key,label:item.querySelector('span')?.textContent||'',qty:qty?+qty:null});}});const other=document.getElementById('f-other')?.value?.trim();if(other)defects.push({key:'other',label:other,qty:null});return defects;}
 function clearDefects(){document.querySelectorAll('.di').forEach(item=>{const cb=item.querySelector('input[type=checkbox]');if(cb)cb.checked=false;item.classList.remove('chk');const qty=item.querySelector('.di-qty');if(qty)qty.value='';});const oi=document.getElementById('f-other');if(oi)oi.value='';}
-
-// Rounds
 function calcR(n){const insp=+document.getElementById(`r${n}-in`)?.value||0;const nc=+document.getElementById(`r${n}-nc`)?.value||0;document.getElementById(`r${n}-pct`).textContent=insp>0?Math.round(nc/insp*100)+'%':'—';document.getElementById(`rb${n}`)?.classList.toggle('act',insp>0);}
 function getRounds(){const r=[];for(let n=1;n<=3;n++){const rv=n===1?+document.getElementById('r1-rv')?.value||0:null;const inp=+document.getElementById(`r${n}-in`)?.value||0;const nc=+document.getElementById(`r${n}-nc`)?.value||0;if(inp>0||nc>0)r.push({round:n,recv:rv,inspected:inp,nonConf:nc,pct:inp>0?Math.round(nc/inp*100):0});}return r;}
-
-// Decision
 function setDec(val){document.getElementById('f-dec').value=val;['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');const map={'use-as-is':['db-uai','sel-uai'],'rework':['db-rw','sel-rw'],'rejected':['db-rej','sel-rej'],'waiting':['db-wfd','sel-wfd']};if(map[val])document.getElementById(map[val][0]).classList.add(map[val][1]);}
-
-// Supplier select
 function popSup(selId){const sel=document.getElementById(selId);if(!sel)return;const sups=ld('suppliers');const cur=sel.value;sel.innerHTML='<option value="">—</option>';sups.forEach(s=>{const o=document.createElement('option');o.value=s.name;o.textContent=s.name+(s.code?` (${s.code})`:'');sel.appendChild(o);});sel.value=cur;}
 
-// ── INSPECTION SUBMIT ─────────────────────────────────────────
 async function submitI(e){
-  e.preventDefault();
-  const dec=document.getElementById('f-dec').value;
-  if(!dec){alert('Please select a final decision');return;}
-  const r1rv=+document.getElementById('r1-rv').value||0;
-  const r1in=+document.getElementById('r1-in').value||0;
-  const r1nc=+document.getElementById('r1-nc').value||0;
+  e.preventDefault();const dec=document.getElementById('f-dec').value;if(!dec){alert('Please select a final decision');return;}
+  const r1rv=+document.getElementById('r1-rv').value||0,r1in=+document.getElementById('r1-in').value||0,r1nc=+document.getElementById('r1-nc').value||0;
   const hasNC=r1nc>0||dec==='rejected'||dec==='rework'||dec==='waiting';
-  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,
-    supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,
-    productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,
-    delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,
-    country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,
-    inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,
-    rounds:getRounds(),defects:getDefects(),
-    issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,
-    decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,
-    qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,
-    qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,createdAt:new Date().toISOString()};
-  await svRecord('inspections',rec);
-  toast(t('t_is'));updBadge();resetIF();go('id',document.querySelector('.nav'));
+  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,createdAt:new Date().toISOString()};
+  await svRecord('inspections',rec);toast(t('t_is'));updBadge();resetIF();go('id',document.querySelector('.nav'));
 }
 function resetIF(){document.getElementById('iForm').reset();today('f-dt');today('f-rdt');clearDefects();['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');document.getElementById('f-dec').value='';for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}updRef();}
-
-// isPass helper
 function isPass(r){return r.decision==='use-as-is'||(r.decision&&!r.hasNC);}
-
-// ── RENDER INSPECTION DASHBOARD ──────────────────────────────
-function renderID(){
-  const data=ld('inspections');
-  const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;
-  document.getElementById('id-tot').textContent=tot;
-  document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';
-  document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';
-  document.getElementById('id-wfd').textContent=wfd;
-  document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;
-  const tb=document.getElementById('id-tb');tb.innerHTML='';
-  document.getElementById('id-emp').style.display=data.length?'none':'block';
-  data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});
-}
-function renderIL(){
-  const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';
-  const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));
-  const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';
-  data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});
-}
+function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
+function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
 function decPill(d){const map={'use-as-is':['use-as-is',t('dec_uai')],'rework':['rework',t('dec_rw')],'rejected':['rejected',t('dec_rej')],'waiting':['waiting',t('dec_wfd')]};const[cls,lbl]=map[d]||['pending','—'];return `<span class="pill ${cls}">${lbl}</span>`;}
-
-// INSPECTION MODAL
 let curI=null;
-function openIM(id){
-  curI=id;const r=ld('inspections').find(x=>x.id===id);if(!r)return;
-  document.getElementById('mo-i-t').textContent=r.ref;
-  let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd><dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd><dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd><dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd><dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd><dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}</dl>`;
-  if(r.rounds?.length){h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th><th style="padding:4px;border-bottom:1px solid var(--brd)">%</th></tr></thead><tbody>${r.rounds.map(rn=>`<tr><td style="padding:4px;border-bottom:1px solid var(--brd)">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td><td style="padding:4px;text-align:center">${rn.recv??'—'}</td><td style="padding:4px;text-align:center">${rn.inspected}</td><td style="padding:4px;text-align:center">${rn.nonConf}</td><td style="padding:4px;text-align:center">${rn.pct}%</td></tr>`).join('')}</tbody></table></div>`;}
-  if(r.defects?.length){h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px"><span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}</div>`).join('')}</div>`;}
-  if(r.issues)h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
-  document.getElementById('mo-i-b').innerHTML=h;document.getElementById('mo-i').classList.add('open');
-}
+function openIM(id){curI=id;const r=ld('inspections').find(x=>x.id===id);if(!r)return;document.getElementById('mo-i-t').textContent=r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd><dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd><dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd><dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd><dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd><dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}</dl>`;if(r.rounds?.length){h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th><th style="padding:4px;border-bottom:1px solid var(--brd)">%</th></tr></thead><tbody>${r.rounds.map(rn=>`<tr><td style="padding:4px">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td><td style="padding:4px;text-align:center">${rn.recv??'—'}</td><td style="padding:4px;text-align:center">${rn.inspected}</td><td style="padding:4px;text-align:center">${rn.nonConf}</td><td style="padding:4px;text-align:center">${rn.pct}%</td></tr>`).join('')}</tbody></table></div>`;}
+if(r.defects?.length){h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px"><span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}</div>`).join('')}</div>`;}
+if(r.issues)h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
+document.getElementById('mo-i-b').innerHTML=h;document.getElementById('mo-i').classList.add('open');}
 async function delI(){if(!curI||!confirm(t('btn_del')+'?'))return;await rmRecord('inspections',curI);toast(t('t_del'));cmo('mo-i');renderID();renderIL();updBadge();}
-
-// EMAIL
 let emailData=null;
 function buildEmail(r){const r1=r.rounds?.[0]||{inspected:r.qtyInspected||0,nonConf:0};const pctNC=r1.inspected>0?Math.round(r1.nonConf/r1.inspected*100):0;const issues=r.issues||r.defects?.map((d,i)=>`${i+1}- ${d.label}${d.qty?` (qty: ${d.qty})`:''}`).join('\n')||'None';const body=`Hello All,\nHere's my inspection report for the ${r.description||r.productNo||'product'}.\n\nGeneral Shipment Info\nP.O. #\t\t${r.po||'—'}\nProduct #\t\t${r.productNo||'—'}\nSupplier name\t\t${r.supplier||'—'}\nInspection Date\t\t${r.date}\nQty received\t\t${r.qtyReceived}\n\nIssues:\n${issues}\n\nProduct\tQty\t%\nInspected\t${r1.inspected}\t${r.qtyReceived>0?Math.round(r1.inspected/r.qtyReceived*100):'0'}%\nNon-conformance\t${r1.nonConf}\t${pctNC}%\tUse as Is\tRework\tRejected\tWaiting for decision\n\t${r.qtyUseAsIs||''}\t${r.qtyRework||''}\t${r.qtyRejected||''}\t${r.qtyWaiting||''}\n\nPlease see attached file for details.\n\nBest Regards,\n${r.inspector||''}\n\nInspection Report # ${r.ref}`;return{subject:`Inspection report ${r.productNo||r.ref}`,body};}
 function previewEmail(){const dec=document.getElementById('f-dec').value;if(!dec){alert('Fill in the form first');return;}const tmp={ref:buildRef(),date:document.getElementById('f-dt').value,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,qtyReceived:+document.getElementById('r1-rv').value||0,qtyInspected:+document.getElementById('r1-in').value||0,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,inspector:document.getElementById('f-ip').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0};showEmailModal(tmp);}
@@ -1150,147 +1019,54 @@ function emailFromModal(){if(!curI)return;const r=ld('inspections').find(x=>x.id
 function showEmailModal(r){emailData=buildEmail(r);document.getElementById('mo-email-b').innerHTML=`<div style="margin-bottom:10px"><strong>Subject:</strong> ${emailData.subject}</div><div class="email-pre">${emailData.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br/>')}</div>`;document.getElementById('mo-email').classList.add('open');}
 function copyEmail(){const txt=`Subject: ${emailData.subject}\n\n${emailData.body}`;if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓'));}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');}}
 function openOutlook(){window.location.href=`mailto:?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;}
-
-// ── NCR ───────────────────────────────────────────────────────
 const caps=[];
 function addCapa(){const txt=document.getElementById('capa-t').value.trim();if(!txt)return;caps.push({text:txt,due:document.getElementById('capa-d').value,done:false});renderCaps();document.getElementById('capa-t').value='';}
 function renderCaps(){const el=document.getElementById('capa-new');if(!el)return;el.innerHTML='';caps.forEach((c,i)=>{const d=document.createElement('div');d.style.cssText='background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:8px 10px;display:flex;align-items:flex-start;gap:7px;';d.innerHTML=`<input type="checkbox" ${c.done?'checked':''} style="width:auto;margin-top:2px;accent-color:var(--grn)" onchange="caps[${i}].done=this.checked;renderCaps()"/><div style="flex:1;font-size:13px">${c.text}<div style="font-size:11px;color:var(--muted)">${c.due||''}</div></div><button type="button" class="btn bd bs" onclick="caps.splice(${i},1);renderCaps()">✕</button>`;el.appendChild(d);});}
 function genNCRRef(){const arr=ld('ncrs');return `NC-${site}-${String(arr.length+1).padStart(4,'0')}`;}
-async function submitN(e){
-  e.preventDefault();
-  const rec={id:Date.now(),ref:genNCRRef(),date:document.getElementById('n-dt').value,site,supplier:document.getElementById('n-sp').value,po:document.getElementById('n-po').value,productNo:document.getElementById('n-pn').value,material:document.getElementById('n-mt').value,severity:document.getElementById('n-sv').value,defect:document.getElementById('n-df').value,description:document.getElementById('n-dc').value,inspRef:document.getElementById('n-ir').value,rcaCategory:document.getElementById('n-rc').value,rcaDetail:document.getElementById('n-rd').value,capa:[...caps],responsible:document.getElementById('n-rp').value,dueDate:document.getElementById('n-du').value,status:'open',history:[{date:new Date().toISOString(),action:'Created'}],createdAt:new Date().toISOString()};
-  await svRecord('ncrs',rec);caps.length=0;renderCaps();toast(t('t_ns'));updBadge();resetNF();go('nd',null);
-}
+async function submitN(e){e.preventDefault();const rec={id:Date.now(),ref:genNCRRef(),date:document.getElementById('n-dt').value,site,supplier:document.getElementById('n-sp').value,po:document.getElementById('n-po').value,productNo:document.getElementById('n-pn').value,material:document.getElementById('n-mt').value,severity:document.getElementById('n-sv').value,defect:document.getElementById('n-df').value,description:document.getElementById('n-dc').value,inspRef:document.getElementById('n-ir').value,rcaCategory:document.getElementById('n-rc').value,rcaDetail:document.getElementById('n-rd').value,capa:[...caps],responsible:document.getElementById('n-rp').value,dueDate:document.getElementById('n-du').value,status:'open',history:[{date:new Date().toISOString(),action:'Created'}],createdAt:new Date().toISOString()};await svRecord('ncrs',rec);caps.length=0;renderCaps();toast(t('t_ns'));updBadge();resetNF();go('nd',null);}
 function resetNF(){document.getElementById('nForm').reset();caps.length=0;renderCaps();today('n-dt');}
 function renderND(){const data=ld('ncrs');const op=data.filter(r=>r.status==='open').length,ip=data.filter(r=>r.status==='in-progress').length,cl=data.filter(r=>r.status==='closed').length;document.getElementById('nd-op').textContent=op;document.getElementById('nd-ip').textContent=ip;document.getElementById('nd-cl').textContent=cl;const oA=data.filter(r=>r.status!=='closed');document.getElementById('nd-av').textContent=oA.length?Math.round(oA.reduce((s,r)=>s+Math.floor((Date.now()-new Date(r.createdAt))/86400000),0)/oA.length):'—';document.getElementById('nd-title').textContent=(lang==='fr'?'Tableau de bord NC — ':'NCR Dashboard — ')+site;const tb=document.getElementById('nd-tb');tb.innerHTML='';document.getElementById('nd-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>tb.appendChild(mkNR(r)));}
 function renderNL(){const srch=(document.getElementById('nl-s')?.value||'').toLowerCase();const st=document.getElementById('nl-st')?.value||'';const data=ld('ncrs').filter(r=>(!st||r.status===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('nl-tb');tb.innerHTML='';document.getElementById('nl-emp').style.display=data.length?'none':'block';data.forEach(r=>tb.appendChild(mkNR(r)));}
-function mkNR(r){const tr=document.createElement('tr');const od=r.dueDate&&r.status!=='closed'&&new Date(r.dueDate)<new Date();tr.innerHTML=`<td class="mono">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td>${r.defect||'—'}</td><td>${svP(r.severity)}</td><td>${pill(r.status)}</td><td><button class="btn bg bs" onclick="openNM(${r.id})">View</button></td>`;return tr;}
+function mkNR(r){const tr=document.createElement('tr');tr.innerHTML=`<td class="mono">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td>${r.defect||'—'}</td><td>${svP(r.severity)}</td><td>${pill(r.status)}</td><td><button class="btn bg bs" onclick="openNM(${r.id})">View</button></td>`;return tr;}
 function svP(s){const c={critical:'rejected',major:'rework',minor:'pending'};const l={critical:t('sv_c'),major:t('sv_m'),minor:t('sv_n')};return `<span class="pill ${c[s]||'pending'}">${l[s]||s}</span>`;}
 let curN=null;
 function openNM(id){curN=id;const r=ld('ncrs').find(x=>x.id===id);if(!r)return;document.getElementById('mo-n-t').textContent='NCR — '+r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('f_def')}</dt><dd>${r.defect||'—'}</dd><dt>${t('f_sev')}</dt><dd>${svP(r.severity)}</dd><dt>${t('c_sta')}</dt><dd>${pill(r.status)}</dd><dt>${t('f_due')}</dt><dd>${r.dueDate||'—'}</dd><dt>${t('f_resp')}</dt><dd>${r.responsible||'—'}</dd><dt>${t('f_desc')}</dt><dd>${r.description||'—'}</dd></dl>`;if(r.rcaDetail||r.rcaCategory)h+=`<div class="mo-s"><h3>${t('fc_rca')}</h3><dl class="dl"><dt>${t('f_rcat')}</dt><dd>${r.rcaCategory||'—'}</dd><dt>${t('f_rdet')}</dt><dd>${r.rcaDetail||'—'}</dd></dl></div>`;if(r.capa?.length){h+=`<div class="mo-s"><h3>${t('fc_capa')}</h3>`;r.capa.forEach(c=>{h+=`<div style="padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px;display:flex;gap:8px"><span>${c.done?'✅':'⬜'}</span><span>${c.text}${c.due?` (${c.due})`:''}</span></div>`;});h+=`</div>`;}if(r.history?.length){h+=`<div class="mo-s"><h3>History</h3><div class="tl">`;r.history.forEach(hh=>{const cl=hh.action.includes('Closed')?'g':hh.action.includes('progress')?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">●</div><div><div style="font-size:13px;font-weight:500">${hh.action}</div><div style="font-size:11px;color:var(--muted)">${new Date(hh.date).toLocaleString()}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-n-b').innerHTML=h;document.getElementById('mo-n').classList.add('open');}
 async function setNS(st){if(!curN)return;const arr=ld('ncrs');const i=arr.findIndex(r=>r.id===curN);if(i<0)return;arr[i].status=st;if(st==='closed')arr[i].closedDate=new Date().toISOString();arr[i].history.push({date:new Date().toISOString(),action:st==='closed'?'Closed':'In progress'});await svRecord('ncrs',arr[i]);toast(t('t_ns'));cmo('mo-n');renderND();renderNL();updBadge();}
 async function delN(){if(!curN||!confirm(t('btn_del')+'?'))return;await rmRecord('ncrs',curN);toast(t('t_del'));cmo('mo-n');renderND();renderNL();updBadge();}
 function updBadge(){const n=ld('ncrs').filter(r=>r.status==='open').length;const b=document.getElementById('nbadge');b.style.display=n>0?'inline':'none';b.textContent=n;}
-
-// ── SUPPLIERS ─────────────────────────────────────────────────
-async function submitS(e){
-  e.preventDefault();
-  const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};
-  await svRecord('suppliers',rec);toast(t('t_ss'));resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);
-}
+async function submitS(e){e.preventDefault();const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};await svRecord('suppliers',rec);toast(t('t_ss'));resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);}
 function resetSF(){document.getElementById('sForm').reset();}
 function renderSL(){const data=ld('suppliers');const tb=document.getElementById('sl-tb');tb.innerHTML='';document.getElementById('sl-emp').style.display=data.length?'none':'block';data.forEach(s=>{const sc=calcSc(s.name,'site');const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const tr=document.createElement('tr');tr.innerHTML=`<td><strong>${s.name}</strong>${s.country?`<div style="font-size:11px;color:var(--muted)">${s.country}</div>`:''}</td><td class="mono">${s.code||'—'}</td><td>${s.contact||'—'}</td><td>${certs||'—'}</td><td>${pill(s.status)}</td><td>${sc?`<div class="sg ${sc.grade}" style="width:28px;height:28px;font-size:12px">${sc.grade}</div>`:'-'}</td><td><button class="btn bg bs" onclick="openSM('${s.name.replace(/'/g,"\\'")}')">View</button> <button class="btn bd bs" onclick="delS('${s.name.replace(/'/g,"\\'")}')">Del</button></td>`;tb.appendChild(tr);});}
 async function delS(nm){if(!confirm(t('btn_del')+'?'))return;await rmRecord('suppliers',nm);renderSL();popSup('f-sp');popSup('n-sp');toast(t('t_del'));}
 function openSM(nm){const s=ld('suppliers').find(x=>x.name===nm);if(!s)return;const sc=calcSc(nm,'site');const ncrs=ld('ncrs').filter(r=>r.supplier===nm);const insps=ld('inspections').filter(r=>r.supplier===nm);const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const stL={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl')};document.getElementById('mo-s-t').textContent=s.name;let h=`<div style="display:flex;align-items:center;gap:13px;margin-bottom:14px"><div class="scc-av" style="width:44px;height:44px;font-size:16px">${s.name.slice(0,2).toUpperCase()}</div><div><div style="font-size:16px;font-weight:600">${s.name}</div><div style="font-size:12px;color:var(--muted)">${s.code||''} ${s.country?'· '+s.country:''}</div><span class="pill ${s.status}" style="margin-top:3px;display:inline-flex">${stL[s.status]||s.status}</span></div>${sc?`<div class="sg ${sc.grade}" style="margin-left:auto;width:46px;height:46px;font-size:19px">${sc.grade}</div>`:''}</div><dl class="dl"><dt>${t('f_sct')}</dt><dd>${s.contact||'—'}</dd><dt>${t('f_sem')}</dt><dd>${s.email||'—'}</dd><dt>${t('f_spr')}</dt><dd>${s.products||'—'}</dd><dt>${t('f_crt')}</dt><dd>${certs||'—'}</dd><dt>${t('f_adt')}</dt><dd>${s.auditDate||'—'}</dd><dt>${t('f_asc')}</dt><dd>${s.auditScore?s.auditScore+'%':'—'}</dd></dl><div class="mo-s"><h3>Stats — ${site}</h3><div style="display:flex;gap:18px;font-size:13px"><div><div style="color:var(--muted);font-size:11px">Inspections</div><div style="font-size:19px;font-weight:600">${insps.length}</div></div><div><div style="color:var(--muted);font-size:11px">NCRs</div><div style="font-size:19px;font-weight:600;color:var(--red)">${ncrs.length}</div></div>${sc?`<div><div style="color:var(--muted);font-size:11px">Score</div><div style="font-size:19px;font-weight:600">${sc.composite}/100</div></div>`:''}</div></div>`;if(ncrs.length){h+=`<div class="mo-s"><h3>NCRs</h3><div class="tl">`;ncrs.slice(0,4).forEach(r=>{const cl=r.status==='closed'?'g':r.status==='in-progress'?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">⚠</div><div><div style="font-size:13px;font-weight:500">${r.ref} — ${r.defect||'—'}</div><div style="font-size:11px;color:var(--muted)">${r.date} · ${pill(r.status)}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-s-b').innerHTML=h;document.getElementById('mo-s').classList.add('open');}
-
-// ── SCORING ───────────────────────────────────────────────────
 function getW(){return ldC('weights',{ac:40,pm:25,nc:20,au:15});}
 function getTH(){return ldC('thresholds',{A:90,B:75,C:60});}
-function calcSc(nm,scope){
-  const sites=scope==='all'?['QS','NL','QM']:[site];
-  const insps=sites.flatMap(s=>ldS('inspections',s)).filter(r=>r.supplier===nm);
-  const ncrs=sites.flatMap(s=>ldS('ncrs',s)).filter(r=>r.supplier===nm);
-  const sd=sites.flatMap(s=>ldS('suppliers',s)).find(r=>r.name===nm);
-  if(!insps.length)return null;
-  const w=getW();
-  const passCount=insps.filter(isPass).length;const acc=passCount/insps.length*100;
-  const tR=insps.reduce((s,r)=>s+(r.qtyReceived||0),0);const tJ=insps.reduce((s,r)=>s+(r.qtyRejected||0),0);
-  const ppm=tR>0?Math.round(tJ/tR*1e6):0;const ppmS=Math.max(0,100-ppm/100);
-  const oN=ncrs.filter(r=>r.status!=='closed').length;const nS=Math.max(0,100-oN*10);
-  const aS=sd?.auditScore?parseFloat(sd.auditScore):50;
-  const comp=Math.round((acc*(w.ac/100))+(ppmS*(w.pm/100))+(nS*(w.nc/100))+(aS*(w.au/100)));
-  const th=getTH();const gr=comp>=th.A?'A':comp>=th.B?'B':comp>=th.C?'C':'D';
-  return{name:nm,site:scope==='all'?'All':site,tot:insps.length,acc:Math.round(acc),ppm,oN,aS:Math.round(aS),composite:comp,grade:gr,sd:sd||{}};
-}
+function calcSc(nm,scope){const sites=scope==='all'?['QS','NL','QM']:[site];const insps=sites.flatMap(s=>ldS('inspections',s)).filter(r=>r.supplier===nm);const ncrs=sites.flatMap(s=>ldS('ncrs',s)).filter(r=>r.supplier===nm);const sd=sites.flatMap(s=>ldS('suppliers',s)).find(r=>r.name===nm);if(!insps.length)return null;const w=getW();const passCount=insps.filter(isPass).length;const acc=passCount/insps.length*100;const tR=insps.reduce((s,r)=>s+(r.qtyReceived||0),0);const tJ=insps.reduce((s,r)=>s+(r.qtyRejected||0),0);const ppm=tR>0?Math.round(tJ/tR*1e6):0;const ppmS=Math.max(0,100-ppm/100);const oN=ncrs.filter(r=>r.status!=='closed').length;const nS=Math.max(0,100-oN*10);const aS=sd?.auditScore?parseFloat(sd.auditScore):50;const comp=Math.round((acc*(w.ac/100))+(ppmS*(w.pm/100))+(nS*(w.nc/100))+(aS*(w.au/100)));const th=getTH();const gr=comp>=th.A?'A':comp>=th.B?'B':comp>=th.C?'C':'D';return{name:nm,site:scope==='all'?'All':site,tot:insps.length,acc:Math.round(acc),ppm,oN,aS:Math.round(aS),composite:comp,grade:gr,sd:sd||{}};}
 function allScores(scope){const sites=scope==='all'?['QS','NL','QM']:[site];const nms=[...new Set(sites.flatMap(s=>ldS('suppliers',s).map(r=>r.name)))];return nms.map(n=>calcSc(n,scope)).filter(Boolean);}
-
-// ── CONSOLIDATED ──────────────────────────────────────────────
-function renderCD(){
-  const sites=['QS','NL','QM'];
-  const insps=sites.flatMap(s=>ldS('inspections',s));const ncrs=sites.flatMap(s=>ldS('ncrs',s));const sups=sites.flatMap(s=>ldS('suppliers',s));
-  const tot=insps.length;const pass=insps.filter(isPass).length;
-  const tR=insps.reduce((a,r)=>a+(r.qtyReceived||0),0),tJ=insps.reduce((a,r)=>a+(r.qtyRejected||0),0);const ppm=tR>0?Math.round(tJ/tR*1e6):0;
-  document.getElementById('c-tot').textContent=tot;document.getElementById('c-ar').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('c-ppm').textContent=ppm.toLocaleString();document.getElementById('c-ncr').textContent=ncrs.filter(r=>r.status==='open').length;document.getElementById('c-sup').textContent=sups.filter(s=>s.status!=='blocked').length;
-  const ca=document.getElementById('ch-acc');ca.innerHTML='';
-  sites.forEach(s=>{const i=ldS('inspections',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const col=document.createElement('div');col.className='bcol';const c=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';col.innerHTML=`<div class="bv">${rt}%</div><div class="bfill" style="height:${Math.max(4,rt)}px;background:${c}"></div><div class="blbl">${s}</div>`;ca.appendChild(col);});
-  const cd=document.getElementById('ch-def');cd.innerHTML='';const dc={};ncrs.forEach(r=>{if(r.defect)dc[r.defect]=(dc[r.defect]||0)+1;});insps.forEach(r=>r.defects?.forEach(d=>{if(d.label)dc[d.label]=(dc[d.label]||0)+1;}));const mx=Math.max(1,...Object.values(dc));const dcc=['var(--red)','var(--amb)','var(--blu)','var(--pur)','var(--grn)'];Object.entries(dc).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(([d,c],i)=>{const col=document.createElement('div');col.className='bcol';col.innerHTML=`<div class="bv">${c}</div><div class="bfill" style="height:${Math.max(4,c/mx*100)}px;background:${dcc[i%dcc.length]}"></div><div class="blbl">${d.slice(0,12)}</div>`;cd.appendChild(col);});if(!Object.keys(dc).length)cd.innerHTML=`<div style="padding:16px;color:var(--muted);font-size:13px">No defect data</div>`;
-  const g=document.getElementById('pg3-grid');g.innerHTML='';
-  sites.forEach(s=>{const i=ldS('inspections',s),n=ldS('ncrs',s),su=ldS('suppliers',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const rv=i.reduce((a,x)=>a+(x.qtyReceived||0),0),rj=i.reduce((a,x)=>a+(x.qtyRejected||0),0);const pm=rv>0?Math.round(rj/rv*1e6):0;const gc=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';const card=document.createElement('div');card.className='pc';card.innerHTML=`<div class="pch"><div style="font-size:14px;font-weight:600">🏭 ${s}</div><span style="font-size:20px;font-weight:700;color:${gc}">${rt}%</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_tot')}</span><span>${i.length}</span></div><div class="pkr"><span style="color:var(--muted)">PPM</span><span class="mono">${pm.toLocaleString()}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_open')}</span><span style="color:${n.filter(x=>x.status==='open').length>0?'var(--red)':'inherit'}">${n.filter(x=>x.status==='open').length}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_sup')}</span><span>${su.filter(x=>x.status!=='blocked').length}</span></div>`;g.appendChild(card);});
-}
-
-// ── SCORECARDS ────────────────────────────────────────────────
+function renderCD(){const sites=['QS','NL','QM'];const insps=sites.flatMap(s=>ldS('inspections',s));const ncrs=sites.flatMap(s=>ldS('ncrs',s));const sups=sites.flatMap(s=>ldS('suppliers',s));const tot=insps.length;const pass=insps.filter(isPass).length;const tR=insps.reduce((a,r)=>a+(r.qtyReceived||0),0),tJ=insps.reduce((a,r)=>a+(r.qtyRejected||0),0);const ppm=tR>0?Math.round(tJ/tR*1e6):0;document.getElementById('c-tot').textContent=tot;document.getElementById('c-ar').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('c-ppm').textContent=ppm.toLocaleString();document.getElementById('c-ncr').textContent=ncrs.filter(r=>r.status==='open').length;document.getElementById('c-sup').textContent=sups.filter(s=>s.status!=='blocked').length;const ca=document.getElementById('ch-acc');ca.innerHTML='';sites.forEach(s=>{const i=ldS('inspections',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const col=document.createElement('div');col.className='bcol';const c=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';col.innerHTML=`<div class="bv">${rt}%</div><div class="bfill" style="height:${Math.max(4,rt)}px;background:${c}"></div><div class="blbl">${s}</div>`;ca.appendChild(col);});const cd=document.getElementById('ch-def');cd.innerHTML='';const dc={};ncrs.forEach(r=>{if(r.defect)dc[r.defect]=(dc[r.defect]||0)+1;});insps.forEach(r=>r.defects?.forEach(d=>{if(d.label)dc[d.label]=(dc[d.label]||0)+1;}));const mx=Math.max(1,...Object.values(dc));const dcc=['var(--red)','var(--amb)','var(--blu)','var(--pur)','var(--grn)'];Object.entries(dc).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(([d,c],i)=>{const col=document.createElement('div');col.className='bcol';col.innerHTML=`<div class="bv">${c}</div><div class="bfill" style="height:${Math.max(4,c/mx*100)}px;background:${dcc[i%dcc.length]}"></div><div class="blbl">${d.slice(0,12)}</div>`;cd.appendChild(col);});if(!Object.keys(dc).length)cd.innerHTML=`<div style="padding:16px;color:var(--muted);font-size:13px">No defect data</div>`;const g=document.getElementById('pg3-grid');g.innerHTML='';sites.forEach(s=>{const i=ldS('inspections',s),n=ldS('ncrs',s),su=ldS('suppliers',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const rv=i.reduce((a,x)=>a+(x.qtyReceived||0),0),rj=i.reduce((a,x)=>a+(x.qtyRejected||0),0);const pm=rv>0?Math.round(rj/rv*1e6):0;const gc=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';const card=document.createElement('div');card.className='pc';card.innerHTML=`<div class="pch"><div style="font-size:14px;font-weight:600">🏭 ${s}</div><span style="font-size:20px;font-weight:700;color:${gc}">${rt}%</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_tot')}</span><span>${i.length}</span></div><div class="pkr"><span style="color:var(--muted)">PPM</span><span class="mono">${pm.toLocaleString()}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_open')}</span><span style="color:${n.filter(x=>x.status==='open').length>0?'var(--red)':'inherit'}">${n.filter(x=>x.status==='open').length}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_sup')}</span><span>${su.filter(x=>x.status!=='blocked').length}</span></div>`;g.appendChild(card);});}
 function renderSC(){const srch=(document.getElementById('sc-s')?.value||'').toLowerCase();const fsi=document.getElementById('sc-si')?.value||'';const fgr=document.getElementById('sc-gr')?.value||'';let scores=allScores('all');if(fsi)scores=scores.filter(s=>ldS('suppliers',fsi).find(x=>x.name===s.name));if(fgr)scores=scores.filter(s=>s.grade===fgr);if(srch)scores=scores.filter(s=>s.name.toLowerCase().includes(srch));scores.sort((a,b)=>b.composite-a.composite);const g=document.getElementById('scg');g.innerHTML='';document.getElementById('sc-emp').style.display=scores.length?'none':'block';scores.forEach(s=>{const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';const card=document.createElement('div');card.className='scc';card.onclick=()=>openScM(s.name);card.innerHTML=`<div class="scc-h"><div class="scc-av">${s.name.slice(0,2).toUpperCase()}</div><div><div class="scc-nm">${s.name}</div><div class="scc-cd">${s.sd?.code||''}</div></div><div class="sg ${s.grade}">${s.grade}</div></div><div class="sck"><div class="sckv"><div class="sckv-n" style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</div><div class="sckv-l">Pass</div></div><div class="sckv"><div class="sckv-n mono">${s.ppm>9999?Math.round(s.ppm/1000)+'k':s.ppm}</div><div class="sckv-l">PPM</div></div><div class="sckv"><div class="sckv-n" style="color:${s.oN>0?'var(--red)':'var(--tx)'}">${s.oN}</div><div class="sckv-l">NCRs</div></div></div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>Score</span><span>${s.composite}/100</span></div><div class="sb-bg"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div>`;g.appendChild(card);});}
 function openScM(nm){const s=calcSc(nm,'all');if(!s)return;const insps=(['QS','NL','QM']).flatMap(ss=>ldS('inspections',ss)).filter(r=>r.supplier===nm);const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';document.getElementById('mo-s-t').textContent='Scorecard — '+nm;let h=`<div style="display:flex;align-items:center;gap:13px;margin-bottom:14px"><div class="sg ${s.grade}" style="width:50px;height:50px;font-size:20px">${s.grade}</div><div><div style="font-size:21px;font-weight:700">${s.composite}/100</div></div></div><div class="sb-bg" style="margin-bottom:14px"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div><dl class="dl"><dt>Pass rate</dt><dd style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</dd><dt>PPM</dt><dd class="mono">${s.ppm.toLocaleString()}</dd><dt>Open NCRs</dt><dd>${s.oN}</dd><dt>Audit</dt><dd>${s.aS}%</dd><dt>Inspections</dt><dd>${s.tot}</dd></dl>`;if(insps.length){h+=`<div class="mo-s"><h3>Recent inspections</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Report #</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Date</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Product #</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Decision</th></tr></thead><tbody>${insps.slice(0,5).map(r=>`<tr><td style="padding:4px;border-bottom:1px solid var(--brd)" class="mono">${r.ref}</td><td style="padding:4px;border-bottom:1px solid var(--brd)">${r.date}</td><td style="padding:4px;border-bottom:1px solid var(--brd)" class="mono">${r.productNo||'—'}</td><td style="padding:4px;border-bottom:1px solid var(--brd)">${decPill(r.decision)}</td></tr>`).join('')}</tbody></table></div>`;}document.getElementById('mo-s-b').innerHTML=h;document.getElementById('mo-s').classList.add('open');}
-
-// ── RANKING ───────────────────────────────────────────────────
 function renderRK(){const scores=allScores('all').sort((a,b)=>b.composite-a.composite);const tb=document.getElementById('rk-tb');tb.innerHTML='';document.getElementById('rk-emp').style.display=scores.length?'none':'block';scores.forEach((s,i)=>{const m=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';const tr=document.createElement('tr');tr.innerHTML=`<td>${m}</td><td><strong>${s.name}</strong></td><td>${s.site}</td><td style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</td><td class="mono">${s.ppm.toLocaleString()}</td><td style="color:${s.oN>0?'var(--red)':'var(--tx)'}">${s.oN}</td><td>${s.aS}%</td><td><div style="display:flex;align-items:center;gap:5px"><div class="sb-bg" style="width:75px;display:inline-block"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div><span style="font-size:12px">${s.composite}</span></div></td><td><span class="pill ${s.grade}">${s.grade}</span></td>`;tb.appendChild(tr);});}
-
-// ── SP CONNECTION PAGE ────────────────────────────────────────
-async function renderPAStatus(){
-  const el=document.getElementById('pa-status-badge');
-  try{
-    const res=await fetch(`${SP_SITE}/_api/web/title`,{headers:{Accept:'application/json;odata=verbose'},credentials:'include'});
-    if(res.ok){
-      const d=await res.json();
-      if(el){el.className='sp-st ok';el.innerHTML=`✅ Connected — ${d.d.Title}`;}
-    } else {
-      if(el){el.className='sp-st w';el.innerHTML=`⚠️ HTTP ${res.status} — Check SharePoint access`;}
-    }
-  }catch(e){if(el){el.className='sp-st w';el.innerHTML=`⚠️ ${e.message}`;}}
-}
-async function testSpConn(){
-  const el=document.getElementById('pa-status-badge');
-  if(el){el.className='sp-st w';el.innerHTML='Testing…';}
-  await renderPAStatus();
-}
-async function pushAllToSP(){
-  const lg=document.getElementById('push-log');lg.innerHTML='';
-  for(const s of['QS','NL','QM']){
-    for(const type of['inspections','ncrs','suppliers']){
-      const data=JSON.parse(localStorage.getItem(`sqm_${type}_${s}`)||'[]');
-      const listName=SP_LISTS[type];lg.innerHTML+=`Pushing ${s}/${type} (${data.length} records)…<br/>`;
-      for(const rec of data){
-        try{
-          const title=rec.ref||rec.name||String(rec.id);
-          // Check if exists
-          const existing=await spGet(listName,`Title eq '${title.replace(/'/g,"''")}'`);
-          if(existing.length>0){await spUpdate(listName,existing[0].Id,title,rec);}
-          else{await spCreate(listName,title,rec);}
-        }catch(e){lg.innerHTML+=`  ❌ ${rec.ref||rec.name}: ${e.message}<br/>`;}
-      }
-      lg.innerHTML+=`  ✅ Done<br/>`;
-    }
-  }
-  lg.innerHTML+='<strong>All done!</strong>';toast(t('t_sy'));
-}
-
-// ── WEIGHTS ───────────────────────────────────────────────────
 function loadWT(){const w=getW();document.getElementById('w-ac').value=w.ac;document.getElementById('w-pm').value=w.pm;document.getElementById('w-nc').value=w.nc;document.getElementById('w-au').value=w.au;const th=getTH();document.getElementById('t-A').value=th.A;document.getElementById('t-B').value=th.B;document.getElementById('t-C').value=th.C;updWT();}
 function updWT(){const tot=['w-ac','w-pm','w-nc','w-au'].reduce((s,id)=>{const el=document.getElementById(id);return s+(el?+el.value:0);},0);const el=document.getElementById('w-tot');if(!el)return;el.textContent=tot+'%';el.style.color=tot===100?'var(--grn)':'var(--red)';}
 function saveWT(){const w={ac:+document.getElementById('w-ac').value,pm:+document.getElementById('w-pm').value,nc:+document.getElementById('w-nc').value,au:+document.getElementById('w-au').value};if(w.ac+w.pm+w.nc+w.au!==100){alert('Must total 100%');return;}svC('weights',w);toast(t('t_ws'));}
 function saveTH(){svC('thresholds',{A:+document.getElementById('t-A').value,B:+document.getElementById('t-B').value,C:+document.getElementById('t-C').value});toast(t('t_ws'));}
-
-// ── EXPORT / IMPORT (local backup) ───────────────────────────
-function exportAll(){const data={};['QS','NL','QM'].forEach(s=>{data[`inspections_${s}`]=JSON.parse(localStorage.getItem(`sqm_inspections_${s}`)||'[]');data[`ncrs_${s}`]=JSON.parse(localStorage.getItem(`sqm_ncrs_${s}`)||'[]');data[`suppliers_${s}`]=JSON.parse(localStorage.getItem(`sqm_suppliers_${s}`)||'[]');});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=`supplierq_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();toast(t('t_ex'));}
-function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);['QS','NL','QM'].forEach(s=>{if(data[`inspections_${s}`])localStorage.setItem(`sqm_inspections_${s}`,JSON.stringify(data[`inspections_${s}`]));if(data[`ncrs_${s}`])localStorage.setItem(`sqm_ncrs_${s}`,JSON.stringify(data[`ncrs_${s}`]));if(data[`suppliers_${s}`])localStorage.setItem(`sqm_suppliers_${s}`,JSON.stringify(data[`suppliers_${s}`]));});// Clear caches and reload from SP
-_cache.inspections=null;_cache.ncrs=null;_cache.suppliers=null;await spLoadAll();refresh();updBadge();toast(t('t_im'));}catch{toast('Import error');}};reader.readAsText(file);e.target.value='';}
-
-// ── HELPERS ───────────────────────────────────────────────────
+function exportAll(){const data={};['QS','NL','QM'].forEach(s=>{data[`inspections_${s}`]=ldS('inspections',s);data[`ncrs_${s}`]=ldS('ncrs',s);data[`suppliers_${s}`]=ldS('suppliers',s);});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=`supplierq_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();toast(t('t_ex'));}
+async function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);for(const s of['QS','NL','QM']){if(!_cache[s])_cache[s]={inspections:[],ncrs:[],suppliers:[]};if(data[`inspections_${s}`])_cache[s].inspections=data[`inspections_${s}`];if(data[`ncrs_${s}`])_cache[s].ncrs=data[`ncrs_${s}`];if(data[`suppliers_${s}`])_cache[s].suppliers=data[`suppliers_${s}`];await ghSave(s);}refresh();updBadge();toast(t('t_im'));}catch(err){toast('Import error: '+err.message);}};reader.readAsText(file);e.target.value='';}
 function pill(s){const l={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl'),open:t('s_op'),'in-progress':t('s_ip'),closed:t('s_cl'),A:'A',B:'B',C:'C',D:'D',pending:'—'};return `<span class="pill ${s}">${l[s]||s}</span>`;}
 function cmo(id,e){if(!e||e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400);}
 
-// ── INIT ──────────────────────────────────────────────────────
-i18n();
-today('f-dt');today('f-rdt');
-updRef();
-// Load from SharePoint on startup
-spLoadAll().then(ok => {
+// INIT — load all 3 sites on startup
+(async()=>{
+  i18n();
+  today('f-dt');today('f-rdt');updRef();
+  setSS('s');
+  await Promise.all(['QS','NL','QM'].map(s=>ghLoad(s)));
   popSup('f-sp');
   renderID();
   updBadge();
-  if(!ok) toast('⚠️ Open from SharePoint for live sync');
-});
+})();
 </script>
 </body>
 </html>
