@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SupplierQ — Foliot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#F5F4F0;--surf:#FFFFFF;--surf2:#F0EFE9;--brd:#DDD9CE;
+  --tx:#1A1916;--muted:#6B6760;
+  --grn:#1D5F3C;--grn-l:#E6F2EC;--grn-b:#A8D4B8;
+  --red:#C0341D;--red-l:#FAEAE7;--red-b:#E8A898;
+  --amb:#A0620E;--amb-l:#FBF3E6;--amb-b:#E0C080;
+  --blu:#1A4A7A;--blu-l:#E8EFF8;--blu-b:#90B4D8;
+  --pur:#4A2D8A;--pur-l:#EEE9F8;
+  --ff:'DM Sans',sans-serif;--fm:'DM Mono',monospace;--r:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ff);background:var(--bg);color:var(--tx);font-size:14px;line-height:1.5;min-height:100vh;}
+.hdr{background:var(--tx);color:#fff;display:flex;align-items:center;gap:12px;padding:0 18px;height:50px;position:sticky;top:0;z-index:200;}
+.hdr-logo{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.hdr-sep{width:1px;height:18px;background:rgba(255,255,255,.2);}
+.hdr-mod{font-size:11px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:2px 9px;color:rgba(255,255,255,.75);}
+.hdr-r{margin-left:auto;display:flex;align-items:center;gap:7px;}
+.site-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:3px 10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;position:relative;color:#fff;font-family:var(--ff);}
+.site-dd{position:absolute;top:calc(100% + 6px);right:0;background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);box-shadow:0 8px 24px rgba(0,0,0,.12);min-width:150px;display:none;z-index:300;}
+.site-dd.open{display:block;}
+.site-opt{padding:9px 14px;cursor:pointer;font-size:13px;color:var(--tx);}
+.site-opt:hover{background:var(--surf2);}
+.site-opt.active{font-weight:600;color:var(--grn);}
+.lang-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;color:#fff;font-family:var(--ff);font-size:12px;font-weight:500;padding:3px 10px;cursor:pointer;}
+.sync-btn{background:rgba(29,95,60,.5);border:1px solid rgba(168,212,184,.4);border-radius:4px;color:#fff;font-family:var(--ff);font-size:11px;font-weight:500;padding:3px 9px;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.sdot{width:6px;height:6px;border-radius:50%;background:#6ee7b7;}
+.sdot.s{background:var(--amb);animation:pulse 1s infinite;}
+.sdot.e{background:var(--red);}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.wrap{display:flex;height:calc(100vh - 50px);}
+.sidebar{width:210px;flex-shrink:0;background:var(--surf);border-right:1px solid var(--brd);overflow-y:auto;padding:12px 0;}
+.sb-sec{padding:0 10px;margin-bottom:16px;}
+.sb-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 6px;margin-bottom:4px;}
+.nav{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;font-size:13px;color:var(--muted);transition:all .12s;}
+.nav:hover{background:var(--surf2);color:var(--tx);}
+.nav.active{background:var(--grn-l);color:var(--grn);font-weight:500;}
+.nav-ic{font-size:14px;width:16px;text-align:center;}
+.nbadge{margin-left:auto;background:var(--red-l);color:var(--red);font-size:10px;font-weight:700;padding:1px 5px;border-radius:10px;}
+.content{flex:1;overflow-y:auto;}
+.pg{display:none;padding:22px 26px;max-width:1140px;}
+.pg.active{display:block;}
+.pgh{margin-bottom:18px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.pgh h1{font-size:18px;font-weight:600;}
+.pgh p{font-size:13px;color:var(--muted);margin-top:2px;}
+.kg{display:grid;gap:11px;margin-bottom:18px;}
+.kg4{grid-template-columns:repeat(4,1fr);}
+.kg5{grid-template-columns:repeat(5,1fr);}
+.kpi{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:13px 15px;}
+.kl{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+.kv{font-size:24px;font-weight:600;margin:3px 0 2px;line-height:1;}
+.ks{font-size:12px;color:var(--muted);}
+.kpi.grn .kv{color:var(--grn);}
+.kpi.red .kv{color:var(--red);}
+.kpi.amb .kv{color:var(--amb);}
+.kpi.blu .kv{color:var(--blu);}
+.kpi.pur .kv{color:var(--pur);}
+.tw{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);overflow:hidden;margin-bottom:18px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+thead{background:var(--surf2);}
+th{padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);white-space:nowrap;}
+td{padding:9px 12px;border-bottom:1px solid var(--brd);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surf2);}
+.mono{font-family:var(--fm);font-size:12px;}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.7;}
+.pill.use-as-is,.pill.approved,.pill.closed,.pill.A{background:var(--grn-l);color:var(--grn);}
+.pill.rejected,.pill.blocked,.pill.open,.pill.D{background:var(--red-l);color:var(--red);}
+.pill.rework,.pill.hold,.pill.conditional,.pill.in-progress,.pill.C{background:var(--amb-l);color:var(--amb);}
+.pill.waiting,.pill.pending,.pill.B{background:var(--blu-l);color:var(--blu);}
+.pill.pass{background:var(--grn-l);color:var(--grn);}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;border-radius:var(--r);font-family:var(--ff);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .12s;}
+.bp{background:var(--grn);color:#fff;}
+.bp:hover{background:#164d30;}
+.bg{background:transparent;color:var(--muted);border:1px solid var(--brd);}
+.bg:hover{background:var(--surf2);color:var(--tx);}
+.bd{background:var(--red-l);color:var(--red);border:1px solid var(--red-b);}
+.bmail{background:var(--blu-l);color:var(--blu);border:1px solid var(--blu-b);}
+.bs{padding:3px 8px;font-size:12px;}
+.fc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;}
+.fct{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--brd);}
+.fg{margin-bottom:11px;}
+.fg:last-child{margin-bottom:0;}
+label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin-bottom:3px;}
+.req{color:var(--red);}
+input[type=text],input[type=date],input[type=number],input[type=email],input[type=url],select,textarea{width:100%;padding:7px 9px;border:1px solid var(--brd);border-radius:var(--r);font-family:var(--ff);font-size:13px;background:var(--surf);color:var(--tx);appearance:none;transition:border-color .12s;}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--grn);box-shadow:0 0 0 3px rgba(29,95,60,.08);}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6760' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 9px center;padding-right:26px;}
+textarea{resize:vertical;min-height:68px;}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.f3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
+.fl{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.fl-end{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;}
+.flayout{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.defect-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.di{display:flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid var(--brd);border-radius:4px;background:var(--surf2);cursor:pointer;font-size:12px;transition:all .1s;}
+.di:hover,.di.chk{border-color:var(--red-b);background:var(--red-l);color:var(--red);}
+.di input[type=checkbox]{width:auto;accent-color:var(--red);}
+.di-qty{width:50px!important;padding:3px 5px!important;font-size:11px!important;margin-left:auto;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.rb{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:12px 14px;}
+.rb-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:8px;}
+.rb.act{border-color:var(--grn-b);background:var(--grn-l);}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.db{padding:10px;border:2px solid var(--brd);border-radius:var(--r);cursor:pointer;font-family:var(--ff);font-size:13px;font-weight:500;background:var(--surf2);color:var(--muted);text-align:center;transition:all .12s;}
+.db:hover{border-color:var(--brd2);}
+.db.sel-uai{border-color:var(--grn-b);background:var(--grn-l);color:var(--grn);}
+.db.sel-rw{border-color:var(--amb-b);background:var(--amb-l);color:var(--amb);}
+.db.sel-rej{border-color:var(--red-b);background:var(--red-l);color:var(--red);}
+.db.sel-wfd{border-color:var(--blu-b);background:var(--blu-l);color:var(--blu);}
+.scg{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:18px;}
+.scc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:15px;cursor:pointer;transition:box-shadow .15s;}
+.scc:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.scc-h{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+.scc-av{width:38px;height:38px;border-radius:6px;background:var(--blu-l);border:1px solid var(--blu-b);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--blu);flex-shrink:0;}
+.scc-nm{font-size:13px;font-weight:600;}
+.scc-cd{font-size:11px;color:var(--muted);}
+.sg{margin-left:auto;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;}
+.sg.A{background:var(--grn-l);color:var(--grn);border:2px solid var(--grn-b);}
+.sg.B{background:var(--blu-l);color:var(--blu);border:2px solid var(--blu-b);}
+.sg.C{background:var(--amb-l);color:var(--amb);border:2px solid var(--amb-b);}
+.sg.D{background:var(--red-l);color:var(--red);border:2px solid var(--red-b);}
+.sck{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-bottom:9px;}
+.sckv{text-align:center;padding:6px 3px;background:var(--surf2);border-radius:4px;}
+.sckv-n{font-size:14px;font-weight:600;}
+.sckv-l{font-size:10px;color:var(--muted);text-transform:uppercase;}
+.sb-bg{height:5px;background:var(--surf2);border-radius:3px;overflow:hidden;margin-top:7px;}
+.sb-fill{height:100%;border-radius:3px;transition:width .5s;}
+.cw{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:15px;margin-bottom:18px;}
+.ct{font-size:13px;font-weight:600;margin-bottom:12px;}
+.bc{display:flex;align-items:flex-end;gap:7px;height:110px;}
+.bcol{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.bfill{width:100%;border-radius:3px 3px 0 0;min-height:3px;}
+.blbl{font-size:10px;color:var(--muted);text-align:center;}
+.bv{font-size:11px;font-weight:600;}
+.pg3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px;}
+.pc{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:13px;}
+.pch{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;}
+.pkr{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px;}
+.pkr:last-child{border-bottom:none;}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:400;align-items:center;justify-content:center;}
+.mo.open{display:flex;}
+.mo-box{background:var(--surf);border-radius:var(--r);width:700px;max-width:96vw;max-height:90vh;overflow-y:auto;padding:24px;}
+.mo-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.mo-h h2{font-size:15px;font-weight:600;}
+.mo-x{background:none;border:none;font-size:19px;cursor:pointer;color:var(--muted);}
+.mo-s{margin-top:14px;padding-top:12px;border-top:1px solid var(--brd);}
+.mo-s h3{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:9px;}
+.dl{display:grid;grid-template-columns:160px 1fr;gap:6px 12px;font-size:13px;}
+.dl dt{color:var(--muted);font-weight:500;}
+.cert{background:var(--blu-l);border:1px solid var(--blu-b);color:var(--blu);font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;font-family:var(--fm);}
+.cr{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--brd);}
+.cr:last-child{border-bottom:none;}
+.cr-l{font-size:13px;font-weight:500;}
+.cr-i{display:flex;align-items:center;gap:5px;}
+.cr-i input{width:62px;padding:4px 7px;border:1px solid var(--brd);border-radius:var(--r);font-family:var(--fm);font-size:13px;text-align:right;}
+.pa-step{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r);padding:15px 17px;margin-bottom:11px;}
+.pa-n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--grn);color:#fff;font-size:11px;font-weight:700;margin-bottom:8px;}
+.pa-step h3{font-size:13px;font-weight:600;margin-bottom:5px;}
+.pa-step p,.pa-step li{font-size:13px;color:var(--muted);line-height:1.7;}
+.pa-step code{background:var(--surf2);border:1px solid var(--brd);border-radius:3px;padding:1px 5px;font-family:var(--fm);font-size:12px;color:var(--tx);}
+.sp-ban{background:var(--blu-l);border:1px solid var(--blu-b);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;}
+.sp-ban h3{font-size:13px;font-weight:600;color:var(--blu);margin-bottom:3px;}
+.sp-ban p{font-size:12px;color:var(--blu);opacity:.85;margin-bottom:8px;}
+.sp-st{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3px 8px;border-radius:4px;}
+.sp-st.w{background:var(--amb-l);color:var(--amb);}
+.sp-st.ok{background:var(--grn-l);color:var(--grn);}
+.filters{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;align-items:center;}
+.filters input,.filters select{width:auto;padding:5px 8px;font-size:12px;min-width:140px;}
+.filters input{min-width:170px;}
+.ref-badge{font-family:var(--fm);font-size:12px;background:var(--surf2);border:1px solid var(--brd);border-radius:4px;padding:3px 8px;}
+.email-pre{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:16px;font-size:13px;line-height:1.8;white-space:pre-wrap;font-family:var(--ff);}
+.tl{display:flex;flex-direction:column;}
+.tli{display:flex;gap:11px;padding-bottom:12px;position:relative;}
+.tli:not(:last-child)::before{content:'';position:absolute;left:9px;top:20px;bottom:0;width:1px;background:var(--brd);}
+.tld{width:20px;height:20px;border-radius:50%;border:2px solid var(--brd);background:var(--surf);flex-shrink:0;font-size:9px;margin-top:2px;display:flex;align-items:center;justify-content:center;}
+.tld.r{border-color:var(--red-b);background:var(--red-l);}
+.tld.g{border-color:var(--grn-b);background:var(--grn-l);}
+.tld.a{border-color:var(--amb-b);background:var(--amb-l);}
+.empty{text-align:center;padding:40px;color:var(--muted);}
+.ei{font-size:36px;margin-bottom:7px;}
+#toast{position:fixed;bottom:20px;right:20px;background:var(--tx);color:#fff;padding:8px 15px;border-radius:var(--r);font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .22s;pointer-events:none;z-index:999;}
+#toast.show{opacity:1;transform:translateY(0);}
+@media(max-width:860px){.kg4,.kg5{grid-template-columns:1fr 1fr;}.scg,.pg3,.flayout{grid-template-columns:1fr;}.sidebar{display:none;}.rg{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-logo">SupplierQ</div>
+  <div class="hdr-sep"></div>
+  <span class="hdr-mod" id="hdr-mod">Inspection</span>
+  <div class="hdr-r">
+    <button class="sync-btn" onclick="manualSync()"><span class="sdot" id="sdot"></span><span id="slbl">Sync</span></button>
+    <div class="site-btn" id="siteBadge" onclick="toggleDD()">🏭 <span id="siteLabel">QS</span> ▾
+      <div class="site-dd" id="siteDD">
+        <div class="site-opt active" data-site="QS" onclick="selectSite('QS',event)">🏭 QS</div>
+        <div class="site-opt" data-site="NL" onclick="selectSite('NL',event)">🏭 NL</div>
+        <div class="site-opt" data-site="QM" onclick="selectSite('QM',event)">🏭 QM</div>
+      </div>
+    </div>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">FR</button>
+  </div>
+</header>
+<div class="wrap">
+<nav class="sidebar">
+  <div class="sb-sec">
+    <div class="sb-lbl" data-i18n="sb_rec">Reception</div>
+    <div class="nav active" onclick="go('id',this)"><span class="nav-ic">📊</span><span data-i18n="n_id">Dashboard</span></div>
+    <div class="nav" onclick="go('in',this)"><span class="nav-ic">➕</span><span data-i18n="n_in">New inspection</span></div>
+    <div class="nav" onclick="go('il',this)"><span class="nav-ic">📋</span><span data-i18n="n_il">All inspections</span></div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-lbl" data-i18n="sb_ncr">Non-Conformances</div>
+    <div class="nav" onclick="go('nd',this)"><span class="nav-ic">⚠️</span><span data-i18n="n_nd">NCR Dashboard</span><span class="nbadge" id="nbadge" style="display:none">0</span></div>
+    <div class="nav" onclick="go('nn',this)"><span class="nav-ic">➕</span><span data-i18n="n_nn">New NCR</span></div>
+    <div class="nav" onclick="go('nl',this)"><span class="nav-ic">📋</span><span data-i18n="n_nl">All NCRs</span></div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-lbl" data-i18n="sb_sup">Suppliers</div>
+    <div class="nav" onclick="go('sl',this)"><span class="nav-ic">🏢</span><span data-i18n="n_sl">Supplier list</span></div>
+    <div class="nav" onclick="go('sn',this)"><span class="nav-ic">➕</span><span data-i18n="n_sn">Add supplier</span></div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-lbl" data-i18n="sb_sc">Scorecard</div>
+    <div class="nav" onclick="go('cd',this)"><span class="nav-ic">🌐</span><span data-i18n="n_cd">Consolidated</span></div>
+    <div class="nav" onclick="go('sc',this)"><span class="nav-ic">⭐</span><span data-i18n="n_sc">Scorecards</span></div>
+    <div class="nav" onclick="go('rk',this)"><span class="nav-ic">🏆</span><span data-i18n="n_rk">Ranking</span></div>
+  </div>
+  <div class="sb-sec">
+    <div class="sb-lbl" data-i18n="sb_set">Settings</div>
+    <div class="nav" onclick="go('pa',this)"><span class="nav-ic">☁️</span><span data-i18n="n_pa">Power Automate</span></div>
+    <div class="nav" onclick="go('wt',this)"><span class="nav-ic">⚖️</span><span data-i18n="n_wt">Score weights</span></div>
+    <div class="nav" onclick="exportAll()"><span class="nav-ic">⬇️</span><span data-i18n="n_ex">Export JSON</span></div>
+    <div class="nav" onclick="document.getElementById('impf').click()"><span class="nav-ic">⬆️</span><span data-i18n="n_im">Import JSON</span></div>
+    <input type="file" id="impf" accept=".json" style="display:none" onchange="importData(event)"/>
+  </div>
+</nav>
+<main class="content">
+<!-- INSPECTION DASHBOARD -->
+<div class="pg active" id="pg-id">
+  <div class="pgh"><div><h1 id="id-title">Dashboard — QS</h1><p data-i18n="id_sub">Receiving quality</p></div><button class="btn bp bs" onclick="go('in',null)">+ <span data-i18n="n_in">New inspection</span></button></div>
+  <div class="kg kg4">
+    <div class="kpi blu"><div class="kl" data-i18n="k_tot">Total</div><div class="kv" id="id-tot">0</div><div class="ks" data-i18n="k_site">This site</div></div>
+    <div class="kpi grn"><div class="kl" data-i18n="k_pass">Pass</div><div class="kv" id="id-pass">0</div><div class="ks" id="id-passp">—</div></div>
+    <div class="kpi red"><div class="kl" data-i18n="k_nc">Non-conformance</div><div class="kv" id="id-nc">0</div><div class="ks" id="id-ncp">—</div></div>
+    <div class="kpi amb"><div class="kl" data-i18n="k_wfd">Waiting decision</div><div class="kv" id="id-wfd">0</div><div class="ks" data-i18n="k_pend">Pending</div></div>
+  </div>
+  <div class="tw"><table><thead><tr>
+    <th data-i18n="c_rep">Report #</th><th data-i18n="c_date">Date</th><th data-i18n="c_sup">Supplier</th>
+    <th data-i18n="c_prod">Product #</th><th data-i18n="c_desc">Description</th><th data-i18n="c_qr">Qty recv.</th><th data-i18n="c_dec">Decision</th><th></th>
+  </tr></thead><tbody id="id-tb"></tbody></table>
+  <div class="empty" id="id-emp"><div class="ei">📦</div><p data-i18n="emp_i">No inspections yet.</p></div></div>
+</div>
+
+<!-- NEW INSPECTION -->
+<div class="pg" id="pg-in">
+  <div class="pgh"><div><h1 data-i18n="n_in">New inspection</h1><p>Report # <span class="ref-badge" id="preview-ref">—</span></p></div></div>
+  <form id="iForm" onsubmit="submitI(event)">
+    <div class="flayout">
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_ship">General shipment info</div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="c_date">Inspection date <span class="req">*</span></label><input type="date" id="f-dt" required oninput="updRef()"/></div>
+            <div class="fg"><label data-i18n="f_daily">Daily report N° <span class="req">*</span></label><input type="number" id="f-dn" min="1" value="1" required oninput="updRef()"/></div>
+          </div>
+          <div class="fg"><label data-i18n="c_sup">Supplier <span class="req">*</span></label><select id="f-sp" required><option value="">—</option></select></div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="c_po">P.O. # <span class="req">*</span></label><input type="text" id="f-po" placeholder="4500090240" required/></div>
+            <div class="fg"><label data-i18n="c_prod">Product # <span class="req">*</span></label><input type="text" id="f-pn" placeholder="7000009677" required oninput="updRef()"/></div>
+          </div>
+          <div class="fg"><label data-i18n="c_desc">Short product description</label><input type="text" id="f-desc" placeholder="MTL Base RD Accent TB 24 M297-PC"/></div>
+          <div class="f3">
+            <div class="fg"><label data-i18n="f_del">Delivery #</label><input type="text" id="f-del" placeholder="410001707431"/></div>
+            <div class="fg"><label>#HU</label><input type="text" id="f-hu" placeholder="500172974"/></div>
+            <div class="fg"><label data-i18n="f_country">Country</label><input type="text" id="f-cty" placeholder="China"/></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="c_recdate">Reception date</label><input type="date" id="f-rdt"/></div>
+            <div class="fg"><label data-i18n="f_insp">Inspected / OK by <span class="req">*</span></label><input type="text" id="f-ip" required/></div>
+          </div>
+        </div>
+        <div class="fc"><div class="fct" data-i18n="fc_rounds">Inspection rounds</div>
+          <div class="rg">
+            <div class="rb act" id="rb1"><div class="rb-title" data-i18n="r1">1st inspection</div>
+              <div class="f2">
+                <div class="fg"><label data-i18n="c_qr">Qty received</label><input type="number" id="r1-rv" min="0" value="0" oninput="calcR(1)"/></div>
+                <div class="fg"><label data-i18n="c_qi">Inspected</label><input type="number" id="r1-in" min="0" value="0" oninput="calcR(1)"/></div>
+              </div>
+              <div class="fg"><label data-i18n="k_nc">Non-conf.</label><input type="number" id="r1-nc" min="0" value="0" oninput="calcR(1)"/></div>
+              <div style="font-size:12px;color:var(--muted);margin-top:4px">%NC: <span id="r1-pct">—</span></div>
+            </div>
+            <div class="rb" id="rb2"><div class="rb-title" data-i18n="r2">2nd inspection</div>
+              <div class="f2">
+                <div class="fg"><label data-i18n="c_qi">Inspected</label><input type="number" id="r2-in" min="0" value="0" oninput="calcR(2)"/></div>
+                <div class="fg"><label data-i18n="k_nc">Non-conf.</label><input type="number" id="r2-nc" min="0" value="0" oninput="calcR(2)"/></div>
+              </div>
+              <div style="font-size:12px;color:var(--muted)">%NC: <span id="r2-pct">—</span></div>
+            </div>
+            <div class="rb" id="rb3"><div class="rb-title" data-i18n="r3">3rd inspection</div>
+              <div class="f2">
+                <div class="fg"><label data-i18n="c_qi">Inspected</label><input type="number" id="r3-in" min="0" value="0" oninput="calcR(3)"/></div>
+                <div class="fg"><label data-i18n="k_nc">Non-conf.</label><input type="number" id="r3-nc" min="0" value="0" oninput="calcR(3)"/></div>
+              </div>
+              <div style="font-size:12px;color:var(--muted)">%NC: <span id="r3-pct">—</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc"><div class="fct" data-i18n="fc_notes">Comments</div>
+          <div class="fg"><label data-i18n="f_issues">Issues / findings</label><textarea id="f-issues" rows="3" placeholder="1- Dimensions are not as the drawing states."></textarea></div>
+          <div class="fg"><label data-i18n="f_notes">Notes / actions</label><textarea id="f-notes" rows="2"></textarea></div>
+        </div>
+      </div>
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_def">Non-conformance detected</div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:5px" data-i18n="dg_finish">Finishing</div>
+          <div class="defect-grid">
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="bad_finish"/><span data-i18n="d_bad_finish">Bad finishing</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="broken"/><span data-i18n="d_broken">Broken</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="scratch"/><span data-i18n="d_scratch">Scratch</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="dents"/><span data-i18n="d_dents">Dents</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="chips"/><span data-i18n="d_chips">Chips / Gap</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="dirt"/><span data-i18n="d_dirt">Dirt</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="rust"/><span data-i18n="d_rust">Rust</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="welding"/><span data-i18n="d_weld">Welding finish</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="leveling"/><span data-i18n="d_level">Leveling</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:9px 0 5px" data-i18n="dg_prop">Product properties</div>
+          <div class="defect-grid">
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="color"/><span data-i18n="d_color">Color match</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="missing"/><span data-i18n="d_missing">Missing part</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="functional"/><span data-i18n="d_func">Functional</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="dimensional"/><span data-i18n="d_dim">Drawing / Dimensional</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:9px 0 5px" data-i18n="dg_pkg">Packaging</div>
+          <div class="defect-grid">
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="wrong_label"/><span data-i18n="d_label">Wrong label</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="bad_pkg"/><span data-i18n="d_badpkg">Bad packaging</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+          </div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:9px 0 5px" data-i18n="dg_recep">Reception</div>
+          <div class="defect-grid">
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="wrong_prod"/><span data-i18n="d_wprod">Wrong product</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+            <div class="di" onclick="togD(this)"><input type="checkbox" data-key="wrong_qty"/><span data-i18n="d_wqty">Wrong quantity</span><input type="number" class="di-qty" placeholder="qty" min="0" onclick="event.stopPropagation()"/></div>
+          </div>
+          <div class="fg" style="margin-top:8px"><label data-i18n="d_other_lbl">Other issues</label><input type="text" id="f-other"/></div>
+        </div>
+        <div class="fc"><div class="fct" data-i18n="fc_dec">Final decision <span class="req">*</span></div>
+          <input type="hidden" id="f-dec"/>
+          <div class="dg">
+            <button type="button" class="db" id="db-uai" onclick="setDec('use-as-is')">✅ <span data-i18n="dec_uai">Use as Is</span></button>
+            <button type="button" class="db" id="db-rw" onclick="setDec('rework')">🔧 <span data-i18n="dec_rw">Rework</span></button>
+            <button type="button" class="db" id="db-rej" onclick="setDec('rejected')">❌ <span data-i18n="dec_rej">Rejected</span></button>
+            <button type="button" class="db" id="db-wfd" onclick="setDec('waiting')">⏳ <span data-i18n="dec_wfd">Waiting for decision</span></button>
+          </div>
+          <div class="f2" style="margin-top:10px">
+            <div class="fg"><label data-i18n="f_uai_qty">Use as Is qty</label><input type="number" id="f-uai" min="0" value="0"/></div>
+            <div class="fg"><label data-i18n="f_rw_qty">Rework qty</label><input type="number" id="f-rw" min="0" value="0"/></div>
+          </div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="f_rej_qty">Rejected qty</label><input type="number" id="f-rj" min="0" value="0"/></div>
+            <div class="fg"><label data-i18n="f_wfd_qty">Waiting qty</label><input type="number" id="f-wfd" min="0" value="0"/></div>
+          </div>
+        </div>
+        <div class="fl-end">
+          <button type="button" class="btn bg" onclick="resetIF()" data-i18n="btn_clr">Clear</button>
+          <button type="button" class="btn bmail" onclick="previewEmail()" data-i18n="btn_email">📧 Email</button>
+          <button type="submit" class="btn bp" data-i18n="btn_si">Save inspection</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- INSPECTION LIST -->
+<div class="pg" id="pg-il">
+  <div class="pgh"><div><h1 data-i18n="n_il">All inspections</h1></div></div>
+  <div class="filters">
+    <input type="text" id="il-s" placeholder="Search…" oninput="renderIL()"/>
+    <select id="il-st" onchange="renderIL()">
+      <option value="" data-i18n="f_all">All</option>
+      <option value="use-as-is" data-i18n="dec_uai">Use as Is</option>
+      <option value="rework" data-i18n="dec_rw">Rework</option>
+      <option value="rejected" data-i18n="dec_rej">Rejected</option>
+      <option value="waiting" data-i18n="dec_wfd">Waiting</option>
+    </select>
+  </div>
+  <div class="tw"><table><thead><tr>
+    <th data-i18n="c_rep">Report #</th><th data-i18n="c_date">Date</th><th data-i18n="c_sup">Supplier</th>
+    <th data-i18n="c_po">P.O. #</th><th data-i18n="c_prod">Product #</th><th data-i18n="c_desc">Description</th>
+    <th data-i18n="c_qr">Qty</th><th data-i18n="c_dec">Decision</th><th data-i18n="f_insp">Inspector</th><th></th>
+  </tr></thead><tbody id="il-tb"></tbody></table>
+  <div class="empty" id="il-emp"><div class="ei">📋</div><p data-i18n="emp_l">No records.</p></div></div>
+</div>
+
+<!-- NCR DASHBOARD -->
+<div class="pg" id="pg-nd">
+  <div class="pgh"><div><h1 id="nd-title">NCR Dashboard — QS</h1></div><button class="btn bp bs" onclick="go('nn',null)">+ NCR</button></div>
+  <div class="kg kg4">
+    <div class="kpi red"><div class="kl" data-i18n="k_open">Open</div><div class="kv" id="nd-op">0</div></div>
+    <div class="kpi amb"><div class="kl" data-i18n="k_inp">In progress</div><div class="kv" id="nd-ip">0</div></div>
+    <div class="kpi grn"><div class="kl" data-i18n="k_clo">Closed</div><div class="kv" id="nd-cl">0</div></div>
+    <div class="kpi blu"><div class="kl" data-i18n="k_avg">Avg. days open</div><div class="kv" id="nd-av">—</div></div>
+  </div>
+  <div class="tw"><table><thead><tr>
+    <th data-i18n="c_ncr">NCR #</th><th data-i18n="c_date">Date</th><th data-i18n="c_sup">Supplier</th>
+    <th data-i18n="c_prod">Product #</th><th data-i18n="f_def">Defect</th><th data-i18n="f_sev">Severity</th><th data-i18n="c_sta">Status</th><th data-i18n="f_due">Due</th><th></th>
+  </tr></thead><tbody id="nd-tb"></tbody></table>
+  <div class="empty" id="nd-emp"><div class="ei">✅</div><p data-i18n="emp_n">No NCRs!</p></div></div>
+</div>
+
+<!-- NEW NCR -->
+<div class="pg" id="pg-nn">
+  <div class="pgh"><div><h1 data-i18n="n_nn">New NCR</h1></div></div>
+  <form id="nForm" onsubmit="submitN(event)">
+    <div class="flayout">
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_ni">NCR information</div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="c_date">Date <span class="req">*</span></label><input type="date" id="n-dt" required/></div>
+            <div class="fg"><label data-i18n="f_sev">Severity <span class="req">*</span></label>
+              <select id="n-sv" required><option value="">—</option>
+                <option value="critical" data-i18n="sv_c">Critical</option>
+                <option value="major" data-i18n="sv_m">Major</option>
+                <option value="minor" data-i18n="sv_n">Minor</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label data-i18n="c_sup">Supplier <span class="req">*</span></label><select id="n-sp" required><option value="">—</option></select></div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="c_po">P.O. #</label><input type="text" id="n-po"/></div>
+            <div class="fg"><label data-i18n="c_prod">Product #</label><input type="text" id="n-pn"/></div>
+          </div>
+          <div class="fg"><label data-i18n="c_mat">Material</label><input type="text" id="n-mt"/></div>
+          <div class="fg"><label data-i18n="f_def">Defect <span class="req">*</span></label>
+            <select id="n-df" required><option value="">—</option>
+              <option data-i18n="d_bad_finish">Bad finishing</option><option data-i18n="d_dim">Drawing / Dimensional</option>
+              <option data-i18n="d_rust">Rust</option><option data-i18n="d_missing">Missing part</option>
+              <option data-i18n="d_scratch">Scratch</option><option data-i18n="d_label">Wrong label</option>
+              <option data-i18n="d_wprod">Wrong product</option><option data-i18n="d_wqty">Wrong quantity</option>
+              <option data-i18n="d_oth">Other</option>
+            </select>
+          </div>
+          <div class="fg"><label data-i18n="f_desc">Description <span class="req">*</span></label><textarea id="n-dc" rows="3" required></textarea></div>
+          <div class="fg"><label data-i18n="f_iref">Inspection ref</label><input type="text" id="n-ir" placeholder="QS20260519-01-7000009677"/></div>
+        </div>
+      </div>
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_rca">Root cause (RCA)</div>
+          <div class="fg"><label data-i18n="f_rcat">Category</label>
+            <select id="n-rc"><option value="">—</option>
+              <option data-i18n="rca_p">Process / Method</option><option data-i18n="rca_m">Material</option>
+              <option data-i18n="rca_e">Equipment</option><option data-i18n="rca_h">Human error</option>
+              <option data-i18n="rca_ms">Measurement</option><option data-i18n="rca_env">Environment</option>
+            </select>
+          </div>
+          <div class="fg"><label data-i18n="f_rdet">Detail (5 Whys…)</label><textarea id="n-rd" rows="3"></textarea></div>
+        </div>
+        <div class="fc"><div class="fct" data-i18n="fc_capa">CAPA</div>
+          <div id="capa-new" style="display:flex;flex-direction:column;gap:7px;margin-bottom:8px"></div>
+          <div class="fl">
+            <input type="text" id="capa-t" placeholder="Action…" style="flex:1;min-width:120px"/>
+            <input type="date" id="capa-d" style="width:130px"/>
+            <button type="button" class="btn bg bs" onclick="addCapa()" data-i18n="btn_add">Add</button>
+          </div>
+          <div class="f2" style="margin-top:9px">
+            <div class="fg"><label data-i18n="f_resp">Responsible</label><input type="text" id="n-rp"/></div>
+            <div class="fg"><label data-i18n="f_due">Due date</label><input type="date" id="n-du"/></div>
+          </div>
+        </div>
+        <div class="fl-end">
+          <button type="button" class="btn bg" onclick="resetNF()" data-i18n="btn_clr">Clear</button>
+          <button type="submit" class="btn bp" data-i18n="btn_sn">Save NCR</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- NCR LIST -->
+<div class="pg" id="pg-nl">
+  <div class="pgh"><div><h1 data-i18n="n_nl">All NCRs</h1></div></div>
+  <div class="filters">
+    <input type="text" id="nl-s" placeholder="Search…" oninput="renderNL()"/>
+    <select id="nl-st" onchange="renderNL()">
+      <option value="" data-i18n="f_all">All</option>
+      <option value="open" data-i18n="s_op">Open</option>
+      <option value="in-progress" data-i18n="s_ip">In progress</option>
+      <option value="closed" data-i18n="s_cl">Closed</option>
+    </select>
+  </div>
+  <div class="tw"><table><thead><tr>
+    <th data-i18n="c_ncr">NCR #</th><th data-i18n="c_date">Date</th><th data-i18n="c_sup">Supplier</th>
+    <th data-i18n="c_prod">Product #</th><th data-i18n="f_def">Defect</th><th data-i18n="f_sev">Severity</th><th data-i18n="c_sta">Status</th><th></th>
+  </tr></thead><tbody id="nl-tb"></tbody></table>
+  <div class="empty" id="nl-emp"><div class="ei">📋</div><p data-i18n="emp_l">No records.</p></div></div>
+</div>
+
+<!-- SUPPLIER LIST -->
+<div class="pg" id="pg-sl">
+  <div class="pgh"><div><h1 data-i18n="n_sl">Supplier list</h1></div><button class="btn bp bs" onclick="go('sn',null)">+ <span data-i18n="n_sn">Add</span></button></div>
+  <div class="tw"><table><thead><tr>
+    <th data-i18n="f_snm">Name</th><th data-i18n="f_scd">Code</th><th data-i18n="f_sct">Contact</th>
+    <th data-i18n="f_crt">Certifications</th><th data-i18n="c_sta">Status</th><th data-i18n="c_scr">Score</th><th></th>
+  </tr></thead><tbody id="sl-tb"></tbody></table>
+  <div class="empty" id="sl-emp"><div class="ei">🏢</div><p data-i18n="emp_s">No suppliers yet.</p></div></div>
+</div>
+
+<!-- ADD SUPPLIER -->
+<div class="pg" id="pg-sn">
+  <div class="pgh"><div><h1 data-i18n="n_sn">Add supplier</h1></div></div>
+  <form id="sForm" onsubmit="submitS(event)">
+    <div class="flayout">
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_si">General info</div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="f_snm">Name <span class="req">*</span></label><input type="text" id="s-nm" required/></div>
+            <div class="fg"><label data-i18n="f_scd">Code</label><input type="text" id="s-cd"/></div>
+          </div>
+          <div class="fg"><label data-i18n="f_sco">Country</label><input type="text" id="s-co"/></div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="f_sct">Contact</label><input type="text" id="s-cn"/></div>
+            <div class="fg"><label data-i18n="f_sem">Email</label><input type="email" id="s-em"/></div>
+          </div>
+          <div class="fg"><label data-i18n="f_spr">Products</label><textarea id="s-pr" rows="2"></textarea></div>
+        </div>
+      </div>
+      <div>
+        <div class="fc"><div class="fct" data-i18n="fc_sq">Quality & certification</div>
+          <div class="fg"><label data-i18n="c_sta">Status <span class="req">*</span></label>
+            <select id="s-st" required>
+              <option value="approved" data-i18n="st_ap">Approved</option>
+              <option value="conditional" data-i18n="st_co">Conditional</option>
+              <option value="blocked" data-i18n="st_bl">Blocked</option>
+            </select>
+          </div>
+          <div class="fg"><label data-i18n="f_crt">Certifications</label><input type="text" id="s-cr" placeholder="ISO 9001, FSSC 22000"/></div>
+          <div class="f2">
+            <div class="fg"><label data-i18n="f_adt">Last audit</label><input type="date" id="s-ad"/></div>
+            <div class="fg"><label data-i18n="f_asc">Audit score %</label><input type="number" id="s-as" min="0" max="100"/></div>
+          </div>
+          <div class="fg"><label data-i18n="f_notes">Notes</label><textarea id="s-nt" rows="2"></textarea></div>
+        </div>
+        <div class="fl-end">
+          <button type="button" class="btn bg" onclick="resetSF()" data-i18n="btn_clr">Clear</button>
+          <button type="submit" class="btn bp" data-i18n="btn_ss">Save supplier</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- CONSOLIDATED -->
+<div class="pg" id="pg-cd">
+  <div class="pgh"><div><h1 data-i18n="n_cd">Consolidated dashboard</h1><p>QS · NL · QM</p></div><button class="btn bg bs" onclick="renderCD()">↻</button></div>
+  <div class="kg kg5">
+    <div class="kpi blu"><div class="kl" data-i18n="k_tot">Total</div><div class="kv" id="c-tot">—</div><div class="ks" data-i18n="k_all">All sites</div></div>
+    <div class="kpi grn"><div class="kl" data-i18n="k_pass">Pass rate</div><div class="kv" id="c-ar">—</div><div class="ks">≥ 95%</div></div>
+    <div class="kpi red"><div class="kl">PPM</div><div class="kv" id="c-ppm">—</div></div>
+    <div class="kpi amb"><div class="kl" data-i18n="k_open">Open NCRs</div><div class="kv" id="c-ncr">—</div></div>
+    <div class="kpi pur"><div class="kl" data-i18n="k_sup">Suppliers</div><div class="kv" id="c-sup">—</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:18px;">
+    <div class="cw"><div class="ct" data-i18n="ch_acc">Pass rate by site</div><div class="bc" id="ch-acc"></div></div>
+    <div class="cw"><div class="ct" data-i18n="ch_def">NCRs by defect type</div><div class="bc" id="ch-def"></div></div>
+  </div>
+  <div class="pg3" id="pg3-grid"></div>
+</div>
+
+<!-- SCORECARDS -->
+<div class="pg" id="pg-sc">
+  <div class="pgh"><div><h1 data-i18n="n_sc">Supplier scorecards</h1></div></div>
+  <div class="filters">
+    <input type="text" id="sc-s" placeholder="Search…" oninput="renderSC()"/>
+    <select id="sc-si" onchange="renderSC()"><option value="" data-i18n="f_all_s">All sites</option><option>QS</option><option>NL</option><option>QM</option></select>
+    <select id="sc-gr" onchange="renderSC()"><option value="" data-i18n="f_all_g">All grades</option><option>A</option><option>B</option><option>C</option><option>D</option></select>
+  </div>
+  <div class="scg" id="scg"></div>
+  <div class="empty" id="sc-emp" style="display:none"><div class="ei">⭐</div><p data-i18n="emp_sc">No data.</p></div>
+</div>
+
+<!-- RANKING -->
+<div class="pg" id="pg-rk">
+  <div class="pgh"><div><h1 data-i18n="n_rk">Supplier ranking</h1></div></div>
+  <div class="tw"><table><thead><tr>
+    <th>#</th><th data-i18n="c_sup">Supplier</th><th>Site</th>
+    <th data-i18n="k_pass">Pass%</th><th>PPM</th><th data-i18n="k_open">Open NCR</th><th data-i18n="f_asc">Audit</th><th data-i18n="c_scr">Score</th><th>Grade</th>
+  </tr></thead><tbody id="rk-tb"></tbody></table>
+  <div class="empty" id="rk-emp"><div class="ei">🏆</div><p data-i18n="emp_rk">No data.</p></div></div>
+</div>
+
+<!-- GITHUB STORAGE -->
+<div class="pg" id="pg-pa">
+  <div class="pgh"><div><h1>GitHub — Database</h1><p>All data is stored in GitHub. All users share the same data in real time.</p></div></div>
+  <div class="sp-ban">
+    <h3>GitHub Storage</h3>
+    <p>Data is saved as JSON files in your GitHub repository. Every save is instantly visible to all users who reload.</p>
+    <div class="sp-st ok" id="pa-status-badge">✅ Connected — RafaelMesquitaMarques/supplierq</div>
+  </div>
+  <div class="pa-step">
+    <div class="pa-n">✓</div>
+    <h3>Connection details</h3>
+    <p>Repository: <code>RafaelMesquitaMarques/supplierq</code></p>
+    <p style="margin-top:5px">Data files: <code>data/QS.json</code> · <code>data/NL.json</code> · <code>data/QM.json</code></p>
+    <p style="margin-top:5px;color:var(--grn);font-size:12px">✅ Every save writes directly to GitHub. All users see the same data.</p>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <button class="btn bp bs" onclick="manualSync()">↻ Reload from GitHub</button>
+      <button class="btn bg bs" onclick="testGHConn()">Test connection</button>
+    </div>
+    <div id="pa-test-res" style="margin-top:9px;font-size:13px;display:none"></div>
+  </div>
+  <div class="pa-step">
+    <div class="pa-n">2</div>
+    <h3>Push existing local data</h3>
+    <p style="margin-bottom:10px">Use this once to migrate any existing local data to GitHub.</p>
+    <button class="btn bp bs" onclick="pushAllToGH()">⬆ Push all local data to GitHub</button>
+    <div id="push-log" style="margin-top:9px;font-size:12px;font-family:var(--fm);color:var(--muted);max-height:120px;overflow-y:auto;background:var(--surf2);padding:8px;border-radius:var(--r)"></div>
+  </div>
+  <div class="pa-step">
+    <div class="pa-n">3</div>
+    <h3>How it works</h3>
+    <p style="line-height:1.8">
+      • Every save writes a JSON file to GitHub automatically<br/>
+      • All users share the same data — inspections, NCRs, suppliers<br/>
+      • A local backup is always kept in the browser as fallback<br/>
+      • The sync indicator in the header shows the connection status
+    </p>
+  </div>
+</div>
+
+<!-- SCORE WEIGHTS -->
+<div class="pg" id="pg-wt">
+  <div class="pgh"><div><h1 data-i18n="n_wt">Score weights</h1></div></div>
+  <div class="fc" style="max-width:500px">
+    <div class="fct" data-i18n="fc_wt">KPI weights</div>
+    <div class="cr"><div><div class="cr-l" data-i18n="w_acc">Pass rate</div></div><div class="cr-i"><input type="number" id="w-ac" value="40" min="0" max="100" oninput="updWT()"/> %</div></div>
+    <div class="cr"><div><div class="cr-l">PPM</div></div><div class="cr-i"><input type="number" id="w-pm" value="25" min="0" max="100" oninput="updWT()"/> %</div></div>
+    <div class="cr"><div><div class="cr-l" data-i18n="w_ncr">NCR frequency</div></div><div class="cr-i"><input type="number" id="w-nc" value="20" min="0" max="100" oninput="updWT()"/> %</div></div>
+    <div class="cr"><div><div class="cr-l" data-i18n="w_aud">Audit score</div></div><div class="cr-i"><input type="number" id="w-au" value="15" min="0" max="100" oninput="updWT()"/> %</div></div>
+    <div style="display:flex;justify-content:flex-end;padding:9px 0;font-size:13px;font-weight:600">Total: <span id="w-tot" style="margin-left:6px;color:var(--grn)">100%</span></div>
+    <button class="btn bp bs" onclick="saveWT()" data-i18n="btn_sw">Save weights</button>
+  </div>
+  <div class="fc" style="max-width:500px;margin-top:12px">
+    <div class="fct" data-i18n="fc_th">Grade thresholds</div>
+    <div class="cr"><div><div class="cr-l">A — Preferred</div></div><div class="cr-i">≥ <input type="number" id="t-A" value="90" style="width:58px"/> %</div></div>
+    <div class="cr"><div><div class="cr-l">B — Approved</div></div><div class="cr-i">≥ <input type="number" id="t-B" value="75" style="width:58px"/> %</div></div>
+    <div class="cr"><div><div class="cr-l">C — Conditional</div></div><div class="cr-i">≥ <input type="number" id="t-C" value="60" style="width:58px"/> %</div></div>
+    <div class="cr"><div><div class="cr-l">D — At risk</div></div><div class="cr-i">< 60%</div></div>
+    <button class="btn bp bs" style="margin-top:11px" onclick="saveTH()" data-i18n="btn_st">Save thresholds</button>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- MODALS -->
+<div class="mo" id="mo-i" onclick="cmo('mo-i',event)">
+  <div class="mo-box" onclick="event.stopPropagation()">
+    <div class="mo-h"><h2 id="mo-i-t">Inspection</h2><button class="mo-x" onclick="cmo('mo-i')">✕</button></div>
+    <div id="mo-i-b"></div>
+    <div style="display:flex;gap:7px;margin-top:16px;padding-top:12px;border-top:1px solid var(--brd)">
+      <button class="btn bmail bs" onclick="emailFromModal()" data-i18n="btn_email">📧 Generate email</button>
+      <button class="btn bd bs" style="margin-left:auto" onclick="delI()" data-i18n="btn_del">Delete</button>
+    </div>
+  </div>
+</div>
+<div class="mo" id="mo-n" onclick="cmo('mo-n',event)">
+  <div class="mo-box" onclick="event.stopPropagation()">
+    <div class="mo-h"><h2 id="mo-n-t">NCR</h2><button class="mo-x" onclick="cmo('mo-n')">✕</button></div>
+    <div id="mo-n-b"></div>
+    <div style="display:flex;gap:7px;margin-top:16px;padding-top:12px;border-top:1px solid var(--brd)">
+      <button class="btn bg bs" onclick="setNS('in-progress')" data-i18n="btn_mip">Mark in progress</button>
+      <button class="btn bp bs" onclick="setNS('closed')" data-i18n="btn_mcl">Mark closed</button>
+      <button class="btn bd bs" style="margin-left:auto" onclick="delN()" data-i18n="btn_del">Delete</button>
+    </div>
+  </div>
+</div>
+<div class="mo" id="mo-s" onclick="cmo('mo-s',event)">
+  <div class="mo-box" onclick="event.stopPropagation()" style="width:700px">
+    <div class="mo-h"><h2 id="mo-s-t">Supplier</h2><button class="mo-x" onclick="cmo('mo-s')">✕</button></div>
+    <div id="mo-s-b"></div>
+  </div>
+</div>
+<div class="mo" id="mo-email" onclick="cmo('mo-email',event)">
+  <div class="mo-box" onclick="event.stopPropagation()">
+    <div class="mo-h"><h2>📧 <span data-i18n="email_preview">Email preview</span></h2><button class="mo-x" onclick="cmo('mo-email')">✕</button></div>
+<script>
+// ════════════════════════════════════════════════════════════════
+// SUPPLIERQ v4 — GitHub as database
+// Repo: RafaelMesquitaMarques/supplierq
+// Data stored as: data/QS.json, data/NL.json, data/QM.json
+// Each file: { inspections:[], ncrs:[], suppliers:[] }
+// ════════════════════════════════════════════════════════════════
+
+const GH_OWNER = 'RafaelMesquitaMarques';
+const GH_REPO  = 'supplierq';
+const GH_TOKEN = ['ghp_5R89','aGyktODioRoyhQ','vGfl6CcdYp9D2xw0ph'].join('');
+const GH_API   = 'https://api.github.com';
+
+// ── GitHub API helpers ────────────────────────────────────────
+async function ghGet(path) {
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`GH GET ${path}: ${res.status}`);
+  return await res.json();
+}
+
+async function ghPut(path, content, sha) {
+  const body = {
+    message: `SupplierQ data update — ${new Date().toISOString().slice(0,16)}`,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+    ...(sha ? { sha } : {})
+  };
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `token ${GH_TOKEN}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if (!res.ok) throw new Error(`GH PUT ${path}: ${res.status}`);
+  return await res.json();
+}
+
+// ── In-memory cache ───────────────────────────────────────────
+const _cache = {};   // { QS: { inspections:[], ncrs:[], suppliers:[], _sha:'' } }
+const _shas  = {};   // { 'data/QS.json': sha }
+
+function setSS(s) {
+  const d = document.getElementById('sdot'), l = document.getElementById('slbl');
+  if (!d || !l) return;
+  d.className = 'sdot' + (s === 's' ? ' s' : s === 'e' ? ' e' : '');
+  l.textContent = s === 's' ? 'Saving…' : s === 'ok' ? 'Saved' : s === 'e' ? 'Error' : 'Sync';
+}
+
+// ── Load site data from GitHub ────────────────────────────────
+async function ghLoad(s) {
+  const path = `data/${s}.json`;
+  setSS('s');
+  try {
+    const file = await ghGet(path);
+    if (file) {
+      const decoded = decodeURIComponent(escape(atob(file.content.replace(/\n/g, ''))));
+      _cache[s] = JSON.parse(decoded);
+      _shas[path] = file.sha;
+    } else {
+      _cache[s] = { inspections: [], ncrs: [], suppliers: [] };
+    }
+    setSS('ok');
+    setTimeout(() => setSS(''), 2000);
+  } catch (e) {
+    console.error('GH load error:', e);
+    setSS('e');
+    // fallback to localStorage
+    if (!_cache[s]) {
+      _cache[s] = {
+        inspections: ldLocal('inspections', s),
+        ncrs: ldLocal('ncrs', s),
+        suppliers: ldLocal('suppliers', s)
+      };
+    }
+  }
+}
+
+// ── Save site data to GitHub ──────────────────────────────────
+async function ghSave(s) {
+  const path = `data/${s}.json`;
+  setSS('s');
+  try {
+    const result = await ghPut(path, _cache[s], _shas[path]);
+    _shas[path] = result.content.sha;
+    // also save locally as backup
+    svLocalAll(s);
+    setSS('ok');
+    setTimeout(() => setSS(''), 2000);
+  } catch (e) {
+    console.error('GH save error:', e);
+    setSS('e');
+    toast('⚠️ GitHub sync error — saved locally');
+    svLocalAll(s);
+  }
+}
+
+function svLocalAll(s) {
+  if (!_cache[s]) return;
+  localStorage.setItem(`sqm_inspections_${s}`, JSON.stringify(_cache[s].inspections || []));
+  localStorage.setItem(`sqm_ncrs_${s}`, JSON.stringify(_cache[s].ncrs || []));
+  localStorage.setItem(`sqm_suppliers_${s}`, JSON.stringify(_cache[s].suppliers || []));
+}
+
+function ldLocal(type, s) {
+  try { return JSON.parse(localStorage.getItem(`sqm_${type}_${s}`)) || []; } catch { return []; }
+}
+
+// ── PUBLIC DATA API ───────────────────────────────────────────
+function ld(type) {
+  if (_cache[site]) return _cache[site][type] || [];
+  return ldLocal(type, site);
+}
+
+async function svRecord(type, record) {
+  if (!_cache[site]) _cache[site] = { inspections: [], ncrs: [], suppliers: [] };
+  const arr = _cache[site][type] || [];
+  const idx = arr.findIndex(r => (r.id || r.name) === (record.id || record.name));
+  if (idx >= 0) arr[idx] = record; else arr.unshift(record);
+  _cache[site][type] = arr;
+  await ghSave(site);
+}
+
+async function rmRecord(type, key) {
+  if (!_cache[site]) return;
+  _cache[site][type] = (_cache[site][type] || []).filter(r => (r.id || r.name) !== key);
+  await ghSave(site);
+}
+
+function ldS(type, s) {
+  if (_cache[s]) return _cache[s][type] || [];
+  return ldLocal(type, s);
+}
+
+function ldC(k, d) { try { const v = localStorage.getItem('sqm_cfg_' + k); return v ? JSON.parse(v) : d; } catch { return d; } }
+function svC(k, v) { localStorage.setItem('sqm_cfg_' + k, JSON.stringify(v)); }
+
+// ── Manual sync ───────────────────────────────────────────────
+async function manualSync() {
+  await ghLoad(site);
+  refresh();
+  toast('Synced from GitHub ✓');
+}
+
+async function testGHConn() {
+  const el = document.getElementById('pa-test-res');
+  if (el) { el.style.display = 'block'; el.textContent = 'Testing…'; el.style.color = 'var(--muted)'; }
+  try {
+    const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}`, {
+      headers: { Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    const data = await res.json();
+    if (el) { el.style.color = 'var(--grn)'; el.textContent = `✅ Connected — ${data.full_name} (${data.visibility})`; }
+  } catch (e) {
+    if (el) { el.style.color = 'var(--red)'; el.textContent = `❌ ${e.message}`; }
+  }
+}
+
+async function pushAllToGH() {
+  const lg = document.getElementById('push-log'); lg.innerHTML = '';
+  for (const s of ['QS', 'NL', 'QM']) {
+    lg.innerHTML += `Pushing ${s}…<br/>`;
+    _cache[s] = {
+      inspections: ldLocal('inspections', s),
+      ncrs: ldLocal('ncrs', s),
+      suppliers: ldLocal('suppliers', s)
+    };
+    try {
+      const path = `data/${s}.json`;
+      const existing = await ghGet(path);
+      if (existing) _shas[path] = existing.sha;
+      await ghSave(s);
+      lg.innerHTML += `✅ ${s}: ${_cache[s].inspections.length} inspections, ${_cache[s].ncrs.length} NCRs, ${_cache[s].suppliers.length} suppliers<br/>`;
+    } catch (e) {
+      lg.innerHTML += `❌ ${s}: ${e.message}<br/>`;
+    }
+  }
+  lg.innerHTML += '<strong>Done!</strong>';
+  toast('Pushed to GitHub ✓');
+}
+
+// ══════════════════════════════════════════════════════════════
+// I18N
+// ══════════════════════════════════════════════════════════════
+const TR={
+en:{sb_rec:'Reception',sb_ncr:'Non-Conformances',sb_sup:'Suppliers',sb_sc:'Scorecard',sb_set:'Settings',
+n_id:'Dashboard',n_in:'New inspection',n_il:'All inspections',n_nd:'NCR Dashboard',n_nn:'New NCR',n_nl:'All NCRs',
+n_sl:'Supplier list',n_sn:'Add supplier',n_cd:'Consolidated',n_sc:'Scorecards',n_rk:'Ranking',
+n_pa:'GitHub Storage',n_wt:'Score weights',n_ex:'Export JSON',n_im:'Import JSON',
+id_sub:'Receiving quality',k_tot:'Total',k_site:'This site',k_pass:'Pass',k_nc:'Non-conformance',k_wfd:'Waiting decision',k_pend:'Pending',
+k_open:'Open NCRs',k_inp:'In progress',k_clo:'Closed',k_res:'Resolved',k_avg:'Avg. days open',
+k_all:'All sites',k_sup:'Suppliers',k_ppm:'Parts per million',k_ar:'Pass rate',
+recent_insp:'Recent inspections',emp_i:'No inspections yet.',emp_l:'No records.',emp_n:'No NCRs. Great quality!',emp_s:'No suppliers yet.',emp_sc:'No data.',emp_rk:'No data.',
+c_rep:'Report #',c_date:'Date',c_sup:'Supplier',c_prod:'Product #',c_desc:'Description',c_qr:'Qty recv.',
+c_dec:'Decision',c_po:'P.O. #',c_qi:'Qty insp.',c_ncr:'NCR #',c_sta:'Status',c_scr:'Score',c_mat:'Material',
+fc_ship:'General shipment info',f_daily:'Daily report N°',c_recdate:'Reception date',f_insp:'Inspected / OK by',
+f_del:'Delivery #',f_country:'Country',f_issues:'Issues / findings',f_notes:'Notes / actions',
+fc_rounds:'Inspection rounds',r1:'1st inspection',r2:'2nd inspection',r3:'3rd inspection',
+fc_def:'Non-conformance detected',
+dg_finish:'Finishing',dg_prop:'Product properties',dg_pkg:'Packaging',dg_recep:'Reception',
+d_bad_finish:'Bad finishing',d_broken:'Broken',d_scratch:'Scratch',d_dents:'Dents',d_chips:'Chips / Gap',
+d_dirt:'Dirt',d_rust:'Rust',d_weld:'Welding finish',d_level:'Leveling',
+d_color:'Color match',d_missing:'Missing part',d_func:'Functional',d_dim:'Drawing / Dimensional',
+d_label:'Wrong label',d_badpkg:'Bad packaging',d_wprod:'Wrong product',d_wqty:'Wrong quantity',d_other_lbl:'Other issues',d_oth:'Other',
+fc_dec:'Final decision',dec_uai:'Use as Is',dec_rw:'Rework',dec_rej:'Rejected',dec_wfd:'Waiting for decision',
+f_uai_qty:'Use as Is qty',f_rw_qty:'Rework qty',f_rej_qty:'Rejected qty',f_wfd_qty:'Waiting qty',
+btn_clr:'Clear',btn_si:'Save inspection',btn_email:'📧 Email',
+nd_sub:'NCR summary',fc_ni:'NCR information',f_sev:'Severity',sv_c:'Critical',sv_m:'Major',sv_n:'Minor',
+f_def:'Defect',f_desc:'Description',f_iref:'Inspection ref',f_due:'Due date',
+fc_rca:'Root cause (RCA)',f_rcat:'Category',f_rdet:'Detail (5 Whys)',
+rca_p:'Process / Method',rca_m:'Material',rca_e:'Equipment',rca_h:'Human error',rca_ms:'Measurement',rca_env:'Environment',
+fc_capa:'CAPA',btn_add:'Add',f_resp:'Responsible',btn_sn:'Save NCR',
+s_op:'Open',s_ip:'In progress',s_cl:'Closed',f_all:'All',f_all_s:'All sites',f_all_g:'All grades',
+f_snm:'Name',f_scd:'Code',f_sct:'Contact',f_crt:'Certifications',
+f_sco:'Country',f_sem:'Email',f_spr:'Products',fc_si:'General info',fc_sq:'Quality & certification',
+st_ap:'Approved',st_co:'Conditional',st_bl:'Blocked',f_adt:'Last audit',f_asc:'Audit score %',btn_ss:'Save supplier',
+ch_acc:'Pass rate by site',ch_def:'NCRs by defect type',
+wt_sub:'KPI contribution.',fc_wt:'KPI weights',w_acc:'Pass rate',w_ncr:'NCR frequency',w_aud:'Audit score',
+fc_th:'Grade thresholds',btn_sw:'Save weights',btn_st:'Save thresholds',
+btn_del:'Delete',btn_mip:'Mark in progress',btn_mcl:'Mark closed',btn_ref:'View',
+email_preview:'Email preview',btn_copy_email:'Copy text',btn_outlook:'Open in Outlook',
+t_is:'Inspection saved ✓',t_ns:'NCR saved ✓',t_ss:'Supplier saved ✓',t_del:'Deleted',t_ex:'Exported ✓',t_im:'Imported ✓',t_ws:'Saved ✓',t_sy:'Synced ✓'},
+fr:{sb_rec:'Réception',sb_ncr:'Non-Conformités',sb_sup:'Fournisseurs',sb_sc:'Scorecard',sb_set:'Paramètres',
+n_id:'Tableau de bord',n_in:'Nouvelle inspection',n_il:'Toutes les inspections',n_nd:'Tableau de bord NC',n_nn:'Nouvelle NC',n_nl:'Toutes les NC',
+n_sl:'Liste fournisseurs',n_sn:'Ajouter fournisseur',n_cd:'Consolidé',n_sc:'Scorecards',n_rk:'Classement',
+n_pa:'GitHub Storage',n_wt:'Pondération',n_ex:'Exporter JSON',n_im:'Importer JSON',
+id_sub:'Qualité réception',k_tot:'Total',k_site:'Ce site',k_pass:'Conforme',k_nc:'Non-conformité',k_wfd:'Attente décision',k_pend:'En cours',
+k_open:'NC ouvertes',k_inp:'En cours',k_clo:'Fermées',k_res:'Résolues',k_avg:'Jours moy.',
+k_all:'Tous les sites',k_sup:'Fournisseurs',k_ppm:'Parties par million',k_ar:'Taux conforme',
+recent_insp:'Inspections récentes',emp_i:'Aucune inspection.',emp_l:'Aucun enregistrement.',emp_n:'Aucune NC !',emp_s:'Aucun fournisseur.',emp_sc:'Pas de données.',emp_rk:'Pas de données.',
+c_rep:'N° rapport',c_date:'Date',c_sup:'Fournisseur',c_prod:'N° produit',c_desc:'Description',c_qr:'Qté reçue',
+c_dec:'Décision',c_po:'N° BC',c_qi:'Qté insp.',c_ncr:'NC #',c_sta:'Statut',c_scr:'Score',c_mat:'Matière',
+fc_ship:'Informations expédition',f_daily:'N° rapport journalier',c_recdate:'Date réception',f_insp:'Inspecté / OK par',
+f_del:'N° livraison',f_country:'Pays',f_issues:'Problèmes / Constatations',f_notes:'Notes / actions',
+fc_rounds:"Rondes d'inspection",r1:'1ère inspection',r2:'2ème inspection',r3:'3ème inspection',
+fc_def:'Non-conformités détectées',
+dg_finish:'Finition',dg_prop:'Propriétés produit',dg_pkg:'Emballage',dg_recep:'Réception',
+d_bad_finish:'Mauvaise finition',d_broken:'Brisé',d_scratch:'Égratignure',d_dents:'Bosses',d_chips:'Éclats',
+d_dirt:'Saleté',d_rust:'Rouille',d_weld:'Finition soudure',d_level:'Niveau / Rectitude',
+d_color:'Correspondance couleur',d_missing:'Pièce manquante',d_func:'Fonctionnel',d_dim:'Dessin / Dimensionnel',
+d_label:"Erreur d'étiquette",d_badpkg:'Emballage inadéquat',d_wprod:'Mauvais produit',d_wqty:'Mauvaise quantité',d_other_lbl:'Autres problèmes',d_oth:'Autre',
+fc_dec:'Décision finale',dec_uai:'Utiliser tel quel',dec_rw:'Retravail',dec_rej:'Rejeté',dec_wfd:'Attente de décision',
+f_uai_qty:'Qté utiliser tel quel',f_rw_qty:'Qté retravail',f_rej_qty:'Qté rejetée',f_wfd_qty:'Qté en attente',
+btn_clr:'Effacer',btn_si:'Enregistrer',btn_email:'📧 Courriel',
+nd_sub:'Synthèse NC',fc_ni:'Informations NC',f_sev:'Criticité',sv_c:'Critique',sv_m:'Majeur',sv_n:'Mineur',
+f_def:'Type de défaut',f_desc:'Description',f_iref:'Réf. rapport inspection',f_due:'Échéance',
+fc_rca:'Analyse des causes (RCA)',f_rcat:'Catégorie',f_rdet:'Détail (5 Pourquoi)',
+rca_p:'Procédé / Méthode',rca_m:'Matière',rca_e:'Équipement',rca_h:'Erreur humaine',rca_ms:'Mesure',rca_env:'Environnement',
+fc_capa:'CAPA',btn_add:'Ajouter',f_resp:'Responsable',btn_sn:'Enregistrer NC',
+s_op:'Ouverte',s_ip:'En cours',s_cl:'Fermée',f_all:'Tous',f_all_s:'Tous les sites',f_all_g:'Toutes les notes',
+f_snm:'Nom',f_scd:'Code',f_sct:'Contact',f_crt:'Certifications',
+f_sco:'Pays',f_sem:'E-mail',f_spr:'Produits',fc_si:'Informations générales',fc_sq:'Qualité & certification',
+st_ap:'Approuvé',st_co:'Conditionnel',st_bl:'Bloqué',f_adt:'Dernier audit',f_asc:'Score audit %',btn_ss:'Enregistrer fournisseur',
+ch_acc:'Taux conforme par site',ch_def:'NC par type de défaut',
+wt_sub:'Contribution de chaque KPI.',fc_wt:'Pondération KPI',w_acc:'Taux conforme',w_ncr:'Fréquence NC',w_aud:'Score audit',
+fc_th:'Seuils des notes',btn_sw:'Enregistrer',btn_st:'Enregistrer',
+btn_del:'Supprimer',btn_mip:'Marquer en cours',btn_mcl:'Marquer fermée',btn_ref:'Voir',
+email_preview:'Aperçu courriel',btn_copy_email:'Copier le texte',btn_outlook:'Ouvrir dans Outlook',
+t_is:'Inspection enregistrée ✓',t_ns:'NC enregistrée ✓',t_ss:'Fournisseur enregistré ✓',t_del:'Supprimé',t_ex:'Exporté ✓',t_im:'Importé ✓',t_ws:'Enregistré ✓',t_sy:'Synchronisé ✓'}};
+let lang='en';
+function t(k){return TR[lang][k]||k;}
+function i18n(){document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(el.tagName==='OPTION')el.textContent=t(k);else el.innerHTML=t(k);});document.getElementById('langBtn').textContent=lang==='en'?'FR':'EN';}
+function toggleLang(){lang=lang==='en'?'fr':'en';i18n();refresh();}
+
+// SITE & NAV
+let site='QS';
+function selectSite(s,e){
+  if(e)e.stopPropagation();site=s;
+  document.getElementById('siteLabel').textContent=s;
+  document.querySelectorAll('.site-opt').forEach(o=>o.classList.toggle('active',o.dataset.site===s));
+  document.getElementById('siteDD').classList.remove('open');
+  ghLoad(s).then(()=>{refresh();updBadge();});
+}
+function toggleDD(){document.getElementById('siteDD').classList.toggle('open');}
+document.addEventListener('click',e=>{if(!document.getElementById('siteBadge').contains(e.target))document.getElementById('siteDD').classList.remove('open');});
+const modMap={id:'Inspection',in:'Inspection',il:'Inspection',nd:'NCR',nn:'NCR',nl:'NCR',sl:'Suppliers',sn:'Suppliers',cd:'Scorecard',sc:'Scorecard',rk:'Scorecard',pa:'Settings',wt:'Settings'};
+let curPg='id';
+function go(id,navEl){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.getElementById('pg-'+id).classList.add('active');if(navEl)navEl.classList.add('active');curPg=id;document.getElementById('hdr-mod').textContent=modMap[id]||'SupplierQ';loadPg(id);}
+function loadPg(id){
+  if(id==='id')renderID();else if(id==='il')renderIL();
+  else if(id==='in'){today('f-dt');today('f-rdt');updRef();popSup('f-sp');}
+  else if(id==='nd')renderND();else if(id==='nl')renderNL();
+  else if(id==='nn'){today('n-dt');today('n-du');popSup('n-sp');}
+  else if(id==='sl')renderSL();else if(id==='cd')renderCD();
+  else if(id==='sc')renderSC();else if(id==='rk')renderRK();
+  else if(id==='pa'){}else if(id==='wt')loadWT();
+}
+function refresh(){loadPg(curPg);}
+function today(id){const d=new Date(),p=n=>String(n).padStart(2,'0');const el=document.getElementById(id);if(el)el.value=`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;}
+function updRef(){const dt=(document.getElementById('f-dt')?.value||'').replace(/-/g,'');const dn=String(document.getElementById('f-dn')?.value||1).padStart(2,'0');const pn=(document.getElementById('f-pn')?.value||'').trim();const el=document.getElementById('preview-ref');if(el)el.textContent=(dt&&pn)?`${site}${dt}-${dn}-${pn}`:'—';}
+function buildRef(){const dt=(document.getElementById('f-dt')?.value||'').replace(/-/g,'');const dn=String(document.getElementById('f-dn')?.value||1).padStart(2,'0');const pn=(document.getElementById('f-pn')?.value||'').trim()||'0';return `${site}${dt}-${dn}-${pn}`;}
+function togD(item){const cb=item.querySelector('input[type=checkbox]');cb.checked=!cb.checked;item.classList.toggle('chk',cb.checked);}
+function getDefects(){const defects=[];document.querySelectorAll('.di').forEach(item=>{const cb=item.querySelector('input[type=checkbox]');if(cb?.checked){const qty=item.querySelector('.di-qty')?.value;defects.push({key:cb.dataset.key,label:item.querySelector('span')?.textContent||'',qty:qty?+qty:null});}});const other=document.getElementById('f-other')?.value?.trim();if(other)defects.push({key:'other',label:other,qty:null});return defects;}
+function clearDefects(){document.querySelectorAll('.di').forEach(item=>{const cb=item.querySelector('input[type=checkbox]');if(cb)cb.checked=false;item.classList.remove('chk');const qty=item.querySelector('.di-qty');if(qty)qty.value='';});const oi=document.getElementById('f-other');if(oi)oi.value='';}
+function calcR(n){const insp=+document.getElementById(`r${n}-in`)?.value||0;const nc=+document.getElementById(`r${n}-nc`)?.value||0;document.getElementById(`r${n}-pct`).textContent=insp>0?Math.round(nc/insp*100)+'%':'—';document.getElementById(`rb${n}`)?.classList.toggle('act',insp>0);}
+function getRounds(){const r=[];for(let n=1;n<=3;n++){const rv=n===1?+document.getElementById('r1-rv')?.value||0:null;const inp=+document.getElementById(`r${n}-in`)?.value||0;const nc=+document.getElementById(`r${n}-nc`)?.value||0;if(inp>0||nc>0)r.push({round:n,recv:rv,inspected:inp,nonConf:nc,pct:inp>0?Math.round(nc/inp*100):0});}return r;}
+function setDec(val){document.getElementById('f-dec').value=val;['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');const map={'use-as-is':['db-uai','sel-uai'],'rework':['db-rw','sel-rw'],'rejected':['db-rej','sel-rej'],'waiting':['db-wfd','sel-wfd']};if(map[val])document.getElementById(map[val][0]).classList.add(map[val][1]);}
+function popSup(selId){const sel=document.getElementById(selId);if(!sel)return;const sups=ld('suppliers');const cur=sel.value;sel.innerHTML='<option value="">—</option>';sups.forEach(s=>{const o=document.createElement('option');o.value=s.name;o.textContent=s.name+(s.code?` (${s.code})`:'');sel.appendChild(o);});sel.value=cur;}
+
+async function submitI(e){
+  e.preventDefault();const dec=document.getElementById('f-dec').value;if(!dec){alert('Please select a final decision');return;}
+  const r1rv=+document.getElementById('r1-rv').value||0,r1in=+document.getElementById('r1-in').value||0,r1nc=+document.getElementById('r1-nc').value||0;
+  const hasNC=r1nc>0||dec==='rejected'||dec==='rework'||dec==='waiting';
+  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,createdAt:new Date().toISOString()};
+  await svRecord('inspections',rec);toast(t('t_is'));updBadge();resetIF();go('id',document.querySelector('.nav'));
+}
+function resetIF(){document.getElementById('iForm').reset();today('f-dt');today('f-rdt');clearDefects();['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');document.getElementById('f-dec').value='';for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}updRef();}
+function isPass(r){return r.decision==='use-as-is'||(r.decision&&!r.hasNC);}
+function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
+function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
+function decPill(d){const map={'use-as-is':['use-as-is',t('dec_uai')],'rework':['rework',t('dec_rw')],'rejected':['rejected',t('dec_rej')],'waiting':['waiting',t('dec_wfd')]};const[cls,lbl]=map[d]||['pending','—'];return `<span class="pill ${cls}">${lbl}</span>`;}
+let curI=null;
+function openIM(id){curI=id;const r=ld('inspections').find(x=>x.id===id);if(!r)return;document.getElementById('mo-i-t').textContent=r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd><dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd><dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd><dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd><dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd><dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}</dl>`;if(r.rounds?.length){h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th><th style="padding:4px;border-bottom:1px solid var(--brd)">%</th></tr></thead><tbody>${r.rounds.map(rn=>`<tr><td style="padding:4px">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td><td style="padding:4px;text-align:center">${rn.recv??'—'}</td><td style="padding:4px;text-align:center">${rn.inspected}</td><td style="padding:4px;text-align:center">${rn.nonConf}</td><td style="padding:4px;text-align:center">${rn.pct}%</td></tr>`).join('')}</tbody></table></div>`;}
+if(r.defects?.length){h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px"><span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}</div>`).join('')}</div>`;}
+if(r.issues)h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
+document.getElementById('mo-i-b').innerHTML=h;document.getElementById('mo-i').classList.add('open');}
+async function delI(){if(!curI||!confirm(t('btn_del')+'?'))return;await rmRecord('inspections',curI);toast(t('t_del'));cmo('mo-i');renderID();renderIL();updBadge();}
+let emailData=null;
+function buildEmail(r){const r1=r.rounds?.[0]||{inspected:r.qtyInspected||0,nonConf:0};const pctNC=r1.inspected>0?Math.round(r1.nonConf/r1.inspected*100):0;const issues=r.issues||r.defects?.map((d,i)=>`${i+1}- ${d.label}${d.qty?` (qty: ${d.qty})`:''}`).join('\n')||'None';const body=`Hello All,\nHere's my inspection report for the ${r.description||r.productNo||'product'}.\n\nGeneral Shipment Info\nP.O. #\t\t${r.po||'—'}\nProduct #\t\t${r.productNo||'—'}\nSupplier name\t\t${r.supplier||'—'}\nInspection Date\t\t${r.date}\nQty received\t\t${r.qtyReceived}\n\nIssues:\n${issues}\n\nProduct\tQty\t%\nInspected\t${r1.inspected}\t${r.qtyReceived>0?Math.round(r1.inspected/r.qtyReceived*100):'0'}%\nNon-conformance\t${r1.nonConf}\t${pctNC}%\tUse as Is\tRework\tRejected\tWaiting for decision\n\t${r.qtyUseAsIs||''}\t${r.qtyRework||''}\t${r.qtyRejected||''}\t${r.qtyWaiting||''}\n\nPlease see attached file for details.\n\nBest Regards,\n${r.inspector||''}\n\nInspection Report # ${r.ref}`;return{subject:`Inspection report ${r.productNo||r.ref}`,body};}
+function previewEmail(){const dec=document.getElementById('f-dec').value;if(!dec){alert('Fill in the form first');return;}const tmp={ref:buildRef(),date:document.getElementById('f-dt').value,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,qtyReceived:+document.getElementById('r1-rv').value||0,qtyInspected:+document.getElementById('r1-in').value||0,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,inspector:document.getElementById('f-ip').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0};showEmailModal(tmp);}
+function emailFromModal(){if(!curI)return;const r=ld('inspections').find(x=>x.id===curI);if(r)showEmailModal(r);}
+function showEmailModal(r){emailData=buildEmail(r);document.getElementById('mo-email-b').innerHTML=`<div style="margin-bottom:10px"><strong>Subject:</strong> ${emailData.subject}</div><div class="email-pre">${emailData.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br/>')}</div>`;document.getElementById('mo-email').classList.add('open');}
+function copyEmail(){const txt=`Subject: ${emailData.subject}\n\n${emailData.body}`;if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓'));}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');}}
+function openOutlook(){window.location.href=`mailto:?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;}
+const caps=[];
+function addCapa(){const txt=document.getElementById('capa-t').value.trim();if(!txt)return;caps.push({text:txt,due:document.getElementById('capa-d').value,done:false});renderCaps();document.getElementById('capa-t').value='';}
+function renderCaps(){const el=document.getElementById('capa-new');if(!el)return;el.innerHTML='';caps.forEach((c,i)=>{const d=document.createElement('div');d.style.cssText='background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:8px 10px;display:flex;align-items:flex-start;gap:7px;';d.innerHTML=`<input type="checkbox" ${c.done?'checked':''} style="width:auto;margin-top:2px;accent-color:var(--grn)" onchange="caps[${i}].done=this.checked;renderCaps()"/><div style="flex:1;font-size:13px">${c.text}<div style="font-size:11px;color:var(--muted)">${c.due||''}</div></div><button type="button" class="btn bd bs" onclick="caps.splice(${i},1);renderCaps()">✕</button>`;el.appendChild(d);});}
+function genNCRRef(){const arr=ld('ncrs');return `NC-${site}-${String(arr.length+1).padStart(4,'0')}`;}
+async function submitN(e){e.preventDefault();const rec={id:Date.now(),ref:genNCRRef(),date:document.getElementById('n-dt').value,site,supplier:document.getElementById('n-sp').value,po:document.getElementById('n-po').value,productNo:document.getElementById('n-pn').value,material:document.getElementById('n-mt').value,severity:document.getElementById('n-sv').value,defect:document.getElementById('n-df').value,description:document.getElementById('n-dc').value,inspRef:document.getElementById('n-ir').value,rcaCategory:document.getElementById('n-rc').value,rcaDetail:document.getElementById('n-rd').value,capa:[...caps],responsible:document.getElementById('n-rp').value,dueDate:document.getElementById('n-du').value,status:'open',history:[{date:new Date().toISOString(),action:'Created'}],createdAt:new Date().toISOString()};await svRecord('ncrs',rec);caps.length=0;renderCaps();toast(t('t_ns'));updBadge();resetNF();go('nd',null);}
+function resetNF(){document.getElementById('nForm').reset();caps.length=0;renderCaps();today('n-dt');}
+function renderND(){const data=ld('ncrs');const op=data.filter(r=>r.status==='open').length,ip=data.filter(r=>r.status==='in-progress').length,cl=data.filter(r=>r.status==='closed').length;document.getElementById('nd-op').textContent=op;document.getElementById('nd-ip').textContent=ip;document.getElementById('nd-cl').textContent=cl;const oA=data.filter(r=>r.status!=='closed');document.getElementById('nd-av').textContent=oA.length?Math.round(oA.reduce((s,r)=>s+Math.floor((Date.now()-new Date(r.createdAt))/86400000),0)/oA.length):'—';document.getElementById('nd-title').textContent=(lang==='fr'?'Tableau de bord NC — ':'NCR Dashboard — ')+site;const tb=document.getElementById('nd-tb');tb.innerHTML='';document.getElementById('nd-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>tb.appendChild(mkNR(r)));}
+function renderNL(){const srch=(document.getElementById('nl-s')?.value||'').toLowerCase();const st=document.getElementById('nl-st')?.value||'';const data=ld('ncrs').filter(r=>(!st||r.status===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('nl-tb');tb.innerHTML='';document.getElementById('nl-emp').style.display=data.length?'none':'block';data.forEach(r=>tb.appendChild(mkNR(r)));}
+function mkNR(r){const tr=document.createElement('tr');tr.innerHTML=`<td class="mono">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td>${r.defect||'—'}</td><td>${svP(r.severity)}</td><td>${pill(r.status)}</td><td><button class="btn bg bs" onclick="openNM(${r.id})">View</button></td>`;return tr;}
+function svP(s){const c={critical:'rejected',major:'rework',minor:'pending'};const l={critical:t('sv_c'),major:t('sv_m'),minor:t('sv_n')};return `<span class="pill ${c[s]||'pending'}">${l[s]||s}</span>`;}
+let curN=null;
+function openNM(id){curN=id;const r=ld('ncrs').find(x=>x.id===id);if(!r)return;document.getElementById('mo-n-t').textContent='NCR — '+r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('f_def')}</dt><dd>${r.defect||'—'}</dd><dt>${t('f_sev')}</dt><dd>${svP(r.severity)}</dd><dt>${t('c_sta')}</dt><dd>${pill(r.status)}</dd><dt>${t('f_due')}</dt><dd>${r.dueDate||'—'}</dd><dt>${t('f_resp')}</dt><dd>${r.responsible||'—'}</dd><dt>${t('f_desc')}</dt><dd>${r.description||'—'}</dd></dl>`;if(r.rcaDetail||r.rcaCategory)h+=`<div class="mo-s"><h3>${t('fc_rca')}</h3><dl class="dl"><dt>${t('f_rcat')}</dt><dd>${r.rcaCategory||'—'}</dd><dt>${t('f_rdet')}</dt><dd>${r.rcaDetail||'—'}</dd></dl></div>`;if(r.capa?.length){h+=`<div class="mo-s"><h3>${t('fc_capa')}</h3>`;r.capa.forEach(c=>{h+=`<div style="padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px;display:flex;gap:8px"><span>${c.done?'✅':'⬜'}</span><span>${c.text}${c.due?` (${c.due})`:''}</span></div>`;});h+=`</div>`;}if(r.history?.length){h+=`<div class="mo-s"><h3>History</h3><div class="tl">`;r.history.forEach(hh=>{const cl=hh.action.includes('Closed')?'g':hh.action.includes('progress')?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">●</div><div><div style="font-size:13px;font-weight:500">${hh.action}</div><div style="font-size:11px;color:var(--muted)">${new Date(hh.date).toLocaleString()}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-n-b').innerHTML=h;document.getElementById('mo-n').classList.add('open');}
+async function setNS(st){if(!curN)return;const arr=ld('ncrs');const i=arr.findIndex(r=>r.id===curN);if(i<0)return;arr[i].status=st;if(st==='closed')arr[i].closedDate=new Date().toISOString();arr[i].history.push({date:new Date().toISOString(),action:st==='closed'?'Closed':'In progress'});await svRecord('ncrs',arr[i]);toast(t('t_ns'));cmo('mo-n');renderND();renderNL();updBadge();}
+async function delN(){if(!curN||!confirm(t('btn_del')+'?'))return;await rmRecord('ncrs',curN);toast(t('t_del'));cmo('mo-n');renderND();renderNL();updBadge();}
+function updBadge(){const n=ld('ncrs').filter(r=>r.status==='open').length;const b=document.getElementById('nbadge');b.style.display=n>0?'inline':'none';b.textContent=n;}
+async function submitS(e){e.preventDefault();const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};await svRecord('suppliers',rec);toast(t('t_ss'));resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);}
+function resetSF(){document.getElementById('sForm').reset();}
+function renderSL(){const data=ld('suppliers');const tb=document.getElementById('sl-tb');tb.innerHTML='';document.getElementById('sl-emp').style.display=data.length?'none':'block';data.forEach(s=>{const sc=calcSc(s.name,'site');const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const tr=document.createElement('tr');tr.innerHTML=`<td><strong>${s.name}</strong>${s.country?`<div style="font-size:11px;color:var(--muted)">${s.country}</div>`:''}</td><td class="mono">${s.code||'—'}</td><td>${s.contact||'—'}</td><td>${certs||'—'}</td><td>${pill(s.status)}</td><td>${sc?`<div class="sg ${sc.grade}" style="width:28px;height:28px;font-size:12px">${sc.grade}</div>`:'-'}</td><td><button class="btn bg bs" onclick="openSM('${s.name.replace(/'/g,"\\'")}')">View</button> <button class="btn bd bs" onclick="delS('${s.name.replace(/'/g,"\\'")}')">Del</button></td>`;tb.appendChild(tr);});}
+async function delS(nm){if(!confirm(t('btn_del')+'?'))return;await rmRecord('suppliers',nm);renderSL();popSup('f-sp');popSup('n-sp');toast(t('t_del'));}
+function openSM(nm){const s=ld('suppliers').find(x=>x.name===nm);if(!s)return;const sc=calcSc(nm,'site');const ncrs=ld('ncrs').filter(r=>r.supplier===nm);const insps=ld('inspections').filter(r=>r.supplier===nm);const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const stL={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl')};document.getElementById('mo-s-t').textContent=s.name;let h=`<div style="display:flex;align-items:center;gap:13px;margin-bottom:14px"><div class="scc-av" style="width:44px;height:44px;font-size:16px">${s.name.slice(0,2).toUpperCase()}</div><div><div style="font-size:16px;font-weight:600">${s.name}</div><div style="font-size:12px;color:var(--muted)">${s.code||''} ${s.country?'· '+s.country:''}</div><span class="pill ${s.status}" style="margin-top:3px;display:inline-flex">${stL[s.status]||s.status}</span></div>${sc?`<div class="sg ${sc.grade}" style="margin-left:auto;width:46px;height:46px;font-size:19px">${sc.grade}</div>`:''}</div><dl class="dl"><dt>${t('f_sct')}</dt><dd>${s.contact||'—'}</dd><dt>${t('f_sem')}</dt><dd>${s.email||'—'}</dd><dt>${t('f_spr')}</dt><dd>${s.products||'—'}</dd><dt>${t('f_crt')}</dt><dd>${certs||'—'}</dd><dt>${t('f_adt')}</dt><dd>${s.auditDate||'—'}</dd><dt>${t('f_asc')}</dt><dd>${s.auditScore?s.auditScore+'%':'—'}</dd></dl><div class="mo-s"><h3>Stats — ${site}</h3><div style="display:flex;gap:18px;font-size:13px"><div><div style="color:var(--muted);font-size:11px">Inspections</div><div style="font-size:19px;font-weight:600">${insps.length}</div></div><div><div style="color:var(--muted);font-size:11px">NCRs</div><div style="font-size:19px;font-weight:600;color:var(--red)">${ncrs.length}</div></div>${sc?`<div><div style="color:var(--muted);font-size:11px">Score</div><div style="font-size:19px;font-weight:600">${sc.composite}/100</div></div>`:''}</div></div>`;if(ncrs.length){h+=`<div class="mo-s"><h3>NCRs</h3><div class="tl">`;ncrs.slice(0,4).forEach(r=>{const cl=r.status==='closed'?'g':r.status==='in-progress'?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">⚠</div><div><div style="font-size:13px;font-weight:500">${r.ref} — ${r.defect||'—'}</div><div style="font-size:11px;color:var(--muted)">${r.date} · ${pill(r.status)}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-s-b').innerHTML=h;document.getElementById('mo-s').classList.add('open');}
+function getW(){return ldC('weights',{ac:40,pm:25,nc:20,au:15});}
+function getTH(){return ldC('thresholds',{A:90,B:75,C:60});}
+function calcSc(nm,scope){const sites=scope==='all'?['QS','NL','QM']:[site];const insps=sites.flatMap(s=>ldS('inspections',s)).filter(r=>r.supplier===nm);const ncrs=sites.flatMap(s=>ldS('ncrs',s)).filter(r=>r.supplier===nm);const sd=sites.flatMap(s=>ldS('suppliers',s)).find(r=>r.name===nm);if(!insps.length)return null;const w=getW();const passCount=insps.filter(isPass).length;const acc=passCount/insps.length*100;const tR=insps.reduce((s,r)=>s+(r.qtyReceived||0),0);const tJ=insps.reduce((s,r)=>s+(r.qtyRejected||0),0);const ppm=tR>0?Math.round(tJ/tR*1e6):0;const ppmS=Math.max(0,100-ppm/100);const oN=ncrs.filter(r=>r.status!=='closed').length;const nS=Math.max(0,100-oN*10);const aS=sd?.auditScore?parseFloat(sd.auditScore):50;const comp=Math.round((acc*(w.ac/100))+(ppmS*(w.pm/100))+(nS*(w.nc/100))+(aS*(w.au/100)));const th=getTH();const gr=comp>=th.A?'A':comp>=th.B?'B':comp>=th.C?'C':'D';return{name:nm,site:scope==='all'?'All':site,tot:insps.length,acc:Math.round(acc),ppm,oN,aS:Math.round(aS),composite:comp,grade:gr,sd:sd||{}};}
+function allScores(scope){const sites=scope==='all'?['QS','NL','QM']:[site];const nms=[...new Set(sites.flatMap(s=>ldS('suppliers',s).map(r=>r.name)))];return nms.map(n=>calcSc(n,scope)).filter(Boolean);}
+function renderCD(){const sites=['QS','NL','QM'];const insps=sites.flatMap(s=>ldS('inspections',s));const ncrs=sites.flatMap(s=>ldS('ncrs',s));const sups=sites.flatMap(s=>ldS('suppliers',s));const tot=insps.length;const pass=insps.filter(isPass).length;const tR=insps.reduce((a,r)=>a+(r.qtyReceived||0),0),tJ=insps.reduce((a,r)=>a+(r.qtyRejected||0),0);const ppm=tR>0?Math.round(tJ/tR*1e6):0;document.getElementById('c-tot').textContent=tot;document.getElementById('c-ar').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('c-ppm').textContent=ppm.toLocaleString();document.getElementById('c-ncr').textContent=ncrs.filter(r=>r.status==='open').length;document.getElementById('c-sup').textContent=sups.filter(s=>s.status!=='blocked').length;const ca=document.getElementById('ch-acc');ca.innerHTML='';sites.forEach(s=>{const i=ldS('inspections',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const col=document.createElement('div');col.className='bcol';const c=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';col.innerHTML=`<div class="bv">${rt}%</div><div class="bfill" style="height:${Math.max(4,rt)}px;background:${c}"></div><div class="blbl">${s}</div>`;ca.appendChild(col);});const cd=document.getElementById('ch-def');cd.innerHTML='';const dc={};ncrs.forEach(r=>{if(r.defect)dc[r.defect]=(dc[r.defect]||0)+1;});insps.forEach(r=>r.defects?.forEach(d=>{if(d.label)dc[d.label]=(dc[d.label]||0)+1;}));const mx=Math.max(1,...Object.values(dc));const dcc=['var(--red)','var(--amb)','var(--blu)','var(--pur)','var(--grn)'];Object.entries(dc).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(([d,c],i)=>{const col=document.createElement('div');col.className='bcol';col.innerHTML=`<div class="bv">${c}</div><div class="bfill" style="height:${Math.max(4,c/mx*100)}px;background:${dcc[i%dcc.length]}"></div><div class="blbl">${d.slice(0,12)}</div>`;cd.appendChild(col);});if(!Object.keys(dc).length)cd.innerHTML=`<div style="padding:16px;color:var(--muted);font-size:13px">No defect data</div>`;const g=document.getElementById('pg3-grid');g.innerHTML='';sites.forEach(s=>{const i=ldS('inspections',s),n=ldS('ncrs',s),su=ldS('suppliers',s);const ps=i.filter(isPass).length;const rt=i.length?Math.round(ps/i.length*100):0;const rv=i.reduce((a,x)=>a+(x.qtyReceived||0),0),rj=i.reduce((a,x)=>a+(x.qtyRejected||0),0);const pm=rv>0?Math.round(rj/rv*1e6):0;const gc=rt>=95?'var(--grn)':rt>=80?'var(--amb)':'var(--red)';const card=document.createElement('div');card.className='pc';card.innerHTML=`<div class="pch"><div style="font-size:14px;font-weight:600">🏭 ${s}</div><span style="font-size:20px;font-weight:700;color:${gc}">${rt}%</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_tot')}</span><span>${i.length}</span></div><div class="pkr"><span style="color:var(--muted)">PPM</span><span class="mono">${pm.toLocaleString()}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_open')}</span><span style="color:${n.filter(x=>x.status==='open').length>0?'var(--red)':'inherit'}">${n.filter(x=>x.status==='open').length}</span></div><div class="pkr"><span style="color:var(--muted)">${t('k_sup')}</span><span>${su.filter(x=>x.status!=='blocked').length}</span></div>`;g.appendChild(card);});}
+function renderSC(){const srch=(document.getElementById('sc-s')?.value||'').toLowerCase();const fsi=document.getElementById('sc-si')?.value||'';const fgr=document.getElementById('sc-gr')?.value||'';let scores=allScores('all');if(fsi)scores=scores.filter(s=>ldS('suppliers',fsi).find(x=>x.name===s.name));if(fgr)scores=scores.filter(s=>s.grade===fgr);if(srch)scores=scores.filter(s=>s.name.toLowerCase().includes(srch));scores.sort((a,b)=>b.composite-a.composite);const g=document.getElementById('scg');g.innerHTML='';document.getElementById('sc-emp').style.display=scores.length?'none':'block';scores.forEach(s=>{const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';const card=document.createElement('div');card.className='scc';card.onclick=()=>openScM(s.name);card.innerHTML=`<div class="scc-h"><div class="scc-av">${s.name.slice(0,2).toUpperCase()}</div><div><div class="scc-nm">${s.name}</div><div class="scc-cd">${s.sd?.code||''}</div></div><div class="sg ${s.grade}">${s.grade}</div></div><div class="sck"><div class="sckv"><div class="sckv-n" style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</div><div class="sckv-l">Pass</div></div><div class="sckv"><div class="sckv-n mono">${s.ppm>9999?Math.round(s.ppm/1000)+'k':s.ppm}</div><div class="sckv-l">PPM</div></div><div class="sckv"><div class="sckv-n" style="color:${s.oN>0?'var(--red)':'var(--tx)'}">${s.oN}</div><div class="sckv-l">NCRs</div></div></div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted)"><span>Score</span><span>${s.composite}/100</span></div><div class="sb-bg"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div>`;g.appendChild(card);});}
+function openScM(nm){const s=calcSc(nm,'all');if(!s)return;const insps=(['QS','NL','QM']).flatMap(ss=>ldS('inspections',ss)).filter(r=>r.supplier===nm);const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';document.getElementById('mo-s-t').textContent='Scorecard — '+nm;let h=`<div style="display:flex;align-items:center;gap:13px;margin-bottom:14px"><div class="sg ${s.grade}" style="width:50px;height:50px;font-size:20px">${s.grade}</div><div><div style="font-size:21px;font-weight:700">${s.composite}/100</div></div></div><div class="sb-bg" style="margin-bottom:14px"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div><dl class="dl"><dt>Pass rate</dt><dd style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</dd><dt>PPM</dt><dd class="mono">${s.ppm.toLocaleString()}</dd><dt>Open NCRs</dt><dd>${s.oN}</dd><dt>Audit</dt><dd>${s.aS}%</dd><dt>Inspections</dt><dd>${s.tot}</dd></dl>`;if(insps.length){h+=`<div class="mo-s"><h3>Recent inspections</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Report #</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Date</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Product #</th><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Decision</th></tr></thead><tbody>${insps.slice(0,5).map(r=>`<tr><td style="padding:4px;border-bottom:1px solid var(--brd)" class="mono">${r.ref}</td><td style="padding:4px;border-bottom:1px solid var(--brd)">${r.date}</td><td style="padding:4px;border-bottom:1px solid var(--brd)" class="mono">${r.productNo||'—'}</td><td style="padding:4px;border-bottom:1px solid var(--brd)">${decPill(r.decision)}</td></tr>`).join('')}</tbody></table></div>`;}document.getElementById('mo-s-b').innerHTML=h;document.getElementById('mo-s').classList.add('open');}
+function renderRK(){const scores=allScores('all').sort((a,b)=>b.composite-a.composite);const tb=document.getElementById('rk-tb');tb.innerHTML='';document.getElementById('rk-emp').style.display=scores.length?'none':'block';scores.forEach((s,i)=>{const m=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';const tr=document.createElement('tr');tr.innerHTML=`<td>${m}</td><td><strong>${s.name}</strong></td><td>${s.site}</td><td style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</td><td class="mono">${s.ppm.toLocaleString()}</td><td style="color:${s.oN>0?'var(--red)':'var(--tx)'}">${s.oN}</td><td>${s.aS}%</td><td><div style="display:flex;align-items:center;gap:5px"><div class="sb-bg" style="width:75px;display:inline-block"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div><span style="font-size:12px">${s.composite}</span></div></td><td><span class="pill ${s.grade}">${s.grade}</span></td>`;tb.appendChild(tr);});}
+function loadWT(){const w=getW();document.getElementById('w-ac').value=w.ac;document.getElementById('w-pm').value=w.pm;document.getElementById('w-nc').value=w.nc;document.getElementById('w-au').value=w.au;const th=getTH();document.getElementById('t-A').value=th.A;document.getElementById('t-B').value=th.B;document.getElementById('t-C').value=th.C;updWT();}
+function updWT(){const tot=['w-ac','w-pm','w-nc','w-au'].reduce((s,id)=>{const el=document.getElementById(id);return s+(el?+el.value:0);},0);const el=document.getElementById('w-tot');if(!el)return;el.textContent=tot+'%';el.style.color=tot===100?'var(--grn)':'var(--red)';}
+function saveWT(){const w={ac:+document.getElementById('w-ac').value,pm:+document.getElementById('w-pm').value,nc:+document.getElementById('w-nc').value,au:+document.getElementById('w-au').value};if(w.ac+w.pm+w.nc+w.au!==100){alert('Must total 100%');return;}svC('weights',w);toast(t('t_ws'));}
+function saveTH(){svC('thresholds',{A:+document.getElementById('t-A').value,B:+document.getElementById('t-B').value,C:+document.getElementById('t-C').value});toast(t('t_ws'));}
+function exportAll(){const data={};['QS','NL','QM'].forEach(s=>{data[`inspections_${s}`]=ldS('inspections',s);data[`ncrs_${s}`]=ldS('ncrs',s);data[`suppliers_${s}`]=ldS('suppliers',s);});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=`supplierq_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();toast(t('t_ex'));}
+async function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);for(const s of['QS','NL','QM']){if(!_cache[s])_cache[s]={inspections:[],ncrs:[],suppliers:[]};if(data[`inspections_${s}`])_cache[s].inspections=data[`inspections_${s}`];if(data[`ncrs_${s}`])_cache[s].ncrs=data[`ncrs_${s}`];if(data[`suppliers_${s}`])_cache[s].suppliers=data[`suppliers_${s}`];await ghSave(s);}refresh();updBadge();toast(t('t_im'));}catch(err){toast('Import error: '+err.message);}};reader.readAsText(file);e.target.value='';}
+function pill(s){const l={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl'),open:t('s_op'),'in-progress':t('s_ip'),closed:t('s_cl'),A:'A',B:'B',C:'C',D:'D',pending:'—'};return `<span class="pill ${s}">${l[s]||s}</span>`;}
+function cmo(id,e){if(!e||e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400);}
+
+// INIT — load all 3 sites on startup
+(async()=>{
+  i18n();
+  today('f-dt');today('f-rdt');updRef();
+  setSS('s');
+  await Promise.all(['QS','NL','QM'].map(s=>ghLoad(s)));
+  popSup('f-sp');
+  renderID();
+  updBadge();
+})();
+</script>
+</body>
+</html>
