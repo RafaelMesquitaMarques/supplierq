@@ -1,6 +1,190 @@
 {
   "inspections": [
     {
+      "id": 1779968205185,
+      "ref": "QS20260528-01-111111111111111",
+      "date": "2026-05-28",
+      "dailyN": 1,
+      "site": "QS",
+      "supplier": "Byrne Electrical Specialists, Inc.",
+      "po": "1111111111",
+      "productNo": "111111111111111",
+      "description": "",
+      "delivery": "",
+      "hu": "",
+      "country": "",
+      "receptionDate": "2026-05-28",
+      "inspector": "Rafael",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 2,
+          "pct": 50
+        }
+      ],
+      "defects": [
+        {
+          "key": "color",
+          "label": "Color match",
+          "qty": 2
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-05-28T11:36:45.185Z"
+    },
+    {
+      "id": 1779968203248,
+      "ref": "QS20260528-01-111111111111111",
+      "date": "2026-05-28",
+      "dailyN": 1,
+      "site": "QS",
+      "supplier": "Byrne Electrical Specialists, Inc.",
+      "po": "1111111111",
+      "productNo": "111111111111111",
+      "description": "",
+      "delivery": "",
+      "hu": "",
+      "country": "",
+      "receptionDate": "2026-05-28",
+      "inspector": "Rafael",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 2,
+          "pct": 50
+        }
+      ],
+      "defects": [
+        {
+          "key": "color",
+          "label": "Color match",
+          "qty": 2
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-05-28T11:36:43.248Z"
+    },
+    {
+      "id": 1779968203031,
+      "ref": "QS20260528-01-111111111111111",
+      "date": "2026-05-28",
+      "dailyN": 1,
+      "site": "QS",
+      "supplier": "Byrne Electrical Specialists, Inc.",
+      "po": "1111111111",
+      "productNo": "111111111111111",
+      "description": "",
+      "delivery": "",
+      "hu": "",
+      "country": "",
+      "receptionDate": "2026-05-28",
+      "inspector": "Rafael",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 2,
+          "pct": 50
+        }
+      ],
+      "defects": [
+        {
+          "key": "color",
+          "label": "Color match",
+          "qty": 2
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-05-28T11:36:43.031Z"
+    },
+    {
+      "id": 1779968202813,
+      "ref": "QS20260528-01-111111111111111",
+      "date": "2026-05-28",
+      "dailyN": 1,
+      "site": "QS",
+      "supplier": "Byrne Electrical Specialists, Inc.",
+      "po": "1111111111",
+      "productNo": "111111111111111",
+      "description": "",
+      "delivery": "",
+      "hu": "",
+      "country": "",
+      "receptionDate": "2026-05-28",
+      "inspector": "Rafael",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 2,
+          "pct": 50
+        }
+      ],
+      "defects": [
+        {
+          "key": "color",
+          "label": "Color match",
+          "qty": 2
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-05-28T11:36:42.813Z"
+    },
+    {
       "id": 1779968202536,
       "ref": "QS20260528-01-111111111111111",
       "date": "2026-05-28",
