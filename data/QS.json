@@ -402,7 +402,35 @@
       "createdAt": "2026-05-28T11:36:30.282Z"
     }
   ],
-  "ncrs": [],
+  "ncrs": [
+    {
+      "id": 1779976800346,
+      "ref": "NC-QS-0001",
+      "date": "2026-05-28",
+      "site": "QS",
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "",
+      "productNo": "",
+      "material": "",
+      "severity": "critical",
+      "defect": "Rust",
+      "description": "sasaaca",
+      "inspRef": "",
+      "rcaCategory": "",
+      "rcaDetail": "",
+      "capa": [],
+      "responsible": "",
+      "dueDate": "2026-05-28",
+      "status": "open",
+      "history": [
+        {
+          "date": "2026-05-28T14:00:00.346Z",
+          "action": "Created"
+        }
+      ],
+      "createdAt": "2026-05-28T14:00:00.349Z"
+    }
+  ],
   "suppliers": [
     {
       "name": "Allen Furniture Vietnam Co., Ltd",
