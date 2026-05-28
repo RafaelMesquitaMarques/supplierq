@@ -1310,9 +1310,25 @@
       "auditScore": "",
       "notes": "",
       "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "teste",
+      "code": "12345",
+      "country": "Brazil",
+      "status": "active"
     }
   ],
   "auditLog": [
+    {
+      "id": 1780011774795,
+      "timestamp": "2026-05-28T23:42:54.795Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "supplier_created",
+      "ref": "teste",
+      "site": "QS",
+      "details": "teste | Brazil | active"
+    },
     {
       "id": 1780011366878,
       "timestamp": "2026-05-28T23:36:06.878Z",
