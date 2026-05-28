@@ -569,13 +569,33 @@ const _cache = {};
 
 async function ghLoad(site){
   const path = `data/${site}.json`;
+  const empty = {inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+
+  // Helper: load from localStorage backup
+  function loadBackup(){
+    try{
+      const b = localStorage.getItem(`sq_backup_${site}`);
+      if(b){
+        const parsed = JSON.parse(b);
+        // Only use backup if it has actual data
+        if((parsed.inspections?.length||0)+(parsed.suppliers?.length||0)+(parsed.ncrs?.length||0)>0){
+          console.log(`Using localStorage backup for ${site}`);
+          _cache[site]={...empty,...parsed};
+          return true;
+        }
+      }
+    }catch{}
+    return false;
+  }
+
   try{
     const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
       {headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json'}});
     if(r.status===401) throw new Error('401 — Token invalid or revoked. Generate a new token.');
     if(r.status===403) throw new Error('403 — Access denied. Check token permissions.');
     if(r.status===404){
-      if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+      // File doesn't exist — check localStorage backup first
+      if(!loadBackup()) _cache[site]=empty;
       return _cache[site];
     }
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -584,23 +604,36 @@ async function ghLoad(site){
     try{
       const decoded = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
       const parsed = JSON.parse(decoded);
-      _cache[site] = {inspections:[],ncrs:[],suppliers:[],auditLog:[],...parsed};
+      const hasData = (parsed.inspections?.length||0)+(parsed.suppliers?.length||0)+(parsed.ncrs?.length||0)>0;
+      if(hasData){
+        _cache[site] = {...empty,...parsed};
+        // Update localStorage backup with latest from GitHub
+        try{ localStorage.setItem(`sq_backup_${site}`, JSON.stringify(_cache[site])); }catch{}
+      } else {
+        // GitHub has empty data — try localStorage backup
+        if(!loadBackup()) _cache[site]=empty;
+      }
     }catch{
-      // Corrupted JSON — reset to empty
-      console.warn(`Corrupted JSON for ${site}, resetting to empty`);
-      _cache[site] = {inspections:[],ncrs:[],suppliers:[],auditLog:[]};
-      ghSave(site).catch(console.error); // fix the file on GitHub
+      console.warn(`Corrupted JSON for ${site}, trying backup`);
+      if(!loadBackup()){
+        _cache[site]=empty;
+        ghSave(site).catch(console.error);
+      }
     }
     return _cache[site];
   }catch(e){
-    if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+    if(!_cache[site]) loadBackup()||(_cache[site]=empty);
     throw e;
   }
 }
 
 async function ghSave(site){
   const path = `data/${site}.json`;
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(_cache[site],null,2))));
+  const json = JSON.stringify(_cache[site],null,2);
+  const content = btoa(unescape(encodeURIComponent(json)));
+
+  // Always backup to localStorage immediately
+  try{ localStorage.setItem(`sq_backup_${site}`, json); }catch{}
 
   async function tryPut(sha){
     const body = {message:`Update ${site} data`, content};
@@ -3127,7 +3160,6 @@ function App(){
     reader.onload=async ev=>{
       try{
         const d=JSON.parse(ev.target.result);
-        // Load current SHAs from GitHub first to avoid conflicts
         showToast(lang==='fr'?'Import en cours…':'Importing…','info');
         await Promise.all(SITES.map(async s=>{
           if(d[s]){
@@ -3137,14 +3169,18 @@ function App(){
                 {headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json'}});
               if(check.ok){ const j=await check.json(); _shas[`data/${s}.json`]=j.sha; }
             }catch{}
-            _cache[s]={..._cache[s],...d[s],auditLog:_cache[s]?.auditLog||[]};
+            _cache[s]={...(_cache[s]||{}),...d[s],auditLog:_cache[s]?.auditLog||[]};
+            // Save to localStorage backup immediately
+            try{ localStorage.setItem(`sq_backup_${s}`, JSON.stringify(_cache[s])); }catch{}
             await ghSave(s);
           }
         }));
         setTick(k=>k+1);
         showToast(lang==='fr'?'Importé et sauvegardé ✓':'Imported & saved ✓','success');
       }catch(err){
-        showToast(`Import error: ${err.message}`,'error');
+        // Even if GitHub save fails, data is in localStorage
+        setTick(k=>k+1);
+        showToast(`Saved locally (GitHub error: ${err.message})`,'warn');
       }
     };
     reader.readAsText(f);
