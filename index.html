@@ -656,10 +656,10 @@ function avatarColor(name){
 
 async function saveRecord(site, type, record){
   if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
-  const arr = _cache[site][type]||[];
+  if(!_cache[site][type]) _cache[site][type]=[];
+  const arr = _cache[site][type];
   const idx = arr.findIndex(r=>(r.id||r.name)==(record.id||record.name));
   if(idx>=0) arr[idx]=record; else arr.push(record);
-  _cache[site][type]=arr;
   ghSave(site).catch(console.error);
 }
 
@@ -671,14 +671,14 @@ async function deleteRecord(site, type, key){
 
 // ── AUDIT LOG ──────────────────────────────────────────
 function addAuditLog(site, entry){
-  if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+  // Safety: never create empty cache — skip if site data not loaded yet
+  if(!_cache[site] || !Array.isArray(_cache[site].inspections)) return;
   if(!_cache[site].auditLog) _cache[site].auditLog=[];
   _cache[site].auditLog.unshift({
     id: Date.now(),
     timestamp: new Date().toISOString(),
     ...entry,
   });
-  // Keep max 500 entries per site
   if(_cache[site].auditLog.length>500) _cache[site].auditLog=_cache[site].auditLog.slice(0,500);
   ghSave(site).catch(console.error);
 }
@@ -2830,13 +2830,7 @@ function App(){
     if(user.role!=='admin' && !user.sites?.includes(site)){
       setSite(user.sites?.[0]||'QS');
     }
-    // Log login for all user's sites
-    const loginSite = user.sites?.[0]||'QS';
-    addAuditLog(loginSite,{
-      user:user.name, userEmail:user.email,
-      action:'user_login', ref:'—', site:loginSite,
-      details:`Role: ${user.role} | Sites: ${(user.sites||[]).join(', ')}`,
-    });
+    // Login audit is logged after ghLoad completes (in useEffect below)
   }
 
   function handleLogout(){
@@ -2917,7 +2911,20 @@ function App(){
   useEffect(()=>{
     setSyncStatus('syncing');
     Promise.all(SITES.map(s=>ghLoad(s)))
-      .then(()=>{setSyncStatus('ok');setTick(k=>k+1);})
+      .then(()=>{
+        setSyncStatus('ok');
+        setTick(k=>k+1);
+        // Safe to log login now — data is loaded
+        const session = JSON.parse(localStorage.getItem('sq_session')||'null');
+        if(session){
+          const loginSite = session.sites?.[0]||'QS';
+          addAuditLog(loginSite,{
+            user:session.name, userEmail:session.email,
+            action:'user_login', ref:'—', site:loginSite,
+            details:`Role: ${session.role} | Sites: ${(session.sites||[]).join(', ')}`,
+          });
+        }
+      })
       .catch(()=>{setSyncStatus('error');setTick(k=>k+1);});
   },[]);
 
