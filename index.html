@@ -1783,18 +1783,6 @@ function App(){
       {/* ── SIDEBAR — Cadence style ── */}
       <nav className="sidebar" style={{width: sidebarOpen ? 'var(--sb)' : '0', overflow: sidebarOpen ? undefined : 'hidden', transition:'width .2s'}}>
 
-        {/* Logo + close */}
-        <div className="sb-header">
-          <div className="sb-logo">
-            <div className="sb-logo-icon">SQ</div>
-            <div>
-              <div className="sb-logo-name">SupplierQ</div>
-              <div className="sb-logo-sub">by Foliot</div>
-            </div>
-          </div>
-          <button className="sb-close" onClick={()=>setSidebarOpen(false)}>✕</button>
-        </div>
-
         {/* Site selector */}
         <div className="sb-site" onClick={()=>setSiteDD(d=>!d)} style={{position:'relative'}}>
           <span className="sb-site-badge">{site}</span>
@@ -1802,6 +1790,7 @@ function App(){
           <span className="sb-site-sync" onClick={e=>{e.stopPropagation();manualSync();}}>
             <span className={`sdot${syncStatus==='syncing'?' syncing':syncStatus==='error'?' error':''}`} style={{display:'inline-block'}}/>
           </span>
+          <button className="sb-close" onClick={e=>{e.stopPropagation();setSidebarOpen(false);}} style={{marginLeft:4}}>✕</button>
           {siteDD && <div className="sb-site-dd" onClick={e=>e.stopPropagation()}>
             {SITES.map(s=><div key={s} className={`sb-site-opt${site===s?' active':''}`}
               onClick={()=>{setSite(s);setSiteDD(false);setTick(k=>k+1);}}>
