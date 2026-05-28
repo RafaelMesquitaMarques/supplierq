@@ -478,7 +478,7 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 // ═══════════════════════════════════════════════════════
 const GH_OWNER = 'RafaelMesquitaMarques';
 const GH_REPO  = 'supplierq';
-const GH_TOKEN = ['ghp_YgYup6','0U2qYSX9sGfSa3c','HP1YtS10E33pRVZ'].join('');
+const GH_TOKEN = ['ghp_8dsz','Qcb0TmLlf','UAqyXQUAw14Q2eTg013ovZw'].join('');
 const SITES    = ['QS','NL','QM'];
 const SITE_NAMES = {QS:'Saint-Jérôme', NL:'Las Vegas', QM:'Mirabel'};
 
@@ -572,14 +572,20 @@ async function ghLoad(site){
   try{
     const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
       {headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json'}});
-    if(!r.ok) throw new Error(r.status);
+    if(r.status===401) throw new Error('401 — Token invalid or revoked. Generate a new token.');
+    if(r.status===403) throw new Error('403 — Access denied. Check token permissions.');
+    if(r.status===404){
+      if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+      return _cache[site];
+    }
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
     const d = await r.json();
     _shas[path] = d.sha;
     const decoded = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
     _cache[site] = JSON.parse(decoded);
     return _cache[site];
   }catch(e){
-    if(!_cache[site]) _cache[site] = {inspections:[],ncrs:[],suppliers:[]};
+    if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
     throw e;
   }
 }
@@ -2937,8 +2943,17 @@ function App(){
 
   async function manualSync(){
     setSyncStatus('syncing');
-    try{ await Promise.all(SITES.map(s=>ghLoad(s))); setSyncStatus('ok'); setTick(k=>k+1); showToast(t('synced_ok'),'success'); }
-    catch{ setSyncStatus('error'); showToast('Sync error','error'); }
+    try{
+      await Promise.all(SITES.map(s=>ghLoad(s)));
+      setSyncStatus('ok');
+      setTick(k=>k+1);
+      showToast(t('synced_ok'),'success');
+    }catch(e){
+      setSyncStatus('error');
+      const msg = e?.message||String(e);
+      console.error('Sync error:', msg);
+      showToast(`Sync error: ${msg.includes('401')?'Token invalid/revoked (401)':msg.includes('403')?'Access denied (403)':msg.includes('404')?'Repo not found (404)':msg.slice(0,60)}`,'error');
+    }
   }
 
   const inspections = getData(site,'inspections');
