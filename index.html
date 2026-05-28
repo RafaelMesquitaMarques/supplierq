@@ -777,13 +777,13 @@ async function saveRecord(site, type, record){
   const arr = _cache[site][type];
   const idx = arr.findIndex(r=>(r.id||r.name)==(record.id||record.name));
   if(idx>=0) arr[idx]=record; else arr.push(record);
-  ghSave(site).catch(console.error);
+  await ghSave(site); // ← await: ensures data is on GitHub before navigating
 }
 
 async function deleteRecord(site, type, key){
   if(!_cache[site]) return;
   _cache[site][type]=(_cache[site][type]||[]).filter(r=>(r.id||r.name)!=key);
-  ghSave(site).catch(console.error);
+  await ghSave(site);
 }
 
 // ── AUDIT LOG ──────────────────────────────────────────
@@ -905,6 +905,28 @@ function KpiCard({label, value, sub, color, accent}){
 // ═══════════════════════════════════════════════════════
 //  CAMERA MODAL (webcam on desktop, native on mobile)
 // ═══════════════════════════════════════════════════════
+// ── IMAGE COMPRESSION ─────────────────────────────────
+// Compresses photos to max 1200px / JPEG 75% before saving
+// Prevents GitHub API failures from oversized JSON
+async function compressImage(dataURL, maxW=1200, quality=0.75){
+  if(!dataURL) return dataURL;
+  // Skip if already small enough (under ~300KB in base64)
+  if(dataURL.length < 400000) return dataURL;
+  return new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width, h=img.height;
+      if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+      const canvas=document.createElement('canvas');
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      resolve(canvas.toDataURL('image/jpeg',quality));
+    };
+    img.onerror=()=>resolve(dataURL); // fallback: keep original
+    img.src=dataURL;
+  });
+}
+
 // ═══════════════════════════════════════════════════════
 //  ANNOTATION ENGINE — shared object-based vector system
 // ═══════════════════════════════════════════════════════
@@ -1045,18 +1067,23 @@ function annGetMerged(bgCanvas, annCanvas){
 //  ANNOTATION CANVAS — persistent state via onSave callback
 // ═══════════════════════════════════════════════════════
 function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
-  tool, color, strokeSz, active, onActivate, height, dropIcon, dropLabel, dropSub}){
+  tool, color, strokeSz, active, onActivate, height, dropIcon, dropLabel, dropSub, onDropClick}){
   const bgRef = useRef(); const annRef = useRef(); const wrapRef = useRef();
   const s = useRef({objs:[], selId:null, nextId:1, history:[], bgImg:null});
   const dragRef = useRef(null); const penRef = useRef(null);
   const mountedRef = useRef(false);
 
   // Init on mount and when bgData or persisted state changes
+  // Init annotation objects on MOUNT ONLY — prevents reset on every onSave callback
   useEffect(()=>{
     s.current.objs = persistedObjs ? JSON.parse(JSON.stringify(persistedObjs)) : [];
     s.current.nextId = persistedNextId || 1;
     s.current.selId = null;
     s.current.history = [];
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Handle background image changes separately (new upload, tab switch)
+  useEffect(()=>{
     if(bgData){
       const img = new Image();
       img.onload = ()=>{ s.current.bgImg=img; initC(); drawBg(); renderAnn(); };
@@ -1065,7 +1092,7 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
       s.current.bgImg = null;
       initC(); drawBg(); renderAnn();
     }
-  }, [bgData, persistedObjs, persistedNextId]);
+  }, [bgData]);
 
   useEffect(()=>{ initC(); drawBg(); renderAnn(); },[height]);
 
@@ -1269,7 +1296,7 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
   return <div className="ann-canvas-wrap" ref={wrapRef} style={{height:height||260,cursor}}
     onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU} onDoubleClick={onDbl}>
     {!bgData&&<div className="ann-drop-overlay">
-      <div className="ann-drop-inner" onClick={()=>{}}>
+      <div className="ann-drop-inner" onClick={e=>{e.stopPropagation();onDropClick?.();}}>
         <i className={dropIcon||'ti ti-photo'} style={{fontSize:26,opacity:.35,color:'var(--muted)'}} aria-hidden="true"/>
         <span>{dropLabel||'Upload image'}</span>
         <small>{dropSub||'PNG · JPG'}</small>
@@ -1432,6 +1459,7 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
               color={color} strokeSz={strokeSz} height={220}
               active={ap?.photoIdx===i&&ap?.side==='photo'}
               onActivate={()=>setActivePanel({photoIdx:i,side:'photo'})}
+              onDropClick={()=>filePhotoRef.current.click()}
               dropIcon="ti ti-camera"
               dropLabel={lang==='fr'?'Ajouter une photo':'Add a photo'}
               dropSub="PNG · JPG"/>
@@ -1469,6 +1497,7 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
               color={color} strokeSz={strokeSz} height={220}
               active={ap?.photoIdx===i&&ap?.side==='drawing'}
               onActivate={()=>setActivePanel({photoIdx:i,side:'drawing'})}
+              onDropClick={()=>{fileDrawRef.current.dataset.idx=i;fileDrawRef.current.click();}}
               dropIcon="ti ti-ruler"
               dropLabel={lang==='fr'?'Ajouter un dessin':'Add technical drawing'}
               dropSub="PNG · JPG"/>
@@ -1585,6 +1614,7 @@ function TechnicalDrawingTab({drawings, setDrawings, drawingNotes, setDrawingNot
             onSave={({objs,nextId})=>activeDr&&updateDrawing(activeIdx,{objs,nextId})}
             tool={tool} color={color} strokeSz={strokeSz} height={panelH}
             active={true} onActivate={()=>{}}
+            onDropClick={()=>fileRef.current.click()}
             dropIcon="ti ti-ruler" dropLabel={lang==='fr'?'Charger un dessin technique':'Upload technical drawing'} dropSub="PNG · JPG"/>
         </div>
         <div className="ann-page-badge">{activeIdx+1} / {Math.max(drawings.length,1)}</div>
@@ -2616,6 +2646,27 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
 
   return <div className="page">
     <div className="page-header"><h1>📧 {lang==='fr'?'Configuration emails automatiques':'Automatic Email Settings'}</h1></div>
+
+    {/* Master toggle */}
+    <div className="form-card" style={{marginBottom:14,border:`2px solid ${emailCfg.enabled?'var(--grn-b)':'var(--brd2)'}`}}>
+      <div className="settings-row" style={{paddingBottom:0}}>
+        <div>
+          <div style={{fontSize:14,fontWeight:600}}>{lang==='fr'?'Emails automatiques':'Automatic emails'}</div>
+          <div style={{fontSize:12,color:'var(--muted)',marginTop:2}}>
+            {emailCfg.enabled
+              ?(lang==='fr'?'✅ Activé — les emails seront envoyés automatiquement':'✅ Enabled — emails will be sent automatically')
+              :(lang==='fr'?'⏸ Désactivé — aucun email ne sera envoyé automatiquement (mode test)':'⏸ Disabled — no auto emails will be sent (test mode)')}
+          </div>
+        </div>
+        <label style={{display:'flex',alignItems:'center',gap:10,cursor:'pointer',marginBottom:0}}>
+          <span style={{fontSize:13,color:emailCfg.enabled?'var(--grn)':'var(--muted)',fontWeight:600}}>
+            {emailCfg.enabled?(lang==='fr'?'Activé':'Enabled'):(lang==='fr'?'Désactivé':'Disabled')}
+          </span>
+          <input type="checkbox" checked={emailCfg.enabled||false} onChange={e=>set('enabled',e.target.checked)}
+            style={{width:18,height:18,accentColor:'var(--grn)',cursor:'pointer'}}/>
+        </label>
+      </div>
+    </div>
 
     {/* Setup guide */}
     <div className="form-card" style={{background:'var(--blu-l)',border:'1px solid var(--blu-b)',marginBottom:14}}>
@@ -3705,64 +3756,109 @@ function App(){
   function navTo(p){ setPage(p); setModal(null); }
 
   async function handleSaveInspection(rec){
-    await saveRecord(site,'inspections',rec);
-    setTick(k=>k+1);
-    addAuditLog(site,{
-      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
-      action:editRecord?'inspection_updated':'inspection_created',
-      ref:rec.ref, site,
-      details:`${rec.supplier||'—'} | ${rec.productNo||'—'} | Decision: ${rec.decision}`,
-      duration: editRecord?0:(rec.duration||0),
-    });
-    const isNC = rec.hasNC||rec.decision==='rejected'||rec.decision==='rework'||rec.decision==='waiting';
-    if(emailCfg.onInspection) sendAutoEmail('inspection', rec);
-    else if(emailCfg.onNC && isNC) sendAutoEmail('nc', rec);
-    if(editRecord){ setEditRecord(null); navTo('all_inspections'); }
-    else navTo('dashboard');
+    setSyncStatus('syncing');
+    try{
+      // Compress photos and drawings before saving to prevent GitHub size limits
+      const compressedPhotos = await Promise.all((rec.photos||[]).map(async ph=>({
+        ...ph,
+        data: await compressImage(ph.data),
+        drawingData: await compressImage(ph.drawingData),
+        // Strip history (not needed in storage)
+        history: undefined,
+        drawingHistory: undefined,
+      })));
+      const compressedDrawings = await Promise.all((rec.drawings||[]).map(async dr=>({
+        ...dr,
+        data: await compressImage(dr.data),
+        history: undefined,
+      })));
+      const recToSave = {...rec, photos:compressedPhotos, drawings:compressedDrawings};
+
+      await saveRecord(site,'inspections',recToSave);
+      setTick(k=>k+1);
+      setSyncStatus('ok');
+      addAuditLog(site,{
+        user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+        action:editRecord?'inspection_updated':'inspection_created',
+        ref:rec.ref, site,
+        details:`${rec.supplier||'—'} | ${rec.productNo||'—'} | Decision: ${rec.decision}`,
+        duration: editRecord?0:(rec.duration||0),
+      });
+      if(emailCfg.enabled){
+        const isNC = rec.hasNC||rec.decision==='rejected'||rec.decision==='rework'||rec.decision==='waiting';
+        if(emailCfg.onInspection) sendAutoEmail('inspection', rec);
+        else if(emailCfg.onNC && isNC) sendAutoEmail('nc', rec);
+      }
+      showToast(editRecord?t('updated_ok'):t('saved_ok'),'success');
+      if(editRecord){ setEditRecord(null); navTo('all_inspections'); }
+      else navTo('dashboard');
+    }catch(err){
+      setSyncStatus('error');
+      showToast(`Save error: ${err.message?.slice(0,60)||'Check connection'}`, 'error');
+      console.error('handleSaveInspection error:', err);
+    }
   }
 
   async function handleDeleteInspection(r){
     if(!confirm(t('delete')+'?')) return;
-    addAuditLog(site,{
-      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
-      action:'inspection_deleted', ref:r.ref, site,
-      details:`${r.supplier||'—'} | ${r.productNo||'—'}`,
-    });
-    await deleteRecord(site,'inspections',r.id);
-    setTick(k=>k+1); setModal(null);
-    showToast(t('deleted_ok'),'warn');
+    setSyncStatus('syncing');
+    try{
+      addAuditLog(site,{user:currentUser?.name||'?',userEmail:currentUser?.email||'',action:'inspection_deleted',ref:r.ref,site,details:`${r.supplier||'—'} | ${r.productNo||'—'}`});
+      await deleteRecord(site,'inspections',r.id);
+      setTick(k=>k+1); setSyncStatus('ok'); setModal(null);
+      showToast(t('deleted_ok'),'warn');
+    }catch(err){
+      setSyncStatus('error');
+      showToast(`Delete error: ${err.message?.slice(0,60)}`,'error');
+    }
   }
 
   async function handleSaveNcr(rec){
-    await saveRecord(site,'ncrs',rec);
-    setTick(k=>k+1);
-    addAuditLog(site,{
-      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
-      action:'ncr_created', ref:rec.ref, site,
-      details:`${rec.supplier||'—'} | ${rec.defect||'—'} | ${rec.severity}`,
-    });
-    if(emailCfg.onNCR && rec.status==='open') sendAutoEmail('ncr', rec);
-    navTo('ncr_dashboard');
+    setSyncStatus('syncing');
+    try{
+      await saveRecord(site,'ncrs',rec);
+      setTick(k=>k+1); setSyncStatus('ok');
+      addAuditLog(site,{user:currentUser?.name||'?',userEmail:currentUser?.email||'',action:'ncr_created',ref:rec.ref,site,details:`${rec.supplier||'—'} | ${rec.defect||'—'} | ${rec.severity}`});
+      if(emailCfg.enabled && emailCfg.onNCR && rec.status==='open') sendAutoEmail('ncr', rec);
+      showToast(t('saved_ok'),'success');
+      navTo('ncr_dashboard');
+    }catch(err){
+      setSyncStatus('error');
+      showToast(`Save error: ${err.message?.slice(0,60)}`,'error');
+    }
   }
 
   async function handleSaveSupplier(s){
-    await saveRecord(site,'suppliers',s);
-    setTick(k=>k+1);
-    addAuditLog(site,{
-      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
-      action:'supplier_created', ref:s.name, site,
-      details:`${s.name} | ${s.country||'—'} | ${s.role||'active'}`,
-    });
-    navTo('supplier_list');
+    setSyncStatus('syncing');
+    try{
+      await saveRecord(site,'suppliers',s);
+      setTick(k=>k+1);
+      setSyncStatus('ok');
+      addAuditLog(site,{
+        user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+        action:'supplier_created', ref:s.name, site,
+        details:`${s.name} | ${s.country||'—'}`,
+      });
+      showToast(t('saved_ok'),'success');
+      navTo('supplier_list');
+    }catch(err){
+      setSyncStatus('error');
+      showToast(`Save error: ${err.message?.slice(0,60)||'Check connection'}`, 'error');
+    }
   }
 
   async function handleDeleteSupplier(name){
-    addAuditLog(site,{
-      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
-      action:'supplier_deleted', ref:name, site, details:name,
-    });
-    await deleteRecord(site,'suppliers',name);
-    setTick(k=>k+1); showToast(t('deleted_ok'),'warn');
+    setSyncStatus('syncing');
+    try{
+      addAuditLog(site,{user:currentUser?.name||'?',userEmail:currentUser?.email||'',action:'supplier_deleted',ref:name,site,details:name});
+      await deleteRecord(site,'suppliers',name);
+      setTick(k=>k+1);
+      setSyncStatus('ok');
+      showToast(t('deleted_ok'),'warn');
+    }catch(err){
+      setSyncStatus('error');
+      showToast(`Delete error: ${err.message?.slice(0,60)}`, 'error');
+    }
   }
 
   function exportData(){
