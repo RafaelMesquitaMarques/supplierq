@@ -1400,6 +1400,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780012111285,
+      "timestamp": "2026-05-28T23:48:31.285Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260528-01-0012344",
+      "site": "QS",
+      "details": "Foshan Hengbang Trading Ltd | 12344 | Decision: use-as-is",
+      "duration": 274
+    },
+    {
       "id": 1780011794636,
       "timestamp": "2026-05-28T23:43:14.636Z",
       "user": "Admin",
