@@ -1320,16 +1320,6 @@
   ],
   "auditLog": [
     {
-      "id": 1780011774795,
-      "timestamp": "2026-05-28T23:42:54.795Z",
-      "user": "Admin",
-      "userEmail": "admin@foliot.com",
-      "action": "supplier_created",
-      "ref": "teste",
-      "site": "QS",
-      "details": "teste | Brazil | active"
-    },
-    {
       "id": 1780011366878,
       "timestamp": "2026-05-28T23:36:06.878Z",
       "user": "Admin",
