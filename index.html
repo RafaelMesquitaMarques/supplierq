@@ -853,7 +853,7 @@ const EMPTY_FORM = {
   decision:'', uai:0, rw:0, rj:0, wfd:0, drawingNotes:'',
 };
 
-function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelEdit, showToast}){
+function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelEdit, showToast, sampling, inspections, weights, thresholds}){
   const [tab, setTab] = useState(0);
   const [form, setForm] = useState(editRecord ? formFromRecord(editRecord) : EMPTY_FORM);
   const [photos, setPhotos] = useState(editRecord?.photos||[]);
@@ -881,6 +881,35 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
 
   const set = (k,v) => setForm(f=>({...f,[k]:v}));
   const ref = useMemo(()=>buildRef(site,form.date,form.dailyN,form.productNo),[site,form.date,form.dailyN,form.productNo]);
+
+  // ── SAMPLING PLAN RECOMMENDATION ──────────────────────
+  const samplingRec = useMemo(()=>{
+    if(!form.supplier||!form.r1_recv||!sampling) return null;
+    const allInsps = inspections||[];
+    const allNcrs = getAllData('ncrs');
+    const supObj = suppliers.find(s=>s.name===form.supplier);
+    if(!supObj) return null;
+    const sc = calcScore(supObj, allInsps, allNcrs, weights, thresholds);
+    const grade = sc?.grade||'D';
+    const rateKey = `rate${grade}`;
+    const rate = sampling[rateKey]||{A:5,B:15,C:30,D:100}[grade];
+    const recv = +form.r1_recv||0;
+    const recommended = Math.max(1, Math.ceil(recv * rate / 100));
+
+    // Skip Lot check
+    let skipLot = false;
+    if(sampling.skipLotEnabled && (grade==='A'||grade==='B')){
+      const supInsps = allInsps
+        .filter(i=>i.supplier===form.supplier)
+        .sort((a,b)=>b.id-a.id)
+        .slice(0,sampling.skipLotThreshold||5);
+      const threshold = sampling.skipLotThreshold||5;
+      if(supInsps.length>=threshold && supInsps.every(i=>!i.hasNC && i.decision==='use-as-is')){
+        skipLot = true;
+      }
+    }
+    return {grade, rate, recommended, recv, skipLot, inspCount:sc?.inspCount||0};
+  },[form.supplier, form.r1_recv, inspections, suppliers, sampling, weights, thresholds]);
 
   function getRounds(){
     const r=[];
@@ -985,6 +1014,35 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
 
           <div className="form-card">
             <div className="form-card-title">🔍 {t('insp_info')}</div>
+
+            {/* SAMPLING RECOMMENDATION */}
+            {samplingRec && samplingRec.recv>0 && <div style={{
+              background: samplingRec.skipLot?'var(--amb-l)':samplingRec.grade==='A'?'var(--grn-l)':samplingRec.grade==='D'?'var(--red-l)':'var(--blu-l)',
+              border: `1px solid ${samplingRec.skipLot?'var(--amb-b)':samplingRec.grade==='A'?'var(--grn-b)':samplingRec.grade==='D'?'var(--red-b)':'var(--blu-b)'}`,
+              borderRadius:'var(--r2)',padding:'10px 14px',marginBottom:14,display:'flex',alignItems:'center',justifyContent:'space-between',flexWrap:'wrap',gap:8,
+            }}>
+              <div>
+                <div style={{fontSize:12,fontWeight:700,marginBottom:2,color:samplingRec.skipLot?'var(--amb)':samplingRec.grade==='A'?'var(--grn)':samplingRec.grade==='D'?'var(--red)':'var(--blu)'}}>
+                  {samplingRec.skipLot
+                    ? `⏭️ ${lang==='fr'?'Lot éligible au saut (Skip Lot)':'Lot eligible for skip (Skip Lot)'}`
+                    : `📊 ${lang==='fr'?'Plan d\'échantillonnage — Grade':'Sampling Plan — Grade'} ${samplingRec.grade}`}
+                </div>
+                <div style={{fontSize:12,color:'var(--tx2)'}}>
+                  {samplingRec.skipLot
+                    ? (lang==='fr'
+                        ? `Ce fournisseur a ${sampling.skipLotThreshold} inspections consécutives sans NC. Vous pouvez sauter cette inspection.`
+                        : `This supplier has ${sampling.skipLotThreshold} consecutive passing inspections. You may skip this lot.`)
+                    : (lang==='fr'
+                        ? `Recommandé : inspecter ${samplingRec.recommended} unités sur ${samplingRec.recv} reçues (${samplingRec.rate}%)`
+                        : `Recommended: inspect ${samplingRec.recommended} units out of ${samplingRec.recv} received (${samplingRec.rate}%)`)}
+                </div>
+              </div>
+              {!samplingRec.skipLot && <button type="button" className="btn btn-secondary btn-sm"
+                onClick={()=>set('r1_insp', samplingRec.recommended)}>
+                {lang==='fr'?'Appliquer':'Apply'}
+              </button>}
+            </div>}
+
             <div className="round-grid">
               {[1,2,3].map(n=>{
                 const recv=n===1?form.r1_recv:null;
@@ -1748,6 +1806,109 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
   </div>;
 }
 
+// ═══════════════════════════════════════════════════════
+//  SAMPLING PLANS
+// ═══════════════════════════════════════════════════════
+function SamplingPlans({lang, sampling, setSampling}){
+  const set=(k,v)=>setSampling(s=>({...s,[k]:v}));
+  const grades=[
+    {g:'A',label:'A — Preferred',color:'var(--grn)',desc:lang==='fr'?'Fournisseur de confiance':'Trusted supplier'},
+    {g:'B',label:'B — Approved', color:'var(--blu)',desc:lang==='fr'?'Bon fournisseur':'Good supplier'},
+    {g:'C',label:'C — Conditional',color:'var(--amb)',desc:lang==='fr'?'Fournisseur à surveiller':'Supplier to monitor'},
+    {g:'D',label:'D — At risk',   color:'var(--red)',desc:lang==='fr'?'Fournisseur à risque':'High-risk supplier'},
+  ];
+  return <div className="page">
+    <div className="page-header">
+      <div>
+        <h1>📊 {lang==='fr'?'Plans d\'échantillonnage':'Sampling Plans'}</h1>
+        <p>{lang==='fr'?'Taux d\'inspection automatique basé sur la performance du fournisseur':'Automatic inspection rate based on supplier performance'}</p>
+      </div>
+    </div>
+
+    <div className="form-card">
+      <div className="form-card-title">🎯 {lang==='fr'?'Taux d\'inspection par grade':'Inspection rate by grade'}</div>
+      <p style={{fontSize:12,color:'var(--muted)',marginBottom:16}}>
+        {lang==='fr'
+          ? 'Lors d\'une nouvelle inspection, le système calcule automatiquement la quantité recommandée à inspecter selon le grade actuel du fournisseur.'
+          : 'When creating a new inspection, the system automatically calculates the recommended quantity to inspect based on the supplier\'s current grade.'}
+      </p>
+      {grades.map(({g,label,color,desc})=>(
+        <div key={g} className="settings-row">
+          <div style={{display:'flex',alignItems:'center',gap:10}}>
+            <div className={`grade grade-${g}`} style={{width:28,height:28,fontSize:12}}>{g}</div>
+            <div>
+              <div style={{fontSize:13,fontWeight:600}}>{label}</div>
+              <div style={{fontSize:11,color:'var(--muted)'}}>{desc}</div>
+            </div>
+          </div>
+          <div style={{display:'flex',alignItems:'center',gap:8}}>
+            <input type="number" min="1" max="100" value={sampling[`rate${g}`]||5}
+              onChange={e=>set(`rate${g}`,+e.target.value)}
+              style={{width:64,textAlign:'right',fontFamily:'var(--fm)',fontWeight:600,color}}/>
+            <span style={{fontSize:13,color:'var(--muted)'}}>%</span>
+            <span style={{fontSize:11,color:'var(--muted)',width:100}}>
+              = {Math.ceil((sampling[`rate${g}`]||5)/100*100)} {lang==='fr'?'/ 100 reçues':'/ 100 received'}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="form-card">
+      <div className="form-card-title">⏭️ Skip Lot</div>
+      <p style={{fontSize:12,color:'var(--muted)',marginBottom:16}}>
+        {lang==='fr'
+          ? 'Si un fournisseur passe N inspections consécutives sans NC, l\'application suggère de sauter la prochaine inspection.'
+          : 'If a supplier passes N consecutive inspections without NC, the app suggests skipping the next inspection.'}
+      </p>
+      <div className="settings-row">
+        <div>
+          <div style={{fontSize:13,fontWeight:600}}>{lang==='fr'?'Activer Skip Lot':'Enable Skip Lot'}</div>
+          <div style={{fontSize:11,color:'var(--muted)'}}>{lang==='fr'?'Seulement pour les grades A et B':'Only for grades A and B'}</div>
+        </div>
+        <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer',marginBottom:0}}>
+          <input type="checkbox" checked={sampling.skipLotEnabled||false} onChange={e=>set('skipLotEnabled',e.target.checked)}
+            style={{width:16,height:16,accentColor:'var(--grn)',cursor:'pointer'}}/>
+          <span style={{fontSize:12,color:sampling.skipLotEnabled?'var(--grn)':'var(--muted)',fontWeight:600}}>
+            {sampling.skipLotEnabled?(lang==='fr'?'Activé':'Active'):(lang==='fr'?'Désactivé':'Inactive')}
+          </span>
+        </label>
+      </div>
+      {sampling.skipLotEnabled && <div className="settings-row">
+        <div>
+          <div style={{fontSize:13,fontWeight:600}}>{lang==='fr'?'Seuil de Skip Lot':'Skip Lot threshold'}</div>
+          <div style={{fontSize:11,color:'var(--muted)'}}>{lang==='fr'?'Inspections consécutives sans NC requises':'Consecutive passing inspections required'}</div>
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:8}}>
+          <input type="number" min="2" max="20" value={sampling.skipLotThreshold||5}
+            onChange={e=>set('skipLotThreshold',+e.target.value)}
+            style={{width:64,textAlign:'right',fontFamily:'var(--fm)',fontWeight:600}}/>
+          <span style={{fontSize:13,color:'var(--muted)'}}>{lang==='fr'?'inspections':'inspections'}</span>
+        </div>
+      </div>}
+    </div>
+
+    <div className="form-card" style={{background:'var(--grn-l)',border:'1px solid var(--grn-b)'}}>
+      <div style={{fontSize:13,fontWeight:600,color:'var(--grn)',marginBottom:8}}>
+        💡 {lang==='fr'?'Comment ça fonctionne':'How it works'}
+      </div>
+      <div style={{fontSize:12,color:'var(--tx2)',lineHeight:1.7}}>
+        {lang==='fr' ? <>
+          1. Tu sélectionnes un fournisseur dans le formulaire d'inspection<br/>
+          2. Tu entres la quantité reçue<br/>
+          3. Le système affiche automatiquement: <strong>«Recommandé: inspecter X unités (15% — Grade B)»</strong><br/>
+          4. Si Skip Lot actif et seuil atteint: <strong>«⏭️ Lot éligible au saut — fournisseur fiable»</strong>
+        </> : <>
+          1. You select a supplier in the inspection form<br/>
+          2. You enter the quantity received<br/>
+          3. The system automatically shows: <strong>"Recommended: inspect X units (15% — Grade B)"</strong><br/>
+          4. If Skip Lot active and threshold reached: <strong>"⏭️ Lot eligible for skip — reliable supplier"</strong>
+        </>}
+      </div>
+    </div>
+  </div>;
+}
+
 function ScoreWeights({lang, t, weights, thresholds, setWeights, setThresholds}){
   return <div className="page">
     <div className="page-header"><h1>{t('score_weights')}</h1></div>
@@ -2026,6 +2187,11 @@ function App(){
   const [emailCfg, setEmailCfg] = useState(()=>{
     try{ return JSON.parse(localStorage.getItem('sq_email_cfg')||'{}'); }catch{ return {}; }
   });
+  const [sampling, setSampling] = useState(()=>{
+    try{ return JSON.parse(localStorage.getItem('sq_sampling')||'{}'); }
+    catch{ return {rateA:5,rateB:15,rateC:30,rateD:100,skipLotEnabled:false,skipLotThreshold:5}; }
+  });
+  useEffect(()=>{ localStorage.setItem('sq_sampling', JSON.stringify(sampling)); },[sampling]);
 
   // Persist emailCfg to localStorage
   useEffect(()=>{ localStorage.setItem('sq_email_cfg', JSON.stringify(emailCfg)); },[emailCfg]);
@@ -2190,6 +2356,7 @@ function App(){
       {id:'score_weights',  icon:'⚖️', label:t('score_weights')},
       {id:'email_settings', icon:'📧', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
       ...(isAdmin?[{id:'user_management',icon:'👥',label:lang==='fr'?'Utilisateurs':'Users'}]:[]),
+      {id:'sampling_plans',icon:'📊',label:lang==='fr'?'Plans échantillonnage':'Sampling Plans'},
     ]},
   ];
 
@@ -2199,7 +2366,7 @@ function App(){
     ncr_dashboard:'NCR',new_ncr:'NCR',all_ncrs:'NCR',
     supplier_list:'Suppliers',add_supplier:'Suppliers',
     consolidated:'Scorecard',scorecards:'Scorecard',ranking:'Scorecard',
-    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings',user_management:'Settings'};
+    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings',user_management:'Settings',sampling_plans:'Settings'};
 
   const renderPage = () => {
     switch(page){
@@ -2209,7 +2376,7 @@ function App(){
       case 'new_inspection': return <InspectionForm site={site} lang={lang} t={t} suppliers={suppliers}
         onSave={handleSaveInspection} editRecord={editRecord}
         onCancelEdit={()=>{setEditRecord(null);navTo('all_inspections');}}
-        showToast={showToast}/>;
+        showToast={showToast} sampling={sampling} inspections={inspections} weights={weights} thresholds={thresholds}/>;
       case 'all_inspections': return <AllInspections site={site} lang={lang} t={t} data={inspections}
         onView={r=>setModal({type:'inspection',record:r})}
         onEdit={r=>{setEditRecord(r);navTo('new_inspection');}}
@@ -2228,7 +2395,8 @@ function App(){
       case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
       case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
-      case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
+      case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;
+      case 'sampling_plans': return <SamplingPlans lang={lang} sampling={sampling} setSampling={setSampling}/>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
   };
 
