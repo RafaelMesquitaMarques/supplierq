@@ -1067,7 +1067,7 @@ function annGetMerged(bgCanvas, annCanvas){
 //  ANNOTATION CANVAS — persistent state via onSave callback
 // ═══════════════════════════════════════════════════════
 function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
-  tool, color, strokeSz, active, onActivate, height, dropIcon, dropLabel, dropSub, onDropClick}){
+  tool, color, strokeSz, active, onActivate, height, dropIcon, dropLabel, dropSub, onDropClick, onMountActions}){
   const bgRef = useRef(); const annRef = useRef(); const wrapRef = useRef();
   const s = useRef({objs:[], selId:null, nextId:1, history:[], bgImg:null});
   const dragRef = useRef(null); const penRef = useRef(null);
@@ -1281,7 +1281,7 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
   function clearAll(){ saveH();s.current.objs=[];s.current.selId=null;renderAnn();persist(); }
   function getSelId(){ return s.current.selId; }
 
-  // Expose methods on the wrap element
+  // Expose methods on the wrap element AND via onMountActions callback
   useEffect(()=>{
     if(wrapRef.current){
       wrapRef.current._annUndo=undo;
@@ -1289,6 +1289,7 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
       wrapRef.current._annClear=clearAll;
       wrapRef.current._annGetSelId=getSelId;
     }
+    onMountActions?.({undo, deleteSelected, clearAll, getSelId});
   });
 
   const cursor=tool==='select'?'default':tool==='text'?'text':'crosshair';
@@ -1353,11 +1354,11 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
   const [tool, setTool] = useState('select');
   const [color, setColor] = useState('#e24b4a');
   const [strokeSz, setStrokeSz] = useState(3);
-  const [activePanel, setActivePanel] = useState(null); // {photoIdx, side:'photo'|'drawing'}
+  const [activePanel, setActivePanel] = useState(null);
   const [showCamera, setShowCamera] = useState(false);
   const [cameraForIdx, setCameraForIdx] = useState(null);
   const filePhotoRef = useRef(); const fileDrawRef = useRef();
-  const activeDrawRef = useRef(null);
+  const annActionsRef = useRef({}); // key: `${photoIdx}-${side}` → {undo,deleteSelected,clearAll}
   const [selId, setSelId] = useState(null);
 
   function updatePhoto(i, update){
@@ -1389,14 +1390,14 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
   const ap = activePanel;
   const apPhoto = ap?photos[ap.photoIdx]:null;
 
-  function getActiveWrapEl(){
-    if(!ap||!activeDrawRef.current) return null;
-    return activeDrawRef.current;
+  function getActiveActions(){
+    if(!activePanel) return null;
+    return annActionsRef.current[`${activePanel.photoIdx}-${activePanel.side}`];
   }
 
-  function undo(){ const el=getActiveWrapEl(); if(el?._annUndo) el._annUndo(); }
-  function deleteSelected(){ const el=getActiveWrapEl(); if(el?._annDeleteSelected) el._annDeleteSelected(); }
-  function clearAnn(){ const el=getActiveWrapEl(); if(el?._annClear) el._annClear(); }
+  function undo(){ getActiveActions()?.undo?.(); }
+  function deleteSelected(){ getActiveActions()?.deleteSelected?.(); }
+  function clearAnn(){ getActiveActions()?.clearAll?.(); }
 
   useEffect(()=>{
     const handler=e=>{
@@ -1430,28 +1431,25 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
     {photos.map((ph,i)=><div key={i} style={{marginBottom:12}}>
       <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
 
-        {/* PHOTO PANEL */}
-        <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='photo'?' ann-active-panel':''}`}>
-          <div className="ann-panel-header">
-            <div className="ann-panel-title">
-              <i className="ti ti-camera" style={{fontSize:12}} aria-hidden="true"/>
-              Photo {i+1}
-              {ap?.photoIdx===i&&ap?.side==='photo'&&<span className="ann-active-badge">active</span>}
+          <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='photo'?' ann-active-panel':''}`}>
+            <div className="ann-panel-header">
+              <div className="ann-panel-title">
+                <i className="ti ti-camera" style={{fontSize:12}} aria-hidden="true"/>
+                Photo {i+1}
+                {ap?.photoIdx===i&&ap?.side==='photo'&&<span className="ann-active-badge">active</span>}
+              </div>
+              <div className="ann-panel-acts">
+                <button type="button" className="ann-pa-btn" title="Camera" onClick={e=>{e.stopPropagation();setCameraForIdx(i);setShowCamera(true);}}>
+                  <i className="ti ti-camera" aria-hidden="true"/>
+                </button>
+                <button type="button" className="ann-pa-btn" title="Upload" onClick={e=>{e.stopPropagation();filePhotoRef.current.click();}}>
+                  <i className="ti ti-upload" aria-hidden="true"/>
+                </button>
+                <button type="button" className="ann-pa-btn" title="Remove" onClick={e=>{e.stopPropagation();removePhoto(i);}}>
+                  <i className="ti ti-x" aria-hidden="true"/>
+                </button>
+              </div>
             </div>
-            <div className="ann-panel-acts">
-              <button type="button" className="ann-pa-btn" title="Camera" onClick={e=>{e.stopPropagation();setCameraForIdx(i);setShowCamera(true);}}>
-                <i className="ti ti-camera" aria-hidden="true"/>
-              </button>
-              <button type="button" className="ann-pa-btn" title="Upload" onClick={e=>{e.stopPropagation();filePhotoRef.current.click();}}>
-                <i className="ti ti-upload" aria-hidden="true"/>
-              </button>
-              <button type="button" className="ann-pa-btn" title="Remove" onClick={e=>{e.stopPropagation();removePhoto(i);}}>
-                <i className="ti ti-x" aria-hidden="true"/>
-              </button>
-            </div>
-          </div>
-          <div ref={ap?.photoIdx===i&&ap?.side==='photo'?activeDrawRef:null}
-            onClick={()=>setActivePanel({photoIdx:i,side:'photo'})}>
             <AnnotatorCanvas
               bgData={ph.data} persistedObjs={ph.objs} persistedNextId={ph.nextId}
               onSave={({objs,nextId})=>updatePhoto(i,{objs,nextId})}
@@ -1460,36 +1458,34 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
               active={ap?.photoIdx===i&&ap?.side==='photo'}
               onActivate={()=>setActivePanel({photoIdx:i,side:'photo'})}
               onDropClick={()=>filePhotoRef.current.click()}
+              onMountActions={actions=>{ annActionsRef.current[`${i}-photo`]=actions; }}
               dropIcon="ti ti-camera"
               dropLabel={lang==='fr'?'Ajouter une photo':'Add a photo'}
               dropSub="PNG · JPG"/>
+            <input className="ann-caption" value={ph.caption}
+              placeholder={lang==='fr'?'Légende photo...':'Photo caption...'}
+              onChange={e=>updatePhoto(i,{caption:e.target.value})}/>
           </div>
-          <input className="ann-caption" value={ph.caption}
-            placeholder={lang==='fr'?'Légende photo...':'Photo caption...'}
-            onChange={e=>updatePhoto(i,{caption:e.target.value})}/>
-        </div>
 
-        {/* DRAWING PANEL */}
-        <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='drawing'?' ann-active-panel':''}`}>
-          <div className="ann-panel-header">
-            <div className="ann-panel-title">
-              <i className="ti ti-ruler" style={{fontSize:12}} aria-hidden="true"/>
-              {lang==='fr'?'Dessin technique':'Technical drawing'}
-              {ap?.photoIdx===i&&ap?.side==='drawing'&&<span className="ann-active-badge">active</span>}
+          {/* DRAWING PANEL */}
+          <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='drawing'?' ann-active-panel':''}`}>
+            <div className="ann-panel-header">
+              <div className="ann-panel-title">
+                <i className="ti ti-ruler" style={{fontSize:12}} aria-hidden="true"/>
+                {lang==='fr'?'Dessin technique':'Technical drawing'}
+                {ap?.photoIdx===i&&ap?.side==='drawing'&&<span className="ann-active-badge">active</span>}
+              </div>
+              <div className="ann-panel-acts">
+                <button type="button" className="ann-pa-btn" title="Upload drawing"
+                  onClick={e=>{e.stopPropagation();fileDrawRef.current.dataset.idx=i;fileDrawRef.current.click();}}>
+                  <i className="ti ti-upload" aria-hidden="true"/>
+                </button>
+                {ph.drawingData&&<button type="button" className="ann-pa-btn" title="Remove drawing"
+                  onClick={e=>{e.stopPropagation();updatePhoto(i,{drawingData:null,drawingObjs:[],drawingNextId:1});}}>
+                  <i className="ti ti-x" aria-hidden="true"/>
+                </button>}
+              </div>
             </div>
-            <div className="ann-panel-acts">
-              <button type="button" className="ann-pa-btn" title="Upload drawing"
-                onClick={e=>{e.stopPropagation();fileDrawRef.current.dataset.idx=i;fileDrawRef.current.click();}}>
-                <i className="ti ti-upload" aria-hidden="true"/>
-              </button>
-              {ph.drawingData&&<button type="button" className="ann-pa-btn" title="Remove drawing"
-                onClick={e=>{e.stopPropagation();updatePhoto(i,{drawingData:null,drawingObjs:[],drawingNextId:1});}}>
-                <i className="ti ti-x" aria-hidden="true"/>
-              </button>}
-            </div>
-          </div>
-          <div ref={ap?.photoIdx===i&&ap?.side==='drawing'?activeDrawRef:null}
-            onClick={()=>setActivePanel({photoIdx:i,side:'drawing'})}>
             <AnnotatorCanvas
               bgData={ph.drawingData} persistedObjs={ph.drawingObjs} persistedNextId={ph.drawingNextId}
               onSave={({objs,nextId})=>updatePhoto(i,{drawingObjs:objs,drawingNextId:nextId})}
@@ -1498,14 +1494,14 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
               active={ap?.photoIdx===i&&ap?.side==='drawing'}
               onActivate={()=>setActivePanel({photoIdx:i,side:'drawing'})}
               onDropClick={()=>{fileDrawRef.current.dataset.idx=i;fileDrawRef.current.click();}}
+              onMountActions={actions=>{ annActionsRef.current[`${i}-drawing`]=actions; }}
               dropIcon="ti ti-ruler"
               dropLabel={lang==='fr'?'Ajouter un dessin':'Add technical drawing'}
               dropSub="PNG · JPG"/>
+            <input className="ann-caption" value={ph.drawingCaption||''}
+              placeholder={lang==='fr'?'Notes / dimensions...':'Notes / dimensions...'}
+              onChange={e=>updatePhoto(i,{drawingCaption:e.target.value})}/>
           </div>
-          <input className="ann-caption" value={ph.drawingCaption||''}
-            placeholder={lang==='fr'?'Notes / dimensions...':'Notes / dimensions...'}
-            onChange={e=>updatePhoto(i,{drawingCaption:e.target.value})}/>
-        </div>
       </div>
     </div>)}
 
@@ -1665,7 +1661,7 @@ const EMPTY_FORM = {
   decision:'', uai:0, rw:0, rj:0, wfd:0, drawingNotes:'',
 };
 
-function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelEdit, showToast, sampling, inspections, weights, thresholds}){
+function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, editRecord, onCancelEdit, showToast, sampling, inspections, weights, thresholds}){
   const [tab, setTab] = useState(0);
   const [form, setForm] = useState(editRecord ? formFromRecord(editRecord) : EMPTY_FORM);
   const [photos, setPhotos] = useState(()=>{
@@ -1752,12 +1748,16 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
     return arr;
   }
 
-  function handleSubmit(e){
+  const [saving, setSaving] = useState(false);
+
+  async function handleSubmit(e){
     e.preventDefault();
     if(!form.decision){showToast(lang==='fr'?'Choisissez une décision':'Please select a decision','error');return;}
+    if(saving) return;
+    setSaving(true);
     const rounds=getRounds();
     const hasNC=+form.r1_nc>0||form.decision==='rejected'||form.decision==='rework'||form.decision==='waiting';
-    const duration = editRecord ? 0 : Math.round((Date.now()-startTimeRef.current)/1000); // seconds
+    const duration = editRecord ? 0 : Math.round((Date.now()-startTimeRef.current)/1000);
     const rec = {
       id: editRecord?.id||Date.now(),
       ref: editRecord?.ref||ref,
@@ -1774,9 +1774,14 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
       updatedAt: new Date().toISOString(),
       duration: editRecord ? (editRecord.duration||0) : duration,
     };
-    onSave(rec);
-    showToast(editRecord?t('updated_ok'):t('saved_ok'),'success');
-    if(!editRecord){setForm(EMPTY_FORM);setPhotos([]);setDrawings([]);setTab(0);}
+    try{
+      await onSave(rec); // ← await: prevents navigating before save completes
+      if(!editRecord){setForm(EMPTY_FORM);setPhotos([]);setDrawings([]);setTab(0);}
+    }catch(err){
+      // error toast is shown in handleSaveInspection
+    }finally{
+      setSaving(false);
+    }
   }
 
   const tabs = [t('page1'), t('page2'), t('page3')];
@@ -1821,7 +1826,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
             <div className="fg"><label>{t('supplier')} *</label>
               <select value={form.supplier} onChange={e=>set('supplier',e.target.value)} required>
                 <option value="">—</option>
-                {suppliers.map(s=><option key={s.name} value={s.name}>{s.name}{s.code?` (${s.code})`:''}</option>)}
+                {(allSuppliers||suppliers||[]).map(s=><option key={s.name} value={s.name}>{s.name}{s.code?` (${s.code})`:''}</option>)}
               </select>
             </div>
             <div className="grid2">
@@ -1836,7 +1841,12 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
             </div>
             <div className="grid2">
               <div className="fg"><label>{t('rec_date')}</label><input type="date" value={form.receptionDate} onChange={e=>set('receptionDate',e.target.value)}/></div>
-              <div className="fg"><label>{t('inspector')}</label><input type="text" value={form.inspector} onChange={e=>set('inspector',e.target.value)}/></div>
+              <div className="fg"><label>{t('inspector')}</label>
+                <select value={form.inspector} onChange={e=>set('inspector',e.target.value)}>
+                  <option value="">{lang==='fr'?'— Choisir un inspecteur —':'— Select inspector —'}</option>
+                  {(users||[]).filter(u=>u.active!==false&&(u.role==='admin'||u.role==='manager'||(u.sites||[]).includes(site))).map(u=><option key={u.id} value={u.name}>{u.name}</option>)}
+                </select>
+              </div>
             </div>
           </div>
 
@@ -1943,7 +1953,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
         <div className="form-end" style={{marginTop:16}}>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(0)}>← {t('back')}</button>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(2)}>{t('next')} →</button>
-          <button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button>
+          <button type="submit" className="btn btn-primary" disabled={saving}>{saving?<><i className='ti ti-loader-2' aria-hidden='true'/> {lang==='fr'?'Sauvegarde...':'Saving...'}</>:<><i className='ti ti-check' aria-hidden='true'/> {t('save')}</>}</button>
         </div>
       </div>}
 
@@ -1954,7 +1964,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
           drawingNotes={form.drawingNotes} setDrawingNotes={v=>set('drawingNotes',v)} lang={lang}/>
         <div className="form-end" style={{marginTop:12}}>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(1)}>← {t('back')}</button>
-          <button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button>
+          <button type="submit" className="btn btn-primary" disabled={saving}>{saving?<><i className='ti ti-loader-2' aria-hidden='true'/> {lang==='fr'?'Sauvegarde...':'Saving...'}</>:<><i className='ti ti-check' aria-hidden='true'/> {t('save')}</>}</button>
         </div>
       </div>}
     </form>
@@ -3611,14 +3621,15 @@ function App(){
   const [lang, setLang] = useState('en');
   const [page, setPage] = useState('dashboard');
   const [dark, setDark] = useState(()=>localStorage.getItem('sqm_theme')==='dark');
-  const [syncStatus, setSyncStatus] = useState('idle'); // idle | syncing | ok | error
+  const [syncStatus, setSyncStatus] = useState('idle');
   const [toasts, setToasts] = useState([]);
   const [siteDD, setSiteDD] = useState(false);
-  const [tick, setTick] = useState(0); // force re-render after data loads
-  const [modal, setModal] = useState(null); // {type:'inspection'|'email'|'ncr', record}
+  const [tick, setTick] = useState(0);
+  const [modal, setModal] = useState(null);
   const [editRecord, setEditRecord] = useState(null);
   const [weights, setWeights] = useState({ac:40,pm:25,nc:20,au:15});
   const [thresholds, setThresholds] = useState({A:90,B:75,C:60});
+  const [appUsers, setAppUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(()=>{
     try{ return JSON.parse(localStorage.getItem('sq_session')||'null'); }catch{ return null; }
   });
@@ -3713,6 +3724,8 @@ function App(){
       .then(()=>{
         setSyncStatus('ok');
         setTick(k=>k+1);
+        // Load users for inspector dropdown
+        loadUsers().then(us=>setAppUsers(us||[])).catch(()=>{});
         // Safe to log login now — data is loaded
         const session = JSON.parse(localStorage.getItem('sq_session')||'null');
         if(session){
@@ -3752,6 +3765,10 @@ function App(){
   const inspections = getData(site,'inspections');
   const ncrs = getData(site,'ncrs');
   const suppliers = getData(site,'suppliers');
+  // All suppliers across all sites, deduplicated by name
+  const allSuppliers = React.useMemo(()=>{
+    const seen=new Set(); return getAllData('suppliers').filter(s=>{ if(seen.has(s.name))return false; seen.add(s.name); return true; }).sort((a,b)=>a.name.localeCompare(b.name));
+  },[tick]);
 
   function navTo(p){ setPage(p); setModal(null); }
 
@@ -3953,6 +3970,7 @@ function App(){
         onNewInsp={()=>navTo('new_inspection')}
         onViewInsp={r=>setModal({type:'inspection',record:r})}/>;
       case 'new_inspection': return <InspectionForm site={site} lang={lang} t={t} suppliers={suppliers}
+        allSuppliers={allSuppliers} users={appUsers}
         onSave={handleSaveInspection} editRecord={editRecord}
         onCancelEdit={()=>{setEditRecord(null);navTo('all_inspections');}}
         showToast={showToast} sampling={sampling} inspections={inspections} weights={weights} thresholds={thresholds}/>;
