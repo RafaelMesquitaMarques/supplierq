@@ -9,6 +9,7 @@
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
@@ -441,6 +442,57 @@ textarea{resize:vertical;min-height:72px;}
 .checkbox-item:hover{border-color:var(--grn-b);}
 .checkbox-item.checked{border-color:var(--grn-b);background:var(--grn-l);color:var(--grn);font-weight:500;}
 /* ─── BOTTOM NAV ─────────────────────────────────── */
+/* ─── ANNOTATION TOOL ───────────────────────────────── */
+.ann-toolbar{background:var(--surf2);border:0.5px solid var(--brd);border-radius:var(--r2);padding:6px 10px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.ann-sep{width:1px;height:20px;background:var(--brd2);margin:0 3px;flex-shrink:0}
+.ann-btn{width:30px;height:30px;border-radius:var(--r);border:0.5px solid transparent;cursor:pointer;background:none;color:var(--tx2);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .1s;flex-shrink:0;position:relative;font-family:var(--ff)}
+.ann-btn:hover{background:var(--surf3);color:var(--tx)}
+.ann-btn.ann-on{background:var(--blu-l);color:var(--blu);border-color:var(--blu-b)}
+.ann-col{width:18px;height:18px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;flex-shrink:0;transition:all .1s}
+.ann-col.ann-on{border-color:var(--tx);transform:scale(1.2)}
+.ann-sz{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
+.ann-sz input{width:50px}
+.ann-panel{background:var(--surf);border:0.5px solid var(--brd);border-radius:var(--r2);overflow:hidden;display:flex;flex-direction:column;margin-bottom:10px}
+.ann-panel.ann-active-panel{outline:2px solid var(--blu);outline-offset:-1px}
+.ann-panel-header{padding:6px 10px;background:var(--surf2);border-bottom:0.5px solid var(--brd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ann-panel-title{font-size:11px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:5px}
+.ann-panel-acts{display:flex;gap:3px}
+.ann-pa-btn{width:24px;height:24px;border-radius:5px;border:none;background:none;cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-family:var(--ff)}
+.ann-pa-btn:hover{background:var(--surf3)}
+.ann-canvas-wrap{position:relative;background:#c8cdd3;user-select:none;overflow:hidden}
+.ann-canvas-wrap canvas{position:absolute;top:0;left:0;display:block}
+.ann-drop-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2}
+.ann-drop-inner{border:2px dashed rgba(128,128,128,.35);border-radius:var(--r2);padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;pointer-events:all;cursor:pointer;width:calc(100% - 32px)}
+.ann-drop-inner i{font-size:26px;opacity:.35;color:var(--muted)}
+.ann-drop-inner span{font-size:13px;color:var(--muted)}
+.ann-drop-inner small{font-size:11px;color:var(--muted);opacity:.7}
+.ann-resize-bar{height:6px;background:var(--surf2);border-top:0.5px solid var(--brd);cursor:ns-resize;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ann-resize-bar i{font-size:10px;color:var(--brd2)}
+.ann-active-badge{background:var(--blu-l);color:var(--blu);font-size:9px;font-weight:700;padding:1px 5px;border-radius:20px;text-transform:uppercase}
+.ann-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ann-caption{width:100%;padding:5px 8px;font-size:11px;border:0.5px solid var(--brd);border-radius:0 0 var(--r2) var(--r2);background:var(--surf2);color:var(--tx);font-family:var(--ff);border-top:none;outline:none}
+.ann-caption:focus{border-color:var(--grn)}
+.ann-txt-inp{position:absolute;background:rgba(255,255,255,.95);border:1.5px solid var(--blu);border-radius:4px;padding:3px 7px;font-size:14px;outline:none;min-width:80px;z-index:20;font-family:system-ui;color:#111}
+.ann-dim-inp{position:absolute;background:rgba(255,255,255,.95);border:1.5px solid #ef9f27;border-radius:4px;padding:3px 7px;font-size:12px;font-weight:600;outline:none;width:100px;z-index:20;font-family:system-ui;color:#111;text-align:center}
+.ann-sel-bar{display:flex;align-items:center;gap:7px;padding:6px 10px;background:var(--amb-l);border:0.5px solid var(--amb-b);border-radius:var(--r2);font-size:12px;color:var(--amb);margin-bottom:8px}
+.ann-add-row{display:flex;gap:8px;flex-wrap:wrap}
+.ann-add-btn{flex:1;min-width:130px;border:1.5px dashed var(--brd2);border-radius:var(--r2);padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;background:var(--surf2);transition:all .15s}
+.ann-add-btn:hover{border-color:var(--grn);background:var(--grn-l)}
+.ann-add-btn i{font-size:20px;color:var(--muted)}
+.ann-add-btn span{font-size:12px;color:var(--muted)}
+.ann-add-btn:hover i,.ann-add-btn:hover span{color:var(--grn)}
+.ann-drawing-main{background:var(--surf);border:0.5px solid var(--brd);border-radius:var(--r2);overflow:hidden}
+.ann-drawing-hdr{padding:7px 12px;background:var(--surf2);border-bottom:0.5px solid var(--brd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.ann-drawing-body{position:relative;overflow:hidden}
+.ann-zoom-row{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted)}
+.ann-thumb-strip{padding:8px 10px;border-top:0.5px solid var(--brd);display:flex;gap:6px;align-items:center;flex-wrap:wrap;background:var(--surf2)}
+.ann-thumb{width:52px;height:52px;border-radius:var(--r);border:0.5px solid var(--brd);object-fit:cover;cursor:pointer;flex-shrink:0;background:var(--surf3);display:flex;align-items:center;justify-content:center}
+.ann-thumb.ann-thumb-active{outline:2px solid var(--blu);outline-offset:1px}
+.ann-thumb img{width:100%;height:100%;object-fit:cover;border-radius:var(--r)}
+.ann-thumb-add{border:1.5px dashed var(--brd2);background:transparent}
+.ann-thumb-add:hover{border-color:var(--grn)}
+.ann-page-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.5);color:#fff;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;pointer-events:none}
+
 .bottom-nav{display:none;}
 @media(max-width:768px){
   .sidebar{display:none;}
@@ -509,12 +561,12 @@ const I18N = {
     suppliers:'Supplier list', add_sup:'Add supplier', consolidated:'Consolidated',
     scorecards:'Scorecards', ranking:'Ranking', gh_storage:'GitHub Storage',
     score_weights:'Score weights', export_json:'Export JSON', import_json:'Import JSON',
-    save:'Save', cancel:'Cancel', edit:'✏️ Edit', delete:'🗑️ Delete', view:'View',
-    email:'📧 Email', clear:'Clear', back:'Back', next:'Next',
+    save:'Save', cancel:'Cancel', edit:'Edit', delete:'Delete', view:'View',
+    email:'Email', clear:'Clear', back:'Back', next:'Next',
     dec_uai:'✅ Use as Is', dec_rw:'🔧 Rework', dec_rej:'❌ Rejected', dec_wfd:'⏳ Waiting',
     saved_ok:'Saved ✓', updated_ok:'Updated ✓', deleted_ok:'Deleted', synced_ok:'Synced ✓',
     edit_mode:'Edit mode', edit_hint:'Modify the fields and save to update.',
-    page1:'Page 1 — Report', page2:'📷 Photos', page3:'📐 Drawings',
+    page1:'Page 1 — Report', page2:'Photos', page3:'Drawings',
     photos:'Shipment Inspection Photos', drawings:'Referenced Images',
     take_photo:'Take photo', upload_photo:'Upload from gallery', add_drawing:'Add drawing / reference image',
     drawing_notes:'Drawing notes / dimensions',
@@ -537,12 +589,12 @@ const I18N = {
     suppliers:'Liste fournisseurs', add_sup:'Ajouter fournisseur', consolidated:'Consolidé',
     scorecards:'Fiches de performance', ranking:'Classement', gh_storage:'Stockage GitHub',
     score_weights:'Pondération', export_json:'Exporter JSON', import_json:'Importer JSON',
-    save:'Enregistrer', cancel:'Annuler', edit:'✏️ Modifier', delete:'🗑️ Supprimer', view:'Voir',
-    email:'📧 Courriel', clear:'Effacer', back:'Retour', next:'Suivant',
+    save:'Enregistrer', cancel:'Annuler', edit:'Modifier', delete:'Supprimer', view:'Voir',
+    email:'Courriel', clear:'Effacer', back:'Retour', next:'Suivant',
     dec_uai:'✅ Utiliser tel quel', dec_rw:'🔧 Retravail', dec_rej:'❌ Rejeté', dec_wfd:'⏳ En attente',
     saved_ok:'Enregistré ✓', updated_ok:'Mis à jour ✓', deleted_ok:'Supprimé', synced_ok:'Synchronisé ✓',
     edit_mode:'Mode édition', edit_hint:'Modifiez les champs et sauvegardez pour mettre à jour.',
-    page1:'Page 1 — Rapport', page2:'📷 Photos', page3:'📐 Dessins',
+    page1:'Page 1 — Rapport', page2:'Photos', page3:'Dessins',
     photos:"Photos d'inspection", drawings:'Images de référence',
     take_photo:'Prendre une photo', upload_photo:'Choisir depuis la galerie', add_drawing:'Ajouter dessin / image',
     drawing_notes:'Notes / dimensions',
@@ -853,6 +905,415 @@ function KpiCard({label, value, sub, color, accent}){
 // ═══════════════════════════════════════════════════════
 //  CAMERA MODAL (webcam on desktop, native on mobile)
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  ANNOTATION ENGINE — shared object-based vector system
+// ═══════════════════════════════════════════════════════
+const ANN_HR = 7;
+function annGetFontSize(o){ return Math.max(8, o.fontSize||Math.max(12,o.size*4)); }
+function annGetBBox(o, ctx2){
+  if(o.type==='pen'){
+    if(!o.pts||!o.pts.length) return null;
+    const xs=o.pts.map(p=>p.x), ys=o.pts.map(p=>p.y);
+    return {x1:Math.min(...xs),y1:Math.min(...ys),x2:Math.max(...xs),y2:Math.max(...ys)};
+  }
+  if(o.type==='text'&&ctx2){
+    const fs=annGetFontSize(o); ctx2.font=`${fs}px system-ui`;
+    const w=ctx2.measureText(o.text).width;
+    return {x1:o.x,y1:o.y,x2:o.x+w,y2:o.y+fs*1.3};
+  }
+  if(['rect','circle','arrow','dim'].includes(o.type)){
+    return {x1:Math.min(o.x1,o.x2),y1:Math.min(o.y1,o.y2),x2:Math.max(o.x1,o.x2),y2:Math.max(o.y1,o.y2)};
+  }
+  return null;
+}
+function annGetHandles(o, ctx2){
+  if(o.type==='arrow'||o.type==='dim') return [{id:'p1',x:o.x1,y:o.y1},{id:'p2',x:o.x2,y:o.y2}];
+  const bb=annGetBBox(o,ctx2); if(!bb) return [];
+  const{x1,y1,x2,y2}=bb;
+  return [{id:'tl',x:x1,y:y1},{id:'tc',x:(x1+x2)/2,y:y1},{id:'tr',x:x2,y:y1},
+    {id:'ml',x:x1,y:(y1+y2)/2},{id:'mr',x:x2,y:(y1+y2)/2},
+    {id:'bl',x:x1,y:y2},{id:'bc',x:(x1+x2)/2,y:y2},{id:'br',x:x2,y:y2}];
+}
+function annApplyHandle(o, hid, dx, dy, ctx2){
+  o=JSON.parse(JSON.stringify(o));
+  if(hid==='p1'){o.x1+=dx;o.y1+=dy;return o;}
+  if(hid==='p2'){o.x2+=dx;o.y2+=dy;return o;}
+  const bb=annGetBBox(o,ctx2); if(!bb) return o;
+  const{x1,y1,x2,y2}=bb;
+  const nb={x1,y1,x2,y2};
+  if(hid.includes('l'))nb.x1+=dx; if(hid.includes('r'))nb.x2+=dx;
+  if(hid.includes('t'))nb.y1+=dy; if(hid.includes('b'))nb.y2+=dy;
+  if(hid==='tc'||hid==='bc'){nb.x1=x1;nb.x2=x2;} if(hid==='ml'||hid==='mr'){nb.y1=y1;nb.y2=y2;}
+  const nW=Math.max(10,nb.x2-nb.x1), nH=Math.max(10,nb.y2-nb.y1);
+  const scX=nW/Math.max(1,x2-x1), scY=nH/Math.max(1,y2-y1);
+  if(o.type==='text'){
+    const fs=annGetFontSize(o); o.fontSize=Math.max(8,Math.round(fs*scY)); o.size=o.fontSize/4; o.x=nb.x1; o.y=nb.y1;
+  } else if(o.type==='pen'){
+    o.pts=o.pts.map(p=>({x:nb.x1+(p.x-x1)*scX,y:nb.y1+(p.y-y1)*scY}));
+  } else { o.x1=nb.x1;o.y1=nb.y1;o.x2=nb.x2;o.y2=nb.y2; }
+  return o;
+}
+function annHitHandle(o, cx, cy, ctx2){ return annGetHandles(o,ctx2).find(h=>Math.hypot(cx-h.x,cy-h.y)<ANN_HR+5)?.id||null; }
+function annHitObj(o, cx, cy, ctx2){
+  const bb=annGetBBox(o,ctx2); if(!bb) return false;
+  const pad=8+o.size;
+  if(cx<bb.x1-pad||cx>bb.x2+pad||cy<bb.y1-pad||cy>bb.y2+pad) return false;
+  if(o.type==='text') return true;
+  if(o.type==='pen'){
+    for(let i=1;i<o.pts.length;i++){
+      const ax=o.pts[i-1].x,ay=o.pts[i-1].y,bx=o.pts[i].x,by=o.pts[i].y;
+      const dx2=bx-ax,dy2=by-ay,l2=dx2*dx2+dy2*dy2;
+      if(l2===0){if(Math.hypot(cx-ax,cy-ay)<10)return true;continue;}
+      const tt=Math.max(0,Math.min(1,((cx-ax)*dx2+(cy-ay)*dy2)/l2));
+      if(Math.hypot(cx-(ax+tt*dx2),cy-(ay+tt*dy2))<10)return true;
+    } return false;
+  }
+  return true;
+}
+function annDrawObj(ctx2, o){
+  ctx2.save();
+  ctx2.strokeStyle=o.color||'#e24b4a'; ctx2.fillStyle=o.color||'#e24b4a';
+  ctx2.lineWidth=o.size||2; ctx2.lineCap='round'; ctx2.lineJoin='round';
+  if(o.type==='pen'){
+    if(!o.pts||o.pts.length<2){ctx2.restore();return;}
+    ctx2.beginPath(); ctx2.moveTo(o.pts[0].x,o.pts[0].y);
+    o.pts.forEach(p=>ctx2.lineTo(p.x,p.y)); ctx2.stroke();
+  } else if(o.type==='rect'){ ctx2.strokeRect(o.x1,o.y1,o.x2-o.x1,o.y2-o.y1);
+  } else if(o.type==='circle'){
+    ctx2.beginPath(); ctx2.ellipse((o.x1+o.x2)/2,(o.y1+o.y2)/2,Math.abs(o.x2-o.x1)/2,Math.abs(o.y2-o.y1)/2,0,0,Math.PI*2); ctx2.stroke();
+  } else if(o.type==='arrow'){
+    ctx2.beginPath(); ctx2.moveTo(o.x1,o.y1); ctx2.lineTo(o.x2,o.y2); ctx2.stroke();
+    const a=Math.atan2(o.y2-o.y1,o.x2-o.x1),l=12+o.size;
+    ctx2.beginPath();
+    ctx2.moveTo(o.x2,o.y2); ctx2.lineTo(o.x2-l*Math.cos(a-.42),o.y2-l*Math.sin(a-.42));
+    ctx2.moveTo(o.x2,o.y2); ctx2.lineTo(o.x2-l*Math.cos(a+.42),o.y2-l*Math.sin(a+.42)); ctx2.stroke();
+  } else if(o.type==='text'){
+    const fs=annGetFontSize(o); ctx2.font=`${fs}px system-ui`; ctx2.textBaseline='top'; ctx2.fillText(o.text,o.x,o.y);
+  } else if(o.type==='dim'){ annDrawDim(ctx2,o); }
+  ctx2.restore();
+}
+function annDrawDim(ctx2, o){
+  const dx=o.x2-o.x1,dy=o.y2-o.y1,len=Math.sqrt(dx*dx+dy*dy); if(len<4) return;
+  const col=o.color||'#ef9f27', lw=Math.max(1.5,o.size*.7);
+  ctx2.save(); ctx2.strokeStyle=col; ctx2.lineWidth=lw; ctx2.lineCap='round';
+  const ang=Math.atan2(dy,dx), perp=ang+Math.PI/2, ext=14;
+  const e1x=o.x1+ext*Math.cos(perp),e1y=o.y1+ext*Math.sin(perp);
+  const e2x=o.x2+ext*Math.cos(perp),e2y=o.y2+ext*Math.sin(perp);
+  [[o.x1,o.y1,e1x,e1y],[o.x2,o.y2,e2x,e2y]].forEach(([ax,ay,bx,by])=>{ctx2.beginPath();ctx2.moveTo(ax,ay);ctx2.lineTo(bx,by);ctx2.stroke();});
+  ctx2.beginPath(); ctx2.moveTo(e1x,e1y); ctx2.lineTo(e2x,e2y); ctx2.stroke();
+  const al=10;
+  [[e1x,e1y,1],[e2x,e2y,-1]].forEach(([ex,ey,dir])=>{
+    ctx2.beginPath();
+    ctx2.moveTo(ex,ey); ctx2.lineTo(ex+al*dir*Math.cos(ang),ey+al*dir*Math.sin(ang));
+    ctx2.moveTo(ex,ey); ctx2.lineTo(ex+al*dir*Math.cos(ang+.35),ey+al*dir*Math.sin(ang+.35)); ctx2.stroke();
+  });
+  if(o.label){
+    const mx=(e1x+e2x)/2, my=(e1y+e2y)/2, fs=Math.max(11,lw*4);
+    ctx2.font=`bold ${fs}px system-ui`; ctx2.textAlign='center'; ctx2.textBaseline='middle';
+    const tw=ctx2.measureText(o.label).width+10;
+    ctx2.fillStyle='rgba(255,255,255,.9)'; ctx2.fillRect(mx-tw/2,my-fs*.7,tw,fs*1.4);
+    ctx2.fillStyle=col; ctx2.fillText(o.label,mx,my);
+  }
+  ctx2.restore();
+}
+function annRenderAll(c1, objs, selId){
+  const ctx2=c1.getContext('2d');
+  ctx2.clearRect(0,0,c1.width,c1.height);
+  objs.forEach(o=>annDrawObj(ctx2,o));
+  if(selId!=null){
+    const sel=objs.find(o=>o.id===selId);
+    if(sel){
+      const bb=annGetBBox(sel,ctx2);
+      if(bb){
+        ctx2.save(); ctx2.strokeStyle='#2a82d8'; ctx2.lineWidth=1; ctx2.setLineDash([4,3]);
+        ctx2.strokeRect(bb.x1-5,bb.y1-5,bb.x2-bb.x1+10,bb.y2-bb.y1+10); ctx2.setLineDash([]); ctx2.restore();
+      }
+      annGetHandles(sel,ctx2).forEach(h=>{
+        ctx2.save(); ctx2.fillStyle='#fff'; ctx2.strokeStyle='#2a82d8'; ctx2.lineWidth=1.5;
+        ctx2.beginPath(); ctx2.arc(h.x,h.y,ANN_HR,0,Math.PI*2); ctx2.fill(); ctx2.stroke(); ctx2.restore();
+      });
+    }
+  }
+}
+function annGetMerged(bgCanvas, annCanvas){
+  const m=document.createElement('canvas'); m.width=bgCanvas.width; m.height=bgCanvas.height;
+  const ctx2=m.getContext('2d'); ctx2.drawImage(bgCanvas,0,0); ctx2.drawImage(annCanvas,0,0); return m;
+}
+
+// ── SHARED ANNOTATION CANVAS COMPONENT ───────────────
+function AnnotatorCanvas({stateRef, tool, color, strokeSz, active, onActivate, height, onHeightChange}){
+  const bgRef = useRef(); const annRef = useRef(); const wrapRef = useRef();
+  const dragRef = useRef(null); const penPtsRef = useRef(null);
+
+  const s = stateRef.current;
+
+  function initCanvases(){
+    const wrap=wrapRef.current; if(!wrap) return;
+    const W=wrap.clientWidth, H=wrap.clientHeight;
+    [bgRef.current, annRef.current].forEach(c=>{if(c){c.width=W;c.height=H;c.style.width=W+'px';c.style.height=H+'px';}});
+  }
+  function drawBg(){
+    const img=s.bgImg; if(!img||!bgRef.current) return;
+    const c=bgRef.current, ctx2=c.getContext('2d');
+    ctx2.clearRect(0,0,c.width,c.height);
+    ctx2.fillStyle='#c0c6cc'; ctx2.fillRect(0,0,c.width,c.height);
+    const r=Math.min(c.width/img.width,c.height/img.height);
+    ctx2.drawImage(img,(c.width-img.width*r)/2,(c.height-img.height*r)/2,img.width*r,img.height*r);
+  }
+  function render(){ if(annRef.current) annRenderAll(annRef.current, s.objs, s.selId); }
+
+  useEffect(()=>{ initCanvases(); drawBg(); render(); },[s.bgImg, height]);
+  useEffect(()=>{ render(); },[s.objs, s.selId]);
+
+  function getPos(e){
+    const c=annRef.current, r=c.getBoundingClientRect();
+    return {x:(e.clientX-r.left)*c.width/r.width, y:(e.clientY-r.top)*c.height/r.height};
+  }
+  function saveH(){ s.history.push(JSON.stringify(s.objs)); if(s.history.length>30) s.history.shift(); }
+
+  function placeTextInput(cx, cy){
+    const wrap=wrapRef.current, ann=annRef.current;
+    const scX=ann.getBoundingClientRect().width/ann.width;
+    const scY=ann.getBoundingClientRect().height/ann.height;
+    const inp=document.createElement('input');
+    inp.className='ann-txt-inp';
+    inp.style.left=Math.max(0,cx*scX-4)+'px';
+    inp.style.top=Math.max(0,cy*scY-16)+'px';
+    inp.style.fontSize=Math.max(12,strokeSz*4)+'px';
+    inp.style.color=color; inp.placeholder='Type here…';
+    wrap.appendChild(inp);
+    setTimeout(()=>inp.focus(),10);
+    let done=false;
+    function commit(){
+      if(done)return; done=true;
+      const txt=inp.value.trim();
+      if(inp.parentNode) inp.parentNode.removeChild(inp);
+      if(!txt) return;
+      saveH();
+      const fs=Math.max(12,strokeSz*4);
+      s.objs.push({id:s.nextId++,type:'text',x:cx,y:cy,text:txt,color,size:strokeSz,fontSize:fs});
+      render();
+    }
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
+    inp.addEventListener('blur',()=>setTimeout(commit,150));
+  }
+
+  function placeDimInput(x1,y1,x2,y2){
+    const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy); if(len<6){render();return;}
+    const ang=Math.atan2(dy,dx),perp=ang+Math.PI/2,ext=14;
+    const e1x=x1+ext*Math.cos(perp),e1y=y1+ext*Math.sin(perp);
+    const e2x=x2+ext*Math.cos(perp),e2y=y2+ext*Math.sin(perp);
+    const mx=(e1x+e2x)/2,my=(e1y+e2y)/2;
+    const ann=annRef.current, wrap=wrapRef.current;
+    const scX=ann.getBoundingClientRect().width/ann.width;
+    const scY=ann.getBoundingClientRect().height/ann.height;
+    const inp=document.createElement('input');
+    inp.className='ann-dim-inp';
+    inp.style.left=Math.max(0,mx*scX-50)+'px';
+    inp.style.top=Math.max(0,my*scY-18)+'px';
+    inp.placeholder='e.g. 24.5 mm';
+    wrap.appendChild(inp);
+    setTimeout(()=>inp.focus(),10);
+    let done=false;
+    function commit(){
+      if(done)return; done=true;
+      const label=inp.value.trim()||'?';
+      if(inp.parentNode) inp.parentNode.removeChild(inp);
+      annRef.current.getContext('2d').clearRect(0,0,annRef.current.width,annRef.current.height);
+      saveH();
+      s.objs.push({id:s.nextId++,type:'dim',x1,y1,x2,y2,color,size:strokeSz,label});
+      render();
+    }
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);render();}});
+    inp.addEventListener('blur',()=>setTimeout(commit,150));
+  }
+
+  function onMD(e){
+    if(e.target.closest('.ann-drop-inner,.ann-pa-btn')) return;
+    onActivate();
+    const pos=getPos(e);
+    const ctx2=annRef.current.getContext('2d');
+    if(tool==='select'){
+      if(s.selId!=null){
+        const sel=s.objs.find(o=>o.id===s.selId);
+        if(sel){
+          const hid=annHitHandle(sel,pos.x,pos.y,ctx2);
+          if(hid){ dragRef.current={mode:'handle',hid,startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.objs))}; return; }
+        }
+      }
+      let hit=null;
+      for(let i=s.objs.length-1;i>=0;i--){ if(annHitObj(s.objs[i],pos.x,pos.y,ctx2)){hit=s.objs[i];break;} }
+      if(hit){ s.selId=hit.id; dragRef.current={mode:'move',startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.objs))}; }
+      else { s.selId=null; dragRef.current=null; }
+      render(); return;
+    }
+    if(tool==='text'){ placeTextInput(pos.x,pos.y); return; }
+    if(tool==='dim'){ dragRef.current={mode:'newdim',startX:pos.x,startY:pos.y}; return; }
+    saveH();
+    dragRef.current={mode:'new',startX:pos.x,startY:pos.y};
+    if(tool==='pen'){ penPtsRef.current=[{x:pos.x,y:pos.y}]; }
+  }
+
+  function onMM(e){
+    const dr=dragRef.current; if(!dr) return;
+    const pos=getPos(e);
+    const ctx2=annRef.current.getContext('2d');
+    const ann=annRef.current;
+    const dx=pos.x-dr.startX, dy=pos.y-dr.startY;
+    if(dr.mode==='move'){
+      s.objs=JSON.parse(JSON.stringify(dr.snap));
+      const o=s.objs.find(o=>o.id===s.selId);
+      if(o){
+        if(o.type==='pen') o.pts=o.pts.map(p=>({x:p.x+dx,y:p.y+dy}));
+        else if(o.type==='text'){o.x+=dx;o.y+=dy;}
+        else{o.x1+=dx;o.y1+=dy;o.x2+=dx;o.y2+=dy;}
+      }
+      render(); return;
+    }
+    if(dr.mode==='handle'){
+      s.objs=JSON.parse(JSON.stringify(dr.snap));
+      const idx=s.objs.findIndex(o=>o.id===s.selId);
+      if(idx>=0) s.objs[idx]=annApplyHandle(s.objs[idx],dr.hid,dx,dy,ctx2);
+      render(); return;
+    }
+    if(dr.mode==='newdim'||dr.mode==='new'){
+      ctx2.clearRect(0,0,ann.width,ann.height);
+      s.objs.forEach(o=>annDrawObj(ctx2,o));
+      if(tool==='dim') annDrawDim(ctx2,{type:'dim',x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz,label:''});
+      else if(tool==='pen'){
+        penPtsRef.current.push({x:pos.x,y:pos.y});
+        ctx2.save();ctx2.strokeStyle=color;ctx2.lineWidth=strokeSz;ctx2.lineCap='round';ctx2.lineJoin='round';
+        ctx2.beginPath();ctx2.moveTo(penPtsRef.current[0].x,penPtsRef.current[0].y);
+        penPtsRef.current.forEach(p=>ctx2.lineTo(p.x,p.y));ctx2.stroke();ctx2.restore();
+      } else annDrawObj(ctx2,{type:tool,x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz});
+    }
+  }
+
+  function onMU(e){
+    const dr=dragRef.current; if(!dr) return;
+    const pos=getPos(e);
+    if(dr.mode==='move'||dr.mode==='handle'){ saveH(); dragRef.current=null; render(); return; }
+    if(dr.mode==='newdim'){ dragRef.current=null; placeDimInput(dr.startX,dr.startY,pos.x,pos.y); return; }
+    if(dr.mode==='new'){
+      if(tool==='pen'&&penPtsRef.current&&penPtsRef.current.length>1){
+        saveH(); s.objs.push({id:s.nextId++,type:'pen',pts:penPtsRef.current,color,size:strokeSz});
+        penPtsRef.current=null;
+      } else {
+        const ddx=Math.abs(pos.x-dr.startX),ddy=Math.abs(pos.y-dr.startY);
+        if(ddx>4||ddy>4){ saveH(); s.objs.push({id:s.nextId++,type:tool,x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz}); }
+      }
+      dragRef.current=null; render();
+    }
+  }
+
+  function onDblClick(e){
+    if(tool!=='select') return;
+    const pos=getPos(e);
+    const ctx2=annRef.current.getContext('2d');
+    for(let i=s.objs.length-1;i>=0;i--){
+      const o=s.objs[i];
+      if(o.type==='text'&&annHitObj(o,pos.x,pos.y,ctx2)){ editText(o); return; }
+      if(o.type==='dim'&&annHitObj(o,pos.x,pos.y,ctx2)){ editDimLabel(o); return; }
+    }
+  }
+
+  function editText(o){
+    const ann=annRef.current, wrap=wrapRef.current;
+    const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
+    const fs=annGetFontSize(o);
+    const inp=document.createElement('input');
+    inp.className='ann-txt-inp';
+    inp.style.left=Math.max(0,o.x*scX-4)+'px'; inp.style.top=Math.max(0,o.y*scY-4)+'px';
+    inp.style.fontSize=(fs*scY)+'px'; inp.style.color=o.color; inp.value=o.text;
+    wrap.appendChild(inp); setTimeout(()=>{inp.focus();inp.select();},10);
+    let done=false;
+    function commit(){
+      if(done)return; done=true; const txt=inp.value.trim();
+      if(inp.parentNode) inp.parentNode.removeChild(inp); if(!txt) return;
+      saveH(); const idx=s.objs.findIndex(x=>x.id===o.id); if(idx>=0) s.objs[idx].text=txt; render();
+    }
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
+    inp.addEventListener('blur',()=>setTimeout(commit,150));
+  }
+
+  function editDimLabel(o){
+    const ann=annRef.current, wrap=wrapRef.current;
+    const ang=Math.atan2(o.y2-o.y1,o.x2-o.x1),perp=ang+Math.PI/2,ext=14;
+    const e1x=o.x1+ext*Math.cos(perp),e1y=o.y1+ext*Math.sin(perp);
+    const e2x=o.x2+ext*Math.cos(perp),e2y=o.y2+ext*Math.sin(perp);
+    const mx=(e1x+e2x)/2, my=(e1y+e2y)/2;
+    const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
+    const inp=document.createElement('input');
+    inp.className='ann-dim-inp';
+    inp.style.left=Math.max(0,mx*scX-50)+'px'; inp.style.top=Math.max(0,my*scY-18)+'px'; inp.value=o.label||'';
+    wrap.appendChild(inp); setTimeout(()=>{inp.focus();inp.select();},10);
+    let done=false;
+    function commit(){
+      if(done)return; done=true; const label=inp.value.trim()||'?';
+      if(inp.parentNode) inp.parentNode.removeChild(inp);
+      saveH(); const idx=s.objs.findIndex(x=>x.id===o.id); if(idx>=0) s.objs[idx].label=label; render();
+    }
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
+    inp.addEventListener('blur',()=>setTimeout(commit,150));
+  }
+
+  const cursor = tool==='select'?'default':tool==='text'?'text':'crosshair';
+
+  return <div className="ann-canvas-wrap" ref={wrapRef} style={{height:height||260,cursor}}
+    onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU} onDoubleClick={onDblClick}>
+    {!s.bgImg && <div className="ann-drop-overlay" id={'dz-'+s.id}>
+      <div className="ann-drop-inner" onClick={()=>s.onUploadClick&&s.onUploadClick()}>
+        <i className={s.dropIcon||'ti ti-photo'} style={{fontSize:26,opacity:.35,color:'var(--muted)'}} aria-hidden="true"/>
+        <span>{s.dropLabel||'Upload image'}</span>
+        <small>{s.dropSub||'PNG · JPG'}</small>
+      </div>
+    </div>}
+    <canvas ref={bgRef}/>
+    <canvas ref={annRef}/>
+  </div>;
+}
+
+// ── ANNOTATION TOOLBAR ────────────────────────────────
+function AnnToolbar({tool, setTool, color, setColor, strokeSz, setStrokeSz, selId, onDelete, onUndo, onClear, activeLabel}){
+  const TOOLS=[
+    {id:'select',icon:'ti ti-pointer',title:'Select (V)'},
+    {id:'pen',icon:'ti ti-pencil',title:'Freehand'},
+    {id:'arrow',icon:'ti ti-arrow-up-right',title:'Arrow'},
+    {id:'rect',icon:'ti ti-rectangle',title:'Rectangle'},
+    {id:'circle',icon:'ti ti-circle',title:'Circle'},
+    {id:'text',icon:'ti ti-text-size',title:'Text'},
+    {id:'dim',icon:'ti ti-ruler-measure',title:'Dimension / Cota'},
+  ];
+  const COLORS=['#e24b4a','#378add','#639922','#ef9f27','#111','#fff'];
+  return <div className="ann-toolbar">
+    <span style={{fontSize:11,color:'var(--muted)',fontWeight:600,whiteSpace:'nowrap'}}>Active:</span>
+    <span className="ann-active-badge">{activeLabel}</span>
+    <div className="ann-sep"/>
+    {TOOLS.map(t2=><button key={t2.id} className={`ann-btn${tool===t2.id?' ann-on':''}`} title={t2.title} onClick={()=>setTool(t2.id)}>
+      <i className={t2.icon} aria-hidden="true" style={{position:'relative'}}>
+        {t2.id==='dim'&&<span style={{position:'absolute',bottom:-2,right:-2,fontSize:7,fontWeight:700,color:'#ef9f27',lineHeight:1,pointerEvents:'none'}}>↔</span>}
+      </i>
+    </button>)}
+    <div className="ann-sep"/>
+    {COLORS.map(c=><div key={c} className={`ann-col${color===c?' ann-on':''}`}
+      style={{background:c,border:c==='#fff'?'1.5px solid var(--brd2)':undefined}}
+      onClick={()=>setColor(c)} title={c}/>)}
+    <div className="ann-sep"/>
+    <div className="ann-sz">
+      <i className="ti ti-line-height" style={{fontSize:13}} aria-hidden="true"/>
+      <input type="range" min="1" max="14" value={strokeSz} step="1" onChange={e=>setStrokeSz(+e.target.value)}/>
+      <span>{strokeSz}</span>
+    </div>
+    <div className="ann-sep"/>
+    <button className="ann-btn" title="Undo (Ctrl+Z)" onClick={onUndo}><i className="ti ti-arrow-back-up" aria-hidden="true"/></button>
+    {selId!=null&&<button className="ann-btn" title="Delete selected (Del)" onClick={onDelete} style={{color:'var(--red)'}}><i className="ti ti-trash" aria-hidden="true"/></button>}
+    <button className="ann-btn" title="Clear annotations" onClick={onClear}><i className="ti ti-eraser" aria-hidden="true"/></button>
+  </div>;
+}
+
+// ═══════════════════════════════════════════════════════
+//  CAMERA MODAL
+// ═══════════════════════════════════════════════════════
 function CameraModal({onCapture, onClose, lang}){
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -868,62 +1329,43 @@ function CameraModal({onCapture, onClose, lang}){
   async function startCamera(mode){
     stopCamera();
     try{
-      const s = await navigator.mediaDevices.getUserMedia({
-        video:{facingMode:mode, width:{ideal:1920}, height:{ideal:1080}},
-        audio:false
-      });
+      const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:mode,width:{ideal:1920},height:{ideal:1080}},audio:false});
       setStream(s);
-      if(videoRef.current){ videoRef.current.srcObject=s; videoRef.current.play(); }
+      if(videoRef.current){videoRef.current.srcObject=s;videoRef.current.play();}
       setError('');
     }catch(e){
-      setError(lang==='fr'
-        ?'Impossible d\'accéder à la caméra. Vérifiez les permissions.'
-        :'Cannot access camera. Please check permissions.');
+      setError(lang==='fr'?"Impossible d'accéder à la caméra. Vérifiez les permissions.":'Cannot access camera. Please check permissions.');
     }
   }
-
-  function stopCamera(){
-    if(stream) stream.getTracks().forEach(t=>t.stop());
-  }
-
+  function stopCamera(){ if(stream) stream.getTracks().forEach(t=>t.stop()); }
   function capture(){
-    const video = videoRef.current;
-    const canvas = canvasRef.current;
-    if(!video||!canvas) return;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    canvas.getContext('2d').drawImage(video,0,0);
-    const data = canvas.toDataURL('image/jpeg',0.85);
-    onCapture(data);
-    stopCamera();
-    onClose();
+    const v=videoRef.current,c=canvasRef.current; if(!v||!c) return;
+    c.width=v.videoWidth; c.height=v.videoHeight;
+    c.getContext('2d').drawImage(v,0,0);
+    onCapture(c.toDataURL('image/jpeg',0.85));
+    stopCamera(); onClose();
   }
-
   function handleClose(){ stopCamera(); onClose(); }
 
   return <div className="modal-overlay" onClick={handleClose}>
     <div className="modal-box" style={{maxWidth:640,padding:20}} onClick={e=>e.stopPropagation()}>
       <div className="modal-header">
-        <h2>📸 {lang==='fr'?'Prendre une photo':'Take a photo'}</h2>
+        <h2><i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Prendre une photo':'Take a photo'}</h2>
         <button className="modal-close" onClick={handleClose}>✕</button>
       </div>
-
       {error
         ? <div style={{background:'var(--red-l)',border:'1px solid var(--red-b)',color:'var(--red)',padding:12,borderRadius:'var(--r)',fontSize:13,textAlign:'center'}}>{error}</div>
         : <div style={{position:'relative',background:'#000',borderRadius:'var(--r2)',overflow:'hidden',aspectRatio:'16/9'}}>
             <video ref={videoRef} style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}} autoPlay playsInline muted/>
-          </div>
-      }
-
+          </div>}
       <canvas ref={canvasRef} style={{display:'none'}}/>
-
       <div style={{display:'flex',gap:8,marginTop:14,justifyContent:'center',flexWrap:'wrap'}}>
-        {!error && <>
+        {!error&&<>
           <button className="btn btn-primary" onClick={capture} style={{padding:'10px 24px',fontSize:15}}>
-            📸 {lang==='fr'?'Capturer':'Capture'}
+            <i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Capturer':'Capture'}
           </button>
           <button className="btn btn-secondary" onClick={()=>setFacingMode(m=>m==='environment'?'user':'environment')}>
-            🔄 {lang==='fr'?'Retourner caméra':'Flip camera'}
+            <i className="ti ti-switch-horizontal" aria-hidden="true"/> {lang==='fr'?'Retourner':'Flip'}
           </button>
         </>}
         <button className="btn btn-secondary" onClick={handleClose}>{lang==='fr'?'Annuler':'Cancel'}</button>
@@ -932,88 +1374,316 @@ function CameraModal({onCapture, onClose, lang}){
   </div>;
 }
 
-function PhotoGrid({photos, setPhotos, lang}){
-  const [lightbox, setLightbox] = useState(null);
+// ═══════════════════════════════════════════════════════
+//  PHOTO ANNOTATION TAB
+// ═══════════════════════════════════════════════════════
+function PhotoAnnotationTab({photos, setPhotos, lang}){
+  const [tool, setTool] = useState('select');
+  const [color, setColor] = useState('#e24b4a');
+  const [strokeSz, setStrokeSz] = useState(3);
+  const [activeIdx, setActiveIdx] = useState(0);
   const [showCamera, setShowCamera] = useState(false);
   const fileRef = useRef();
+  const annStates = useRef([]);
 
-  const handleFiles = (files) => {
+  // Keep annStates in sync with photos
+  while(annStates.current.length < photos.length){
+    const idx = annStates.current.length;
+    annStates.current.push({id:`photo-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]});
+  }
+  // Load bgImg when photo data arrives
+  photos.forEach((ph,i)=>{
+    const st=annStates.current[i];
+    if(ph.data && !st.bgImg){
+      const img=new Image(); img.src=ph.data;
+      img.onload=()=>{ st.bgImg=img; };
+      st.bgImg=img;
+    }
+  });
+
+  function addPhoto(data){
+    const idx = photos.length;
+    setPhotos(prev=>[...prev,{data,caption:'',objs:[],annotated:null}]);
+    const st={id:`photo-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]};
+    const img=new Image(); img.src=data; img.onload=()=>{st.bgImg=img;};
+    st.bgImg=img;
+    annStates.current.push(st);
+    setActiveIdx(idx);
+  }
+
+  function handleFiles(files){
     Array.from(files).forEach(f=>{
       const reader=new FileReader();
-      reader.onload=e=>setPhotos(prev=>[...prev,{data:e.target.result,caption:''}]);
+      reader.onload=e=>addPhoto(e.target.result);
       reader.readAsDataURL(f);
     });
-  };
+  }
+
+  function removePhoto(i){
+    setPhotos(p=>p.filter((_,j)=>j!==i));
+    annStates.current.splice(i,1);
+    setActiveIdx(Math.max(0,i-1));
+  }
+
+  function updateCaption(i,v){ setPhotos(p=>p.map((x,j)=>j===i?{...x,caption:v}:x)); }
+
+  const activeSt = annStates.current[activeIdx];
+  const activeSel = activeSt?.selId;
+
+  function undo(){
+    if(!activeSt) return;
+    if(activeSt.history.length){ activeSt.objs=JSON.parse(activeSt.history.pop()); activeSt.selId=null; }
+    setActiveIdx(i=>i);
+  }
+  function deleteSelected(){
+    if(!activeSt||activeSt.selId==null) return;
+    activeSt.history.push(JSON.stringify(activeSt.objs));
+    activeSt.objs=activeSt.objs.filter(o=>o.id!==activeSt.selId);
+    activeSt.selId=null; setActiveIdx(i=>i);
+  }
+  function clearAnn(){
+    if(!activeSt) return;
+    activeSt.history.push(JSON.stringify(activeSt.objs));
+    activeSt.objs=[]; activeSt.selId=null; setActiveIdx(i=>i);
+  }
+
+  useEffect(()=>{
+    const handler = e=>{
+      if(e.target.tagName==='INPUT') return;
+      if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
+      if(e.key==='v'||e.key==='V') setTool('select');
+      if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();undo();}
+    };
+    window.addEventListener('keydown',handler);
+    return ()=>window.removeEventListener('keydown',handler);
+  },[activeIdx]);
+
+  const activeLabel = photos.length?`Photo ${activeIdx+1}/${photos.length}`:(lang==='fr'?'Aucune photo':'No photo');
 
   return <>
-    {lightbox && <Lightbox src={lightbox} onClose={()=>setLightbox(null)}/>}
-    {showCamera && <CameraModal lang={lang} onCapture={data=>setPhotos(p=>[...p,{data,caption:''}])} onClose={()=>setShowCamera(false)}/>}
-    <div className="photo-grid">
-      {photos.map((ph,i)=>(
-        <div key={i}>
-          <div className="photo-slot" onClick={()=>setLightbox(ph.data)}>
-            <img src={ph.data} alt={`Photo ${i+1}`}/>
-            <button className="photo-del" onClick={e=>{e.stopPropagation();setPhotos(p=>p.filter((_,j)=>j!==i));}}>✕</button>
-            <div className="photo-lbl">{ph.caption||`Photo ${i+1}`}</div>
+    {showCamera&&<CameraModal lang={lang} onCapture={data=>{ addPhoto(data); setShowCamera(false); }} onClose={()=>setShowCamera(false)}/>}
+
+    <AnnToolbar tool={tool} setTool={setTool} color={color} setColor={setColor}
+      strokeSz={strokeSz} setStrokeSz={setStrokeSz}
+      selId={activeSel} onDelete={deleteSelected} onUndo={undo} onClear={clearAnn}
+      activeLabel={activeLabel}/>
+
+    {activeSel!=null&&<div className="ann-sel-bar">
+      <i className="ti ti-cursor-text" style={{fontSize:14}} aria-hidden="true"/>
+      <span>{lang==='fr'?'Sélectionné — glisser pour déplacer, handles pour redimensionner, Del pour supprimer, double-clic texte pour éditer':'Selected — drag to move, handles to resize, Del to delete, double-click text to edit'}</span>
+    </div>}
+
+    <div className="ann-grid-2">
+      {photos.map((ph,i)=>{
+        const st=annStates.current[i];
+        if(!st) return null;
+        st.dropIcon='ti ti-camera';
+        st.dropLabel=lang==='fr'?'Ajouter une photo':'Add a photo';
+        st.dropSub='PNG · JPG';
+        st.onUploadClick=()=>fileRef.current.click();
+        return <div key={i} className={`ann-panel${activeIdx===i?' ann-active-panel':''}`}>
+          <div className="ann-panel-header">
+            <div className="ann-panel-title">
+              <i className="ti ti-camera" style={{fontSize:12}} aria-hidden="true"/>
+              Photo {i+1}
+              {activeIdx===i&&<span className="ann-active-badge">active</span>}
+            </div>
+            <div className="ann-panel-acts">
+              <button className="ann-pa-btn" title={lang==='fr'?'Caméra':'Camera'} onClick={e=>{e.stopPropagation();setShowCamera(true);}}>
+                <i className="ti ti-camera" aria-hidden="true"/>
+              </button>
+              <button className="ann-pa-btn" title="Upload" onClick={e=>{e.stopPropagation();fileRef.current.click();}}>
+                <i className="ti ti-upload" aria-hidden="true"/>
+              </button>
+              <button className="ann-pa-btn" title="Remove" onClick={e=>{e.stopPropagation();removePhoto(i);}}>
+                <i className="ti ti-x" aria-hidden="true"/>
+              </button>
+            </div>
           </div>
-          <input className="photo-caption" value={ph.caption} placeholder={lang==='fr'?'Légende':'Caption'}
-            onChange={e=>setPhotos(p=>p.map((x,j)=>j===i?{...x,caption:e.target.value}:x))}/>
-        </div>
-      ))}
+          <AnnotatorCanvas stateRef={{current:st}} tool={tool} color={color} strokeSz={strokeSz}
+            active={activeIdx===i} onActivate={()=>setActiveIdx(i)} height={240}/>
+          <input className="ann-caption" value={ph.caption} placeholder={lang==='fr'?'Légende…':'Caption…'}
+            onChange={e=>updateCaption(i,e.target.value)}/>
+        </div>;
+      })}
     </div>
-    <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
-      <div className="photo-add" style={{flex:1,minWidth:140,aspectRatio:'unset',padding:'14px'}} onClick={()=>setShowCamera(true)}>
-        <span style={{fontSize:22}}>📸</span>
-        <span style={{fontSize:12}}>{lang==='fr'?'Prendre une photo':'Take photo'}</span>
+
+    <div className="ann-add-row" style={{marginTop:8}}>
+      <div className="ann-add-btn" onClick={()=>setShowCamera(true)}>
+        <i className="ti ti-camera" aria-hidden="true"/>
+        <span>{lang==='fr'?'Prendre une photo':'Take photo'}</span>
       </div>
-      <div className="photo-add" style={{flex:1,minWidth:140,aspectRatio:'unset',padding:'14px'}} onClick={()=>fileRef.current.click()}>
-        <span style={{fontSize:22}}>🖼️</span>
-        <span style={{fontSize:12}}>{lang==='fr'?'Choisir depuis la galerie':'Upload from gallery'}</span>
+      <div className="ann-add-btn" onClick={()=>fileRef.current.click()}>
+        <i className="ti ti-photo-up" aria-hidden="true"/>
+        <span>{lang==='fr'?'Choisir depuis la galerie':'Upload from gallery'}</span>
       </div>
     </div>
     <input ref={fileRef} type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
   </>;
 }
 
-function DrawingList({drawings, setDrawings, lang}){
-  const [lightbox, setLightbox] = useState(null);
+// ═══════════════════════════════════════════════════════
+//  TECHNICAL DRAWING TAB
+// ═══════════════════════════════════════════════════════
+function TechnicalDrawingTab({drawings, setDrawings, drawingNotes, setDrawingNotes, lang}){
+  const [tool, setTool] = useState('select');
+  const [color, setColor] = useState('#e24b4a');
+  const [strokeSz, setStrokeSz] = useState(3);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [zoom, setZoom] = useState(100);
   const fileRef = useRef();
+  const annStates = useRef([]);
 
-  const handleFiles = (files) => {
+  while(annStates.current.length < drawings.length){
+    const idx=annStates.current.length;
+    annStates.current.push({id:`drw-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]});
+  }
+  drawings.forEach((dr,i)=>{
+    const st=annStates.current[i];
+    if(dr.data&&!st.bgImg){
+      const img=new Image(); img.src=dr.data;
+      img.onload=()=>{st.bgImg=img;};
+      st.bgImg=img;
+    }
+  });
+
+  function handleFiles(files){
     Array.from(files).forEach(f=>{
       const reader=new FileReader();
-      reader.onload=e=>setDrawings(prev=>[...prev,{name:f.name,data:e.target.result,note:'',type:f.type}]);
+      reader.onload=e=>{
+        const idx=drawings.length;
+        setDrawings(prev=>[...prev,{name:f.name,data:e.target.result,type:f.type,note:'',objs:[]}]);
+        const st={id:`drw-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]};
+        const img=new Image(); img.src=e.target.result; img.onload=()=>{st.bgImg=img;};
+        st.bgImg=img;
+        annStates.current.push(st);
+        setActiveIdx(idx);
+      };
       reader.readAsDataURL(f);
     });
-  };
+  }
+
+  function removeDrawing(i){
+    setDrawings(p=>p.filter((_,j)=>j!==i));
+    annStates.current.splice(i,1);
+    setActiveIdx(Math.max(0,i-1));
+  }
+
+  const activeSt=annStates.current[activeIdx];
+  const activeDr=drawings[activeIdx];
+  const activeSel=activeSt?.selId;
+  const panelH=Math.round(280*zoom/100);
+
+  function undo(){
+    if(!activeSt) return;
+    if(activeSt.history.length){ activeSt.objs=JSON.parse(activeSt.history.pop()); activeSt.selId=null; }
+    setActiveIdx(i=>i);
+  }
+  function deleteSelected(){
+    if(!activeSt||activeSt.selId==null) return;
+    activeSt.history.push(JSON.stringify(activeSt.objs));
+    activeSt.objs=activeSt.objs.filter(o=>o.id!==activeSt.selId);
+    activeSt.selId=null; setActiveIdx(i=>i);
+  }
+  function clearAnn(){
+    if(!activeSt) return;
+    activeSt.history.push(JSON.stringify(activeSt.objs));
+    activeSt.objs=[]; activeSt.selId=null; setActiveIdx(i=>i);
+  }
+
+  useEffect(()=>{
+    const handler=e=>{
+      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
+      if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
+      if(e.key==='v'||e.key==='V') setTool('select');
+      if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();undo();}
+    };
+    window.addEventListener('keydown',handler);
+    return ()=>window.removeEventListener('keydown',handler);
+  },[activeIdx]);
+
+  const activeLabel = drawings.length?`${lang==='fr'?'Dessin':'Drawing'} ${activeIdx+1}/${drawings.length}`:(lang==='fr'?'Aucun dessin':'No drawing');
 
   return <>
-    {lightbox && <Lightbox src={lightbox} onClose={()=>setLightbox(null)}/>}
-    <div className="drawing-list">
-      {drawings.map((dr,i)=>{
-        const isImg=dr.type?.startsWith('image/');
-        return <div key={i} className="drawing-item" style={isImg?{cursor:'pointer'}:{}} onClick={()=>isImg&&setLightbox(dr.data)}>
-          {isImg
-            ? <img className="drawing-thumb" src={dr.data} alt={dr.name} onClick={e=>{e.stopPropagation();setLightbox(dr.data);}}/>
-            : <div style={{width:64,height:64,display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,flexShrink:0}}>📄</div>
-          }
-          <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:12,fontWeight:600,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{dr.name}</div>
-            <input className="photo-caption" style={{marginTop:5}} value={dr.note} placeholder="Note"
-              onClick={e=>e.stopPropagation()}
-              onChange={e=>setDrawings(p=>p.map((x,j)=>j===i?{...x,note:e.target.value}:x))}/>
+    <div style={{background:'var(--blu-l)',border:'0.5px solid var(--blu-b)',borderRadius:'var(--r2)',padding:'9px 12px',marginBottom:12,fontSize:12,color:'var(--blu)',display:'flex',gap:8,alignItems:'center'}}>
+      <i className="ti ti-info-circle" style={{fontSize:15,flexShrink:0}} aria-hidden="true"/>
+      {lang==='fr'
+        ?'Chargez le plan technique complet. Annotez directement sur le plan avec toutes les outils. Double-cliquez sur un texte ou une cote pour l\'éditer.'
+        :'Upload the full technical drawing. Annotate directly on the plan. Double-click text or dimension to edit.'}
+    </div>
+
+    <AnnToolbar tool={tool} setTool={setTool} color={color} setColor={setColor}
+      strokeSz={strokeSz} setStrokeSz={setStrokeSz}
+      selId={activeSel} onDelete={deleteSelected} onUndo={undo} onClear={clearAnn}
+      activeLabel={activeLabel}/>
+
+    {activeSel!=null&&<div className="ann-sel-bar">
+      <i className="ti ti-cursor-text" style={{fontSize:14}} aria-hidden="true"/>
+      <span>{lang==='fr'?'Sélectionné — double-clic pour éditer':'Selected — double-click to edit'}</span>
+    </div>}
+
+    <div className="ann-drawing-main">
+      <div className="ann-drawing-hdr">
+        <div style={{fontSize:12,fontWeight:600,color:'var(--tx2)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',maxWidth:220}}>
+          {activeDr?.name||(lang==='fr'?'Aucun dessin chargé':'No drawing loaded')}
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:6}}>
+          <div className="ann-zoom-row">
+            <button className="ann-btn" onClick={()=>setZoom(z=>Math.max(50,z-25))}><i className="ti ti-zoom-out" aria-hidden="true"/></button>
+            <span style={{minWidth:36,textAlign:'center'}}>{zoom}%</span>
+            <button className="ann-btn" onClick={()=>setZoom(z=>Math.min(300,z+25))}><i className="ti ti-zoom-in" aria-hidden="true"/></button>
+            <button className="ann-btn" onClick={()=>setZoom(100)} title="Reset zoom"><i className="ti ti-maximize" aria-hidden="true"/></button>
           </div>
-          <button className="btn btn-danger btn-sm" onClick={e=>{e.stopPropagation();setDrawings(p=>p.filter((_,j)=>j!==i));}}>✕</button>
-        </div>;
-      })}
+          <div className="ann-sep" style={{height:18}}/>
+          <button className="ann-btn" title="Upload drawing" onClick={()=>fileRef.current.click()}>
+            <i className="ti ti-upload" aria-hidden="true"/>
+          </button>
+        </div>
+      </div>
+
+      {activeSt&&<div style={{position:'relative'}}>
+        <AnnotatorCanvas stateRef={{current:activeSt}} tool={tool} color={color} strokeSz={strokeSz}
+          active={true} onActivate={()=>{}} height={panelH}/>
+        <div className="ann-page-badge">{activeIdx+1} / {drawings.length||1}</div>
+        {drawings.length>1&&<>
+          <button onClick={()=>setActiveIdx(i=>Math.max(0,i-1))}
+            style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.85)',border:'0.5px solid var(--brd)',borderRadius:'var(--r)',width:28,height:28,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--tx)'}}>
+            <i className="ti ti-chevron-left" style={{fontSize:14}} aria-hidden="true"/>
+          </button>
+          <button onClick={()=>setActiveIdx(i=>Math.min(drawings.length-1,i+1))}
+            style={{position:'absolute',right:8,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.85)',border:'0.5px solid var(--brd)',borderRadius:'var(--r)',width:28,height:28,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--tx)'}}>
+            <i className="ti ti-chevron-right" style={{fontSize:14}} aria-hidden="true"/>
+          </button>
+        </>}
+      </div>}
+
+      {!activeSt&&<div style={{height:240,background:'var(--surf2)',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:8,cursor:'pointer'}} onClick={()=>fileRef.current.click()}>
+        <i className="ti ti-ruler" style={{fontSize:32,opacity:.3,color:'var(--muted)'}} aria-hidden="true"/>
+        <span style={{fontSize:13,color:'var(--muted)'}}>{lang==='fr'?'Cliquer pour charger un dessin technique':'Click to upload a technical drawing'}</span>
+      </div>}
+
+      <div className="ann-thumb-strip">
+        <span style={{fontSize:11,color:'var(--muted)',fontWeight:600,whiteSpace:'nowrap'}}>{lang==='fr'?'Pages:':'Pages:'}</span>
+        {drawings.map((dr,i)=><div key={i} className={`ann-thumb${activeIdx===i?' ann-thumb-active':''}`} onClick={()=>setActiveIdx(i)} title={dr.name}>
+          {dr.data&&dr.type?.startsWith('image/')
+            ? <img src={dr.data} alt={dr.name}/>
+            : <i className="ti ti-file" style={{fontSize:20,opacity:.4,color:'var(--muted)'}} aria-hidden="true"/>}
+        </div>)}
+        <div className="ann-thumb ann-thumb-add" onClick={()=>fileRef.current.click()} title={lang==='fr'?'Ajouter une page':'Add page'}>
+          <i className="ti ti-plus" style={{fontSize:16,opacity:.4,color:'var(--muted)'}} aria-hidden="true"/>
+        </div>
+        <div style={{marginLeft:'auto',flex:1,minWidth:150}}>
+          <input value={drawingNotes} onChange={e=>setDrawingNotes(e.target.value)}
+            placeholder={lang==='fr'?'Notes / dimensions…':'Notes / dimensions…'}
+            style={{width:'100%',padding:'4px 8px',fontSize:12,border:'0.5px solid var(--brd)',borderRadius:'var(--r)',background:'var(--surf)',color:'var(--tx)',fontFamily:'var(--ff)'}}/>
+        </div>
+      </div>
     </div>
-    <div className="photo-add" style={{aspectRatio:'unset',padding:14,marginTop:8}} onClick={()=>fileRef.current.click()}>
-      <span style={{fontSize:22}}>📐</span>
-      <span style={{fontSize:12}}>{lang==='fr'?'Ajouter dessin / image':'Add drawing / reference image'}</span>
-    </div>
-    <input ref={fileRef} type="file" accept="image/*,application/pdf" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
+
+    <input ref={fileRef} type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
   </>;
 }
+
 
 // ═══════════════════════════════════════════════════════
 //  INSPECTION FORM
@@ -1134,7 +1804,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
 
   return <div className="page">
     {editRecord && <div className="edit-banner">
-      <span>✏️</span>
+      <i className='ti ti-pencil' style={{fontSize:16}} aria-hidden='true'/>
       <div style={{flex:1}}>
         <span style={{fontSize:13,fontWeight:600,color:'var(--amb)'}}>{t('edit_mode')}</span>
         {' — '}
@@ -1162,7 +1832,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
       {tab===0 && <div className="form-layout">
         <div>
           <div className="form-card">
-            <div className="form-card-title">📋 {t('rec_qty')}</div>
+            <div className="form-card-title">{t('rec_qty')}</div>
             <div className="grid2">
               <div className="fg"><label>{t('date')} *</label><input type="date" value={form.date} onChange={e=>set('date',e.target.value)} required/></div>
               <div className="fg"><label>N° / Day</label><input type="number" min="1" value={form.dailyN} onChange={e=>set('dailyN',e.target.value)}/></div>
@@ -1190,7 +1860,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
           </div>
 
           <div className="form-card">
-            <div className="form-card-title">🔍 {t('insp_info')}</div>
+            <div className="form-card-title">{t('insp_info')}</div>
 
             {/* SAMPLING RECOMMENDATION */}
             {samplingRec && samplingRec.recv>0 && <div style={{
@@ -1201,8 +1871,8 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
               <div>
                 <div style={{fontSize:12,fontWeight:700,marginBottom:2,color:samplingRec.skipLot?'var(--amb)':samplingRec.grade==='A'?'var(--grn)':samplingRec.grade==='D'?'var(--red)':'var(--blu)'}}>
                   {samplingRec.skipLot
-                    ? `⏭️ ${lang==='fr'?'Lot éligible au saut (Skip Lot)':'Lot eligible for skip (Skip Lot)'}`
-                    : `📊 ${lang==='fr'?'Plan d\'échantillonnage — Grade':'Sampling Plan — Grade'} ${samplingRec.grade}`}
+                    ? `${lang==='fr'?'Lot éligible au saut (Skip Lot)':'Lot eligible for skip (Skip Lot)'}`
+                    : `${lang==='fr'?'Plan d\'échantillonnage — Grade':'Sampling Plan — Grade'} ${samplingRec.grade}`}
                 </div>
                 <div style={{fontSize:12,color:'var(--tx2)'}}>
                   {samplingRec.skipLot
@@ -1239,7 +1909,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
 
         <div>
           <div className="form-card">
-            <div className="form-card-title">⚠️ {t('defects_title')}</div>
+            <div className="form-card-title">{t('defects_title')}</div>
             <div className="defect-grid">
               {DEFECTS.map(d=>{
                 const chk=form.defects[d.key]?.checked||false;
@@ -1258,7 +1928,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
           </div>
 
           <div className="form-card">
-            <div className="form-card-title">✅ {t('final_dec')}</div>
+            <div className="form-card-title">{t('final_dec')}</div>
             <div className="dec-grid">
               {[{v:'use-as-is',cls:'sel-uai',k:'dec_uai'},{v:'rework',cls:'sel-rw',k:'dec_rw'},{v:'rejected',cls:'sel-rej',k:'dec_rej'},{v:'waiting',cls:'sel-wfd',k:'dec_wfd'}].map(d=>(
                 <button key={d.v} type="button" className={`dec-btn${form.decision===d.v?' '+d.cls:''}`} onClick={()=>set('decision',form.decision===d.v?'':d.v)}>{t(d.k)}</button>
@@ -1273,39 +1943,37 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
           </div>
 
           <div className="form-card">
-            <div className="form-card-title">📝 Notes</div>
+            <div className="form-card-title">Notes</div>
             <div className="fg"><label>{t('issues')}</label><textarea value={form.issues} onChange={e=>set('issues',e.target.value)} rows={3}/></div>
             <div className="fg"><label>{t('notes')}</label><textarea value={form.notes} onChange={e=>set('notes',e.target.value)} rows={2}/></div>
           </div>
 
           <div className="form-end">
             <button type="button" className="btn btn-secondary" onClick={()=>{setForm(EMPTY_FORM);setPhotos([]);setDrawings([]);setTab(0);if(editRecord)onCancelEdit();}}>{t('clear')}</button>
-            <button type="submit" className="btn btn-primary">{t('save')}</button>
+            <button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button>
           </div>
         </div>
       </div>}
 
-      {/* PAGE 2 */}
+      {/* PAGE 2 — Photos with annotation */}
       {tab===1 && <div className="form-card">
-        <div className="form-card-title">📷 {t('photos')}</div>
-        <p style={{fontSize:12,color:'var(--muted)',marginBottom:14}}>{lang==='fr'?"Ajoutez des photos de l'inspection.":"Add photos from the shipment inspection."}</p>
-        <PhotoGrid photos={photos} setPhotos={setPhotos} lang={lang}/>
+        <div className="form-card-title">{t('photos')}</div>
+        <PhotoAnnotationTab photos={photos} setPhotos={setPhotos} lang={lang}/>
         <div className="form-end" style={{marginTop:16}}>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(0)}>← {t('back')}</button>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(2)}>{t('next')} →</button>
-          <button type="submit" className="btn btn-primary">{t('save')}</button>
+          <button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button>
         </div>
       </div>}
 
-      {/* PAGE 3 */}
+      {/* PAGE 3 — Technical drawing with annotation */}
       {tab===2 && <div className="form-card">
-        <div className="form-card-title">📐 {t('drawings')}</div>
-        <p style={{fontSize:12,color:'var(--muted)',marginBottom:14}}>{lang==='fr'?'Joignez les dessins techniques ou images de référence.':'Attach technical drawings or reference images.'}</p>
-        <DrawingList drawings={drawings} setDrawings={setDrawings} lang={lang}/>
-        <div className="fg" style={{marginTop:12}}><label>{t('drawing_notes')}</label><textarea value={form.drawingNotes} onChange={e=>set('drawingNotes',e.target.value)} rows={3}/></div>
-        <div className="form-end">
+        <div className="form-card-title">{t('drawings')}</div>
+        <TechnicalDrawingTab drawings={drawings} setDrawings={setDrawings}
+          drawingNotes={form.drawingNotes} setDrawingNotes={v=>set('drawingNotes',v)} lang={lang}/>
+        <div className="form-end" style={{marginTop:12}}>
           <button type="button" className="btn btn-secondary" onClick={()=>setTab(1)}>← {t('back')}</button>
-          <button type="submit" className="btn btn-primary">{t('save')}</button>
+          <button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button>
         </div>
       </div>}
     </form>
@@ -1390,12 +2058,12 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
         </div>}
 
         <div style={{display:'flex',gap:7,marginTop:16,paddingTop:12,borderTop:'1px solid var(--brd)'}}>
-          <button className="btn btn-email btn-sm" onClick={onEmail}>{t('email')}</button>
+          <button className="btn btn-email btn-sm" onClick={onEmail}><i className='ti ti-mail' aria-hidden='true'/> <i className='ti ti-mail' aria-hidden='true'/> {t('email')}</button>
           <button className="btn btn-secondary btn-sm" onClick={()=>generateInspectionPDF(record,lang)} style={{background:'var(--red-l)',color:'var(--red)',border:'1px solid var(--red-b)'}}>
-            📄 PDF
+            <i className='ti ti-file-type-pdf' aria-hidden='true'/> PDF
           </button>
-          <button className="btn btn-secondary btn-sm" onClick={onEdit}>{t('edit')}</button>
-          <button className="btn btn-danger btn-sm" style={{marginLeft:'auto'}} onClick={onDelete}>{t('delete')}</button>
+          <button className="btn btn-secondary btn-sm" onClick={onEdit}><i className='ti ti-pencil' aria-hidden='true'/> {t('edit')}</button>
+          <button className="btn btn-danger btn-sm" style={{marginLeft:'auto'}} onClick={onDelete}><i className='ti ti-trash' aria-hidden='true'/> {t('delete')}</button>
         </div>
       </div>
     </div>
@@ -1488,8 +2156,8 @@ function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
             <td style={{verticalAlign:'middle'}}>
               <div style={{display:'flex',gap:3,alignItems:'center'}}>
                 <button className="btn btn-secondary btn-sm" style={{padding:'3px 8px',fontSize:11}} onClick={()=>onView(r)}>{t('view')}</button>
-                <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'3px 6px',fontSize:11}}>✏️</button>
-                <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'3px 6px',fontSize:11}}>🗑️</button>
+                <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'3px 6px',fontSize:11}}><i className='ti ti-pencil' aria-hidden='true'/></button>
+                <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'3px 6px',fontSize:11}}><i className='ti ti-trash' aria-hidden='true'/></button>
               </div>
             </td>
           </tr>)}
@@ -1516,7 +2184,7 @@ function Dashboard({site, lang, t, inspections, ncrs, onNewInsp, onViewInsp}){
   return <div className="page">
     <div className="page-header">
       <div><h1>Dashboard — {site}</h1><p>{lang==='fr'?'Qualité à la réception':'Receiving quality'}</p></div>
-      <button className="btn btn-primary" onClick={onNewInsp}>+ {t('new_insp')}</button>
+      <button className="btn btn-primary" onClick={onNewInsp}><i className='ti ti-plus' aria-hidden='true'/> {t('new_insp')}</button>
     </div>
     <div className="kpi-grid kpi-grid-4">
       <KpiCard label="TOTAL" value={total} sub={lang==='fr'?'Ce site':'This site'}/>
@@ -1562,7 +2230,7 @@ function NcrDashboard({site, lang, t, ncrs, onNewNcr, onView}){
   return <div className="page">
     <div className="page-header">
       <div><h1>NCR Dashboard — {site}</h1></div>
-      <button className="btn btn-primary" onClick={onNewNcr}>+ NCR</button>
+      <button className="btn btn-primary" onClick={onNewNcr}><i className='ti ti-plus' aria-hidden='true'/> NCR</button>
     </div>
     <div className="kpi-grid kpi-grid-4">
       <KpiCard label="OPEN NCRS" value={open} color={open>0?"red":"default"}/>
@@ -1616,7 +2284,7 @@ function NcrForm({site, lang, t, suppliers, onSave, showToast}){
       <div className="form-layout">
         <div>
           <div className="form-card">
-            <div className="form-card-title">📋 {t('ncr_info')}</div>
+            <div className="form-card-title">{t('ncr_info')}</div>
             <div className="grid2">
               <div className="fg"><label>{t('date')} *</label><input type="date" value={form.date} onChange={e=>set('date',e.target.value)} required/></div>
               <div className="fg"><label>Severity *</label>
@@ -1649,17 +2317,17 @@ function NcrForm({site, lang, t, suppliers, onSave, showToast}){
         </div>
         <div>
           <div className="form-card">
-            <div className="form-card-title">🔍 {t('rca_title')}</div>
+            <div className="form-card-title">{t('rca_title')}</div>
             {[1,2,3,4,5].map(n=><div key={n} className="fg"><label>Why {n}</label><input type="text" value={form[`why${n}`]} onChange={e=>set(`why${n}`,e.target.value)}/></div>)}
             <div className="fg"><label>Root cause</label><textarea value={form.rootCause} onChange={e=>set('rootCause',e.target.value)} rows={2}/></div>
           </div>
           <div className="form-card">
-            <div className="form-card-title">✅ {t('capa_title')}</div>
+            <div className="form-card-title">{t('capa_title')}</div>
             <div className="fg"><label>Corrective action</label><textarea value={form.corrective} onChange={e=>set('corrective',e.target.value)} rows={3}/></div>
             <div className="fg"><label>Preventive action</label><textarea value={form.preventive} onChange={e=>set('preventive',e.target.value)} rows={3}/></div>
             <div className="fg"><label>Responsible</label><input type="text" value={form.respons} onChange={e=>set('respons',e.target.value)}/></div>
           </div>
-          <div className="form-end"><button type="submit" className="btn btn-primary">{t('save')}</button></div>
+          <div className="form-end"><button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button></div>
         </div>
       </div>
     </form>
@@ -1780,7 +2448,7 @@ function AddSupplier({site, lang, t, onSave, showToast}){
           </select>
         </div>
       </div>
-      <div className="form-end"><button type="submit" className="btn btn-primary">{t('save')}</button></div>
+      <div className="form-end"><button type="submit" className="btn btn-primary"><i className='ti ti-check' aria-hidden='true'/> {t('save')}</button></div>
     </form>
   </div>;
 }
@@ -1929,7 +2597,7 @@ function GithubStorage({lang, t, syncStatus, showToast}){
           </div>
         </div>
         <button className="btn btn-secondary" onClick={repairFiles} disabled={resetting}>
-          {resetting?'⏳…':'🔄 '+(lang==='fr'?'Réparer':'Repair')}
+          {resetting?'…':<><i className='ti ti-refresh' aria-hidden='true'/> {lang==='fr'?'Réparer':'Repair'}</>}
         </button>
       </div>
       <div style={{borderTop:'1px solid var(--brd)',marginTop:12,paddingTop:12,display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}}>
@@ -1944,7 +2612,7 @@ function GithubStorage({lang, t, syncStatus, showToast}){
           </div>
         </div>
         <button className="btn btn-danger" onClick={resetAllData} disabled={resetting}>
-          {resetting?'⏳…':'🗑️ Reset'}
+          {resetting?'…':<><i className='ti ti-trash' aria-hidden='true'/> Reset</>}
         </button>
       </div>
     </div>
@@ -2080,7 +2748,7 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
           }
         </div>
         <button className="btn btn-email" onClick={testEmail} disabled={testing}>
-          {testing?(lang==='fr'?'Envoi…':'Sending…'):`📧 ${lang==='fr'?'Envoyer email test':'Send test email'}`}
+          {testing?(lang==='fr'?'Envoi…':'Sending…'):`<i class="ti ti-send" aria-hidden="true"/> ${lang==='fr'?'Envoyer email test':'Send test email'}`}
         </button>
       </div>
     </div>
@@ -2396,7 +3064,7 @@ function EmailModal({record, lang, t, onClose}){
       <div style={{marginBottom:10,fontSize:13}}><strong>Subject:</strong> {subject}</div>
       <div className="email-pre">{body}</div>
       <div style={{display:'flex',gap:8,marginTop:16,paddingTop:12,borderTop:'1px solid var(--brd)'}}>
-        <button className="btn btn-primary btn-sm" onClick={copy}>📋 {lang==='fr'?'Copier':'Copy'}</button>
+        <button className="btn btn-primary btn-sm" onClick={copy}><i className='ti ti-copy' aria-hidden='true'/> {lang==='fr'?'Copier':'Copy'}</button>
         <button className="btn btn-secondary btn-sm" onClick={onClose}>{t('cancel')}</button>
       </div>
     </div>
@@ -2514,7 +3182,7 @@ function LoginScreen({onLogin, lang, setLang, dark, setDark}){
   return <div className="login-screen">
     <div style={{position:'absolute',top:16,right:16,display:'flex',gap:6}}>
       <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')}>{lang==='en'?'FR':'EN'}</button>
-      <button className="theme-btn" onClick={()=>setDark(d=>!d)}>{dark?'☀️':'🌙'}</button>
+      <button className="theme-btn" onClick={()=>setDark(d=>!d)}><i className={dark?'ti ti-sun':'ti ti-moon'} aria-hidden='true'/></button>
     </div>
     <div className="login-box">
       <div className="login-logo">
@@ -3196,31 +3864,31 @@ function App(){
 
   const NAV = [
     {section: t('receiving'), id:'reception', items:[
-      {id:'dashboard',      icon:'📊', label:t('dashboard')},
-      {id:'new_inspection', icon:'➕', label:t('new_insp')},
-      {id:'all_inspections',icon:'📋', label:t('all_insp')},
+      {id:'dashboard',      icon:'ti ti-layout-dashboard', label:t('dashboard')},
+      {id:'new_inspection', icon:'ti ti-plus', label:t('new_insp')},
+      {id:'all_inspections',icon:'ti ti-clipboard-list', label:t('all_insp')},
     ]},
     {section: t('non_conf'), id:'ncr', items:[
-      {id:'ncr_dashboard',  icon:'⚠️', label:t('ncr_dash')},
-      {id:'new_ncr',        icon:'➕', label:t('new_ncr')},
-      {id:'all_ncrs',       icon:'📋', label:t('all_ncrs')},
+      {id:'ncr_dashboard',  icon:'ti ti-alert-triangle', label:t('ncr_dash')},
+      {id:'new_ncr',        icon:'ti ti-file-plus', label:t('new_ncr')},
+      {id:'all_ncrs',       icon:'ti ti-files', label:t('all_ncrs')},
     ]},
     {section: t('suppliers'), id:'suppliers', items:[
-      {id:'supplier_list',  icon:'🏢', label:t('suppliers')},
-      {id:'add_supplier',   icon:'➕', label:t('add_sup')},
+      {id:'supplier_list',  icon:'ti ti-building-store', label:t('suppliers')},
+      {id:'add_supplier',   icon:'ti ti-building-plus', label:t('add_sup')},
     ]},
     {section: t('scorecard'), id:'scorecard', items:[
-      {id:'consolidated',   icon:'🌐', label:t('consolidated')},
-      {id:'scorecards',     icon:'⭐', label:t('scorecards')},
-      {id:'ranking',        icon:'🏆', label:t('ranking')},
+      {id:'consolidated',   icon:'ti ti-world', label:t('consolidated')},
+      {id:'scorecards',     icon:'ti ti-star', label:t('scorecards')},
+      {id:'ranking',        icon:'ti ti-trophy', label:t('ranking')},
     ]},
     {section: t('settings'), id:'settings', items:[
-      {id:'gh_storage',     icon:'☁️', label:t('gh_storage')},
-      {id:'score_weights',  icon:'⚖️', label:t('score_weights')},
-      {id:'email_settings', icon:'📧', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
-      ...(isAdmin?[{id:'user_management',icon:'👥',label:lang==='fr'?'Utilisateurs':'Users'}]:[]),
-      {id:'sampling_plans',icon:'📊',label:lang==='fr'?'Plans échantillonnage':'Sampling Plans'},
-      {id:'audit_trail',   icon:'📜',label:lang==='fr'?'Audit Trail':'Audit Trail'},
+      {id:'gh_storage',     icon:'ti ti-brand-github', label:t('gh_storage')},
+      {id:'score_weights',  icon:'ti ti-adjustments-horizontal', label:t('score_weights')},
+      {id:'email_settings', icon:'ti ti-mail-cog', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
+      ...(isAdmin?[{id:'user_management',icon:'ti ti-users',label:lang==='fr'?'Utilisateurs':'Users'}]:[]),
+      {id:'sampling_plans',icon:'ti ti-chart-bar',label:lang==='fr'?'Plans échantillonnage':'Sampling Plans'},
+      {id:'audit_trail',   icon:'ti ti-history',label:lang==='fr'?'Audit Trail':'Audit Trail'},
     ]},
   ];
 
@@ -3288,10 +3956,10 @@ function App(){
       <div className="hdr-sep"/>
       <span className="hdr-mod">{pageModMap[page]||'SupplierQ'}</span>
       <div className="hdr-r">
-        <button className="theme-btn" onClick={()=>setDark(d=>!d)}>{dark?'☀️':'🌙'}</button>
-        <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')} style={{fontSize:11}}>⬇️ Export</button>
+        <button className="theme-btn" onClick={()=>setDark(d=>!d)}><i className={dark?'ti ti-sun':'ti ti-moon'} aria-hidden='true'/></button>
+        <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')} style={{fontSize:11}}><i className='ti ti-download' aria-hidden='true'/> Export</button>
         <label className="lang-btn" style={{fontSize:11,cursor:'pointer'}}>
-          ⬆️ Import<input type="file" accept=".json" style={{display:'none'}} onChange={importData}/>
+          <i className='ti ti-upload' aria-hidden='true'/> Import<input type="file" accept=".json" style={{display:'none'}} onChange={importData}/>
         </label>
       </div>
     </header>
@@ -3330,7 +3998,7 @@ function App(){
               </div>
               {!collapsed && sec.items.map(item=>(
                 <button key={item.id} className={`nav-item${page===item.id?' active':''}`} onClick={()=>navTo(item.id)}>
-                  <span className="nav-ic">{item.icon}</span>
+                  <i className={item.icon} style={{fontSize:16,width:18,textAlign:'center',flexShrink:0}} aria-hidden="true"></i>
                   {item.label}
                   {item.id==='ncr_dashboard'&&openNcrCount>0&&<span className="nav-badge">{openNcrCount}</span>}
                 </button>
@@ -3360,9 +4028,9 @@ function App(){
               </div>
             </div>
             <div style={{display:'flex',gap:4}}>
-              <button className="theme-btn" onClick={()=>setDark(d=>!d)} style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4}}>{dark?'☀️':'🌙'}</button>
+              <button className="theme-btn" onClick={()=>setDark(d=>!d)} style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4}}><i className={dark?'ti ti-sun':'ti ti-moon'} aria-hidden='true'/></button>
               <button onClick={handleLogout} title={lang==='fr'?'Déconnexion':'Sign out'}
-                style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4,color:'var(--muted)'}}>🚪</button>
+                style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4,color:'var(--muted)'}}><i className='ti ti-door-exit' aria-hidden='true'/></button>
             </div>
           </div>
         </div>
@@ -3384,9 +4052,9 @@ function App(){
 
     {/* BOTTOM NAV (mobile) */}
     <nav className="bottom-nav">
-      {[{id:'dashboard',ic:'📊',l:'Dashboard'},{id:'new_inspection',ic:'➕',l:'New'},{id:'all_inspections',ic:'📋',l:'List'},{id:'ncr_dashboard',ic:'⚠️',l:'NCR'},{id:'scorecards',ic:'⭐',l:'Score'}].map(item=>(
+      {[{id:'dashboard',ic:'ti ti-layout-dashboard',l:'Dashboard'},{id:'new_inspection',ic:'ti ti-plus',l:'New'},{id:'all_inspections',ic:'ti ti-clipboard-list',l:'List'},{id:'ncr_dashboard',ic:'ti ti-alert-triangle',l:'NCR'},{id:'scorecards',ic:'ti ti-star',l:'Score'}].map(item=>(
         <button key={item.id} className={`bn-item${page===item.id?' active':''}`} onClick={()=>navTo(item.id)}>
-          <span className="bn-ic">{item.ic}</span>
+          <i className={item.ic} style={{fontSize:22,lineHeight:1}} aria-hidden="true"></i>
           <span>{item.l}</span>
           {item.id==='ncr_dashboard'&&openNcrCount>0&&<span style={{position:'absolute',top:4,right:'calc(50% - 18px)',background:'var(--red)',color:'#fff',fontSize:9,fontWeight:700,padding:'1px 4px',borderRadius:10}}>{openNcrCount}</span>}
         </button>
