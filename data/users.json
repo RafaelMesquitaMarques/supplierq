@@ -26,5 +26,18 @@
     ],
     "active": true,
     "createdAt": "2026-05-28T19:15:43.084Z"
+  },
+  {
+    "id": 1780005848954,
+    "name": "Simon Perreault",
+    "email": "sperreault@foliot.com",
+    "passwordHash": "067c6b1be4ba4eb3802084af937cf9c139c55fae02c86fa8f01ea2c92de9b629",
+    "role": "manager",
+    "sites": [
+      "QS"
+    ],
+    "active": true,
+    "mustChangePassword": true,
+    "createdAt": "2026-05-28T22:04:08.954Z"
   }
 ]
