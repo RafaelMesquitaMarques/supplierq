@@ -9,6 +9,7 @@
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 /* ─── TOKENS ─────────────────────────────────────── */
 :root{
@@ -1532,6 +1533,142 @@ function GithubStorage({lang, t, syncStatus}){
   </div>;
 }
 
+// ═══════════════════════════════════════════════════════
+//  EMAIL SETTINGS PAGE
+// ═══════════════════════════════════════════════════════
+function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
+  const [testing, setTesting] = useState(false);
+  const set = (k,v) => setEmailCfg(c=>({...c,[k]:v}));
+
+  async function testEmail(){
+    if(!emailCfg.publicKey||!emailCfg.serviceId||!emailCfg.templateId){
+      showToast(lang==='fr'?'Configurez tous les champs d\'abord':'Fill all fields first','error'); return;
+    }
+    if(!emailCfg.recipients){
+      showToast(lang==='fr'?'Ajoutez au moins un destinataire':'Add at least one recipient','error'); return;
+    }
+    setTesting(true);
+    try{
+      window.emailjs.init(emailCfg.publicKey);
+      await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, {
+        to_email: emailCfg.recipients,
+        subject: 'SupplierQ — Test email',
+        report_ref: 'TEST-001',
+        site: 'QS',
+        supplier: 'Test Supplier',
+        decision: 'Use as Is',
+        inspector: 'Rafael',
+        date: new Date().toISOString().split('T')[0],
+        product_no: '1234567',
+        message: 'This is a test email from SupplierQ — Foliot. If you received this, your email configuration is working correctly.',
+        event_type: 'Test',
+      });
+      showToast(lang==='fr'?'Email de test envoyé ✓':'Test email sent ✓','success');
+    }catch(err){
+      showToast(`Error: ${err?.text||err?.message||JSON.stringify(err)}`,'error');
+    }finally{ setTesting(false); }
+  }
+
+  const TEMPLATE_VARS = `{{to_email}}\n{{subject}}\n{{report_ref}}\n{{site}}\n{{supplier}}\n{{decision}}\n{{inspector}}\n{{date}}\n{{product_no}}\n{{event_type}}\n{{message}}`;
+
+  return <div className="page">
+    <div className="page-header"><h1>📧 {lang==='fr'?'Configuration emails automatiques':'Automatic Email Settings'}</h1></div>
+
+    {/* Setup guide */}
+    <div className="form-card" style={{background:'var(--blu-l)',border:'1px solid var(--blu-b)',marginBottom:14}}>
+      <div style={{fontWeight:600,color:'var(--blu)',marginBottom:8,fontSize:13}}>
+        🚀 {lang==='fr'?'Configuration EmailJS (5 minutes)':'EmailJS Setup (5 minutes)'}
+      </div>
+      {[
+        {n:1, t: lang==='fr'?'Créer un compte':'Create account', d: <span>Va sur <a href="https://www.emailjs.com" target="_blank" style={{color:'var(--blu)'}}>emailjs.com</a> → Sign Up (gratuit, 200 emails/mois)</span>},
+        {n:2, t: lang==='fr'?'Connecter ton email':'Connect your email', d: lang==='fr'?'Email Services → Add New Service → Outlook ou Gmail → note le Service ID':'Email Services → Add New Service → Outlook or Gmail → note the Service ID'},
+        {n:3, t: 'Créer un template', d: <span>{lang==='fr'?'Email Templates → Create New → colle ces variables dans le body:':'Email Templates → Create New → paste these variables in body:'}<br/><code style={{fontFamily:'var(--fm)',fontSize:11,background:'var(--surf2)',padding:'6px 10px',borderRadius:6,display:'block',marginTop:6,whiteSpace:'pre-wrap'}}>{TEMPLATE_VARS}</code></span>},
+        {n:4, t: 'Public Key', d: lang==='fr'?'Account → General → Public Key → colle ci-dessous':'Account → General → Public Key → paste below'},
+      ].map(step=><div key={step.n} style={{display:'flex',gap:12,marginBottom:12}}>
+        <div style={{width:24,height:24,borderRadius:'50%',background:'var(--blu)',color:'#fff',display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,fontWeight:700,flexShrink:0}}>{step.n}</div>
+        <div><div style={{fontSize:13,fontWeight:600,marginBottom:3}}>{step.t}</div><div style={{fontSize:12,color:'var(--tx2)'}}>{step.d}</div></div>
+      </div>)}
+    </div>
+
+    {/* Config fields */}
+    <div className="form-card">
+      <div className="form-card-title">🔑 {lang==='fr'?'Identifiants EmailJS':'EmailJS Credentials'}</div>
+      <div className="grid3">
+        <div className="fg">
+          <label>Public Key *</label>
+          <input type="text" value={emailCfg.publicKey} placeholder="user_xxxxxxxxxxxxxx"
+            onChange={e=>set('publicKey',e.target.value)}/>
+        </div>
+        <div className="fg">
+          <label>Service ID *</label>
+          <input type="text" value={emailCfg.serviceId} placeholder="service_xxxxxxx"
+            onChange={e=>set('serviceId',e.target.value)}/>
+        </div>
+        <div className="fg">
+          <label>Template ID *</label>
+          <input type="text" value={emailCfg.templateId} placeholder="template_xxxxxxx"
+            onChange={e=>set('templateId',e.target.value)}/>
+        </div>
+      </div>
+      <div className="fg">
+        <label>📬 {lang==='fr'?'Destinataires (séparés par virgule)':'Recipients (comma-separated)'} *</label>
+        <input type="text" value={emailCfg.recipients}
+          placeholder="manager@foliot.com, quality@foliot.com"
+          onChange={e=>set('recipients',e.target.value)}/>
+        <div style={{fontSize:11,color:'var(--muted)',marginTop:4}}>
+          {lang==='fr'?'Ex: rafael@foliot.com, supervisor@foliot.com':'Ex: rafael@foliot.com, supervisor@foliot.com'}
+        </div>
+      </div>
+    </div>
+
+    {/* Triggers */}
+    <div className="form-card">
+      <div className="form-card-title">⚡ {lang==='fr'?'Déclencheurs automatiques':'Automatic Triggers'}</div>
+      {[
+        {k:'onInspection', icon:'📋', label:lang==='fr'?'Nouvelle inspection (toute décision)':'New inspection (any decision)'},
+        {k:'onNC',         icon:'⚠️', label:lang==='fr'?'Inspection avec NC (Rejeté / Retravail / En attente)':'Inspection with NC (Rejected / Rework / Waiting)'},
+        {k:'onNCR',        icon:'🔴', label:lang==='fr'?'Nouveau NCR ouvert':'New NCR opened'},
+      ].map(tr=>(
+        <div key={tr.k} className="settings-row">
+          <div style={{display:'flex',alignItems:'center',gap:8}}>
+            <span style={{fontSize:16}}>{tr.icon}</span>
+            <span style={{fontSize:13,fontWeight:500}}>{tr.label}</span>
+          </div>
+          <label style={{display:'flex',alignItems:'center',gap:8,cursor:'pointer',marginBottom:0}}>
+            <input type="checkbox" checked={emailCfg[tr.k]||false} onChange={e=>set(tr.k,e.target.checked)}
+              style={{width:16,height:16,accentColor:'var(--grn)',cursor:'pointer'}}/>
+            <span style={{fontSize:12,color:emailCfg[tr.k]?'var(--grn)':'var(--muted)',fontWeight:600}}>
+              {emailCfg[tr.k]?(lang==='fr'?'Activé':'Active'):(lang==='fr'?'Désactivé':'Inactive')}
+            </span>
+          </label>
+        </div>
+      ))}
+    </div>
+
+    {/* Status & test */}
+    <div className="form-card">
+      <div className="form-card-title">🧪 {lang==='fr'?'Tester la configuration':'Test Configuration'}</div>
+      <div style={{display:'flex',alignItems:'center',gap:12,flexWrap:'wrap'}}>
+        <div style={{flex:1,fontSize:13,color:'var(--muted)'}}>
+          {emailCfg.publicKey && emailCfg.serviceId && emailCfg.templateId && emailCfg.recipients
+            ? <span style={{color:'var(--grn)',fontWeight:600}}>✅ {lang==='fr'?'Configuration complète':'Configuration complete'}</span>
+            : <span style={{color:'var(--amb)',fontWeight:600}}>⚠️ {lang==='fr'?'Remplissez tous les champs':'Fill all fields'}</span>
+          }
+        </div>
+        <button className="btn btn-email" onClick={testEmail} disabled={testing}>
+          {testing?(lang==='fr'?'Envoi…':'Sending…'):`📧 ${lang==='fr'?'Envoyer email test':'Send test email'}`}
+        </button>
+      </div>
+    </div>
+
+    <div style={{fontSize:12,color:'var(--muted)',padding:'0 4px'}}>
+      💡 {lang==='fr'
+        ? 'Les paramètres sont sauvegardés localement dans votre navigateur. Chaque membre de l\'équipe doit configurer ses propres identifiants.'
+        : 'Settings are saved locally in your browser. Each team member must configure their own credentials.'}
+    </div>
+  </div>;
+}
+
 function ScoreWeights({lang, t, weights, thresholds, setWeights, setThresholds}){
   return <div className="page">
     <div className="page-header"><h1>{t('score_weights')}</h1></div>
@@ -1600,6 +1737,12 @@ function App(){
   const [editRecord, setEditRecord] = useState(null);
   const [weights, setWeights] = useState({ac:40,pm:25,nc:20,au:15});
   const [thresholds, setThresholds] = useState({A:90,B:75,C:60});
+  const [emailCfg, setEmailCfg] = useState(()=>{
+    try{ return JSON.parse(localStorage.getItem('sq_email_cfg')||'{}'); }catch{ return {}; }
+  });
+
+  // Persist emailCfg to localStorage
+  useEffect(()=>{ localStorage.setItem('sq_email_cfg', JSON.stringify(emailCfg)); },[emailCfg]);
 
   const t = (k) => (I18N[lang]||I18N.en)[k] || k;
 
@@ -1608,8 +1751,43 @@ function App(){
     localStorage.setItem('sqm_theme', dark?'dark':'light');
   },[dark]);
 
-  useEffect(()=>{
-    setSyncStatus('syncing');
+  // ── AUTO EMAIL ────────────────────────────────────────
+  async function sendAutoEmail(eventType, data){
+    if(!emailCfg.publicKey||!emailCfg.serviceId||!emailCfg.templateId||!emailCfg.recipients) return;
+    try{
+      window.emailjs.init(emailCfg.publicKey);
+      const defectList = data.defects?.map(d=>`• ${d.label}${d.qty?` (${d.qty})`:''}`).join('\n')||'—';
+      const decMap={'use-as-is':'✅ Use as Is','rework':'🔧 Rework','rejected':'❌ Rejected','waiting':'⏳ Waiting for decision'};
+      let subject='', message='';
+      if(eventType==='inspection'){
+        subject=`[SupplierQ] Inspection ${data.ref} — ${data.supplier} — ${(decMap[data.decision]||data.decision).replace(/[✅🔧❌⏳]/g,'').trim()}`;
+        message=`Inspection Report\n\nReport #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nP.O. #: ${data.po||'—'}\nQty Received: ${data.qtyReceived}\nQty Inspected: ${data.qtyInspected}\nInspector: ${data.inspector||'—'}\nDecision: ${decMap[data.decision]||data.decision}\n\nQty Breakdown:\nUse as Is: ${data.qtyUseAsIs||0} | Rework: ${data.qtyRework||0} | Rejected: ${data.qtyRejected||0} | Waiting: ${data.qtyWaiting||0}\n\nDefects:\n${defectList}${data.issues?`\n\nNotes:\n${data.issues}`:''}`;
+      } else if(eventType==='nc'){
+        subject=`[SupplierQ] ⚠️ NC Detected — ${data.ref} — ${data.supplier} — ${(decMap[data.decision]||'').replace(/[✅🔧❌⏳]/g,'').trim()}`;
+        message=`Non-Conformance Alert\n\nReport #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nDecision: ${decMap[data.decision]||data.decision}\nQty Rejected: ${data.qtyRejected||0} | Rework: ${data.qtyRework||0}\n\nDefects:\n${defectList}${data.issues?`\n\nIssues:\n${data.issues}`:''}`;
+      } else if(eventType==='ncr'){
+        subject=`[SupplierQ] 🔴 New NCR — ${data.ref} — ${data.supplier}`;
+        message=`New NCR Opened\n\nNCR #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nDefect: ${data.defect||'—'}\nSeverity: ${data.severity||'—'}\nStatus: ${data.status}\nDue: ${data.dueDate||'—'}\n\nDescription:\n${data.description||'—'}\n\nCorrective Action:\n${data.corrective||'Pending'}`;
+      }
+      await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, {
+        to_email: emailCfg.recipients,
+        subject,
+        report_ref: data.ref,
+        site: data.site||site,
+        supplier: data.supplier||'—',
+        decision: decMap[data.decision]||data.decision||'—',
+        inspector: data.inspector||'—',
+        date: data.date,
+        product_no: data.productNo||'—',
+        event_type: eventType==='inspection'?'Inspection':eventType==='nc'?'NC Alert':'NCR',
+        message,
+      });
+      showToast(`📧 ${lang==='fr'?'Email envoyé':'Email sent'} ✓`,'info');
+    }catch(err){
+      console.error('EmailJS error:',err);
+      showToast(`Email error: ${err?.text||err?.message||'Check config'}`,'warn');
+    }
+  }
     Promise.all(SITES.map(s=>ghLoad(s)))
       .then(()=>{setSyncStatus('ok');setTick(k=>k+1);})
       .catch(()=>{setSyncStatus('error');setTick(k=>k+1);});
@@ -1637,6 +1815,10 @@ function App(){
   async function handleSaveInspection(rec){
     await saveRecord(site,'inspections',rec);
     setTick(k=>k+1);
+    // Auto email
+    const isNC = rec.hasNC || rec.decision==='rejected'||rec.decision==='rework'||rec.decision==='waiting';
+    if(emailCfg.onInspection) sendAutoEmail('inspection', rec);
+    else if(emailCfg.onNC && isNC) sendAutoEmail('nc', rec);
     if(editRecord){ setEditRecord(null); navTo('all_inspections'); }
     else navTo('dashboard');
   }
@@ -1650,7 +1832,9 @@ function App(){
 
   async function handleSaveNcr(rec){
     await saveRecord(site,'ncrs',rec);
-    setTick(k=>k+1); navTo('ncr_dashboard');
+    setTick(k=>k+1);
+    if(emailCfg.onNCR && rec.status==='open') sendAutoEmail('ncr', rec);
+    navTo('ncr_dashboard');
   }
 
   async function handleSaveSupplier(s){
@@ -1715,6 +1899,7 @@ function App(){
     {section: t('settings'), id:'settings', items:[
       {id:'gh_storage',     icon:'☁️', label:t('gh_storage')},
       {id:'score_weights',  icon:'⚖️', label:t('score_weights')},
+      {id:'email_settings', icon:'📧', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
     ]},
   ];
 
@@ -1724,7 +1909,7 @@ function App(){
     ncr_dashboard:'NCR',new_ncr:'NCR',all_ncrs:'NCR',
     supplier_list:'Suppliers',add_supplier:'Suppliers',
     consolidated:'Scorecard',scorecards:'Scorecard',ranking:'Scorecard',
-    gh_storage:'Settings',score_weights:'Settings'};
+    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings'};
 
   const renderPage = () => {
     switch(page){
@@ -1752,6 +1937,7 @@ function App(){
       case 'ranking': return <Ranking lang={lang} t={t} weights={weights} thresholds={thresholds}/>;
       case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
+      case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;;
       default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
   };
