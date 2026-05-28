@@ -1314,6 +1314,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780006392924,
+      "timestamp": "2026-05-28T22:13:12.924Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260528-01-0987654",
+      "site": "QS",
+      "details": "ZhongShang JDM Metal Products Co | 0987654 | Decision: use-as-is",
+      "duration": 129
+    },
+    {
       "id": 1780005746380,
       "timestamp": "2026-05-28T22:02:26.380Z",
       "user": "Admin",
