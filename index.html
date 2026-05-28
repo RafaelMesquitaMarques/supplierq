@@ -551,14 +551,121 @@ textarea{resize:vertical;min-height:72px;}
 ::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px;}
 ::-webkit-scrollbar-thumb:hover{background:var(--muted);}
 
-@media(max-width:900px){
-  .kg4,.kg5{grid-template-columns:1fr 1fr;}
-  .scg,.pg3,.flayout{grid-template-columns:1fr;}
-  .sidebar{display:none;}
-  .rg{grid-template-columns:1fr;}
-  .photo-grid{grid-template-columns:repeat(2,1fr);}
-  .pg{padding:18px 16px;}
+/* ══════════════════════════════════════════════
+   RESPONSIVE — TABLE OVERFLOW FIX
+   ══════════════════════════════════════════════ */
+.tw{overflow-x:auto;}
+table{min-width:600px;}
+td,th{white-space:nowrap;}
+/* Allow description/name cells to wrap */
+.td-wrap{white-space:normal!important;max-width:160px;min-width:80px;}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE — TABLET  (≤ 1024px)
+   ══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  :root{--sb-w:190px;}
+  .kg4{grid-template-columns:repeat(2,1fr);}
+  .kg5{grid-template-columns:repeat(3,1fr);}
+  .scg{grid-template-columns:repeat(2,1fr);}
+  .pg3{grid-template-columns:repeat(2,1fr);}
+  .pg{padding:20px 18px;}
 }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE — MOBILE  (≤ 768px)
+   ══════════════════════════════════════════════ */
+@media(max-width:768px){
+  :root{--hdr-h:52px;}
+
+  /* Hide desktop sidebar */
+  .sidebar{display:none;}
+
+  /* Content fills full width, add bottom padding for bottom nav */
+  .content{padding-bottom:70px;}
+  .pg{padding:16px 14px;}
+
+  /* KPI grids */
+  .kg4,.kg5{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .kpi{padding:14px 14px;}
+  .kv{font-size:22px;}
+
+  /* Layouts */
+  .flayout,.scg,.pg3,.rg,.f2,.f3{grid-template-columns:1fr;}
+  .dg{grid-template-columns:1fr 1fr;}
+
+  /* Photos */
+  .photo-grid{grid-template-columns:repeat(2,1fr);}
+
+  /* Form tabs — scrollable */
+  .form-tabs{overflow-x:auto;padding:4px;}
+  .ftab{white-space:nowrap;font-size:11px;padding:7px 10px;}
+
+  /* Modal */
+  .mo-box{padding:18px 16px;border-radius:var(--r2) var(--r2) 0 0;width:100%;max-width:100%;position:fixed;bottom:0;left:0;right:0;margin:0;max-height:92vh;}
+  .mo{align-items:flex-end!important;}
+  .dl{grid-template-columns:120px 1fr;}
+
+  /* Header — hide sep and module badge */
+  .hdr-sep{display:none;}
+  .hdr-mod{display:none;}
+  .hdr-logo span:last-child{display:none;}/* hide text, keep icon */
+
+  /* Page header */
+  .pgh{flex-direction:column;gap:8px;}
+  .pgh h1{font-size:17px;}
+
+  /* Tables — card view on mobile */
+  .tw table{display:none;}
+  .tw .empty{display:block;}
+  .mobile-cards{display:flex;flex-direction:column;gap:8px;padding:12px;}
+  .mcard{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r2);padding:14px;cursor:pointer;transition:box-shadow .15s;}
+  .mcard:hover{box-shadow:var(--sh2);}
+  .mcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+  .mcard-ref{font-family:var(--fm);font-size:11px;color:var(--muted);}
+  .mcard-sup{font-size:13px;font-weight:600;margin-top:2px;}
+  .mcard-row{display:flex;justify-content:space-between;font-size:12px;color:var(--tx2);padding:3px 0;border-bottom:1px solid var(--brd);}
+  .mcard-row:last-child{border-bottom:none;}
+  .mcard-actions{display:flex;gap:6px;margin-top:10px;}
+
+  /* Bottom navigation */
+  .bottom-nav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;
+    background:var(--surf);border-top:1px solid var(--brd);
+    box-shadow:0 -4px 16px rgba(0,0,0,.08);
+    z-index:300;height:62px;padding:0 4px;padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .bn-item{
+    flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;cursor:pointer;color:var(--muted);font-size:10px;font-weight:500;
+    padding:6px 2px;border-radius:var(--r);transition:all .15s;border:none;background:none;
+    font-family:var(--ff);position:relative;
+  }
+  .bn-item.active{color:var(--grn);}
+  .bn-item .bn-ic{font-size:20px;line-height:1;}
+  .bn-badge{
+    position:absolute;top:4px;right:calc(50% - 18px);
+    background:var(--red);color:#fff;font-size:9px;font-weight:700;
+    padding:1px 4px;border-radius:10px;min-width:16px;text-align:center;
+  }
+  .sync-btn span#slbl{display:none;}
+  .hdr-r{gap:4px;}
+  .lang-btn,.theme-btn{padding:4px 7px;font-size:11px;}
+}
+
+/* Desktop — hide bottom nav */
+@media(min-width:769px){
+  .bottom-nav{display:none;}
+  .mobile-cards{display:none;}
+}
+/* Mobile menu grid item */
+.mob-menu-item{
+  background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r2);
+  padding:14px 10px;font-size:13px;font-weight:500;cursor:pointer;
+  font-family:var(--ff);color:var(--tx);text-align:left;transition:background .15s;
+  display:flex;align-items:center;gap:7px;
+}
+.mob-menu-item:hover{background:var(--surf3);}
 </style>
 </head>
 <body>
@@ -616,6 +723,44 @@ textarea{resize:vertical;min-height:72px;}
     <input type="file" id="impf" accept=".json" style="display:none" onchange="importData(event)"/>
   </div>
 </nav>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="bn-item active" id="bn-id" onclick="go('id',null);setBN('id')">
+    <span class="bn-ic">📊</span><span data-i18n="n_id">Dashboard</span>
+  </button>
+  <button class="bn-item" id="bn-in" onclick="go('in',null);setBN('in')">
+    <span class="bn-ic">➕</span><span data-i18n="n_in">Inspect</span>
+  </button>
+  <button class="bn-item" id="bn-il" onclick="go('il',null);setBN('il')">
+    <span class="bn-ic">📋</span><span data-i18n="n_il">List</span>
+  </button>
+  <button class="bn-item" id="bn-nd" onclick="go('nd',null);setBN('nd')">
+    <span class="bn-ic">⚠️</span><span>NCR</span>
+    <span class="bn-badge" id="bn-badge" style="display:none">0</span>
+  </button>
+  <button class="bn-item" id="bn-more" onclick="toggleMobileMenu()">
+    <span class="bn-ic">☰</span><span>More</span>
+  </button>
+</nav>
+
+<!-- MOBILE SLIDE-UP MENU -->
+<div id="mobile-menu" style="display:none;position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.45)" onclick="toggleMobileMenu()">
+  <div onclick="event.stopPropagation()" style="position:absolute;bottom:0;left:0;right:0;background:var(--surf);border-radius:var(--r3) var(--r3) 0 0;padding:20px 16px 32px;box-shadow:var(--sh3);">
+    <div style="width:36px;height:4px;background:var(--brd2);border-radius:2px;margin:0 auto 18px;"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <button class="mob-menu-item" onclick="go('sl',null);toggleMobileMenu()">🏢 <span data-i18n="n_sl">Suppliers</span></button>
+      <button class="mob-menu-item" onclick="go('cd',null);toggleMobileMenu()">🌐 <span data-i18n="n_cd">Consolidated</span></button>
+      <button class="mob-menu-item" onclick="go('sc',null);toggleMobileMenu()">⭐ <span data-i18n="n_sc">Scorecards</span></button>
+      <button class="mob-menu-item" onclick="go('rk',null);toggleMobileMenu()">🏆 <span data-i18n="n_rk">Ranking</span></button>
+      <button class="mob-menu-item" onclick="go('nn',null);toggleMobileMenu()">➕ <span data-i18n="n_nn">New NCR</span></button>
+      <button class="mob-menu-item" onclick="go('wt',null);toggleMobileMenu()">⚖️ <span data-i18n="n_wt">Weights</span></button>
+      <button class="mob-menu-item" onclick="exportAll();toggleMobileMenu()">⬇️ <span data-i18n="n_ex">Export</span></button>
+      <button class="mob-menu-item" onclick="document.getElementById('impf').click();toggleMobileMenu()">⬆️ <span data-i18n="n_im">Import</span></button>
+    </div>
+  </div>
+</div>
+
 <main class="content">
 <!-- INSPECTION DASHBOARD -->
 <div class="pg active" id="pg-id">
@@ -1451,7 +1596,52 @@ function toggleDD(){document.getElementById('siteDD').classList.toggle('open');}
 document.addEventListener('click',e=>{if(!document.getElementById('siteBadge').contains(e.target))document.getElementById('siteDD').classList.remove('open');});
 const modMap={id:'Inspection',in:'Inspection',il:'Inspection',nd:'NCR',nn:'NCR',nl:'NCR',sl:'Suppliers',sn:'Suppliers',cd:'Scorecard',sc:'Scorecard',rk:'Scorecard',pa:'Settings',wt:'Settings'};
 let curPg='id';
-function go(id,navEl){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.getElementById('pg-'+id).classList.add('active');if(navEl)navEl.classList.add('active');curPg=id;document.getElementById('hdr-mod').textContent=modMap[id]||'SupplierQ';loadPg(id);}
+function go(id,navEl){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));document.getElementById('pg-'+id).classList.add('active');if(navEl)navEl.classList.add('active');curPg=id;document.getElementById('hdr-mod').textContent=modMap[id]||'SupplierQ';loadPg(id);setBN(id);renderMobileCards(id);}
+function setBN(id){const map={id:'bn-id',in:'bn-in',il:'bn-il',nd:'bn-nd',nn:'bn-nd'};document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));const target=map[id]||'bn-more';const el=document.getElementById(target);if(el)el.classList.add('active');}
+function toggleMobileMenu(){const m=document.getElementById('mobile-menu');m.style.display=m.style.display==='none'?'block':'none';}
+// ── MOBILE CARD VIEW for tables ────────────────────────────────
+function renderMobileCards(id){
+  if(window.innerWidth>768)return;
+  if(id==='il')renderMobileIL();
+  else if(id==='nl')renderMobileNL();
+}
+function renderMobileIL(){
+  const tw=document.querySelector('#pg-il .tw');if(!tw)return;
+  let mc=document.getElementById('mc-il');
+  if(!mc){mc=document.createElement('div');mc.id='mc-il';mc.className='mobile-cards';tw.parentNode.insertBefore(mc,tw.nextSibling);}
+  const data=ld('inspections');
+  mc.innerHTML='';
+  if(!data.length){mc.innerHTML='<div class="empty"><div class="ei">📋</div><p>No records.</p></div>';return;}
+  data.forEach(r=>{
+    const c=document.createElement('div');c.className='mcard';
+    c.innerHTML=`<div class="mcard-top"><div><div class="mcard-ref">${r.ref}</div><div class="mcard-sup">${r.supplier||'—'}</div></div>${decPill(r.decision)}</div>
+    <div class="mcard-row"><span style="color:var(--muted)">Date</span><span>${r.date}</span></div>
+    <div class="mcard-row"><span style="color:var(--muted)">Product #</span><span style="font-family:var(--fm);font-size:11px">${r.productNo||'—'}</span></div>
+    <div class="mcard-row"><span style="color:var(--muted)">Qty recv.</span><span>${r.qtyReceived??'—'}</span></div>
+    <div class="mcard-actions">
+      <button class="btn bg bs" style="flex:1" onclick="openIM(${r.id})">👁 View</button>
+      <button class="btn bg bs" onclick="editIDirect(${r.id})" style="padding:4px 9px">✏️</button>
+      <button class="btn bd bs" onclick="delIDirect(${r.id})" style="padding:4px 9px">🗑️</button>
+    </div>`;
+    mc.appendChild(c);
+  });
+}
+function renderMobileNL(){
+  const tw=document.querySelector('#pg-nl .tw');if(!tw)return;
+  let mc=document.getElementById('mc-nl');
+  if(!mc){mc=document.createElement('div');mc.id='mc-nl';mc.className='mobile-cards';tw.parentNode.insertBefore(mc,tw.nextSibling);}
+  const data=ld('ncrs');
+  mc.innerHTML='';
+  if(!data.length){mc.innerHTML='<div class="empty"><div class="ei">✅</div><p>No NCRs.</p></div>';return;}
+  data.forEach(r=>{
+    const c=document.createElement('div');c.className='mcard';
+    c.innerHTML=`<div class="mcard-top"><div><div class="mcard-ref">${r.ref}</div><div class="mcard-sup">${r.supplier||'—'}</div></div>${pill(r.status)}</div>
+    <div class="mcard-row"><span style="color:var(--muted)">Date</span><span>${r.date}</span></div>
+    <div class="mcard-row"><span style="color:var(--muted)">Defect</span><span>${r.defect||'—'}</span></div>
+    <div class="mcard-actions"><button class="btn bg bs" style="flex:1" onclick="openNM(${r.id})">👁 View</button></div>`;
+    mc.appendChild(c);
+  });
+}
 function loadPg(id){
   if(id==='id')renderID();else if(id==='il')renderIL();
   else if(id==='in'){today('f-dt');today('f-rdt');updRef();popSup('f-sp');}
@@ -1493,7 +1683,10 @@ function renderPhotoGrid(){
   _photos.forEach((ph,i)=>{
     const wrap=document.createElement('div');
     const slot=document.createElement('div');slot.className='photo-slot';
-    slot.innerHTML=`<img src="${ph.data}" alt="Photo ${i+1}" onclick="openLightbox(this.src)"/><button type="button" class="ph-del" onclick="removePhoto(${i})">✕</button><div class="ph-lbl">${ph.caption||'Photo '+(i+1)}</div>`;
+    // img has pointer-events:none — click goes to slot div
+    slot.innerHTML=`<img src="${ph.data}" alt="Photo ${i+1}" style="pointer-events:none"/><button type="button" class="ph-del" onclick="event.stopPropagation();removePhoto(${i})">✕</button><div class="ph-lbl" style="pointer-events:none">${ph.caption||'Photo '+(i+1)}</div>`;
+    slot.style.cursor='pointer';
+    slot.addEventListener('click',()=>openLightbox(_photos[i].data));
     const cap=document.createElement('input');cap.type='text';cap.className='photo-caption';cap.placeholder=t('ph_caption');cap.value=ph.caption||'';
     cap.oninput=ev=>{_photos[i].caption=ev.target.value;slot.querySelector('.ph-lbl').textContent=ev.target.value||'Photo '+(i+1);};
     wrap.appendChild(slot);wrap.appendChild(cap);grid.appendChild(wrap);
@@ -1514,7 +1707,15 @@ function renderDrawingList(){
   _drawings.forEach((dr,i)=>{
     const isImg=dr.type&&dr.type.startsWith('image/');
     const item=document.createElement('div');item.className='drawing-item';
-    item.innerHTML=`${isImg?`<img class="drawing-thumb" src="${dr.data}" alt="${dr.name}" onclick="openLightbox(this.src)"/>`:`<div class="drawing-thumb" style="display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--surf)">📄</div>`}<div class="drawing-info"><div class="drawing-name" title="${dr.name}">${dr.name}</div><input type="text" class="photo-caption" style="margin-top:5px" placeholder="Note / description" value="${dr.note}" oninput="_drawings[${i}].note=this.value"/></div><button type="button" class="btn bd bs" onclick="removeDrawing(${i})">✕</button>`;
+    if(isImg)item.style.cursor='pointer';
+    item.innerHTML=`${isImg
+      ?`<img class="drawing-thumb" src="${dr.data}" alt="${dr.name}" style="pointer-events:none"/>`
+      :`<div class="drawing-thumb" style="display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--surf)">📄</div>`
+    }<div class="drawing-info" style="pointer-events:none"><div class="drawing-name" title="${dr.name}">${dr.name}</div></div><input type="text" class="photo-caption" style="margin-top:0;width:160px;flex-shrink:0" placeholder="Note" value="${dr.note}" /><button type="button" class="btn bd bs" style="flex-shrink:0">✕</button>`;
+    // attach events via DOM to avoid base64 in onclick
+    if(isImg) item.addEventListener('click',e=>{if(e.target.tagName==='BUTTON'||e.target.tagName==='INPUT')return;openLightbox(_drawings[i].data);});
+    item.querySelector('input').oninput=ev=>{_drawings[i].note=ev.target.value;};
+    item.querySelector('button').onclick=e=>{e.stopPropagation();removeDrawing(i);};
     list.appendChild(item);
   });
   const b=document.getElementById('dr-count-badge');if(b){b.style.display=_drawings.length>0?'inline':'none';b.textContent=_drawings.length;}
@@ -1577,8 +1778,8 @@ function resetIF(){
   switchFormPage(1,document.querySelector('.ftab'));updRef();
 }
 function isPass(r){return r.decision==='use-as-is'||(r.decision&&!r.hasNC);}
-function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
-function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td style="white-space:nowrap"><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button> <button class="btn bg bs" onclick="editIDirect(${r.id})" title="Edit" style="padding:4px 7px">✏️</button> <button class="btn bd bs" onclick="delIDirect(${r.id})" title="Delete" style="padding:4px 7px">🗑️</button></td>`;tb.appendChild(tr);});}
+function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td class="td-wrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
+function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td class="td-wrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td style="white-space:nowrap"><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button> <button class="btn bg bs" onclick="editIDirect(${r.id})" title="Edit" style="padding:4px 7px">✏️</button> <button class="btn bd bs" onclick="delIDirect(${r.id})" title="Delete" style="padding:4px 7px">🗑️</button></td>`;tb.appendChild(tr);});renderMobileIL();}
 function decPill(d){const map={'use-as-is':['use-as-is',t('dec_uai')],'rework':['rework',t('dec_rw')],'rejected':['rejected',t('dec_rej')],'waiting':['waiting',t('dec_wfd')]};const[cls,lbl]=map[d]||['pending','—'];return `<span class="pill ${cls}">${lbl}</span>`;}
 // Global cache for lightbox access from modal
 let _modalImgs=[];
@@ -1807,7 +2008,7 @@ let curN=null;
 function openNM(id){curN=id;const r=ld('ncrs').find(x=>x.id===id);if(!r)return;document.getElementById('mo-n-t').textContent='NCR — '+r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('f_def')}</dt><dd>${r.defect||'—'}</dd><dt>${t('f_sev')}</dt><dd>${svP(r.severity)}</dd><dt>${t('c_sta')}</dt><dd>${pill(r.status)}</dd><dt>${t('f_due')}</dt><dd>${r.dueDate||'—'}</dd><dt>${t('f_resp')}</dt><dd>${r.responsible||'—'}</dd><dt>${t('f_desc')}</dt><dd>${r.description||'—'}</dd></dl>`;if(r.rcaDetail||r.rcaCategory)h+=`<div class="mo-s"><h3>${t('fc_rca')}</h3><dl class="dl"><dt>${t('f_rcat')}</dt><dd>${r.rcaCategory||'—'}</dd><dt>${t('f_rdet')}</dt><dd>${r.rcaDetail||'—'}</dd></dl></div>`;if(r.capa?.length){h+=`<div class="mo-s"><h3>${t('fc_capa')}</h3>`;r.capa.forEach(c=>{h+=`<div style="padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px;display:flex;gap:8px"><span>${c.done?'✅':'⬜'}</span><span>${c.text}${c.due?` (${c.due})`:''}</span></div>`;});h+=`</div>`;}if(r.history?.length){h+=`<div class="mo-s"><h3>History</h3><div class="tl">`;r.history.forEach(hh=>{const cl=hh.action.includes('Closed')?'g':hh.action.includes('progress')?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">●</div><div><div style="font-size:13px;font-weight:500">${hh.action}</div><div style="font-size:11px;color:var(--muted)">${new Date(hh.date).toLocaleString()}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-n-b').innerHTML=h;document.getElementById('mo-n').classList.add('open');}
 async function setNS(st){if(!curN)return;const arr=ld('ncrs');const i=arr.findIndex(r=>r.id===curN);if(i<0)return;arr[i].status=st;if(st==='closed')arr[i].closedDate=new Date().toISOString();arr[i].history.push({date:new Date().toISOString(),action:st==='closed'?'Closed':'In progress'});await svRecord('ncrs',arr[i]);toast(t('t_ns'),'success');cmo('mo-n');renderND();renderNL();updBadge();}
 async function delN(){if(!curN||!confirm(t('btn_del')+'?'))return;const _nid=curN;cmo('mo-n');rmRecord('ncrs',_nid);curN=null;renderND();renderNL();updBadge();toast(t('t_del'),'warn');}
-function updBadge(){const n=ld('ncrs').filter(r=>r.status==='open').length;const b=document.getElementById('nbadge');b.style.display=n>0?'inline':'none';b.textContent=n;}
+function updBadge(){const n=ld('ncrs').filter(r=>r.status==='open').length;const b=document.getElementById('nbadge');b.style.display=n>0?'inline':'none';b.textContent=n;const bb=document.getElementById('bn-badge');if(bb){bb.style.display=n>0?'inline':'none';bb.textContent=n;}}
 async function submitS(e){e.preventDefault();const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};await svRecord('suppliers',rec);toast(t('t_ss'),'success');resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);}
 function resetSF(){document.getElementById('sForm').reset();}
 function renderSL(){const data=ld('suppliers');const tb=document.getElementById('sl-tb');tb.innerHTML='';document.getElementById('sl-emp').style.display=data.length?'none':'block';data.forEach(s=>{const sc=calcSc(s.name,'site');const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const tr=document.createElement('tr');tr.innerHTML=`<td><strong>${s.name}</strong>${s.country?`<div style="font-size:11px;color:var(--muted)">${s.country}</div>`:''}</td><td class="mono">${s.code||'—'}</td><td>${s.contact||'—'}</td><td>${certs||'—'}</td><td>${pill(s.status)}</td><td>${sc?`<div class="sg ${sc.grade}" style="width:28px;height:28px;font-size:12px">${sc.grade}</div>`:'-'}</td><td><button class="btn bg bs" onclick="openSM('${s.name.replace(/'/g,"\\'")}')">View</button> <button class="btn bd bs" onclick="delS('${s.name.replace(/'/g,"\\'")}')">Del</button></td>`;tb.appendChild(tr);});}
