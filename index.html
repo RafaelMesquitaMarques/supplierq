@@ -1188,24 +1188,36 @@ function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
       </select>
     </div>
     <div className="table-wrap">
-      <table>
+      <table style={{tableLayout:'fixed'}}>
+        <colgroup>
+          <col style={{width:160}}/>{/* Report # */}
+          <col style={{width:90}}/>{/* Date */}
+          <col style={{width:150}}/>{/* Supplier */}
+          <col style={{width:110}}/>{/* PO */}
+          <col style={{width:120}}/>{/* Product */}
+          <col style={{width:120}}/>{/* Description */}
+          <col style={{width:80}}/>{/* Qty */}
+          <col style={{width:120}}/>{/* Decision */}
+          <col style={{width:90}}/>{/* Inspector */}
+          <col style={{width:130}}/>{/* Actions */}
+        </colgroup>
         <thead><tr>
-          {[t('report_num'),t('date'),t('supplier'),t('po'),t('product'),t('description'),t('qty_recv'),'Decision',t('inspector'),''].map(h=><th key={h}>{h}</th>)}
+          {[t('report_num'),t('date'),t('supplier'),t('po'),t('product'),t('description'),t('qty_recv'),'Decision',t('inspector'),''].map((h,i)=><th key={i}>{h}</th>)}
         </tr></thead>
         <tbody>
           {filtered.length===0 && <tr><td colSpan={10}><div className="empty">📋<br/>{t('no_data')}</div></td></tr>}
           {filtered.map(r=><tr key={r.id}>
-            <td className="mono" style={{fontSize:11}}>{r.ref}</td>
-            <td>{r.date}</td>
-            <td>{r.supplier||'—'}</td>
-            <td className="mono">{r.po||'—'}</td>
-            <td className="mono">{r.productNo||'—'}</td>
-            <td style={{maxWidth:140,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.description||'—'}</td>
-            <td>{r.qtyReceived??'—'}</td>
+            <td className="mono" style={{fontSize:11,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.ref}</td>
+            <td style={{whiteSpace:'nowrap'}}>{r.date}</td>
+            <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.supplier}>{r.supplier||'—'}</td>
+            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.po||'—'}</td>
+            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.productNo||'—'}</td>
+            <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.description}>{r.description||'—'}</td>
+            <td style={{whiteSpace:'nowrap'}}>{r.qtyReceived??'—'}</td>
             <td>{decisionPill(r.decision,lang)}</td>
-            <td>{r.inspector||'—'}</td>
-            <td>
-              <div style={{display:'flex',gap:4,alignItems:'center',whiteSpace:'nowrap'}}>
+            <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.inspector||'—'}</td>
+            <td style={{verticalAlign:'middle'}}>
+              <div style={{display:'flex',gap:4,alignItems:'center'}}>
                 <button className="btn btn-secondary btn-sm" onClick={()=>onView(r)}>{t('view')}</button>
                 <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'4px 7px'}}>✏️</button>
                 <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'4px 7px'}}>🗑️</button>
