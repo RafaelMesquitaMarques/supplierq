@@ -10,6 +10,7 @@
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 /* ─── TOKENS ─────────────────────────────────────── */
 :root{
@@ -640,6 +641,13 @@ async function hashPassword(pwd){
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
+function generateTempPassword(){
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let pwd='';
+  for(let i=0;i<8;i++) pwd+=chars[Math.floor(Math.random()*chars.length)];
+  return `${pwd.slice(0,4)}-${pwd.slice(4)}`;
+}
+
 function avatarColor(name){
   const colors=['#0F6B3F','#1D4ED8','#6D28D9','#B45309','#C42B1C','#0E7490'];
   let h=0; for(let c of (name||'?')) h=(h*31+c.charCodeAt(0))%colors.length;
@@ -647,7 +655,7 @@ function avatarColor(name){
 }
 
 async function saveRecord(site, type, record){
-  if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[]};
+  if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
   const arr = _cache[site][type]||[];
   const idx = arr.findIndex(r=>(r.id||r.name)==(record.id||record.name));
   if(idx>=0) arr[idx]=record; else arr.push(record);
@@ -659,6 +667,25 @@ async function deleteRecord(site, type, key){
   if(!_cache[site]) return;
   _cache[site][type]=(_cache[site][type]||[]).filter(r=>(r.id||r.name)!=key);
   ghSave(site).catch(console.error);
+}
+
+// ── AUDIT LOG ──────────────────────────────────────────
+function addAuditLog(site, entry){
+  if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+  if(!_cache[site].auditLog) _cache[site].auditLog=[];
+  _cache[site].auditLog.unshift({
+    id: Date.now(),
+    timestamp: new Date().toISOString(),
+    ...entry,
+  });
+  // Keep max 500 entries per site
+  if(_cache[site].auditLog.length>500) _cache[site].auditLog=_cache[site].auditLog.slice(0,500);
+  ghSave(site).catch(console.error);
+}
+
+function getAuditLog(site){
+  if(site==='ALL') return SITES.flatMap(s=>(_cache[s]?.auditLog||[]).map(e=>({...e,site:s}))).sort((a,b)=>b.id-a.id);
+  return _cache[site]?.auditLog||[];
 }
 
 // ═══════════════════════════════════════════════════════
@@ -940,6 +967,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
   const [form, setForm] = useState(editRecord ? formFromRecord(editRecord) : EMPTY_FORM);
   const [photos, setPhotos] = useState(editRecord?.photos||[]);
   const [drawings, setDrawings] = useState(editRecord?.drawings||[]);
+  const startTimeRef = useRef(Date.now()); // ⏱ start timer when form mounts
 
   useEffect(()=>{
     if(editRecord){setForm(formFromRecord(editRecord));setPhotos(editRecord.photos||[]);setDrawings(editRecord.drawings||[]);}
@@ -1013,6 +1041,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
     if(!form.decision){showToast(lang==='fr'?'Choisissez une décision':'Please select a decision','error');return;}
     const rounds=getRounds();
     const hasNC=+form.r1_nc>0||form.decision==='rejected'||form.decision==='rework'||form.decision==='waiting';
+    const duration = editRecord ? 0 : Math.round((Date.now()-startTimeRef.current)/1000); // seconds
     const rec = {
       id: editRecord?.id||Date.now(),
       ref: editRecord?.ref||ref,
@@ -1027,6 +1056,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
       photos, drawings, drawingNotes:form.drawingNotes,
       createdAt: editRecord?.createdAt||new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      duration: editRecord ? (editRecord.duration||0) : duration,
     };
     onSave(rec);
     showToast(editRecord?t('updated_ok'):t('saved_ok'),'success');
@@ -1296,6 +1326,9 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
 
         <div style={{display:'flex',gap:7,marginTop:16,paddingTop:12,borderTop:'1px solid var(--brd)'}}>
           <button className="btn btn-email btn-sm" onClick={onEmail}>{t('email')}</button>
+          <button className="btn btn-secondary btn-sm" onClick={()=>generateInspectionPDF(record,lang)} style={{background:'var(--red-l)',color:'var(--red)',border:'1px solid var(--red-b)'}}>
+            📄 PDF
+          </button>
           <button className="btn btn-secondary btn-sm" onClick={onEdit}>{t('edit')}</button>
           <button className="btn btn-danger btn-sm" style={{marginLeft:'auto'}} onClick={onDelete}>{t('delete')}</button>
         </div>
@@ -1934,6 +1967,161 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
 // ═══════════════════════════════════════════════════════
 //  SAMPLING PLANS
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  AUDIT TRAIL
+// ═══════════════════════════════════════════════════════
+function AuditTrail({lang, site}){
+  const [filterType, setFilterType] = useState('');
+  const [filterSite, setFilterSite] = useState(site);
+  const [search, setSearch] = useState('');
+  const [tick, setTick] = useState(0);
+
+  useEffect(()=>{ setFilterSite(site); },[site]);
+
+  const logs = useMemo(()=>{
+    let all = getAuditLog(filterSite==='ALL'?'ALL':filterSite);
+    if(filterType) all=all.filter(e=>e.action?.startsWith(filterType));
+    if(search){ const s=search.toLowerCase(); all=all.filter(e=>JSON.stringify(e).toLowerCase().includes(s)); }
+    return all;
+  },[filterSite,filterType,search,tick]);
+
+  function formatDuration(sec){
+    if(!sec||sec<0) return '—';
+    if(sec<60) return `${sec}s`;
+    const m=Math.floor(sec/60), s2=sec%60;
+    if(m<60) return `${m}m ${s2}s`;
+    return `${Math.floor(m/60)}h ${m%60}m`;
+  }
+
+  function formatTs(ts){
+    try{
+      const d=new Date(ts);
+      return d.toLocaleDateString(lang==='fr'?'fr-CA':'en-CA')+' '+d.toLocaleTimeString(lang==='fr'?'fr-CA':'en-CA',{hour:'2-digit',minute:'2-digit'});
+    }catch{return ts;}
+  }
+
+  const ACTION_CONFIG={
+    inspection_created: {icon:'➕', label:'Inspection créée',      labelEn:'Inspection created',  color:'var(--grn)'},
+    inspection_updated: {icon:'✏️', label:'Inspection modifiée',   labelEn:'Inspection updated',  color:'var(--blu)'},
+    inspection_deleted: {icon:'🗑️', label:'Inspection supprimée',  labelEn:'Inspection deleted',  color:'var(--red)'},
+    ncr_created:        {icon:'⚠️', label:'NCR créé',              labelEn:'NCR created',         color:'var(--amb)'},
+    ncr_updated:        {icon:'✏️', label:'NCR modifié',           labelEn:'NCR updated',         color:'var(--blu)'},
+    ncr_deleted:        {icon:'🗑️', label:'NCR supprimé',          labelEn:'NCR deleted',         color:'var(--red)'},
+    supplier_created:   {icon:'🏢', label:'Fournisseur créé',      labelEn:'Supplier created',    color:'var(--pur)'},
+    supplier_deleted:   {icon:'🗑️', label:'Fournisseur supprimé',  labelEn:'Supplier deleted',    color:'var(--red)'},
+    user_login:         {icon:'🔐', label:'Connexion',             labelEn:'Login',               color:'var(--grn)'},
+    user_logout:        {icon:'🚪', label:'Déconnexion',           labelEn:'Logout',              color:'var(--muted)'},
+  };
+
+  const totalInspTime = useMemo(()=>{
+    const inspLogs = logs.filter(e=>e.action==='inspection_created'&&e.duration>0);
+    if(!inspLogs.length) return null;
+    const avg=Math.round(inspLogs.reduce((a,e)=>a+e.duration,0)/inspLogs.length);
+    const min=Math.min(...inspLogs.map(e=>e.duration));
+    const max=Math.max(...inspLogs.map(e=>e.duration));
+    return {avg,min,max,count:inspLogs.length};
+  },[logs]);
+
+  return <div className="page">
+    <div className="page-header">
+      <div>
+        <h1>📜 {lang==='fr'?'Audit Trail':'Audit Trail'}</h1>
+        <p>{logs.length} {lang==='fr'?'entrée(s)':'entry(ies)'}</p>
+      </div>
+    </div>
+
+    {/* Inspection time stats */}
+    {totalInspTime && <div className="kpi-grid kpi-grid-4" style={{marginBottom:18}}>
+      <div className="kpi" style={{'--kpi-accent':'var(--grn)'}}>
+        <div className="kpi-lbl">{lang==='fr'?'TEMPS MOYEN':'AVG. TIME'}</div>
+        <div className="kpi-val" style={{color:'var(--grn)',fontSize:22}}>{formatDuration(totalInspTime.avg)}</div>
+        <div className="kpi-sub">{lang==='fr'?'par inspection':'per inspection'}</div>
+      </div>
+      <div className="kpi" style={{'--kpi-accent':'var(--blu)'}}>
+        <div className="kpi-lbl">{lang==='fr'?'PLUS RAPIDE':'FASTEST'}</div>
+        <div className="kpi-val" style={{color:'var(--blu)',fontSize:22}}>{formatDuration(totalInspTime.min)}</div>
+        <div className="kpi-sub">{lang==='fr'?'inspection la plus rapide':'fastest inspection'}</div>
+      </div>
+      <div className="kpi" style={{'--kpi-accent':'var(--amb)'}}>
+        <div className="kpi-lbl">{lang==='fr'?'PLUS LONGUE':'LONGEST'}</div>
+        <div className="kpi-val" style={{color:'var(--amb)',fontSize:22}}>{formatDuration(totalInspTime.max)}</div>
+        <div className="kpi-sub">{lang==='fr'?'inspection la plus longue':'longest inspection'}</div>
+      </div>
+      <div className="kpi" style={{'--kpi-accent':'var(--pur)'}}>
+        <div className="kpi-lbl">{lang==='fr'?'INSPECTIONS CHRONOMÉTRÉES':'TIMED INSPECTIONS'}</div>
+        <div className="kpi-val" style={{color:'var(--pur)',fontSize:22}}>{totalInspTime.count}</div>
+        <div className="kpi-sub">{lang==='fr'?'avec durée enregistrée':'with recorded duration'}</div>
+      </div>
+    </div>}
+
+    {/* Filters */}
+    <div className="filters">
+      <input type="text" placeholder={lang==='fr'?'Rechercher…':'Search…'} value={search} onChange={e=>setSearch(e.target.value)} style={{minWidth:200}}/>
+      <select value={filterSite} onChange={e=>setFilterSite(e.target.value)} style={{minWidth:120}}>
+        <option value="ALL">{lang==='fr'?'Tous les sites':'All sites'}</option>
+        {SITES.map(s=><option key={s} value={s}>{s} — {SITE_NAMES[s]}</option>)}
+      </select>
+      <select value={filterType} onChange={e=>setFilterType(e.target.value)} style={{minWidth:160}}>
+        <option value="">{lang==='fr'?'Tous les types':'All types'}</option>
+        <option value="inspection">{lang==='fr'?'Inspections':'Inspections'}</option>
+        <option value="ncr">NCRs</option>
+        <option value="supplier">{lang==='fr'?'Fournisseurs':'Suppliers'}</option>
+        <option value="user">{lang==='fr'?'Connexions':'Logins'}</option>
+      </select>
+    </div>
+
+    {/* Timeline */}
+    <div className="table-wrap">
+      <table style={{tableLayout:'fixed'}}>
+        <colgroup>
+          <col style={{width:140}}/>{/* Timestamp */}
+          <col style={{width:100}}/>{/* User */}
+          <col style={{width:50}}/>{/* Site */}
+          <col style={{width:160}}/>{/* Action */}
+          <col style={{width:'auto'}}/>{/* Details */}
+          <col style={{width:80}}/>{/* Duration */}
+        </colgroup>
+        <thead><tr>
+          {[lang==='fr'?'Date / Heure':'Date / Time',
+            lang==='fr'?'Utilisateur':'User',
+            'Site',
+            lang==='fr'?'Action':'Action',
+            lang==='fr'?'Détails':'Details',
+            lang==='fr'?'Durée':'Duration',
+          ].map((h,i)=><th key={i}>{h}</th>)}
+        </tr></thead>
+        <tbody>
+          {logs.length===0 && <tr><td colSpan={6}><div className="empty">📜<br/>{lang==='fr'?'Aucune entrée':'No entries yet'}</div></td></tr>}
+          {logs.map(e=>{
+            const cfg=ACTION_CONFIG[e.action]||{icon:'•',label:e.action,labelEn:e.action,color:'var(--muted)'};
+            return <tr key={e.id}>
+              <td style={{fontSize:11,whiteSpace:'nowrap',color:'var(--muted)'}}>{formatTs(e.timestamp)}</td>
+              <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>
+                <div style={{display:'flex',alignItems:'center',gap:6}}>
+                  <div style={{width:22,height:22,borderRadius:'50%',background:avatarColor(e.user||'?'),display:'flex',alignItems:'center',justifyContent:'center',fontSize:9,fontWeight:700,color:'#fff',flexShrink:0}}>
+                    {(e.user||'?').slice(0,2).toUpperCase()}
+                  </div>
+                  <span style={{fontSize:12,overflow:'hidden',textOverflow:'ellipsis'}}>{e.user||'—'}</span>
+                </div>
+              </td>
+              <td><span className="site-tag">{e.site||'—'}</span></td>
+              <td>
+                <span style={{display:'inline-flex',alignItems:'center',gap:5,fontSize:11,fontWeight:600,color:cfg.color}}>
+                  {cfg.icon} {lang==='fr'?cfg.label:cfg.labelEn}
+                </span>
+              </td>
+              <td style={{fontSize:11,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',color:'var(--tx2)'}} title={e.details}>{e.details||'—'}</td>
+              <td style={{fontSize:12,fontWeight:600,color:e.duration?'var(--grn)':'var(--muted)',whiteSpace:'nowrap'}}>
+                {e.duration?formatDuration(e.duration):'—'}
+              </td>
+            </tr>;
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>;
+}
+
 function SamplingPlans({lang, sampling, setSampling}){
   const set=(k,v)=>setSampling(s=>({...s,[k]:v}));
   const grades=[
@@ -2090,6 +2278,90 @@ function EmailModal({record, lang, t, onClose}){
 // ═══════════════════════════════════════════════════════
 //  LOGIN SCREEN
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  FORCE PASSWORD CHANGE (first login)
+// ═══════════════════════════════════════════════════════
+function ForcePasswordChange({user, onComplete, lang}){
+  const [newPwd, setNewPwd] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e){
+    e.preventDefault();
+    setError('');
+    if(newPwd.length<6){ setError(lang==='fr'?'Minimum 6 caractères':'Minimum 6 characters'); return; }
+    if(newPwd!==confirmPwd){ setError(lang==='fr'?'Les mots de passe ne correspondent pas':'Passwords do not match'); return; }
+    setLoading(true);
+    try{
+      const hash = await hashPassword(newPwd);
+      const users = await loadUsers();
+      const updated = users.map(u=>u.id===user.id
+        ?{...u,passwordHash:hash,mustChangePassword:false,passwordChangedAt:new Date().toISOString()}
+        :u
+      );
+      await saveUsers(updated);
+      const updatedUser = updated.find(u=>u.id===user.id);
+      onComplete(updatedUser);
+    }catch(e){ setError('Error saving. Try again.'); }
+    finally{ setLoading(false); }
+  }
+
+  return <div className="login-screen">
+    <div className="login-box">
+      <div className="login-logo">
+        <div className="login-logo-icon">SQ</div>
+        <div>
+          <div style={{fontSize:18,fontWeight:700}}>SupplierQ</div>
+          <div style={{fontSize:10,color:'var(--muted)',textTransform:'uppercase',letterSpacing:'.05em'}}>by Foliot</div>
+        </div>
+      </div>
+
+      <div style={{background:'var(--amb-l)',border:'1px solid var(--amb-b)',borderRadius:'var(--r2)',padding:'12px 14px',marginBottom:20,display:'flex',gap:10,alignItems:'flex-start'}}>
+        <span style={{fontSize:20,flexShrink:0}}>🔐</span>
+        <div>
+          <div style={{fontSize:13,fontWeight:700,color:'var(--amb)',marginBottom:3}}>
+            {lang==='fr'?'Changement de mot de passe requis':'Password change required'}
+          </div>
+          <div style={{fontSize:12,color:'var(--tx2)'}}>
+            {lang==='fr'
+              ?`Bonjour ${user.name}, vous devez définir un nouveau mot de passe avant de continuer.`
+              :`Hello ${user.name}, you must set a new password before continuing.`}
+          </div>
+        </div>
+      </div>
+
+      {error && <div className="login-error">⚠️ {error}</div>}
+
+      <form onSubmit={handleSubmit}>
+        <div className="fg">
+          <label>{lang==='fr'?'Nouveau mot de passe':'New password'} *</label>
+          <input type="password" value={newPwd} onChange={e=>setNewPwd(e.target.value)}
+            placeholder="••••••••" required autoFocus style={{width:'100%'}}/>
+          <div style={{fontSize:11,color:'var(--muted)',marginTop:4}}>
+            {lang==='fr'?'Minimum 6 caractères':'Minimum 6 characters'}
+          </div>
+        </div>
+        <div className="fg">
+          <label>{lang==='fr'?'Confirmer le mot de passe':'Confirm password'} *</label>
+          <input type="password" value={confirmPwd} onChange={e=>setConfirmPwd(e.target.value)}
+            placeholder="••••••••" required style={{width:'100%'}}/>
+          {confirmPwd && newPwd && <div style={{fontSize:11,marginTop:4,color:newPwd===confirmPwd?'var(--grn)':'var(--red)',fontWeight:600}}>
+            {newPwd===confirmPwd
+              ?(lang==='fr'?'✓ Les mots de passe correspondent':'✓ Passwords match')
+              :(lang==='fr'?'✗ Ne correspondent pas':'✗ Do not match')}
+          </div>}
+        </div>
+        <button type="submit" className="btn btn-primary"
+          style={{width:'100%',justifyContent:'center',marginTop:8,padding:'10px'}}
+          disabled={loading||newPwd!==confirmPwd||newPwd.length<6}>
+          {loading?(lang==='fr'?'Sauvegarde…':'Saving…'):(lang==='fr'?'Définir le mot de passe':'Set password & continue')}
+        </button>
+      </form>
+    </div>
+  </div>;
+}
+
 function LoginScreen({onLogin, lang, setLang, dark, setDark}){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -2149,6 +2421,7 @@ function UserManagement({lang, currentUser, showToast}){
   const [showForm, setShowForm] = useState(false);
   const [editUser, setEditUser] = useState(null);
   const [form, setForm] = useState({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});
+  const [createdUser, setCreatedUser] = useState(null); // show temp password modal
   const set = (k,v) => setForm(f=>({...f,[k]:v}));
 
   useEffect(()=>{ loadUsers().then(setUsers); },[]);
@@ -2158,18 +2431,34 @@ function UserManagement({lang, currentUser, showToast}){
   async function handleSave(e){
     e.preventDefault();
     if(!form.name||!form.email){ showToast('Fill all required fields','error'); return; }
-    let hash = editUser?.passwordHash;
-    if(form.password) hash = await hashPassword(form.password);
-    if(!hash){ showToast('Password required for new users','error'); return; }
     if(!form.sites.length){ showToast(lang==='fr'?'Sélectionnez au moins un site':'Select at least one site','error'); return; }
+
+    let hash = editUser?.passwordHash;
+    let tempPwd = null;
+
+    if(editUser){
+      // Editing — password change optional
+      if(form.password) hash = await hashPassword(form.password);
+    } else {
+      // New user — auto-generate temp password
+      tempPwd = generateTempPassword();
+      hash = await hashPassword(tempPwd);
+    }
+
     const updated = editUser
-      ? users.map(u=>u.id===editUser.id?{...u,...form,passwordHash:hash,password:undefined}:u)
-      : [...users,{id:Date.now(),name:form.name,email:form.email,passwordHash:hash,role:form.role,sites:form.sites,active:form.active,createdAt:new Date().toISOString()}];
+      ? users.map(u=>u.id===editUser.id?{...u,name:form.name,email:form.email,role:form.role,sites:form.sites,active:form.active,...(form.password?{passwordHash:hash,mustChangePassword:true}:{})}:u)
+      : [...users,{id:Date.now(),name:form.name,email:form.email,passwordHash:hash,role:form.role,sites:form.sites,active:form.active,mustChangePassword:true,createdAt:new Date().toISOString()}];
+
     setUsers(updated);
     await saveUsers(updated);
-    showToast(editUser?(lang==='fr'?'Utilisateur mis à jour':'User updated'):(lang==='fr'?'Utilisateur créé':'User created'),'success');
     setShowForm(false); setEditUser(null);
     setForm({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});
+
+    if(tempPwd){
+      setCreatedUser({name:form.name, email:form.email, tempPwd});
+    } else {
+      showToast(lang==='fr'?'Utilisateur mis à jour':'User updated','success');
+    }
   }
 
   async function toggleActive(user){
@@ -2201,8 +2490,43 @@ function UserManagement({lang, currentUser, showToast}){
       </button>
     </div>
 
+    {/* TEMP PASSWORD MODAL */}
+    {createdUser && <div className="modal-overlay" onClick={()=>setCreatedUser(null)}>
+      <div className="modal-box" style={{maxWidth:440}} onClick={e=>e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>✅ {lang==='fr'?'Utilisateur créé':'User created'}</h2>
+          <button className="modal-close" onClick={()=>setCreatedUser(null)}>✕</button>
+        </div>
+        <div style={{background:'var(--grn-l)',border:'1px solid var(--grn-b)',borderRadius:'var(--r2)',padding:16,marginBottom:16}}>
+          <div style={{fontSize:13,fontWeight:700,color:'var(--grn)',marginBottom:10}}>
+            🔐 {lang==='fr'?'Mot de passe temporaire généré':'Temporary password generated'}
+          </div>
+          <div style={{fontSize:12,color:'var(--tx2)',marginBottom:12}}>
+            {lang==='fr'
+              ?`Communiquez ces informations à ${createdUser.name}. Dès la première connexion, il devra définir un nouveau mot de passe.`
+              :`Share these credentials with ${createdUser.name}. On first login, they will be required to set a new password.`}
+          </div>
+          <div style={{background:'var(--surf)',border:'1px solid var(--brd)',borderRadius:'var(--r)',padding:'12px 16px'}}>
+            <div style={{fontSize:12,color:'var(--muted)',marginBottom:4}}>Email</div>
+            <div style={{fontFamily:'var(--fm)',fontSize:14,fontWeight:600,marginBottom:10}}>{createdUser.email}</div>
+            <div style={{fontSize:12,color:'var(--muted)',marginBottom:4}}>{lang==='fr'?'Mot de passe temporaire':'Temporary password'}</div>
+            <div style={{fontFamily:'var(--fm)',fontSize:22,fontWeight:700,color:'var(--grn)',letterSpacing:4}}>{createdUser.tempPwd}</div>
+          </div>
+        </div>
+        <div style={{fontSize:12,color:'var(--amb)',background:'var(--amb-l)',border:'1px solid var(--amb-b)',borderRadius:'var(--r)',padding:'8px 12px',marginBottom:16}}>
+          ⚠️ {lang==='fr'?'Notez ce mot de passe maintenant. Il ne sera plus affiché.':'Note this password now. It will not be shown again.'}
+        </div>
+        <button className="btn btn-primary" style={{width:'100%',justifyContent:'center'}} onClick={()=>setCreatedUser(null)}>
+          {lang==='fr'?'J\'ai noté le mot de passe':'I have noted the password'}
+        </button>
+      </div>
+    </div>}
+
     {showForm && <div className="form-card" style={{marginBottom:20,border:'2px solid var(--grn-b)'}}>
       <div className="form-card-title">{editUser?(lang==='fr'?'Modifier utilisateur':'Edit user'):(lang==='fr'?'Nouvel utilisateur':'New user')}</div>
+      {!editUser && <div style={{background:'var(--blu-l)',border:'1px solid var(--blu-b)',borderRadius:'var(--r)',padding:'8px 12px',marginBottom:12,fontSize:12,color:'var(--blu)'}}>
+        💡 {lang==='fr'?'Un mot de passe temporaire sera généré automatiquement.':'A temporary password will be generated automatically.'}
+      </div>}
       <form onSubmit={handleSave}>
         <div className="grid2">
           <div className="fg"><label>{lang==='fr'?'Nom complet':'Full name'} *</label>
@@ -2210,15 +2534,24 @@ function UserManagement({lang, currentUser, showToast}){
           <div className="fg"><label>Email *</label>
             <input type="email" value={form.email} onChange={e=>set('email',e.target.value)} required placeholder="rafael@foliot.com"/></div>
         </div>
+        {editUser && <div className="fg">
+          <label>{lang==='fr'?'Nouveau mot de passe':'New password'} <span style={{color:'var(--muted)',fontSize:11}}>{lang==='fr'?'(vide = inchangé)':'(blank = unchanged)'}</span></label>
+          <input type="password" value={form.password} onChange={e=>set('password',e.target.value)} placeholder="••••••••"/>
+          {form.password && <div style={{fontSize:11,color:'var(--amb)',marginTop:4}}>
+            ⚠️ {lang==='fr'?'L\'utilisateur devra changer son mot de passe à la prochaine connexion.':'User will be required to change password on next login.'}
+          </div>}
+        </div>}
         <div className="grid2">
-          <div className="fg"><label>{lang==='fr'?'Mot de passe':'Password'} {!editUser&&'*'} {editUser&&<span style={{color:'var(--muted)',fontSize:11}}>{lang==='fr'?'(laisser vide = inchangé)':'(leave blank = unchanged)'}</span>}</label>
-            <input type="password" value={form.password} onChange={e=>set('password',e.target.value)} placeholder="••••••••" required={!editUser}/></div>
           <div className="fg"><label>Role *</label>
             <select value={form.role} onChange={e=>set('role',e.target.value)}>
               <option value="admin">Admin</option>
               <option value="manager">Manager</option>
               <option value="inspector">Inspector</option>
             </select>
+          </div>
+          <div className="fg" style={{display:'flex',alignItems:'center',gap:8,paddingTop:20}}>
+            <input type="checkbox" id="u-active" checked={form.active} onChange={e=>set('active',e.target.checked)} style={{accentColor:'var(--grn)',width:16,height:16}}/>
+            <label htmlFor="u-active" style={{marginBottom:0,cursor:'pointer'}}>{lang==='fr'?'Compte actif':'Active account'}</label>
           </div>
         </div>
         <div className="fg">
@@ -2229,10 +2562,6 @@ function UserManagement({lang, currentUser, showToast}){
               {s} — {SITE_NAMES[s]}
             </div>)}
           </div>
-        </div>
-        <div className="fg" style={{display:'flex',alignItems:'center',gap:8}}>
-          <input type="checkbox" id="u-active" checked={form.active} onChange={e=>set('active',e.target.checked)} style={{accentColor:'var(--grn)',width:16,height:16}}/>
-          <label htmlFor="u-active" style={{marginBottom:0,cursor:'pointer'}}>{lang==='fr'?'Compte actif':'Active account'}</label>
         </div>
         <div className="form-end">
           <button type="button" className="btn btn-secondary" onClick={()=>{setShowForm(false);setEditUser(null);}}>{lang==='fr'?'Annuler':'Cancel'}</button>
@@ -2250,6 +2579,7 @@ function UserManagement({lang, currentUser, showToast}){
           <span style={{fontWeight:600,fontSize:14}}>{user.name}</span>
           <span className={`role-badge ${roleClass(user.role)}`}>{roleLabel(user.role)}</span>
           {!user.active&&<span style={{fontSize:10,background:'var(--red-l)',color:'var(--red)',padding:'2px 7px',borderRadius:20,fontWeight:600}}>INACTIVE</span>}
+          {user.mustChangePassword&&<span style={{fontSize:10,background:'var(--amb-l)',color:'var(--amb)',padding:'2px 7px',borderRadius:20,fontWeight:600}}>🔐 {lang==='fr'?'MDP temporaire':'Temp password'}</span>}
           {user.id===currentUser.id&&<span style={{fontSize:10,background:'var(--grn-l)',color:'var(--grn)',padding:'2px 7px',borderRadius:20,fontWeight:600}}>YOU</span>}
         </div>
         <div style={{fontSize:12,color:'var(--muted)',marginTop:2}}>{user.email}</div>
@@ -2268,6 +2598,215 @@ function UserManagement({lang, currentUser, showToast}){
 
 //  MAIN APP
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  PDF GENERATOR
+// ═══════════════════════════════════════════════════════
+async function generateInspectionPDF(r, lang){
+  const {jsPDF} = window.jspdf;
+  const doc = new jsPDF({orientation:'portrait', unit:'mm', format:'a4'});
+  const W=210, M=14, CW=W-M*2;
+  let y=M;
+
+  // ── colours ──────────────────────────────────────────
+  const GREEN=[15,107,63], DARK=[13,17,23], GREY=[122,130,148], LIGHT=[240,242,245], RED=[196,43,28], BLUE=[29,78,216];
+  const decColor={'use-as-is':GREEN,'rework':[180,83,9],'rejected':RED,'waiting':BLUE};
+  const dc = decColor[r.decision]||GREY;
+
+  // ── helpers ───────────────────────────────────────────
+  function setFont(size,style='normal',color=DARK){doc.setFontSize(size);doc.setFont('helvetica',style);doc.setTextColor(...color);}
+  function line(color=LIGHT){doc.setDrawColor(...color);doc.line(M,y,W-M,y);y+=1;}
+  function rect(x,yy,w,h,fill){doc.setFillColor(...fill);doc.rect(x,yy,w,h,'F');}
+  function checkPage(need=20){ if(y+need>285){doc.addPage();y=M;drawHeader(true);} }
+
+  // ── HEADER ────────────────────────────────────────────
+  function drawHeader(continuation=false){
+    // Green top bar
+    rect(0,0,W,12,GREEN);
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica','bold');doc.setFontSize(15);
+    doc.text('SUPPLIERQ',M,8.5);
+    doc.setFontSize(9);doc.setFont('helvetica','normal');
+    doc.text('by Foliot',M+32,8.5);
+    doc.setFont('helvetica','bold');doc.setFontSize(9);
+    doc.text(lang==='fr'?"RAPPORT D'INSPECTION":'INSPECTION REPORT',W/2,8.5,{align:'center'});
+    doc.setFontSize(8);doc.setFont('helvetica','normal');
+    doc.text(continuation?`${r.ref} (cont.)`:`${r.site} — ${new Date().toLocaleDateString()}`,W-M,8.5,{align:'right'});
+    y=18;
+    if(!continuation){
+      // Report ref badge
+      rect(M,y,CW,10,LIGHT);
+      setFont(11,'bold',DARK);
+      doc.text(r.ref,M+3,y+6.5);
+      setFont(8,'normal',GREY);
+      doc.text(r.date,W-M-3,y+6.5,{align:'right'});
+      y+=14;
+    }
+  }
+
+  drawHeader();
+
+  // ── SECTION helper ─────────────────────────────────────
+  function section(title,icon=''){
+    checkPage(18);
+    y+=2;
+    rect(M,y,CW,7,GREEN);
+    doc.setTextColor(255,255,255);
+    doc.setFont('helvetica','bold');doc.setFontSize(8.5);
+    doc.text(`${icon}  ${title}`,M+3,y+4.8);
+    y+=9;
+  }
+
+  // ── KEY-VALUE table ────────────────────────────────────
+  function kvTable(rows, cols=2){
+    const colW=CW/cols;
+    for(let i=0;i<rows.length;i+=cols){
+      checkPage(8);
+      const rowH=7;
+      if(i%4===0) rect(M,y,CW,rowH,LIGHT);
+      for(let c=0;c<cols;c++){
+        const item=rows[i+c];if(!item)break;
+        const x=M+c*colW;
+        setFont(7,'bold',GREY);
+        doc.text(item[0].toUpperCase(),x+2,y+2.8);
+        setFont(9,'normal',DARK);
+        const val=String(item[1]||'—');
+        doc.text(doc.splitTextToSize(val,colW-6)[0],x+2,y+5.8);
+      }
+      y+=rowH;
+    }
+    y+=2;
+  }
+
+  // ── 1. GENERAL INFO ───────────────────────────────────
+  section(lang==='fr'?'INFORMATIONS GÉNÉRALES':'GENERAL INFORMATION','📋');
+  kvTable([
+    [lang==='fr'?'Fournisseur':'Supplier', r.supplier||'—'],
+    [lang==='fr'?'Date':'Date', r.date],
+    ['P.O. #', r.po||'—'],
+    ['Product #', r.productNo||'—'],
+    [lang==='fr'?'Description':'Description', r.description||'—'],
+    [lang==='fr'?'Pays':'Country', r.country||'—'],
+    ['Delivery #', r.delivery||'—'],
+    ['HU', r.hu||'—'],
+    [lang==='fr'?'Date réception':'Reception date', r.receptionDate||r.date],
+    [lang==='fr'?'Inspecteur':'Inspector', r.inspector||'—'],
+    [lang==='fr'?'Site':'Site', r.site||'—'],
+    [lang==='fr'?'N° rapport':'Report #', r.ref],
+  ]);
+
+  // ── 2. INSPECTION ROUNDS ──────────────────────────────
+  section(lang==='fr'?'RONDAS D\'INSPECTION':'INSPECTION ROUNDS','🔍');
+  // Table header
+  rect(M,y,CW,6,[GREEN[0],GREEN[1],GREEN[2]]);
+  doc.setTextColor(255,255,255);doc.setFont('helvetica','bold');doc.setFontSize(7.5);
+  const rcols=[lang==='fr'?'Ronde':'Round','Qté reçue','Inspecté','NC','%'];
+  const rwidths=[30,40,40,30,40];
+  let rx=M;
+  rcols.forEach((h,i)=>{doc.text(h,rx+2,y+4.2);rx+=rwidths[i];});
+  y+=6;
+  (r.rounds?.length?r.rounds:[{round:1,recv:r.qtyReceived,inspected:r.qtyInspected,nonConf:0,pct:0}]).forEach((rn,i)=>{
+    checkPage(7);
+    if(i%2===0) rect(M,y,CW,6,LIGHT);
+    setFont(8,'normal',DARK);
+    rx=M;
+    [rn.round, rn.recv??r.qtyReceived??'—', rn.inspected||0, rn.nonConf||0, `${rn.pct||0}%`].forEach((v,i)=>{
+      doc.text(String(v),rx+2,y+4.2);rx+=rwidths[i];
+    });
+    y+=6;
+  });
+  y+=3;
+
+  // ── 3. DEFECTS ────────────────────────────────────────
+  if(r.defects?.length){
+    section(lang==='fr'?'DÉFAUTS DÉTECTÉS':'DEFECTS FOUND','⚠️');
+    r.defects.forEach((d,i)=>{
+      checkPage(7);
+      if(i%2===0) rect(M,y,CW,6,LIGHT);
+      setFont(8,'normal',DARK);
+      doc.text(`• ${d.label}`,M+3,y+4.2);
+      if(d.qty) doc.text(`Qty: ${d.qty}`,W-M-20,y+4.2);
+      y+=6;
+    });
+    y+=2;
+  }
+
+  // ── 4. DECISION ───────────────────────────────────────
+  section(lang==='fr'?'DÉCISION FINALE':'FINAL DECISION','✅');
+  checkPage(22);
+  rect(M,y,CW,18,dc.map(v=>Math.min(255,v+210)));
+  doc.setDrawColor(...dc);doc.setLineWidth(0.8);doc.rect(M,y,CW,18);doc.setLineWidth(0.2);
+  setFont(13,'bold',dc);
+  const decLabels={'use-as-is':'✓ USE AS IS','rework':'⚠ REWORK','rejected':'✗ REJECTED','waiting':'⏳ WAITING FOR DECISION'};
+  doc.text(decLabels[r.decision]||r.decision?.toUpperCase()||'—',W/2,y+8,{align:'center'});
+  setFont(8,'normal',dc);
+  const qs=`Use as Is: ${r.qtyUseAsIs||0}   Rework: ${r.qtyRework||0}   Rejected: ${r.qtyRejected||0}   Waiting: ${r.qtyWaiting||0}`;
+  doc.text(qs,W/2,y+14,{align:'center'});
+  y+=22;
+
+  // ── 5. NOTES ─────────────────────────────────────────
+  if(r.issues||r.notes){
+    section(lang==='fr'?'NOTES / OBSERVATIONS':'NOTES / OBSERVATIONS','📝');
+    const txt=[(r.issues&&`Issues: ${r.issues}`),(r.notes&&`Notes: ${r.notes}`)].filter(Boolean).join('\n');
+    const lines=doc.splitTextToSize(txt,CW-6);
+    lines.forEach(l=>{
+      checkPage(6);
+      setFont(8,'normal',DARK);
+      doc.text(l,M+3,y+4.2);
+      y+=5.5;
+    });
+    y+=3;
+  }
+
+  // ── 6. PHOTOS ─────────────────────────────────────────
+  if(r.photos?.length){
+    section(lang==='fr'?`PHOTOS D'INSPECTION (${r.photos.length})`:`INSPECTION PHOTOS (${r.photos.length})`,'📷');
+    const ph_per_row=3, ph_w=(CW-8)/ph_per_row, ph_h=ph_w*0.75;
+    for(let i=0;i<r.photos.length;i++){
+      const col=i%ph_per_row;
+      if(col===0) checkPage(ph_h+12);
+      const px=M+col*(ph_w+4), py=y;
+      try{
+        doc.addImage(r.photos[i].data,'JPEG',px,py,ph_w,ph_h);
+      }catch{}
+      if(r.photos[i].caption){
+        setFont(7,'normal',GREY);
+        doc.text(doc.splitTextToSize(r.photos[i].caption,ph_w)[0],px,py+ph_h+3.5);
+      }
+      if(col===ph_per_row-1||i===r.photos.length-1) y+=ph_h+8;
+    }
+    y+=2;
+  }
+
+  // ── 7. DRAWINGS ───────────────────────────────────────
+  if(r.drawings?.filter(d=>d.type?.startsWith('image/')).length){
+    const imgDrawings=r.drawings.filter(d=>d.type?.startsWith('image/'));
+    section(lang==='fr'?`DESSINS / IMAGES DE RÉFÉRENCE (${imgDrawings.length})`:`REFERENCE DRAWINGS (${imgDrawings.length})`,'📐');
+    const dr_w=(CW-4)/2, dr_h=dr_w*0.7;
+    for(let i=0;i<imgDrawings.length;i++){
+      const col=i%2;
+      if(col===0) checkPage(dr_h+12);
+      const dx=M+col*(dr_w+4);
+      try{ doc.addImage(imgDrawings[i].data,'JPEG',dx,y,dr_w,dr_h); }catch{}
+      setFont(7,'normal',GREY);
+      doc.text(doc.splitTextToSize(imgDrawings[i].name,dr_w)[0],dx,y+dr_h+3.5);
+      if(col===1||i===imgDrawings.length-1) y+=dr_h+8;
+    }
+  }
+
+  // ── FOOTER on all pages ────────────────────────────────
+  const pageCount=doc.getNumberOfPages();
+  for(let p=1;p<=pageCount;p++){
+    doc.setPage(p);
+    rect(0,287,W,10,[30,35,45]);
+    doc.setTextColor(180,190,210);doc.setFont('helvetica','normal');doc.setFontSize(7);
+    doc.text(`SupplierQ — Foliot | ${r.site} | ${r.ref}`,M,292.5);
+    doc.text(`${lang==='fr'?'Généré le':'Generated'} ${new Date().toLocaleString(lang==='fr'?'fr-CA':'en-CA')}`,W/2,292.5,{align:'center'});
+    doc.text(`${lang==='fr'?'Page':'Page'} ${p}/${pageCount}`,W-M,292.5,{align:'right'});
+  }
+
+  doc.save(`${r.ref}.pdf`);
+}
+
 function App(){
   const [site, setSite] = useState('QS');
   const [lang, setLang] = useState('en');
@@ -2288,13 +2827,26 @@ function App(){
   function handleLogin(user){
     setCurrentUser(user);
     localStorage.setItem('sq_session', JSON.stringify(user));
-    // Restrict site to user's first site if not admin
     if(user.role!=='admin' && !user.sites?.includes(site)){
       setSite(user.sites?.[0]||'QS');
     }
+    // Log login for all user's sites
+    const loginSite = user.sites?.[0]||'QS';
+    addAuditLog(loginSite,{
+      user:user.name, userEmail:user.email,
+      action:'user_login', ref:'—', site:loginSite,
+      details:`Role: ${user.role} | Sites: ${(user.sites||[]).join(', ')}`,
+    });
   }
 
   function handleLogout(){
+    if(currentUser){
+      addAuditLog(site,{
+        user:currentUser.name, userEmail:currentUser.email,
+        action:'user_logout', ref:'—', site,
+        details:`Session ended`,
+      });
+    }
     setCurrentUser(null);
     localStorage.removeItem('sq_session');
     setPage('dashboard');
@@ -2391,8 +2943,14 @@ function App(){
   async function handleSaveInspection(rec){
     await saveRecord(site,'inspections',rec);
     setTick(k=>k+1);
-    // Auto email
-    const isNC = rec.hasNC || rec.decision==='rejected'||rec.decision==='rework'||rec.decision==='waiting';
+    addAuditLog(site,{
+      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+      action:editRecord?'inspection_updated':'inspection_created',
+      ref:rec.ref, site,
+      details:`${rec.supplier||'—'} | ${rec.productNo||'—'} | Decision: ${rec.decision}`,
+      duration: editRecord?0:(rec.duration||0),
+    });
+    const isNC = rec.hasNC||rec.decision==='rejected'||rec.decision==='rework'||rec.decision==='waiting';
     if(emailCfg.onInspection) sendAutoEmail('inspection', rec);
     else if(emailCfg.onNC && isNC) sendAutoEmail('nc', rec);
     if(editRecord){ setEditRecord(null); navTo('all_inspections'); }
@@ -2401,6 +2959,11 @@ function App(){
 
   async function handleDeleteInspection(r){
     if(!confirm(t('delete')+'?')) return;
+    addAuditLog(site,{
+      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+      action:'inspection_deleted', ref:r.ref, site,
+      details:`${r.supplier||'—'} | ${r.productNo||'—'}`,
+    });
     await deleteRecord(site,'inspections',r.id);
     setTick(k=>k+1); setModal(null);
     showToast(t('deleted_ok'),'warn');
@@ -2409,16 +2972,31 @@ function App(){
   async function handleSaveNcr(rec){
     await saveRecord(site,'ncrs',rec);
     setTick(k=>k+1);
+    addAuditLog(site,{
+      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+      action:'ncr_created', ref:rec.ref, site,
+      details:`${rec.supplier||'—'} | ${rec.defect||'—'} | ${rec.severity}`,
+    });
     if(emailCfg.onNCR && rec.status==='open') sendAutoEmail('ncr', rec);
     navTo('ncr_dashboard');
   }
 
   async function handleSaveSupplier(s){
     await saveRecord(site,'suppliers',s);
-    setTick(k=>k+1); navTo('supplier_list');
+    setTick(k=>k+1);
+    addAuditLog(site,{
+      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+      action:'supplier_created', ref:s.name, site,
+      details:`${s.name} | ${s.country||'—'} | ${s.role||'active'}`,
+    });
+    navTo('supplier_list');
   }
 
   async function handleDeleteSupplier(name){
+    addAuditLog(site,{
+      user:currentUser?.name||'?', userEmail:currentUser?.email||'',
+      action:'supplier_deleted', ref:name, site, details:name,
+    });
     await deleteRecord(site,'suppliers',name);
     setTick(k=>k+1); showToast(t('deleted_ok'),'warn');
   }
@@ -2478,6 +3056,7 @@ function App(){
       {id:'email_settings', icon:'📧', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
       ...(isAdmin?[{id:'user_management',icon:'👥',label:lang==='fr'?'Utilisateurs':'Users'}]:[]),
       {id:'sampling_plans',icon:'📊',label:lang==='fr'?'Plans échantillonnage':'Sampling Plans'},
+      {id:'audit_trail',   icon:'📜',label:lang==='fr'?'Audit Trail':'Audit Trail'},
     ]},
   ];
 
@@ -2487,7 +3066,7 @@ function App(){
     ncr_dashboard:'NCR',new_ncr:'NCR',all_ncrs:'NCR',
     supplier_list:'Suppliers',add_supplier:'Suppliers',
     consolidated:'Scorecard',scorecards:'Scorecard',ranking:'Scorecard',
-    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings',user_management:'Settings',sampling_plans:'Settings'};
+    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings',user_management:'Settings',sampling_plans:'Settings',audit_trail:'Settings'};
 
   const renderPage = () => {
     switch(page){
@@ -2517,13 +3096,22 @@ function App(){
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
       case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
       case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;
-      case 'sampling_plans': return <SamplingPlans lang={lang} sampling={sampling} setSampling={setSampling}/>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
+      case 'sampling_plans': return <SamplingPlans lang={lang} sampling={sampling} setSampling={setSampling}/>;
+      case 'audit_trail':    return <AuditTrail lang={lang} site={site}/>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
   };
 
   return <>
     {/* LOGIN GATE */}
     {!currentUser && <LoginScreen onLogin={handleLogin} lang={lang} setLang={setLang} dark={dark} setDark={setDark}/>}
+    {/* FORCE PASSWORD CHANGE */}
+    {currentUser?.mustChangePassword && <ForcePasswordChange
+      user={currentUser} lang={lang}
+      onComplete={updatedUser=>{
+        setCurrentUser(updatedUser);
+        localStorage.setItem('sq_session', JSON.stringify(updatedUser));
+        showToast(lang==='fr'?'Mot de passe mis à jour ✓':'Password updated ✓','success');
+      }}/>}
     {/* MINIMAL HEADER — logo + module + right actions */}
     <header className="hdr">
       <div className="hdr-logo">
