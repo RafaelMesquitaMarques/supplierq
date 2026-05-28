@@ -1542,7 +1542,7 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
 
   async function testEmail(){
     if(!emailCfg.publicKey||!emailCfg.serviceId||!emailCfg.templateId){
-      showToast(lang==='fr'?'Configurez tous les champs d\'abord':'Fill all fields first','error'); return;
+      showToast(lang==='fr'?"Configurez tous les champs d'abord":'Fill all fields first','error'); return;
     }
     if(!emailCfg.recipients){
       showToast(lang==='fr'?'Ajoutez au moins un destinataire':'Add at least one recipient','error'); return;
@@ -1663,7 +1663,7 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
 
     <div style={{fontSize:12,color:'var(--muted)',padding:'0 4px'}}>
       💡 {lang==='fr'
-        ? 'Les paramètres sont sauvegardés localement dans votre navigateur. Chaque membre de l\'équipe doit configurer ses propres identifiants.'
+        ? "Les paramètres sont sauvegardés localement dans votre navigateur. Chaque membre de l'équipe doit configurer ses propres identifiants."
         : 'Settings are saved locally in your browser. Each team member must configure their own credentials.'}
     </div>
   </div>;
@@ -1937,7 +1937,7 @@ function App(){
       case 'ranking': return <Ranking lang={lang} t={t} weights={weights} thresholds={thresholds}/>;
       case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
-      case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;;
+      case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
       default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
   };
