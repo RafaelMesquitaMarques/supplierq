@@ -450,11 +450,16 @@ textarea{resize:vertical;min-height:72px;}
 #toast{
   position:fixed;bottom:24px;right:24px;
   background:var(--tx);color:var(--bg);
-  padding:10px 16px;border-radius:var(--r2);font-size:13px;font-weight:500;
-  opacity:0;transform:translateY(10px);transition:all .25s;pointer-events:none;z-index:999;
-  box-shadow:var(--sh3);display:flex;align-items:center;gap:7px;
+  padding:11px 18px;border-radius:var(--r2);font-size:13px;font-weight:500;
+  opacity:0;transform:translateY(12px) scale(.96);
+  transition:all .25s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:999;
+  box-shadow:var(--sh3);display:flex;align-items:center;gap:8px;min-width:200px;
 }
-#toast.show{opacity:1;transform:translateY(0);}
+#toast.show{opacity:1;transform:translateY(0) scale(1);}
+#toast.t-success{background:#0F6B3F;color:#fff;}
+#toast.t-error{background:#C42B1C;color:#fff;}
+#toast.t-warn{background:#B45309;color:#fff;}
+#toast.t-info{background:#1D4ED8;color:#fff;}
 
 /* ── FORM PAGE TABS ── */
 .form-tabs{
@@ -625,7 +630,17 @@ textarea{resize:vertical;min-height:72px;}
 
 <!-- NEW INSPECTION -->
 <div class="pg" id="pg-in">
-  <div class="pgh"><div><h1 data-i18n="n_in">New inspection</h1><p>Report # <span class="ref-badge" id="preview-ref">—</span></p></div></div>
+  <div class="pgh"><div><h1 data-i18n="n_in" id="pg-in-title">New inspection</h1><p>Report # <span class="ref-badge" id="preview-ref">—</span></p></div></div>
+  <!-- Edit mode banner -->
+  <div id="edit-banner" style="display:none;align-items:center;gap:10px;background:var(--amb-l);border:1px solid var(--amb-b);border-radius:var(--r2);padding:10px 16px;margin-bottom:16px;">
+    <span style="font-size:16px">✏️</span>
+    <div style="flex:1">
+      <span style="font-size:13px;font-weight:600;color:var(--amb)" data-i18n="edit_mode">Edit mode</span>
+      — <span class="edit-ref mono" style="font-size:12px;color:var(--tx2)"></span>
+      <span style="font-size:12px;color:var(--muted);margin-left:6px" data-i18n="edit_hint">Modify the fields and save to update.</span>
+    </div>
+    <button type="button" class="btn bg bs" onclick="resetIF()" data-i18n="btn_cancel_edit">✕ Cancel edit</button>
+  </div>
   <form id="iForm" onsubmit="submitI(event)">
     <!-- Page tabs -->
     <div class="form-tabs">
@@ -753,11 +768,22 @@ textarea{resize:vertical;min-height:72px;}
         <div class="fct">📷 <span data-i18n="fc_photos">Shipment Inspection Photos</span> — <span style="font-family:var(--fm);font-size:11px;color:var(--muted)" data-i18n="pg_label_2">Page 2/3</span></div>
         <p style="font-size:12px;color:var(--muted);margin-bottom:14px" data-i18n="ph_hint">Add photos from the shipment inspection. Click a photo to enlarge it.</p>
         <div class="photo-grid" id="ph-grid"></div>
-        <label class="photo-add" onclick="document.getElementById('ph-file-input').click()">
-          <span class="pa-ic">📷</span>
-          <span data-i18n="ph_add">Add photo</span>
-        </label>
+        <!-- Camera + Upload buttons -->
+        <div style="display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;">
+          <label class="photo-add" style="flex:1;min-width:140px;" onclick="document.getElementById('ph-camera-input').click()">
+            <span class="pa-ic">📸</span>
+            <span data-i18n="ph_camera">Take photo</span>
+          </label>
+          <label class="photo-add" style="flex:1;min-width:140px;" onclick="document.getElementById('ph-file-input').click()">
+            <span class="pa-ic">🖼️</span>
+            <span data-i18n="ph_upload">Upload from gallery</span>
+          </label>
+        </div>
+        <!-- Camera input (mobile: opens camera directly) -->
+        <input type="file" id="ph-camera-input" accept="image/*" capture="environment" style="display:none" onchange="handlePhotoUpload(this)"/>
+        <!-- File input (gallery / file picker) -->
         <input type="file" id="ph-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(this)"/>
+      </div>
       </div>
       <div class="fl-end">
         <button type="button" class="btn bg" onclick="switchFormPage(1,document.querySelector('.ftab'))">← <span data-i18n="btn_back">Back</span></button>
@@ -1080,7 +1106,8 @@ textarea{resize:vertical;min-height:72px;}
     <div id="mo-i-b"></div>
     <div style="display:flex;gap:7px;margin-top:16px;padding-top:12px;border-top:1px solid var(--brd)">
       <button class="btn bmail bs" onclick="emailFromModal()" data-i18n="btn_email">📧 Generate email</button>
-      <button class="btn bd bs" style="margin-left:auto" onclick="delI()" data-i18n="btn_del">Delete</button>
+      <button class="btn bg bs" onclick="editI()" data-i18n="btn_edit">✏️ Edit</button>
+      <button class="btn bd bs" style="margin-left:auto" onclick="delI()" data-i18n="btn_del">🗑️ Delete</button>
     </div>
   </div>
 </div>
@@ -1205,7 +1232,7 @@ async function ghSave(s) {
   } catch (e) {
     console.error('GH save error:', e);
     setSS('e');
-    toast('⚠️ GitHub sync error — saved locally');
+    toast('⚠️ GitHub sync error — saved locally','warn');
     svLocalAll(s);
   }
 }
@@ -1238,8 +1265,10 @@ async function svRecord(type, record) {
 
 async function rmRecord(type, key) {
   if (!_cache[site]) return;
-  _cache[site][type] = (_cache[site][type] || []).filter(r => (r.id || r.name) !== key);
-  await ghSave(site);
+  // Use == (loose) to handle number/string mismatch on id
+  _cache[site][type] = (_cache[site][type] || []).filter(r => (r.id || r.name) != key);
+  // Save to GitHub in background — don't block UI
+  ghSave(site).catch(e => console.error('rmRecord save error:', e));
 }
 
 function ldS(type, s) {
@@ -1254,7 +1283,7 @@ function svC(k, v) { localStorage.setItem('sqm_cfg_' + k, JSON.stringify(v)); }
 async function manualSync() {
   await ghLoad(site);
   refresh();
-  toast('Synced from GitHub ✓');
+  toast('Synced from GitHub ✓','success');
 }
 
 async function testGHConn() {
@@ -1291,7 +1320,7 @@ async function pushAllToGH() {
     }
   }
   lg.innerHTML += '<strong>Done!</strong>';
-  toast('Pushed to GitHub ✓');
+  toast('Pushed to GitHub ✓','success');
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1319,7 +1348,9 @@ d_color:'Color match',d_missing:'Missing part',d_func:'Functional',d_dim:'Drawin
 d_label:'Wrong label',d_badpkg:'Bad packaging',d_wprod:'Wrong product',d_wqty:'Wrong quantity',d_other_lbl:'Other issues',d_oth:'Other',
 fc_dec:'Final decision',dec_uai:'Use as Is',dec_rw:'Rework',dec_rej:'Rejected',dec_wfd:'Waiting for decision',
 f_uai_qty:'Use as Is qty',f_rw_qty:'Rework qty',f_rej_qty:'Rejected qty',f_wfd_qty:'Waiting qty',
-btn_clr:'Clear',btn_si:'Save inspection',btn_email:'📧 Email',btn_back:'Back',btn_next:'Next',
+btn_clr:'Clear',btn_si:'Save inspection',btn_email:'📧 Email',btn_back:'Back',btn_next:'Next',btn_edit:'✏️ Edit',btn_cancel_edit:'✕ Cancel edit',
+edit_mode:'Edit mode',edit_hint:'Modify the fields and save to update.',
+ph_camera:'Take photo',ph_upload:'Upload from gallery',
 ftab_p1:'Page 1 — Report',ftab_p2:'Page 2 — Photos',ftab_p3:'Page 3 — Drawings',
 fc_photos:'Shipment Inspection Photos',pg_label_2:'Page 2/3',ph_hint:'Add photos from the shipment inspection. Click a photo to enlarge it.',ph_add:'Add photo',ph_caption:'Caption (optional)',
 fc_drawings:'Referenced Images for Inspection',pg_label_3:'Page 3/3',dr_hint:'Attach technical drawings, specifications, or reference images for this product.',dr_add:'Add drawing / reference image',dr_notes:'Drawing notes / dimensions',
@@ -1359,7 +1390,9 @@ d_color:'Correspondance couleur',d_missing:'Pièce manquante',d_func:'Fonctionne
 d_label:"Erreur d'étiquette",d_badpkg:'Emballage inadéquat',d_wprod:'Mauvais produit',d_wqty:'Mauvaise quantité',d_other_lbl:'Autres problèmes',d_oth:'Autre',
 fc_dec:'Décision finale',dec_uai:'Utiliser tel quel',dec_rw:'Retravail',dec_rej:'Rejeté',dec_wfd:'Attente de décision',
 f_uai_qty:'Qté utiliser tel quel',f_rw_qty:'Qté retravail',f_rej_qty:'Qté rejetée',f_wfd_qty:'Qté en attente',
-btn_clr:'Effacer',btn_si:'Enregistrer',btn_email:'📧 Courriel',btn_back:'Retour',btn_next:'Suivant',
+btn_clr:'Effacer',btn_si:'Enregistrer',btn_email:'📧 Courriel',btn_back:'Retour',btn_next:'Suivant',btn_edit:'✏️ Modifier',btn_cancel_edit:'✕ Annuler',
+edit_mode:'Mode édition',edit_hint:"Modifiez les champs et sauvegardez pour mettre à jour.",
+ph_camera:'Prendre une photo',ph_upload:'Choisir depuis la galerie',
 ftab_p1:'Page 1 — Rapport',ftab_p2:'Page 2 — Photos',ftab_p3:'Page 3 — Dessins',
 fc_photos:"Photos d'inspection",pg_label_2:'Page 2/3',ph_hint:"Ajoutez les photos de l'inspection. Cliquez pour agrandir.",ph_add:'Ajouter photo',ph_caption:'Légende (optionnel)',
 fc_drawings:"Images de référence pour l'inspection",pg_label_3:'Page 3/3',dr_hint:"Joignez les dessins techniques, spécifications ou images de référence du produit.",dr_add:'Ajouter dessin / image de référence',dr_notes:'Notes / dimensions',
@@ -1491,34 +1524,291 @@ async function submitI(e){
   e.preventDefault();const dec=document.getElementById('f-dec').value;if(!dec){alert('Please select a final decision');return;}
   const r1rv=+document.getElementById('r1-rv').value||0,r1in=+document.getElementById('r1-in').value||0,r1nc=+document.getElementById('r1-nc').value||0;
   const hasNC=r1nc>0||dec==='rejected'||dec==='rework'||dec==='waiting';
-  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,photos:[..._photos],drawings:[..._drawings],drawingNotes:document.getElementById('f-dr-notes')?.value||'',createdAt:new Date().toISOString()};
-  await svRecord('inspections',rec);toast(t('t_is'));updBadge();resetIF();go('id',document.querySelector('.nav'));
+  // If editing, keep original id and ref; otherwise create new
+  const existing=_editingId?ld('inspections').find(x=>x.id===_editingId):null;
+  const rec={
+    id:existing?existing.id:Date.now(),
+    ref:existing?existing.ref:buildRef(),
+    date:document.getElementById('f-dt').value,
+    dailyN:+document.getElementById('f-dn').value,
+    site:existing?existing.site:site,
+    supplier:document.getElementById('f-sp').value,
+    po:document.getElementById('f-po').value,
+    productNo:document.getElementById('f-pn').value,
+    description:document.getElementById('f-desc').value,
+    delivery:document.getElementById('f-del').value,
+    hu:document.getElementById('f-hu').value,
+    country:document.getElementById('f-cty').value,
+    receptionDate:document.getElementById('f-rdt').value,
+    inspector:document.getElementById('f-ip').value,
+    qtyReceived:r1rv,qtyInspected:r1in,
+    rounds:getRounds(),defects:getDefects(),
+    issues:document.getElementById('f-issues').value,
+    notes:document.getElementById('f-notes').value,
+    decision:dec,
+    qtyUseAsIs:+document.getElementById('f-uai').value||0,
+    qtyRework:+document.getElementById('f-rw').value||0,
+    qtyRejected:+document.getElementById('f-rj').value||0,
+    qtyWaiting:+document.getElementById('f-wfd').value||0,
+    hasNC,
+    photos:[..._photos],drawings:[..._drawings],
+    drawingNotes:document.getElementById('f-dr-notes')?.value||'',
+    createdAt:existing?existing.createdAt:new Date().toISOString(),
+    updatedAt:new Date().toISOString()
+  };
+  await svRecord('inspections',rec);
+  toast(_editingId?(lang==='fr'?'Inspection mise à jour ✓':'Inspection updated ✓'):t('t_is'),'success');
+  updBadge();resetIF();go('id',document.querySelector('.nav'));
 }
-function resetIF(){document.getElementById('iForm').reset();today('f-dt');today('f-rdt');clearDefects();['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');document.getElementById('f-dec').value='';for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}_photos=[];_drawings=[];renderPhotoGrid();renderDrawingList();switchFormPage(1,document.querySelector('.ftab'));updRef();}
+function resetIF(){
+  document.getElementById('iForm').reset();
+  today('f-dt');today('f-rdt');clearDefects();
+  ['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');
+  document.getElementById('f-dec').value='';
+  for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}
+  _photos=[];_drawings=[];renderPhotoGrid();renderDrawingList();
+  _editingId=null;
+  const banner=document.getElementById('edit-banner');if(banner)banner.style.display='none';
+  switchFormPage(1,document.querySelector('.ftab'));updRef();
+}
 function isPass(r){return r.decision==='use-as-is'||(r.decision&&!r.hasNC);}
 function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
-function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
+function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td style="white-space:nowrap"><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button> <button class="btn bg bs" onclick="editIDirect(${r.id})" title="Edit" style="padding:4px 7px">✏️</button> <button class="btn bd bs" onclick="delIDirect(${r.id})" title="Delete" style="padding:4px 7px">🗑️</button></td>`;tb.appendChild(tr);});}
 function decPill(d){const map={'use-as-is':['use-as-is',t('dec_uai')],'rework':['rework',t('dec_rw')],'rejected':['rejected',t('dec_rej')],'waiting':['waiting',t('dec_wfd')]};const[cls,lbl]=map[d]||['pending','—'];return `<span class="pill ${cls}">${lbl}</span>`;}
-let curI=null;
-function openIM(id){curI=id;const r=ld('inspections').find(x=>x.id===id);if(!r)return;document.getElementById('mo-i-t').textContent=r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd><dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd><dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd><dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd><dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd><dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}</dl>`;if(r.rounds?.length){h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th><th style="padding:4px;border-bottom:1px solid var(--brd)">%</th></tr></thead><tbody>${r.rounds.map(rn=>`<tr><td style="padding:4px">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td><td style="padding:4px;text-align:center">${rn.recv??'—'}</td><td style="padding:4px;text-align:center">${rn.inspected}</td><td style="padding:4px;text-align:center">${rn.nonConf}</td><td style="padding:4px;text-align:center">${rn.pct}%</td></tr>`).join('')}</tbody></table></div>`;}
-if(r.defects?.length){h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px"><span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}</div>`).join('')}</div>`;}
-if(r.issues)h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
-if(r.photos?.length){h+=`<div class="mo-s"><h3>📷 ${t('fc_photos')} (${r.photos.length})</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">${r.photos.map((ph,i)=>`<div style="cursor:pointer" onclick="openLightbox('${ph.data}')"><img src="${ph.data}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;border:1px solid var(--brd)"/>${ph.caption?`<div style="font-size:10px;color:var(--muted);text-align:center;margin-top:2px">${ph.caption}</div>`:''}</div>`).join('')}</div></div>`;}
-if(r.drawings?.length){h+=`<div class="mo-s"><h3>📐 ${t('fc_drawings')} (${r.drawings.length})</h3><div style="display:flex;flex-direction:column;gap:6px">${r.drawings.map(dr=>{const isImg=dr.type&&dr.type.startsWith('image/');return `<div style="display:flex;align-items:center;gap:9px;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:8px 10px">${isImg?`<img src="${dr.data}" onclick="openLightbox('${dr.data}')" style="width:52px;height:52px;object-fit:cover;border-radius:4px;border:1px solid var(--brd);cursor:pointer"/>`:`<div style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:24px">📄</div>`}<div><div style="font-size:12px;font-weight:600">${dr.name}</div>${dr.note?`<div style="font-size:11px;color:var(--muted);margin-top:2px">${dr.note}</div>`:''}</div></div>`;}).join('')}</div>${r.drawingNotes?`<p style="font-size:12px;margin-top:8px;padding:8px;background:var(--surf2);border-radius:4px;white-space:pre-line">${r.drawingNotes}</p>`:''}</div>`;}
-document.getElementById('mo-i-b').innerHTML=h;document.getElementById('mo-i').classList.add('open');}
-async function delI(){if(!curI||!confirm(t('btn_del')+'?'))return;await rmRecord('inspections',curI);toast(t('t_del'));cmo('mo-i');renderID();renderIL();updBadge();}
+// Global cache for lightbox access from modal
+let _modalImgs=[];
+
+function openIM(id){
+  curI=id;
+  const r=ld('inspections').find(x=>x.id===id);
+  if(!r)return;
+  _modalImgs=[];
+  document.getElementById('mo-i-t').textContent=r.ref;
+
+  // ── Build text HTML (no base64 in onclick) ──────────────────
+  let h=`<dl class="dl">
+    <dt>${t('c_date')}</dt><dd>${r.date}</dd>
+    <dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd>
+    <dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd>
+    <dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd>
+    <dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd>
+    <dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd>
+    <dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd>
+    <dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd>
+    <dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd>
+    <dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>
+    ${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}
+  </dl>`;
+
+  if(r.rounds?.length){
+    h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr>
+      <th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th>
+      <th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th>
+      <th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th>
+      <th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th>
+      <th style="padding:4px;border-bottom:1px solid var(--brd)">%</th>
+    </tr></thead><tbody>
+    ${r.rounds.map(rn=>`<tr>
+      <td style="padding:4px">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td>
+      <td style="padding:4px;text-align:center">${rn.recv??'—'}</td>
+      <td style="padding:4px;text-align:center">${rn.inspected}</td>
+      <td style="padding:4px;text-align:center">${rn.nonConf}</td>
+      <td style="padding:4px;text-align:center">${rn.pct}%</td>
+    </tr>`).join('')}
+    </tbody></table></div>`;
+  }
+
+  if(r.defects?.length){
+    h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`
+      <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px">
+        <span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}
+      </div>`).join('')}</div>`;
+  }
+  if(r.issues) h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
+
+  // Photos — use index-based IDs, attach handlers after innerHTML set
+  if(r.photos?.length){
+    h+=`<div class="mo-s"><h3>📷 ${t('fc_photos')} (${r.photos.length})</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px" id="mo-ph-grid">
+        ${r.photos.map((ph,i)=>`
+          <div style="cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid var(--brd);" data-ph-idx="${i}">
+            <img src="${ph.data}" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;" data-ph-idx="${i}"/>
+            ${ph.caption?`<div style="font-size:10px;color:var(--muted);text-align:center;padding:3px 5px;background:var(--surf2)">${ph.caption}</div>`:''}
+          </div>`).join('')}
+      </div></div>`;
+    // Cache photos for lightbox
+    r.photos.forEach(ph=>_modalImgs.push(ph.data));
+  }
+
+  // Drawings — use index-based IDs
+  if(r.drawings?.length){
+    h+=`<div class="mo-s"><h3>📐 ${t('fc_drawings')} (${r.drawings.length})</h3>
+      <div style="display:flex;flex-direction:column;gap:7px" id="mo-dr-grid">
+        ${r.drawings.map((dr,i)=>{
+          const isImg=dr.type&&dr.type.startsWith('image/');
+          const imgOffset=r.photos?.length||0;
+          return `<div style="display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r2);padding:10px 12px;${isImg?'cursor:pointer;':''}" ${isImg?`data-dr-idx="${i}" data-img-offset="${imgOffset}"`:''}">
+            ${isImg
+              ? `<img src="${dr.data}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--brd);flex-shrink:0" data-dr-idx="${i}" data-img-offset="${imgOffset}"/>`
+              : `<div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">📄</div>`}
+            <div>
+              <div style="font-size:12px;font-weight:600">${dr.name}</div>
+              ${dr.note?`<div style="font-size:11px;color:var(--muted);margin-top:2px">${dr.note}</div>`:''}
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+      ${r.drawingNotes?`<p style="font-size:12px;margin-top:8px;padding:9px;background:var(--surf2);border-radius:var(--r);white-space:pre-line">${r.drawingNotes}</p>`:''}
+    </div>`;
+    // Cache drawing images for lightbox (after photos)
+    r.drawings.filter(dr=>dr.type&&dr.type.startsWith('image/')).forEach(dr=>_modalImgs.push(dr.data));
+  }
+
+  const body=document.getElementById('mo-i-b');
+  body.innerHTML=h;
+
+  // ── Attach click handlers via DOM (safe for large base64) ─────
+  body.querySelectorAll('[data-ph-idx]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const idx=+el.getAttribute('data-ph-idx');
+      openLightbox(_modalImgs[idx]);
+    });
+  });
+  body.querySelectorAll('[data-dr-idx]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const idx=+el.getAttribute('data-dr-idx');
+      const offset=+(el.getAttribute('data-img-offset')||0);
+      // drawings images are pushed after photos in _modalImgs
+      // find this drawing's position among image-only drawings
+      const r2=ld('inspections').find(x=>x.id===curI);
+      if(!r2)return;
+      const imgDrawings=r2.drawings.filter(d=>d.type&&d.type.startsWith('image/'));
+      const imgIdx=imgDrawings.findIndex((_,ii)=>{
+        // map drawing index to image-only index
+        let imgCount=0;
+        for(let k=0;k<r2.drawings.length;k++){
+          if(r2.drawings[k].type&&r2.drawings[k].type.startsWith('image/')){
+            if(k===idx){break;}
+            imgCount++;
+          }
+        }
+        return ii===imgCount;
+      });
+      openLightbox(_modalImgs[offset+imgIdx]);
+    });
+  });
+
+  document.getElementById('mo-i').classList.add('open');
+}
+async function delI(){
+  if(!curI||!confirm(t('btn_del')+'?'))return;
+  const idToDelete=curI;
+  cmo('mo-i'); // close modal first
+  rmRecord('inspections',idToDelete); // updates cache immediately
+  curI=null;
+  renderID();renderIL();updBadge(); // re-render straight away from updated cache
+  toast(t('t_del'),'warn');
+}
+
+// ── DIRECT DELETE from list (no modal needed) ──────────────────
+async function delIDirect(id){
+  if(!confirm(t('btn_del')+'?'))return;
+  rmRecord('inspections',id); // updates cache immediately
+  renderID();renderIL();updBadge();
+  toast(t('t_del'),'warn');
+}
+
+// ── EDIT from list (shortcut, no modal) ───────────────────────
+function editIDirect(id){
+  curI=id;editI();
+}
+
+// ── EDIT INSPECTION ───────────────────────────────────────────
+let _editingId=null; // track if we're editing an existing record
+
+function editI(){
+  const r=ld('inspections').find(x=>x.id===curI);
+  if(!r)return;
+  cmo('mo-i');
+  _editingId=r.id;
+  loadInspectionIntoForm(r);
+  go('in',document.querySelector('.nav[onclick*="\'in\'"]'));
+  toast(lang==='fr'?'Mode édition — modifiez puis sauvegardez':'Edit mode — modify then save','info');
+}
+
+function loadInspectionIntoForm(r){
+  // Page 1 — basic fields
+  const s=v=>document.getElementById(v);
+  if(s('f-dt'))s('f-dt').value=r.date||'';
+  if(s('f-dn'))s('f-dn').value=r.dailyN||1;
+  if(s('f-sp'))s('f-sp').value=r.supplier||'';
+  if(s('f-po'))s('f-po').value=r.po||'';
+  if(s('f-pn')){s('f-pn').value=r.productNo||'';updRef();}
+  if(s('f-desc'))s('f-desc').value=r.description||'';
+  if(s('f-del'))s('f-del').value=r.delivery||'';
+  if(s('f-hu'))s('f-hu').value=r.hu||'';
+  if(s('f-cty'))s('f-cty').value=r.country||'';
+  if(s('f-rdt'))s('f-rdt').value=r.receptionDate||'';
+  if(s('f-ip'))s('f-ip').value=r.inspector||'';
+  if(s('f-issues'))s('f-issues').value=r.issues||'';
+  if(s('f-notes'))s('f-notes').value=r.notes||'';
+  if(s('f-uai'))s('f-uai').value=r.qtyUseAsIs||0;
+  if(s('f-rw'))s('f-rw').value=r.qtyRework||0;
+  if(s('f-rj'))s('f-rj').value=r.qtyRejected||0;
+  if(s('f-wfd'))s('f-wfd').value=r.qtyWaiting||0;
+  // Rounds
+  if(r.rounds?.length){
+    r.rounds.forEach(rn=>{
+      const n=rn.round;
+      if(n===1&&s('r1-rv'))s('r1-rv').value=rn.recv??r.qtyReceived??0;
+      if(s(`r${n}-in`))s(`r${n}-in`).value=rn.inspected||0;
+      if(s(`r${n}-nc`))s(`r${n}-nc`).value=rn.nonConf||0;
+      calcR(n);
+    });
+  } else {
+    if(s('r1-rv'))s('r1-rv').value=r.qtyReceived||0;
+    if(s('r1-in'))s('r1-in').value=r.qtyInspected||0;
+    calcR(1);
+  }
+  // Defects
+  clearDefects();
+  r.defects?.forEach(d=>{
+    const el=document.querySelector(`.di input[data-key="${d.key}"]`);
+    if(el){
+      el.checked=true;
+      el.closest('.di').classList.add('chk');
+      const qty=el.closest('.di').querySelector('.di-qty');
+      if(qty&&d.qty!=null)qty.value=d.qty;
+    } else if(d.key==='other'&&s('f-other')){
+      s('f-other').value=d.label||'';
+    }
+  });
+  // Decision
+  if(r.decision)setDec(r.decision);
+  // Photos & drawings
+  _photos=[...(r.photos||[])];
+  _drawings=[...(r.drawings||[])];
+  renderPhotoGrid();
+  renderDrawingList();
+  if(s('f-dr-notes'))s('f-dr-notes').value=r.drawingNotes||'';
+  // Show edit banner
+  const banner=document.getElementById('edit-banner');
+  if(banner){banner.style.display='flex';banner.querySelector('.edit-ref').textContent=r.ref;}
+  updRef();
+  switchFormPage(1,document.querySelector('.ftab'));
+}
 let emailData=null;
 function buildEmail(r){const r1=r.rounds?.[0]||{inspected:r.qtyInspected||0,nonConf:0};const pctNC=r1.inspected>0?Math.round(r1.nonConf/r1.inspected*100):0;const issues=r.issues||r.defects?.map((d,i)=>`${i+1}- ${d.label}${d.qty?` (qty: ${d.qty})`:''}`).join('\n')||'None';const body=`Hello All,\nHere's my inspection report for the ${r.description||r.productNo||'product'}.\n\nGeneral Shipment Info\nP.O. #\t\t${r.po||'—'}\nProduct #\t\t${r.productNo||'—'}\nSupplier name\t\t${r.supplier||'—'}\nInspection Date\t\t${r.date}\nQty received\t\t${r.qtyReceived}\n\nIssues:\n${issues}\n\nProduct\tQty\t%\nInspected\t${r1.inspected}\t${r.qtyReceived>0?Math.round(r1.inspected/r.qtyReceived*100):'0'}%\nNon-conformance\t${r1.nonConf}\t${pctNC}%\tUse as Is\tRework\tRejected\tWaiting for decision\n\t${r.qtyUseAsIs||''}\t${r.qtyRework||''}\t${r.qtyRejected||''}\t${r.qtyWaiting||''}\n\nPlease see attached file for details.\n\nBest Regards,\n${r.inspector||''}\n\nInspection Report # ${r.ref}`;return{subject:`Inspection report ${r.productNo||r.ref}`,body};}
 function previewEmail(){const dec=document.getElementById('f-dec').value;if(!dec){alert('Fill in the form first');return;}const tmp={ref:buildRef(),date:document.getElementById('f-dt').value,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,qtyReceived:+document.getElementById('r1-rv').value||0,qtyInspected:+document.getElementById('r1-in').value||0,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,inspector:document.getElementById('f-ip').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0};showEmailModal(tmp);}
 function emailFromModal(){if(!curI)return;const r=ld('inspections').find(x=>x.id===curI);if(r)showEmailModal(r);}
 function showEmailModal(r){emailData=buildEmail(r);document.getElementById('mo-email-b').innerHTML=`<div style="margin-bottom:10px"><strong>Subject:</strong> ${emailData.subject}</div><div class="email-pre">${emailData.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br/>')}</div>`;document.getElementById('mo-email').classList.add('open');}
-function copyEmail(){const txt=`Subject: ${emailData.subject}\n\n${emailData.body}`;if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓'));}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓');}}
+function copyEmail(){const txt=`Subject: ${emailData.subject}\n\n${emailData.body}`;if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓','success'));}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓','success');}}
 function openOutlook(){window.location.href=`mailto:?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;}
 const caps=[];
 function addCapa(){const txt=document.getElementById('capa-t').value.trim();if(!txt)return;caps.push({text:txt,due:document.getElementById('capa-d').value,done:false});renderCaps();document.getElementById('capa-t').value='';}
 function renderCaps(){const el=document.getElementById('capa-new');if(!el)return;el.innerHTML='';caps.forEach((c,i)=>{const d=document.createElement('div');d.style.cssText='background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:8px 10px;display:flex;align-items:flex-start;gap:7px;';d.innerHTML=`<input type="checkbox" ${c.done?'checked':''} style="width:auto;margin-top:2px;accent-color:var(--grn)" onchange="caps[${i}].done=this.checked;renderCaps()"/><div style="flex:1;font-size:13px">${c.text}<div style="font-size:11px;color:var(--muted)">${c.due||''}</div></div><button type="button" class="btn bd bs" onclick="caps.splice(${i},1);renderCaps()">✕</button>`;el.appendChild(d);});}
 function genNCRRef(){const arr=ld('ncrs');return `NC-${site}-${String(arr.length+1).padStart(4,'0')}`;}
-async function submitN(e){e.preventDefault();const rec={id:Date.now(),ref:genNCRRef(),date:document.getElementById('n-dt').value,site,supplier:document.getElementById('n-sp').value,po:document.getElementById('n-po').value,productNo:document.getElementById('n-pn').value,material:document.getElementById('n-mt').value,severity:document.getElementById('n-sv').value,defect:document.getElementById('n-df').value,description:document.getElementById('n-dc').value,inspRef:document.getElementById('n-ir').value,rcaCategory:document.getElementById('n-rc').value,rcaDetail:document.getElementById('n-rd').value,capa:[...caps],responsible:document.getElementById('n-rp').value,dueDate:document.getElementById('n-du').value,status:'open',history:[{date:new Date().toISOString(),action:'Created'}],createdAt:new Date().toISOString()};await svRecord('ncrs',rec);caps.length=0;renderCaps();toast(t('t_ns'));updBadge();resetNF();go('nd',null);}
+async function submitN(e){e.preventDefault();const rec={id:Date.now(),ref:genNCRRef(),date:document.getElementById('n-dt').value,site,supplier:document.getElementById('n-sp').value,po:document.getElementById('n-po').value,productNo:document.getElementById('n-pn').value,material:document.getElementById('n-mt').value,severity:document.getElementById('n-sv').value,defect:document.getElementById('n-df').value,description:document.getElementById('n-dc').value,inspRef:document.getElementById('n-ir').value,rcaCategory:document.getElementById('n-rc').value,rcaDetail:document.getElementById('n-rd').value,capa:[...caps],responsible:document.getElementById('n-rp').value,dueDate:document.getElementById('n-du').value,status:'open',history:[{date:new Date().toISOString(),action:'Created'}],createdAt:new Date().toISOString()};await svRecord('ncrs',rec);caps.length=0;renderCaps();toast(t('t_ns'),'success');updBadge();resetNF();go('nd',null);}
 function resetNF(){document.getElementById('nForm').reset();caps.length=0;renderCaps();today('n-dt');}
 function renderND(){const data=ld('ncrs');const op=data.filter(r=>r.status==='open').length,ip=data.filter(r=>r.status==='in-progress').length,cl=data.filter(r=>r.status==='closed').length;document.getElementById('nd-op').textContent=op;document.getElementById('nd-ip').textContent=ip;document.getElementById('nd-cl').textContent=cl;const oA=data.filter(r=>r.status!=='closed');document.getElementById('nd-av').textContent=oA.length?Math.round(oA.reduce((s,r)=>s+Math.floor((Date.now()-new Date(r.createdAt))/86400000),0)/oA.length):'—';document.getElementById('nd-title').textContent=(lang==='fr'?'Tableau de bord NC — ':'NCR Dashboard — ')+site;const tb=document.getElementById('nd-tb');tb.innerHTML='';document.getElementById('nd-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>tb.appendChild(mkNR(r)));}
 function renderNL(){const srch=(document.getElementById('nl-s')?.value||'').toLowerCase();const st=document.getElementById('nl-st')?.value||'';const data=ld('ncrs').filter(r=>(!st||r.status===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('nl-tb');tb.innerHTML='';document.getElementById('nl-emp').style.display=data.length?'none':'block';data.forEach(r=>tb.appendChild(mkNR(r)));}
@@ -1526,13 +1816,13 @@ function mkNR(r){const tr=document.createElement('tr');tr.innerHTML=`<td class="
 function svP(s){const c={critical:'rejected',major:'rework',minor:'pending'};const l={critical:t('sv_c'),major:t('sv_m'),minor:t('sv_n')};return `<span class="pill ${c[s]||'pending'}">${l[s]||s}</span>`;}
 let curN=null;
 function openNM(id){curN=id;const r=ld('ncrs').find(x=>x.id===id);if(!r)return;document.getElementById('mo-n-t').textContent='NCR — '+r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('f_def')}</dt><dd>${r.defect||'—'}</dd><dt>${t('f_sev')}</dt><dd>${svP(r.severity)}</dd><dt>${t('c_sta')}</dt><dd>${pill(r.status)}</dd><dt>${t('f_due')}</dt><dd>${r.dueDate||'—'}</dd><dt>${t('f_resp')}</dt><dd>${r.responsible||'—'}</dd><dt>${t('f_desc')}</dt><dd>${r.description||'—'}</dd></dl>`;if(r.rcaDetail||r.rcaCategory)h+=`<div class="mo-s"><h3>${t('fc_rca')}</h3><dl class="dl"><dt>${t('f_rcat')}</dt><dd>${r.rcaCategory||'—'}</dd><dt>${t('f_rdet')}</dt><dd>${r.rcaDetail||'—'}</dd></dl></div>`;if(r.capa?.length){h+=`<div class="mo-s"><h3>${t('fc_capa')}</h3>`;r.capa.forEach(c=>{h+=`<div style="padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px;display:flex;gap:8px"><span>${c.done?'✅':'⬜'}</span><span>${c.text}${c.due?` (${c.due})`:''}</span></div>`;});h+=`</div>`;}if(r.history?.length){h+=`<div class="mo-s"><h3>History</h3><div class="tl">`;r.history.forEach(hh=>{const cl=hh.action.includes('Closed')?'g':hh.action.includes('progress')?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">●</div><div><div style="font-size:13px;font-weight:500">${hh.action}</div><div style="font-size:11px;color:var(--muted)">${new Date(hh.date).toLocaleString()}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-n-b').innerHTML=h;document.getElementById('mo-n').classList.add('open');}
-async function setNS(st){if(!curN)return;const arr=ld('ncrs');const i=arr.findIndex(r=>r.id===curN);if(i<0)return;arr[i].status=st;if(st==='closed')arr[i].closedDate=new Date().toISOString();arr[i].history.push({date:new Date().toISOString(),action:st==='closed'?'Closed':'In progress'});await svRecord('ncrs',arr[i]);toast(t('t_ns'));cmo('mo-n');renderND();renderNL();updBadge();}
-async function delN(){if(!curN||!confirm(t('btn_del')+'?'))return;await rmRecord('ncrs',curN);toast(t('t_del'));cmo('mo-n');renderND();renderNL();updBadge();}
+async function setNS(st){if(!curN)return;const arr=ld('ncrs');const i=arr.findIndex(r=>r.id===curN);if(i<0)return;arr[i].status=st;if(st==='closed')arr[i].closedDate=new Date().toISOString();arr[i].history.push({date:new Date().toISOString(),action:st==='closed'?'Closed':'In progress'});await svRecord('ncrs',arr[i]);toast(t('t_ns'),'success');cmo('mo-n');renderND();renderNL();updBadge();}
+async function delN(){if(!curN||!confirm(t('btn_del')+'?'))return;const _nid=curN;cmo('mo-n');rmRecord('ncrs',_nid);curN=null;renderND();renderNL();updBadge();toast(t('t_del'),'warn');}
 function updBadge(){const n=ld('ncrs').filter(r=>r.status==='open').length;const b=document.getElementById('nbadge');b.style.display=n>0?'inline':'none';b.textContent=n;}
-async function submitS(e){e.preventDefault();const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};await svRecord('suppliers',rec);toast(t('t_ss'));resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);}
+async function submitS(e){e.preventDefault();const rec={name:document.getElementById('s-nm').value.trim(),code:document.getElementById('s-cd').value.trim(),country:document.getElementById('s-co').value.trim(),contact:document.getElementById('s-cn').value.trim(),email:document.getElementById('s-em').value.trim(),products:document.getElementById('s-pr').value.trim(),status:document.getElementById('s-st').value,certs:document.getElementById('s-cr').value.trim(),auditDate:document.getElementById('s-ad').value,auditScore:document.getElementById('s-as').value,notes:document.getElementById('s-nt').value.trim(),createdAt:new Date().toISOString()};await svRecord('suppliers',rec);toast(t('t_ss'),'success');resetSF();popSup('f-sp');popSup('n-sp');go('sl',null);}
 function resetSF(){document.getElementById('sForm').reset();}
 function renderSL(){const data=ld('suppliers');const tb=document.getElementById('sl-tb');tb.innerHTML='';document.getElementById('sl-emp').style.display=data.length?'none':'block';data.forEach(s=>{const sc=calcSc(s.name,'site');const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const tr=document.createElement('tr');tr.innerHTML=`<td><strong>${s.name}</strong>${s.country?`<div style="font-size:11px;color:var(--muted)">${s.country}</div>`:''}</td><td class="mono">${s.code||'—'}</td><td>${s.contact||'—'}</td><td>${certs||'—'}</td><td>${pill(s.status)}</td><td>${sc?`<div class="sg ${sc.grade}" style="width:28px;height:28px;font-size:12px">${sc.grade}</div>`:'-'}</td><td><button class="btn bg bs" onclick="openSM('${s.name.replace(/'/g,"\\'")}')">View</button> <button class="btn bd bs" onclick="delS('${s.name.replace(/'/g,"\\'")}')">Del</button></td>`;tb.appendChild(tr);});}
-async function delS(nm){if(!confirm(t('btn_del')+'?'))return;await rmRecord('suppliers',nm);renderSL();popSup('f-sp');popSup('n-sp');toast(t('t_del'));}
+async function delS(nm){if(!confirm(t('btn_del')+'?'))return;rmRecord('suppliers',nm);renderSL();popSup('f-sp');popSup('n-sp');toast(t('t_del'),'warn');}
 function openSM(nm){const s=ld('suppliers').find(x=>x.name===nm);if(!s)return;const sc=calcSc(nm,'site');const ncrs=ld('ncrs').filter(r=>r.supplier===nm);const insps=ld('inspections').filter(r=>r.supplier===nm);const certs=(s.certs||'').split(',').filter(Boolean).map(c=>`<span class="cert">${c.trim()}</span>`).join(' ');const stL={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl')};document.getElementById('mo-s-t').textContent=s.name;let h=`<div style="display:flex;align-items:center;gap:13px;margin-bottom:14px"><div class="scc-av" style="width:44px;height:44px;font-size:16px">${s.name.slice(0,2).toUpperCase()}</div><div><div style="font-size:16px;font-weight:600">${s.name}</div><div style="font-size:12px;color:var(--muted)">${s.code||''} ${s.country?'· '+s.country:''}</div><span class="pill ${s.status}" style="margin-top:3px;display:inline-flex">${stL[s.status]||s.status}</span></div>${sc?`<div class="sg ${sc.grade}" style="margin-left:auto;width:46px;height:46px;font-size:19px">${sc.grade}</div>`:''}</div><dl class="dl"><dt>${t('f_sct')}</dt><dd>${s.contact||'—'}</dd><dt>${t('f_sem')}</dt><dd>${s.email||'—'}</dd><dt>${t('f_spr')}</dt><dd>${s.products||'—'}</dd><dt>${t('f_crt')}</dt><dd>${certs||'—'}</dd><dt>${t('f_adt')}</dt><dd>${s.auditDate||'—'}</dd><dt>${t('f_asc')}</dt><dd>${s.auditScore?s.auditScore+'%':'—'}</dd></dl><div class="mo-s"><h3>Stats — ${site}</h3><div style="display:flex;gap:18px;font-size:13px"><div><div style="color:var(--muted);font-size:11px">Inspections</div><div style="font-size:19px;font-weight:600">${insps.length}</div></div><div><div style="color:var(--muted);font-size:11px">NCRs</div><div style="font-size:19px;font-weight:600;color:var(--red)">${ncrs.length}</div></div>${sc?`<div><div style="color:var(--muted);font-size:11px">Score</div><div style="font-size:19px;font-weight:600">${sc.composite}/100</div></div>`:''}</div></div>`;if(ncrs.length){h+=`<div class="mo-s"><h3>NCRs</h3><div class="tl">`;ncrs.slice(0,4).forEach(r=>{const cl=r.status==='closed'?'g':r.status==='in-progress'?'a':'r';h+=`<div class="tli"><div class="tld ${cl}">⚠</div><div><div style="font-size:13px;font-weight:500">${r.ref} — ${r.defect||'—'}</div><div style="font-size:11px;color:var(--muted)">${r.date} · ${pill(r.status)}</div></div></div>`;});h+=`</div></div>`;}document.getElementById('mo-s-b').innerHTML=h;document.getElementById('mo-s').classList.add('open');}
 function getW(){return ldC('weights',{ac:40,pm:25,nc:20,au:15});}
 function getTH(){return ldC('thresholds',{A:90,B:75,C:60});}
@@ -1544,13 +1834,20 @@ function openScM(nm){const s=calcSc(nm,'all');if(!s)return;const insps=(['QS','N
 function renderRK(){const scores=allScores('all').sort((a,b)=>b.composite-a.composite);const tb=document.getElementById('rk-tb');tb.innerHTML='';document.getElementById('rk-emp').style.display=scores.length?'none':'block';scores.forEach((s,i)=>{const m=i===0?'🥇':i===1?'🥈':i===2?'🥉':'#'+(i+1);const bc=s.grade==='A'?'var(--grn)':s.grade==='B'?'var(--blu)':s.grade==='C'?'var(--amb)':'var(--red)';const tr=document.createElement('tr');tr.innerHTML=`<td>${m}</td><td><strong>${s.name}</strong></td><td>${s.site}</td><td style="color:${s.acc>=95?'var(--grn)':s.acc>=80?'var(--amb)':'var(--red)'}">${s.acc}%</td><td class="mono">${s.ppm.toLocaleString()}</td><td style="color:${s.oN>0?'var(--red)':'var(--tx)'}">${s.oN}</td><td>${s.aS}%</td><td><div style="display:flex;align-items:center;gap:5px"><div class="sb-bg" style="width:75px;display:inline-block"><div class="sb-fill" style="width:${s.composite}%;background:${bc}"></div></div><span style="font-size:12px">${s.composite}</span></div></td><td><span class="pill ${s.grade}">${s.grade}</span></td>`;tb.appendChild(tr);});}
 function loadWT(){const w=getW();document.getElementById('w-ac').value=w.ac;document.getElementById('w-pm').value=w.pm;document.getElementById('w-nc').value=w.nc;document.getElementById('w-au').value=w.au;const th=getTH();document.getElementById('t-A').value=th.A;document.getElementById('t-B').value=th.B;document.getElementById('t-C').value=th.C;updWT();}
 function updWT(){const tot=['w-ac','w-pm','w-nc','w-au'].reduce((s,id)=>{const el=document.getElementById(id);return s+(el?+el.value:0);},0);const el=document.getElementById('w-tot');if(!el)return;el.textContent=tot+'%';el.style.color=tot===100?'var(--grn)':'var(--red)';}
-function saveWT(){const w={ac:+document.getElementById('w-ac').value,pm:+document.getElementById('w-pm').value,nc:+document.getElementById('w-nc').value,au:+document.getElementById('w-au').value};if(w.ac+w.pm+w.nc+w.au!==100){alert('Must total 100%');return;}svC('weights',w);toast(t('t_ws'));}
-function saveTH(){svC('thresholds',{A:+document.getElementById('t-A').value,B:+document.getElementById('t-B').value,C:+document.getElementById('t-C').value});toast(t('t_ws'));}
-function exportAll(){const data={};['QS','NL','QM'].forEach(s=>{data[`inspections_${s}`]=ldS('inspections',s);data[`ncrs_${s}`]=ldS('ncrs',s);data[`suppliers_${s}`]=ldS('suppliers',s);});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=`supplierq_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();toast(t('t_ex'));}
-async function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);for(const s of['QS','NL','QM']){if(!_cache[s])_cache[s]={inspections:[],ncrs:[],suppliers:[]};if(data[`inspections_${s}`])_cache[s].inspections=data[`inspections_${s}`];if(data[`ncrs_${s}`])_cache[s].ncrs=data[`ncrs_${s}`];if(data[`suppliers_${s}`])_cache[s].suppliers=data[`suppliers_${s}`];await ghSave(s);}refresh();updBadge();toast(t('t_im'));}catch(err){toast('Import error: '+err.message);}};reader.readAsText(file);e.target.value='';}
+function saveWT(){const w={ac:+document.getElementById('w-ac').value,pm:+document.getElementById('w-pm').value,nc:+document.getElementById('w-nc').value,au:+document.getElementById('w-au').value};if(w.ac+w.pm+w.nc+w.au!==100){alert('Must total 100%');return;}svC('weights',w);toast(t('t_ws'),'success');}
+function saveTH(){svC('thresholds',{A:+document.getElementById('t-A').value,B:+document.getElementById('t-B').value,C:+document.getElementById('t-C').value});toast(t('t_ws'),'success');}
+function exportAll(){const data={};['QS','NL','QM'].forEach(s=>{data[`inspections_${s}`]=ldS('inspections',s);data[`ncrs_${s}`]=ldS('ncrs',s);data[`suppliers_${s}`]=ldS('suppliers',s);});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download=`supplierq_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();toast(t('t_ex'),'success');}
+async function importData(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async ev=>{try{const data=JSON.parse(ev.target.result);for(const s of['QS','NL','QM']){if(!_cache[s])_cache[s]={inspections:[],ncrs:[],suppliers:[]};if(data[`inspections_${s}`])_cache[s].inspections=data[`inspections_${s}`];if(data[`ncrs_${s}`])_cache[s].ncrs=data[`ncrs_${s}`];if(data[`suppliers_${s}`])_cache[s].suppliers=data[`suppliers_${s}`];await ghSave(s);}refresh();updBadge();toast(t('t_im'),'success');}catch(err){toast('Import error: '+err.message,'error');}};reader.readAsText(file);e.target.value='';}
 function pill(s){const l={approved:t('st_ap'),conditional:t('st_co'),blocked:t('st_bl'),open:t('s_op'),'in-progress':t('s_ip'),closed:t('s_cl'),A:'A',B:'B',C:'C',D:'D',pending:'—'};return `<span class="pill ${s}">${l[s]||s}</span>`;}
 function cmo(id,e){if(!e||e.target===document.getElementById(id))document.getElementById(id).classList.remove('open');}
-function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2400);}
+function toast(msg,type='success'){
+  const el=document.getElementById('toast');
+  const icons={success:'✅',error:'❌',info:'ℹ️',warn:'⚠️'};
+  el.innerHTML=`<span>${icons[type]||'✅'}</span><span>${msg}</span>`;
+  el.className='show t-'+type;
+  clearTimeout(el._t);
+  el._t=setTimeout(()=>el.className='',3000);
+}
 
 // INIT — load all 3 sites on startup
 (async()=>{
