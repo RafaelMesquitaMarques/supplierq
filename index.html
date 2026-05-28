@@ -601,12 +601,30 @@ async function ghLoad(site){
 async function ghSave(site){
   const path = `data/${site}.json`;
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(_cache[site],null,2))));
-  const body = {message:`Update ${site} data`,content};
-  if(_shas[path]) body.sha = _shas[path];
-  const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
-    {method:'PUT',headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},
-     body:JSON.stringify(body)});
-  if(!r.ok) throw new Error(await r.text());
+
+  async function tryPut(sha){
+    const body = {message:`Update ${site} data`, content};
+    if(sha) body.sha = sha;
+    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
+      {method:'PUT', headers:{Authorization:`token ${GH_TOKEN}`, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json'},
+       body:JSON.stringify(body)});
+    return r;
+  }
+
+  let r = await tryPut(_shas[path]);
+
+  // SHA conflict (409/422) — fetch latest SHA and retry once
+  if(r.status===409 || r.status===422){
+    const check = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
+      {headers:{Authorization:`token ${GH_TOKEN}`, Accept:'application/vnd.github.v3+json'}});
+    if(check.ok){
+      const d = await check.json();
+      _shas[path] = d.sha;
+      r = await tryPut(d.sha);
+    }
+  }
+
+  if(!r.ok) throw new Error(`ghSave ${site}: HTTP ${r.status}`);
   const d = await r.json();
   _shas[path] = d.content.sha;
 }
@@ -3103,18 +3121,34 @@ function App(){
     showToast('Exported ✓','success');
   }
 
-  function importData(e){
+  async function importData(e){
     const f=e.target.files[0]; if(!f) return;
     const reader=new FileReader();
-    reader.onload=ev=>{
+    reader.onload=async ev=>{
       try{
         const d=JSON.parse(ev.target.result);
-        SITES.forEach(s=>{ if(d[s]) _cache[s]=d[s]; });
-        Promise.all(SITES.map(s=>ghSave(s))).catch(console.error);
-        setTick(k=>k+1); showToast('Imported ✓','success');
-      }catch{ showToast('Import error','error'); }
+        // Load current SHAs from GitHub first to avoid conflicts
+        showToast(lang==='fr'?'Import en cours…':'Importing…','info');
+        await Promise.all(SITES.map(async s=>{
+          if(d[s]){
+            // Refresh SHA before saving
+            try{
+              const check = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/data/${s}.json`,
+                {headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json'}});
+              if(check.ok){ const j=await check.json(); _shas[`data/${s}.json`]=j.sha; }
+            }catch{}
+            _cache[s]={..._cache[s],...d[s],auditLog:_cache[s]?.auditLog||[]};
+            await ghSave(s);
+          }
+        }));
+        setTick(k=>k+1);
+        showToast(lang==='fr'?'Importé et sauvegardé ✓':'Imported & saved ✓','success');
+      }catch(err){
+        showToast(`Import error: ${err.message}`,'error');
+      }
     };
     reader.readAsText(f);
+    e.target.value='';
   }
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
