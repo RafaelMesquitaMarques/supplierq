@@ -1281,11 +1281,20 @@ td,th{white-space:nowrap;}
 <div class="mo" id="mo-email" onclick="cmo('mo-email',event)">
   <div class="mo-box" onclick="event.stopPropagation()">
     <div class="mo-h"><h2>📧 <span data-i18n="email_preview">Email preview</span></h2><button class="mo-x" onclick="cmo('mo-email')">✕</button></div>
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt=""/>
+    <div id="mo-email-b"></div>
+    <div style="display:flex;gap:8px;margin-top:16px;padding-top:12px;border-top:1px solid var(--brd)">
+      <button class="btn bp bs" onclick="copyEmail()" data-i18n="btn_copy_email">📋 Copy text</button>
+      <button class="btn bg bs" onclick="cmo('mo-email')" data-i18n="btn_close">Close</button>
+    </div>
+  </div>
 </div>
+
+<!-- LIGHTBOX — must be outside all modals -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="event.stopPropagation();closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()"/>
+</div>
+
 <script>
 // ════════════════════════════════════════════════════════════════
 // SUPPLIERQ v4 — GitHub as database
@@ -1992,6 +2001,7 @@ function buildEmail(r){const r1=r.rounds?.[0]||{inspected:r.qtyInspected||0,nonC
 function previewEmail(){const dec=document.getElementById('f-dec').value;if(!dec){alert('Fill in the form first');return;}const tmp={ref:buildRef(),date:document.getElementById('f-dt').value,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,qtyReceived:+document.getElementById('r1-rv').value||0,qtyInspected:+document.getElementById('r1-in').value||0,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,inspector:document.getElementById('f-ip').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0};showEmailModal(tmp);}
 function emailFromModal(){if(!curI)return;const r=ld('inspections').find(x=>x.id===curI);if(r)showEmailModal(r);}
 function showEmailModal(r){emailData=buildEmail(r);document.getElementById('mo-email-b').innerHTML=`<div style="margin-bottom:10px"><strong>Subject:</strong> ${emailData.subject}</div><div class="email-pre">${emailData.body.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br/>')}</div>`;document.getElementById('mo-email').classList.add('open');}
+function copyEmail(){if(!emailData)return;navigator.clipboard.writeText(emailData.subject+'\n\n'+emailData.body).then(()=>toast('Copied ✓','success')).catch(()=>toast('Copy failed','error'));}
 function copyEmail(){const txt=`Subject: ${emailData.subject}\n\n${emailData.body}`;if(navigator.clipboard){navigator.clipboard.writeText(txt).then(()=>toast('Copied ✓','success'));}else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('Copied ✓','success');}}
 function openOutlook(){window.location.href=`mailto:?subject=${encodeURIComponent(emailData.subject)}&body=${encodeURIComponent(emailData.body)}`;}
 const caps=[];
