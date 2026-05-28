@@ -422,6 +422,24 @@ textarea{resize:vertical;min-height:72px;}
 .tl-dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--brd);background:var(--surf);flex-shrink:0;font-size:9px;margin-top:2px;display:flex;align-items:center;justify-content:center;}
 
 /* ─── MOBILE ─────────────────────────────────────── */
+/* ─── USER MANAGEMENT ────────────────────────────── */
+.login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:1000;}
+.login-box{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r3);padding:40px 36px;width:400px;max-width:94vw;box-shadow:var(--sh3);}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:28px;}
+.login-logo-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--grn),var(--grn-dk));display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;}
+.login-error{background:var(--red-l);border:1px solid var(--red-b);color:var(--red);padding:9px 12px;border-radius:var(--r);font-size:13px;margin-bottom:14px;}
+.user-card{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r2);padding:14px 16px;display:flex;align-items:center;gap:12px;transition:box-shadow .15s;margin-bottom:10px;}
+.user-card:hover{box-shadow:var(--sh2);}
+.user-avatar-lg{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.role-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.04em;}
+.role-admin{background:var(--pur-l);color:var(--pur);}
+.role-manager{background:var(--blu-l);color:var(--blu);}
+.role-inspector{background:var(--grn-l);color:var(--grn);}
+.site-tag{background:var(--surf3);border:1px solid var(--brd);color:var(--tx2);font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin-right:4px;}
+.checkbox-item{display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-size:13px;padding:5px 10px;border:1px solid var(--brd);border-radius:var(--r);background:var(--surf2);transition:all .12s;margin-right:6px;margin-bottom:6px;}
+.checkbox-item:hover{border-color:var(--grn-b);}
+.checkbox-item.checked{border-color:var(--grn-b);background:var(--grn-l);color:var(--grn);font-weight:500;}
+/* ─── BOTTOM NAV ─────────────────────────────────── */
 .bottom-nav{display:none;}
 @media(max-width:768px){
   .sidebar{display:none;}
@@ -580,6 +598,53 @@ async function ghSave(site){
 
 function getData(site, type){ return (_cache[site]||{})[type]||[]; }
 function getAllData(type){ return SITES.flatMap(s=>getData(s,type)); }
+
+// ── USERS (stored in data/users.json) ─────────────
+const USERS_PATH = 'data/users.json';
+let _usersSha = null;
+
+const DEFAULT_USERS = [
+  {id:1, name:'Admin', email:'admin@foliot.com',
+   passwordHash:'8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', // admin
+   role:'admin', sites:['QS','NL','QM'], active:true, createdAt:new Date().toISOString()},
+];
+
+async function loadUsers(){
+  try{
+    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${USERS_PATH}`,
+      {headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json'}});
+    if(!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    _usersSha = d.sha;
+    return JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
+  }catch{
+    return DEFAULT_USERS;
+  }
+}
+
+async function saveUsers(users){
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(users,null,2))));
+  const body = {message:'Update users',content};
+  if(_usersSha) body.sha = _usersSha;
+  try{
+    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${USERS_PATH}`,
+      {method:'PUT',headers:{Authorization:`token ${GH_TOKEN}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},
+       body:JSON.stringify(body)});
+    const d = await r.json();
+    _usersSha = d.content?.sha;
+  }catch(e){ console.error('saveUsers error',e); }
+}
+
+async function hashPassword(pwd){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pwd));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function avatarColor(name){
+  const colors=['#0F6B3F','#1D4ED8','#6D28D9','#B45309','#C42B1C','#0E7490'];
+  let h=0; for(let c of (name||'?')) h=(h*31+c.charCodeAt(0))%colors.length;
+  return colors[Math.abs(h)];
+}
 
 async function saveRecord(site, type, record){
   if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[]};
@@ -1722,6 +1787,189 @@ function EmailModal({record, lang, t, onClose}){
 }
 
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  LOGIN SCREEN
+// ═══════════════════════════════════════════════════════
+function LoginScreen({onLogin, lang, setLang, dark, setDark}){
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(()=>{ loadUsers().then(setUsers); },[]);
+
+  async function handleLogin(e){
+    e.preventDefault();
+    setLoading(true); setError('');
+    try{
+      const hash = await hashPassword(password);
+      const user = users.find(u=>u.email.toLowerCase()===email.toLowerCase() && u.passwordHash===hash && u.active!==false);
+      if(!user){ setError(lang==='fr'?'Email ou mot de passe incorrect':'Incorrect email or password'); setLoading(false); return; }
+      onLogin(user);
+    }catch{ setError('Error'); setLoading(false); }
+  }
+
+  return <div className="login-screen">
+    <div style={{position:'absolute',top:16,right:16,display:'flex',gap:6}}>
+      <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')}>{lang==='en'?'FR':'EN'}</button>
+      <button className="theme-btn" onClick={()=>setDark(d=>!d)}>{dark?'☀️':'🌙'}</button>
+    </div>
+    <div className="login-box">
+      <div className="login-logo">
+        <div className="login-logo-icon">SQ</div>
+        <div>
+          <div style={{fontSize:20,fontWeight:700}}>SupplierQ</div>
+          <div style={{fontSize:11,color:'var(--muted)',textTransform:'uppercase',letterSpacing:'.05em'}}>by Foliot</div>
+        </div>
+      </div>
+      <div style={{fontSize:22,fontWeight:700,marginBottom:4}}>{lang==='fr'?'Connexion':'Sign in'}</div>
+      <div style={{fontSize:13,color:'var(--muted)',marginBottom:24}}>{lang==='fr'?'Accédez à votre espace qualité':'Access your quality workspace'}</div>
+      {error && <div className="login-error">⚠️ {error}</div>}
+      <form onSubmit={handleLogin}>
+        <div className="fg"><label>Email</label>
+          <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="email@foliot.com" required autoFocus/>
+        </div>
+        <div className="fg"><label>{lang==='fr'?'Mot de passe':'Password'}</label>
+          <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required/>
+        </div>
+        <button type="submit" className="btn btn-primary" style={{width:'100%',justifyContent:'center',marginTop:8,padding:'10px'}} disabled={loading}>
+          {loading?(lang==='fr'?'Connexion…':'Signing in…'):(lang==='fr'?'Se connecter':'Sign in')}
+        </button>
+      </form>
+      <div style={{marginTop:20,padding:'12px',background:'var(--surf2)',borderRadius:'var(--r)',fontSize:12,color:'var(--muted)'}}>
+        💡 {lang==='fr'?'Compte admin par défaut:':'Default admin account:'}<br/>
+        <span style={{fontFamily:'var(--fm)'}}>admin@foliot.com</span> / <span style={{fontFamily:'var(--fm)'}}>admin</span>
+      </div>
+    </div>
+  </div>;
+}
+
+// ═══════════════════════════════════════════════════════
+//  USER MANAGEMENT PAGE
+// ═══════════════════════════════════════════════════════
+function UserManagement({lang, currentUser, showToast}){
+  const [users, setUsers] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [editUser, setEditUser] = useState(null);
+  const [form, setForm] = useState({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});
+  const set = (k,v) => setForm(f=>({...f,[k]:v}));
+
+  useEffect(()=>{ loadUsers().then(setUsers); },[]);
+
+  function toggleSite(s){ set('sites', form.sites.includes(s)?form.sites.filter(x=>x!==s):[...form.sites,s]); }
+
+  async function handleSave(e){
+    e.preventDefault();
+    if(!form.name||!form.email){ showToast('Fill all required fields','error'); return; }
+    let hash = editUser?.passwordHash;
+    if(form.password) hash = await hashPassword(form.password);
+    if(!hash){ showToast('Password required for new users','error'); return; }
+    if(!form.sites.length){ showToast(lang==='fr'?'Sélectionnez au moins un site':'Select at least one site','error'); return; }
+    const updated = editUser
+      ? users.map(u=>u.id===editUser.id?{...u,...form,passwordHash:hash,password:undefined}:u)
+      : [...users,{id:Date.now(),name:form.name,email:form.email,passwordHash:hash,role:form.role,sites:form.sites,active:form.active,createdAt:new Date().toISOString()}];
+    setUsers(updated);
+    await saveUsers(updated);
+    showToast(editUser?(lang==='fr'?'Utilisateur mis à jour':'User updated'):(lang==='fr'?'Utilisateur créé':'User created'),'success');
+    setShowForm(false); setEditUser(null);
+    setForm({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});
+  }
+
+  async function toggleActive(user){
+    if(user.id===currentUser.id){ showToast(lang==='fr'?'Vous ne pouvez pas vous désactiver':'Cannot deactivate yourself','error'); return; }
+    const updated = users.map(u=>u.id===user.id?{...u,active:!u.active}:u);
+    setUsers(updated); await saveUsers(updated);
+    showToast(user.active?(lang==='fr'?'Désactivé':'Deactivated'):(lang==='fr'?'Activé':'Activated'),'info');
+  }
+
+  async function deleteUser(user){
+    if(user.id===currentUser.id){ showToast(lang==='fr'?'Impossible de vous supprimer':'Cannot delete yourself','error'); return; }
+    if(!confirm((lang==='fr'?'Supprimer':'Delete')+` ${user.name}?`)) return;
+    const updated = users.filter(u=>u.id!==user.id);
+    setUsers(updated); await saveUsers(updated);
+    showToast(lang==='fr'?'Supprimé':'Deleted','warn');
+  }
+
+  function startEdit(user){ setEditUser(user); setForm({name:user.name,email:user.email,password:'',role:user.role,sites:user.sites||['QS'],active:user.active!==false}); setShowForm(true); }
+
+  const roleLabel = r => r==='admin'?'Admin':r==='manager'?'Manager':'Inspector';
+  const roleClass = r => r==='admin'?'role-admin':r==='manager'?'role-manager':'role-inspector';
+
+  return <div className="page">
+    <div className="page-header">
+      <div><h1>👥 {lang==='fr'?'Gestion des utilisateurs':'User Management'}</h1>
+        <p>{users.length} {lang==='fr'?'utilisateur(s)':'user(s)'}</p></div>
+      <button className="btn btn-primary" onClick={()=>{setShowForm(true);setEditUser(null);setForm({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});}}>
+        + {lang==='fr'?'Nouvel utilisateur':'New user'}
+      </button>
+    </div>
+
+    {showForm && <div className="form-card" style={{marginBottom:20,border:'2px solid var(--grn-b)'}}>
+      <div className="form-card-title">{editUser?(lang==='fr'?'Modifier utilisateur':'Edit user'):(lang==='fr'?'Nouvel utilisateur':'New user')}</div>
+      <form onSubmit={handleSave}>
+        <div className="grid2">
+          <div className="fg"><label>{lang==='fr'?'Nom complet':'Full name'} *</label>
+            <input type="text" value={form.name} onChange={e=>set('name',e.target.value)} required placeholder="Rafael Marques"/></div>
+          <div className="fg"><label>Email *</label>
+            <input type="email" value={form.email} onChange={e=>set('email',e.target.value)} required placeholder="rafael@foliot.com"/></div>
+        </div>
+        <div className="grid2">
+          <div className="fg"><label>{lang==='fr'?'Mot de passe':'Password'} {!editUser&&'*'} {editUser&&<span style={{color:'var(--muted)',fontSize:11}}>{lang==='fr'?'(laisser vide = inchangé)':'(leave blank = unchanged)'}</span>}</label>
+            <input type="password" value={form.password} onChange={e=>set('password',e.target.value)} placeholder="••••••••" required={!editUser}/></div>
+          <div className="fg"><label>Role *</label>
+            <select value={form.role} onChange={e=>set('role',e.target.value)}>
+              <option value="admin">Admin</option>
+              <option value="manager">Manager</option>
+              <option value="inspector">Inspector</option>
+            </select>
+          </div>
+        </div>
+        <div className="fg">
+          <label>{lang==='fr'?'Sites autorisés':'Authorized sites'} *</label>
+          <div style={{display:'flex',gap:8,flexWrap:'wrap',marginTop:6}}>
+            {SITES.map(s=><div key={s} className={`checkbox-item${form.sites.includes(s)?' checked':''}`} onClick={()=>toggleSite(s)}>
+              <input type="checkbox" checked={form.sites.includes(s)} onChange={()=>{}} style={{pointerEvents:'none',accentColor:'var(--grn)'}}/>
+              {s} — {SITE_NAMES[s]}
+            </div>)}
+          </div>
+        </div>
+        <div className="fg" style={{display:'flex',alignItems:'center',gap:8}}>
+          <input type="checkbox" id="u-active" checked={form.active} onChange={e=>set('active',e.target.checked)} style={{accentColor:'var(--grn)',width:16,height:16}}/>
+          <label htmlFor="u-active" style={{marginBottom:0,cursor:'pointer'}}>{lang==='fr'?'Compte actif':'Active account'}</label>
+        </div>
+        <div className="form-end">
+          <button type="button" className="btn btn-secondary" onClick={()=>{setShowForm(false);setEditUser(null);}}>{lang==='fr'?'Annuler':'Cancel'}</button>
+          <button type="submit" className="btn btn-primary">{lang==='fr'?'Enregistrer':'Save'}</button>
+        </div>
+      </form>
+    </div>}
+
+    {users.map(user=><div key={user.id} className="user-card">
+      <div className="user-avatar-lg" style={{background:avatarColor(user.name)}}>
+        {user.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()}
+      </div>
+      <div style={{flex:1,minWidth:0}}>
+        <div style={{display:'flex',alignItems:'center',gap:8,flexWrap:'wrap'}}>
+          <span style={{fontWeight:600,fontSize:14}}>{user.name}</span>
+          <span className={`role-badge ${roleClass(user.role)}`}>{roleLabel(user.role)}</span>
+          {!user.active&&<span style={{fontSize:10,background:'var(--red-l)',color:'var(--red)',padding:'2px 7px',borderRadius:20,fontWeight:600}}>INACTIVE</span>}
+          {user.id===currentUser.id&&<span style={{fontSize:10,background:'var(--grn-l)',color:'var(--grn)',padding:'2px 7px',borderRadius:20,fontWeight:600}}>YOU</span>}
+        </div>
+        <div style={{fontSize:12,color:'var(--muted)',marginTop:2}}>{user.email}</div>
+        <div style={{marginTop:6}}>{(user.sites||[]).map(s=><span key={s} className="site-tag">{s}</span>)}</div>
+      </div>
+      <div style={{display:'flex',gap:6,flexShrink:0}}>
+        <button className="btn btn-secondary btn-sm" onClick={()=>startEdit(user)}>✏️</button>
+        <button className="btn btn-secondary btn-sm" onClick={()=>toggleActive(user)} title={user.active?(lang==='fr'?'Désactiver':'Deactivate'):(lang==='fr'?'Activer':'Activate')}>
+          {user.active?'🔒':'🔓'}
+        </button>
+        {user.id!==currentUser.id&&<button className="btn btn-danger btn-sm" onClick={()=>deleteUser(user)}>🗑️</button>}
+      </div>
+    </div>)}
+  </div>;
+}
+
 //  MAIN APP
 // ═══════════════════════════════════════════════════════
 function App(){
@@ -1737,6 +1985,30 @@ function App(){
   const [editRecord, setEditRecord] = useState(null);
   const [weights, setWeights] = useState({ac:40,pm:25,nc:20,au:15});
   const [thresholds, setThresholds] = useState({A:90,B:75,C:60});
+  const [currentUser, setCurrentUser] = useState(()=>{
+    try{ return JSON.parse(localStorage.getItem('sq_session')||'null'); }catch{ return null; }
+  });
+
+  function handleLogin(user){
+    setCurrentUser(user);
+    localStorage.setItem('sq_session', JSON.stringify(user));
+    // Restrict site to user's first site if not admin
+    if(user.role!=='admin' && !user.sites?.includes(site)){
+      setSite(user.sites?.[0]||'QS');
+    }
+  }
+
+  function handleLogout(){
+    setCurrentUser(null);
+    localStorage.removeItem('sq_session');
+    setPage('dashboard');
+  }
+
+  // Role-based access
+  const isAdmin = currentUser?.role==='admin';
+  const isManager = currentUser?.role==='manager';
+  const isInspector = currentUser?.role==='inspector';
+  const allowedSites = isAdmin ? SITES : (currentUser?.sites||['QS']);
   const [emailCfg, setEmailCfg] = useState(()=>{
     try{ return JSON.parse(localStorage.getItem('sq_email_cfg')||'{}'); }catch{ return {}; }
   });
@@ -1903,6 +2175,7 @@ function App(){
       {id:'gh_storage',     icon:'☁️', label:t('gh_storage')},
       {id:'score_weights',  icon:'⚖️', label:t('score_weights')},
       {id:'email_settings', icon:'📧', label:lang==='fr'?'Emails automatiques':'Auto Emails'},
+      ...(isAdmin?[{id:'user_management',icon:'👥',label:lang==='fr'?'Utilisateurs':'Users'}]:[]),
     ]},
   ];
 
@@ -1912,7 +2185,7 @@ function App(){
     ncr_dashboard:'NCR',new_ncr:'NCR',all_ncrs:'NCR',
     supplier_list:'Suppliers',add_supplier:'Suppliers',
     consolidated:'Scorecard',scorecards:'Scorecard',ranking:'Scorecard',
-    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings'};
+    gh_storage:'Settings',score_weights:'Settings',email_settings:'Settings',user_management:'Settings'};
 
   const renderPage = () => {
     switch(page){
@@ -1941,11 +2214,13 @@ function App(){
       case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
       case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
-      default: return <div className="page"><div className="empty">Page not found</div></div>;
+      case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
   };
 
   return <>
+    {/* LOGIN GATE */}
+    {!currentUser && <LoginScreen onLogin={handleLogin} lang={lang} setLang={setLang} dark={dark} setDark={setDark}/>}
     {/* MINIMAL HEADER — logo + module + right actions */}
     <header className="hdr">
       <div className="hdr-logo">
@@ -1972,16 +2247,16 @@ function App(){
       {/* ── SIDEBAR — Cadence style ── */}
       <nav className="sidebar" style={{width: sidebarOpen ? 'var(--sb)' : '0', overflow: sidebarOpen ? undefined : 'hidden', transition:'width .2s'}}>
 
-        {/* Site selector */}
-        <div className="sb-site" onClick={()=>setSiteDD(d=>!d)} style={{position:'relative'}}>
+        {/* Site selector — restricted to user's allowed sites */}
+        <div className="sb-site" onClick={()=>allowedSites.length>1&&setSiteDD(d=>!d)} style={{position:'relative',cursor:allowedSites.length>1?'pointer':'default'}}>
           <span className="sb-site-badge">{site}</span>
           <span className="sb-site-name">{SITE_NAMES[site]}</span>
           <span className="sb-site-sync" onClick={e=>{e.stopPropagation();manualSync();}}>
             <span className={`sdot${syncStatus==='syncing'?' syncing':syncStatus==='error'?' error':''}`} style={{display:'inline-block'}}/>
           </span>
           <button className="sb-close" onClick={e=>{e.stopPropagation();setSidebarOpen(false);}} style={{marginLeft:4}}>✕</button>
-          {siteDD && <div className="sb-site-dd" onClick={e=>e.stopPropagation()}>
-            {SITES.map(s=><div key={s} className={`sb-site-opt${site===s?' active':''}`}
+          {siteDD && allowedSites.length>1 && <div className="sb-site-dd" onClick={e=>e.stopPropagation()}>
+            {allowedSites.map(s=><div key={s} className={`sb-site-opt${site===s?' active':''}`}
               onClick={()=>{setSite(s);setSiteDD(false);setTick(k=>k+1);}}>
               <span className="sb-site-opt-badge">{s}</span>
               {SITE_NAMES[s]}
@@ -2017,13 +2292,23 @@ function App(){
           </div>
           <div className="sb-user">
             <div className="sb-user-info">
-              <div className="sb-avatar">RA</div>
+              <div className="sb-avatar" style={{background:avatarColor(currentUser?.name||'?')}}>
+                {(currentUser?.name||'?').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()}
+              </div>
               <div>
-                <div className="sb-user-name">Rafael</div>
-                <div className="sb-user-role">Admin</div>
+                <div className="sb-user-name">{currentUser?.name||'—'}</div>
+                <div className="sb-user-role" style={{display:'flex',alignItems:'center',gap:5}}>
+                  <span className={`role-badge ${currentUser?.role==='admin'?'role-admin':currentUser?.role==='manager'?'role-manager':'role-inspector'}`}>
+                    {currentUser?.role==='admin'?'Admin':currentUser?.role==='manager'?'Manager':'Inspector'}
+                  </span>
+                </div>
               </div>
             </div>
-            <button className="theme-btn" onClick={()=>setDark(d=>!d)} style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4}}>{dark?'☀️':'🌙'}</button>
+            <div style={{display:'flex',gap:4}}>
+              <button className="theme-btn" onClick={()=>setDark(d=>!d)} style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4}}>{dark?'☀️':'🌙'}</button>
+              <button onClick={handleLogout} title={lang==='fr'?'Déconnexion':'Sign out'}
+                style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4,color:'var(--muted)'}}>🚪</button>
+            </div>
           </div>
         </div>
       </nav>
