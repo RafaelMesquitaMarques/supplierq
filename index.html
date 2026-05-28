@@ -1041,231 +1041,238 @@ function annGetMerged(bgCanvas, annCanvas){
 }
 
 // ── SHARED ANNOTATION CANVAS COMPONENT ───────────────
-function AnnotatorCanvas({stateRef, tool, color, strokeSz, active, onActivate, height, onHeightChange}){
+// ═══════════════════════════════════════════════════════
+//  ANNOTATION CANVAS — persistent state via onSave callback
+// ═══════════════════════════════════════════════════════
+function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
+  tool, color, strokeSz, active, onActivate, height, dropIcon, dropLabel, dropSub}){
   const bgRef = useRef(); const annRef = useRef(); const wrapRef = useRef();
-  const dragRef = useRef(null); const penPtsRef = useRef(null);
+  const s = useRef({objs:[], selId:null, nextId:1, history:[], bgImg:null});
+  const dragRef = useRef(null); const penRef = useRef(null);
+  const mountedRef = useRef(false);
 
-  const s = stateRef.current;
+  // Init on mount and when bgData or persisted state changes
+  useEffect(()=>{
+    s.current.objs = persistedObjs ? JSON.parse(JSON.stringify(persistedObjs)) : [];
+    s.current.nextId = persistedNextId || 1;
+    s.current.selId = null;
+    s.current.history = [];
+    if(bgData){
+      const img = new Image();
+      img.onload = ()=>{ s.current.bgImg=img; initC(); drawBg(); renderAnn(); };
+      img.src = bgData;
+    } else {
+      s.current.bgImg = null;
+      initC(); drawBg(); renderAnn();
+    }
+  }, [bgData, persistedObjs, persistedNextId]);
 
-  function initCanvases(){
-    const wrap=wrapRef.current; if(!wrap) return;
-    const W=wrap.clientWidth, H=wrap.clientHeight;
-    [bgRef.current, annRef.current].forEach(c=>{if(c){c.width=W;c.height=H;c.style.width=W+'px';c.style.height=H+'px';}});
+  useEffect(()=>{ initC(); drawBg(); renderAnn(); },[height]);
+
+  function initC(){
+    const w=wrapRef.current; if(!w) return;
+    const W=w.clientWidth, H=w.clientHeight;
+    [bgRef.current, annRef.current].forEach(c=>{
+      if(c){c.width=W;c.height=H;c.style.width=W+'px';c.style.height=H+'px';}
+    });
   }
   function drawBg(){
-    const img=s.bgImg; if(!img||!bgRef.current) return;
-    const c=bgRef.current, ctx2=c.getContext('2d');
-    ctx2.clearRect(0,0,c.width,c.height);
-    ctx2.fillStyle='#c0c6cc'; ctx2.fillRect(0,0,c.width,c.height);
+    const img=s.current.bgImg; if(!img||!bgRef.current) return;
+    const c=bgRef.current, x=c.getContext('2d');
+    x.clearRect(0,0,c.width,c.height);
+    x.fillStyle='#c0c6cc'; x.fillRect(0,0,c.width,c.height);
     const r=Math.min(c.width/img.width,c.height/img.height);
-    ctx2.drawImage(img,(c.width-img.width*r)/2,(c.height-img.height*r)/2,img.width*r,img.height*r);
+    x.drawImage(img,(c.width-img.width*r)/2,(c.height-img.height*r)/2,img.width*r,img.height*r);
   }
-  function render(){ if(annRef.current) annRenderAll(annRef.current, s.objs, s.selId); }
-
-  useEffect(()=>{ initCanvases(); drawBg(); render(); },[s.bgImg, height]);
-  useEffect(()=>{ render(); },[s.objs, s.selId]);
+  function renderAnn(){ if(annRef.current) annRenderAll(annRef.current, s.current.objs, s.current.selId); }
+  function persist(){ onSave?.({objs: s.current.objs, nextId: s.current.nextId}); }
+  function saveH(){ s.current.history.push(JSON.stringify(s.current.objs)); if(s.current.history.length>30)s.current.history.shift(); }
 
   function getPos(e){
     const c=annRef.current, r=c.getBoundingClientRect();
     return {x:(e.clientX-r.left)*c.width/r.width, y:(e.clientY-r.top)*c.height/r.height};
   }
-  function saveH(){ s.history.push(JSON.stringify(s.objs)); if(s.history.length>30) s.history.shift(); }
 
   function placeTextInput(cx, cy){
     const wrap=wrapRef.current, ann=annRef.current;
-    const scX=ann.getBoundingClientRect().width/ann.width;
-    const scY=ann.getBoundingClientRect().height/ann.height;
+    const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
     const inp=document.createElement('input');
     inp.className='ann-txt-inp';
-    inp.style.left=Math.max(0,cx*scX-4)+'px';
-    inp.style.top=Math.max(0,cy*scY-16)+'px';
-    inp.style.fontSize=Math.max(12,strokeSz*4)+'px';
-    inp.style.color=color; inp.placeholder='Type here…';
-    wrap.appendChild(inp);
-    setTimeout(()=>inp.focus(),10);
+    inp.style.left=Math.max(0,cx*scX-4)+'px'; inp.style.top=Math.max(0,cy*scY-16)+'px';
+    inp.style.fontSize=Math.max(12,strokeSz*4)+'px'; inp.style.color=color; inp.placeholder='Type here...';
+    wrap.appendChild(inp); setTimeout(()=>inp.focus(),10);
     let done=false;
     function commit(){
       if(done)return; done=true;
       const txt=inp.value.trim();
-      if(inp.parentNode) inp.parentNode.removeChild(inp);
-      if(!txt) return;
+      if(inp.parentNode)inp.parentNode.removeChild(inp);
+      if(!txt)return;
       saveH();
-      const fs=Math.max(12,strokeSz*4);
-      s.objs.push({id:s.nextId++,type:'text',x:cx,y:cy,text:txt,color,size:strokeSz,fontSize:fs});
-      render();
+      s.current.objs.push({id:s.current.nextId++,type:'text',x:cx,y:cy,text:txt,color,size:strokeSz,fontSize:Math.max(12,strokeSz*4)});
+      renderAnn(); persist();
     }
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
     inp.addEventListener('blur',()=>setTimeout(commit,150));
   }
 
   function placeDimInput(x1,y1,x2,y2){
-    const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy); if(len<6){render();return;}
+    const dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy); if(len<6){renderAnn();return;}
     const ang=Math.atan2(dy,dx),perp=ang+Math.PI/2,ext=14;
     const e1x=x1+ext*Math.cos(perp),e1y=y1+ext*Math.sin(perp);
     const e2x=x2+ext*Math.cos(perp),e2y=y2+ext*Math.sin(perp);
     const mx=(e1x+e2x)/2,my=(e1y+e2y)/2;
     const ann=annRef.current, wrap=wrapRef.current;
-    const scX=ann.getBoundingClientRect().width/ann.width;
-    const scY=ann.getBoundingClientRect().height/ann.height;
+    const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
     const inp=document.createElement('input');
     inp.className='ann-dim-inp';
-    inp.style.left=Math.max(0,mx*scX-50)+'px';
-    inp.style.top=Math.max(0,my*scY-18)+'px';
-    inp.placeholder='e.g. 24.5 mm';
-    wrap.appendChild(inp);
-    setTimeout(()=>inp.focus(),10);
+    inp.style.left=Math.max(0,mx*scX-50)+'px'; inp.style.top=Math.max(0,my*scY-18)+'px'; inp.placeholder='e.g. 24.5 mm';
+    wrap.appendChild(inp); setTimeout(()=>inp.focus(),10);
     let done=false;
     function commit(){
       if(done)return; done=true;
       const label=inp.value.trim()||'?';
-      if(inp.parentNode) inp.parentNode.removeChild(inp);
+      if(inp.parentNode)inp.parentNode.removeChild(inp);
       annRef.current.getContext('2d').clearRect(0,0,annRef.current.width,annRef.current.height);
       saveH();
-      s.objs.push({id:s.nextId++,type:'dim',x1,y1,x2,y2,color,size:strokeSz,label});
-      render();
+      s.current.objs.push({id:s.current.nextId++,type:'dim',x1,y1,x2,y2,color,size:strokeSz,label});
+      renderAnn(); persist();
     }
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);render();}});
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);renderAnn();}});
     inp.addEventListener('blur',()=>setTimeout(commit,150));
   }
 
   function onMD(e){
-    if(e.target.closest('.ann-drop-inner,.ann-pa-btn')) return;
+    if(e.target.closest('.ann-drop-inner,.ann-pa-btn'))return;
     onActivate();
-    const pos=getPos(e);
-    const ctx2=annRef.current.getContext('2d');
+    const pos=getPos(e); const ctx2=annRef.current.getContext('2d');
     if(tool==='select'){
-      if(s.selId!=null){
-        const sel=s.objs.find(o=>o.id===s.selId);
-        if(sel){
-          const hid=annHitHandle(sel,pos.x,pos.y,ctx2);
-          if(hid){ dragRef.current={mode:'handle',hid,startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.objs))}; return; }
-        }
+      if(s.current.selId!=null){
+        const sel=s.current.objs.find(o=>o.id===s.current.selId);
+        if(sel){const hid=annHitHandle(sel,pos.x,pos.y,ctx2);if(hid){dragRef.current={mode:'handle',hid,startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.current.objs))};return;}}
       }
       let hit=null;
-      for(let i=s.objs.length-1;i>=0;i--){ if(annHitObj(s.objs[i],pos.x,pos.y,ctx2)){hit=s.objs[i];break;} }
-      if(hit){ s.selId=hit.id; dragRef.current={mode:'move',startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.objs))}; }
-      else { s.selId=null; dragRef.current=null; }
-      render(); return;
+      for(let i=s.current.objs.length-1;i>=0;i--){if(annHitObj(s.current.objs[i],pos.x,pos.y,ctx2)){hit=s.current.objs[i];break;}}
+      if(hit){s.current.selId=hit.id;dragRef.current={mode:'move',startX:pos.x,startY:pos.y,snap:JSON.parse(JSON.stringify(s.current.objs))};}
+      else{s.current.selId=null;dragRef.current=null;}
+      renderAnn(); return;
     }
-    if(tool==='text'){ placeTextInput(pos.x,pos.y); return; }
-    if(tool==='dim'){ dragRef.current={mode:'newdim',startX:pos.x,startY:pos.y}; return; }
-    saveH();
-    dragRef.current={mode:'new',startX:pos.x,startY:pos.y};
-    if(tool==='pen'){ penPtsRef.current=[{x:pos.x,y:pos.y}]; }
+    if(tool==='text'){placeTextInput(pos.x,pos.y);return;}
+    if(tool==='dim'){dragRef.current={mode:'newdim',startX:pos.x,startY:pos.y};return;}
+    saveH(); dragRef.current={mode:'new',startX:pos.x,startY:pos.y};
+    if(tool==='pen')penRef.current=[{x:pos.x,y:pos.y}];
   }
 
   function onMM(e){
-    const dr=dragRef.current; if(!dr) return;
-    const pos=getPos(e);
-    const ctx2=annRef.current.getContext('2d');
-    const ann=annRef.current;
+    const dr=dragRef.current; if(!dr)return;
+    const pos=getPos(e); const ctx2=annRef.current.getContext('2d'); const ann=annRef.current;
     const dx=pos.x-dr.startX, dy=pos.y-dr.startY;
     if(dr.mode==='move'){
-      s.objs=JSON.parse(JSON.stringify(dr.snap));
-      const o=s.objs.find(o=>o.id===s.selId);
-      if(o){
-        if(o.type==='pen') o.pts=o.pts.map(p=>({x:p.x+dx,y:p.y+dy}));
-        else if(o.type==='text'){o.x+=dx;o.y+=dy;}
-        else{o.x1+=dx;o.y1+=dy;o.x2+=dx;o.y2+=dy;}
-      }
-      render(); return;
+      s.current.objs=JSON.parse(JSON.stringify(dr.snap));
+      const o=s.current.objs.find(o=>o.id===s.current.selId);
+      if(o){if(o.type==='pen')o.pts=o.pts.map(p=>({x:p.x+dx,y:p.y+dy}));else if(o.type==='text'){o.x+=dx;o.y+=dy;}else{o.x1+=dx;o.y1+=dy;o.x2+=dx;o.y2+=dy;}}
+      renderAnn(); return;
     }
     if(dr.mode==='handle'){
-      s.objs=JSON.parse(JSON.stringify(dr.snap));
-      const idx=s.objs.findIndex(o=>o.id===s.selId);
-      if(idx>=0) s.objs[idx]=annApplyHandle(s.objs[idx],dr.hid,dx,dy,ctx2);
-      render(); return;
+      s.current.objs=JSON.parse(JSON.stringify(dr.snap));
+      const idx=s.current.objs.findIndex(o=>o.id===s.current.selId);
+      if(idx>=0)s.current.objs[idx]=annApplyHandle(s.current.objs[idx],dr.hid,dx,dy,ctx2);
+      renderAnn(); return;
     }
     if(dr.mode==='newdim'||dr.mode==='new'){
       ctx2.clearRect(0,0,ann.width,ann.height);
-      s.objs.forEach(o=>annDrawObj(ctx2,o));
-      if(tool==='dim') annDrawDim(ctx2,{type:'dim',x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz,label:''});
+      s.current.objs.forEach(o=>annDrawObj(ctx2,o));
+      if(tool==='dim')annDrawDim(ctx2,{type:'dim',x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz,label:''});
       else if(tool==='pen'){
-        penPtsRef.current.push({x:pos.x,y:pos.y});
+        penRef.current.push({x:pos.x,y:pos.y});
         ctx2.save();ctx2.strokeStyle=color;ctx2.lineWidth=strokeSz;ctx2.lineCap='round';ctx2.lineJoin='round';
-        ctx2.beginPath();ctx2.moveTo(penPtsRef.current[0].x,penPtsRef.current[0].y);
-        penPtsRef.current.forEach(p=>ctx2.lineTo(p.x,p.y));ctx2.stroke();ctx2.restore();
+        ctx2.beginPath();ctx2.moveTo(penRef.current[0].x,penRef.current[0].y);
+        penRef.current.forEach(p=>ctx2.lineTo(p.x,p.y));ctx2.stroke();ctx2.restore();
       } else annDrawObj(ctx2,{type:tool,x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz});
     }
   }
 
   function onMU(e){
-    const dr=dragRef.current; if(!dr) return;
+    const dr=dragRef.current; if(!dr)return;
     const pos=getPos(e);
-    if(dr.mode==='move'||dr.mode==='handle'){ saveH(); dragRef.current=null; render(); return; }
-    if(dr.mode==='newdim'){ dragRef.current=null; placeDimInput(dr.startX,dr.startY,pos.x,pos.y); return; }
+    if(dr.mode==='move'||dr.mode==='handle'){saveH();dragRef.current=null;renderAnn();persist();return;}
+    if(dr.mode==='newdim'){dragRef.current=null;placeDimInput(dr.startX,dr.startY,pos.x,pos.y);return;}
     if(dr.mode==='new'){
-      if(tool==='pen'&&penPtsRef.current&&penPtsRef.current.length>1){
-        saveH(); s.objs.push({id:s.nextId++,type:'pen',pts:penPtsRef.current,color,size:strokeSz});
-        penPtsRef.current=null;
+      if(tool==='pen'&&penRef.current&&penRef.current.length>1){
+        saveH();s.current.objs.push({id:s.current.nextId++,type:'pen',pts:penRef.current,color,size:strokeSz});penRef.current=null;
       } else {
         const ddx=Math.abs(pos.x-dr.startX),ddy=Math.abs(pos.y-dr.startY);
-        if(ddx>4||ddy>4){ saveH(); s.objs.push({id:s.nextId++,type:tool,x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz}); }
+        if(ddx>4||ddy>4){saveH();s.current.objs.push({id:s.current.nextId++,type:tool,x1:dr.startX,y1:dr.startY,x2:pos.x,y2:pos.y,color,size:strokeSz});}
       }
-      dragRef.current=null; render();
+      dragRef.current=null; renderAnn(); persist();
     }
   }
 
-  function onDblClick(e){
-    if(tool!=='select') return;
-    const pos=getPos(e);
-    const ctx2=annRef.current.getContext('2d');
-    for(let i=s.objs.length-1;i>=0;i--){
-      const o=s.objs[i];
-      if(o.type==='text'&&annHitObj(o,pos.x,pos.y,ctx2)){ editText(o); return; }
-      if(o.type==='dim'&&annHitObj(o,pos.x,pos.y,ctx2)){ editDimLabel(o); return; }
+  function onDbl(e){
+    if(tool!=='select')return;
+    const pos=getPos(e); const ctx2=annRef.current.getContext('2d');
+    for(let i=s.current.objs.length-1;i>=0;i--){
+      const o=s.current.objs[i];
+      if(o.type==='text'&&annHitObj(o,pos.x,pos.y,ctx2)){editObj(o,'text');return;}
+      if(o.type==='dim'&&annHitObj(o,pos.x,pos.y,ctx2)){editObj(o,'dim');return;}
     }
   }
 
-  function editText(o){
+  function editObj(o, kind){
     const ann=annRef.current, wrap=wrapRef.current;
     const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
-    const fs=annGetFontSize(o);
     const inp=document.createElement('input');
-    inp.className='ann-txt-inp';
-    inp.style.left=Math.max(0,o.x*scX-4)+'px'; inp.style.top=Math.max(0,o.y*scY-4)+'px';
-    inp.style.fontSize=(fs*scY)+'px'; inp.style.color=o.color; inp.value=o.text;
+    if(kind==='dim'){
+      const ang=Math.atan2(o.y2-o.y1,o.x2-o.x1),perp=ang+Math.PI/2,ext=14;
+      const e1x=o.x1+ext*Math.cos(perp),e1y=o.y1+ext*Math.sin(perp);
+      const e2x=o.x2+ext*Math.cos(perp),e2y=o.y2+ext*Math.sin(perp);
+      inp.className='ann-dim-inp';
+      inp.style.left=Math.max(0,(e1x+e2x)/2*scX-50)+'px'; inp.style.top=Math.max(0,(e1y+e2y)/2*scY-18)+'px'; inp.value=o.label||'';
+    } else {
+      const fs=annGetFontSize(o);
+      inp.className='ann-txt-inp'; inp.style.left=Math.max(0,o.x*scX-4)+'px'; inp.style.top=Math.max(0,o.y*scY-4)+'px';
+      inp.style.fontSize=(fs*scY)+'px'; inp.style.color=o.color; inp.value=o.text;
+    }
     wrap.appendChild(inp); setTimeout(()=>{inp.focus();inp.select();},10);
     let done=false;
     function commit(){
-      if(done)return; done=true; const txt=inp.value.trim();
-      if(inp.parentNode) inp.parentNode.removeChild(inp); if(!txt) return;
-      saveH(); const idx=s.objs.findIndex(x=>x.id===o.id); if(idx>=0) s.objs[idx].text=txt; render();
+      if(done)return; done=true;
+      const val=inp.value.trim();
+      if(inp.parentNode)inp.parentNode.removeChild(inp);
+      if(!val)return;
+      saveH();
+      const idx=s.current.objs.findIndex(x=>x.id===o.id);
+      if(idx>=0){ if(kind==='dim')s.current.objs[idx].label=val; else s.current.objs[idx].text=val; }
+      renderAnn(); persist();
     }
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
     inp.addEventListener('blur',()=>setTimeout(commit,150));
   }
 
-  function editDimLabel(o){
-    const ann=annRef.current, wrap=wrapRef.current;
-    const ang=Math.atan2(o.y2-o.y1,o.x2-o.x1),perp=ang+Math.PI/2,ext=14;
-    const e1x=o.x1+ext*Math.cos(perp),e1y=o.y1+ext*Math.sin(perp);
-    const e2x=o.x2+ext*Math.cos(perp),e2y=o.y2+ext*Math.sin(perp);
-    const mx=(e1x+e2x)/2, my=(e1y+e2y)/2;
-    const scX=ann.getBoundingClientRect().width/ann.width, scY=ann.getBoundingClientRect().height/ann.height;
-    const inp=document.createElement('input');
-    inp.className='ann-dim-inp';
-    inp.style.left=Math.max(0,mx*scX-50)+'px'; inp.style.top=Math.max(0,my*scY-18)+'px'; inp.value=o.label||'';
-    wrap.appendChild(inp); setTimeout(()=>{inp.focus();inp.select();},10);
-    let done=false;
-    function commit(){
-      if(done)return; done=true; const label=inp.value.trim()||'?';
-      if(inp.parentNode) inp.parentNode.removeChild(inp);
-      saveH(); const idx=s.objs.findIndex(x=>x.id===o.id); if(idx>=0) s.objs[idx].label=label; render();
-    }
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){if(inp.parentNode)inp.parentNode.removeChild(inp);}});
-    inp.addEventListener('blur',()=>setTimeout(commit,150));
-  }
+  // Exposed methods via DOM element dataset (for parent access)
+  function undo(){ if(s.current.history.length){s.current.objs=JSON.parse(s.current.history.pop());s.current.selId=null;renderAnn();persist();} }
+  function deleteSelected(){ if(s.current.selId==null)return;saveH();s.current.objs=s.current.objs.filter(o=>o.id!==s.current.selId);s.current.selId=null;renderAnn();persist(); }
+  function clearAll(){ saveH();s.current.objs=[];s.current.selId=null;renderAnn();persist(); }
+  function getSelId(){ return s.current.selId; }
 
-  const cursor = tool==='select'?'default':tool==='text'?'text':'crosshair';
+  // Expose methods on the wrap element
+  useEffect(()=>{
+    if(wrapRef.current){
+      wrapRef.current._annUndo=undo;
+      wrapRef.current._annDeleteSelected=deleteSelected;
+      wrapRef.current._annClear=clearAll;
+      wrapRef.current._annGetSelId=getSelId;
+    }
+  });
+
+  const cursor=tool==='select'?'default':tool==='text'?'text':'crosshair';
 
   return <div className="ann-canvas-wrap" ref={wrapRef} style={{height:height||260,cursor}}
-    onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU} onDoubleClick={onDblClick}>
-    {!s.bgImg && <div className="ann-drop-overlay" id={'dz-'+s.id}>
-      <div className="ann-drop-inner" onClick={()=>s.onUploadClick&&s.onUploadClick()}>
-        <i className={s.dropIcon||'ti ti-photo'} style={{fontSize:26,opacity:.35,color:'var(--muted)'}} aria-hidden="true"/>
-        <span>{s.dropLabel||'Upload image'}</span>
-        <small>{s.dropSub||'PNG · JPG'}</small>
+    onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU} onDoubleClick={onDbl}>
+    {!bgData&&<div className="ann-drop-overlay">
+      <div className="ann-drop-inner" onClick={()=>{}}>
+        <i className={dropIcon||'ti ti-photo'} style={{fontSize:26,opacity:.35,color:'var(--muted)'}} aria-hidden="true"/>
+        <span>{dropLabel||'Upload image'}</span>
+        <small>{dropSub||'PNG · JPG'}</small>
       </div>
     </div>}
     <canvas ref={bgRef}/>
@@ -1289,15 +1296,16 @@ function AnnToolbar({tool, setTool, color, setColor, strokeSz, setStrokeSz, selI
     <span style={{fontSize:11,color:'var(--muted)',fontWeight:600,whiteSpace:'nowrap'}}>Active:</span>
     <span className="ann-active-badge">{activeLabel}</span>
     <div className="ann-sep"/>
-    {TOOLS.map(t2=><button key={t2.id} className={`ann-btn${tool===t2.id?' ann-on':''}`} title={t2.title} onClick={()=>setTool(t2.id)}>
-      <i className={t2.icon} aria-hidden="true" style={{position:'relative'}}>
-        {t2.id==='dim'&&<span style={{position:'absolute',bottom:-2,right:-2,fontSize:7,fontWeight:700,color:'#ef9f27',lineHeight:1,pointerEvents:'none'}}>↔</span>}
+    {TOOLS.map(tt=><button key={tt.id} className={`ann-btn${tool===tt.id?' ann-on':''}`} title={tt.title}
+      type="button" onClick={()=>setTool(tt.id)}>
+      <i className={tt.icon} aria-hidden="true" style={{position:'relative'}}>
+        {tt.id==='dim'&&<span style={{position:'absolute',bottom:-2,right:-2,fontSize:7,fontWeight:700,color:'#ef9f27',lineHeight:1,pointerEvents:'none'}}>↔</span>}
       </i>
     </button>)}
     <div className="ann-sep"/>
     {COLORS.map(c=><div key={c} className={`ann-col${color===c?' ann-on':''}`}
       style={{background:c,border:c==='#fff'?'1.5px solid var(--brd2)':undefined}}
-      onClick={()=>setColor(c)} title={c}/>)}
+      onClick={()=>setColor(c)}/>)}
     <div className="ann-sep"/>
     <div className="ann-sz">
       <i className="ti ti-line-height" style={{fontSize:13}} aria-hidden="true"/>
@@ -1305,225 +1313,196 @@ function AnnToolbar({tool, setTool, color, setColor, strokeSz, setStrokeSz, selI
       <span>{strokeSz}</span>
     </div>
     <div className="ann-sep"/>
-    <button className="ann-btn" title="Undo (Ctrl+Z)" onClick={onUndo}><i className="ti ti-arrow-back-up" aria-hidden="true"/></button>
-    {selId!=null&&<button className="ann-btn" title="Delete selected (Del)" onClick={onDelete} style={{color:'var(--red)'}}><i className="ti ti-trash" aria-hidden="true"/></button>}
-    <button className="ann-btn" title="Clear annotations" onClick={onClear}><i className="ti ti-eraser" aria-hidden="true"/></button>
+    <button type="button" className="ann-btn" title="Undo (Ctrl+Z)" onClick={onUndo}><i className="ti ti-arrow-back-up" aria-hidden="true"/></button>
+    {selId!=null&&<button type="button" className="ann-btn" title="Delete (Del)" onClick={onDelete} style={{color:'var(--red)'}}><i className="ti ti-trash" aria-hidden="true"/></button>}
+    <button type="button" className="ann-btn" title="Clear" onClick={onClear}><i className="ti ti-eraser" aria-hidden="true"/></button>
   </div>;
 }
 
 // ═══════════════════════════════════════════════════════
-//  CAMERA MODAL
-// ═══════════════════════════════════════════════════════
-function CameraModal({onCapture, onClose, lang}){
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-  const [stream, setStream] = useState(null);
-  const [error, setError] = useState('');
-  const [facingMode, setFacingMode] = useState('environment');
-
-  useEffect(()=>{
-    startCamera(facingMode);
-    return ()=>stopCamera();
-  },[facingMode]);
-
-  async function startCamera(mode){
-    stopCamera();
-    try{
-      const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:mode,width:{ideal:1920},height:{ideal:1080}},audio:false});
-      setStream(s);
-      if(videoRef.current){videoRef.current.srcObject=s;videoRef.current.play();}
-      setError('');
-    }catch(e){
-      setError(lang==='fr'?"Impossible d'accéder à la caméra. Vérifiez les permissions.":'Cannot access camera. Please check permissions.');
-    }
-  }
-  function stopCamera(){ if(stream) stream.getTracks().forEach(t=>t.stop()); }
-  function capture(){
-    const v=videoRef.current,c=canvasRef.current; if(!v||!c) return;
-    c.width=v.videoWidth; c.height=v.videoHeight;
-    c.getContext('2d').drawImage(v,0,0);
-    onCapture(c.toDataURL('image/jpeg',0.85));
-    stopCamera(); onClose();
-  }
-  function handleClose(){ stopCamera(); onClose(); }
-
-  return <div className="modal-overlay" onClick={handleClose}>
-    <div className="modal-box" style={{maxWidth:640,padding:20}} onClick={e=>e.stopPropagation()}>
-      <div className="modal-header">
-        <h2><i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Prendre une photo':'Take a photo'}</h2>
-        <button className="modal-close" onClick={handleClose}>✕</button>
-      </div>
-      {error
-        ? <div style={{background:'var(--red-l)',border:'1px solid var(--red-b)',color:'var(--red)',padding:12,borderRadius:'var(--r)',fontSize:13,textAlign:'center'}}>{error}</div>
-        : <div style={{position:'relative',background:'#000',borderRadius:'var(--r2)',overflow:'hidden',aspectRatio:'16/9'}}>
-            <video ref={videoRef} style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}} autoPlay playsInline muted/>
-          </div>}
-      <canvas ref={canvasRef} style={{display:'none'}}/>
-      <div style={{display:'flex',gap:8,marginTop:14,justifyContent:'center',flexWrap:'wrap'}}>
-        {!error&&<>
-          <button className="btn btn-primary" onClick={capture} style={{padding:'10px 24px',fontSize:15}}>
-            <i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Capturer':'Capture'}
-          </button>
-          <button className="btn btn-secondary" onClick={()=>setFacingMode(m=>m==='environment'?'user':'environment')}>
-            <i className="ti ti-switch-horizontal" aria-hidden="true"/> {lang==='fr'?'Retourner':'Flip'}
-          </button>
-        </>}
-        <button className="btn btn-secondary" onClick={handleClose}>{lang==='fr'?'Annuler':'Cancel'}</button>
-      </div>
-    </div>
-  </div>;
-}
-
-// ═══════════════════════════════════════════════════════
-//  PHOTO ANNOTATION TAB
+//  PHOTO ANNOTATION TAB — each photo has optional drawing alongside
 // ═══════════════════════════════════════════════════════
 function PhotoAnnotationTab({photos, setPhotos, lang}){
   const [tool, setTool] = useState('select');
   const [color, setColor] = useState('#e24b4a');
   const [strokeSz, setStrokeSz] = useState(3);
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activePanel, setActivePanel] = useState(null); // {photoIdx, side:'photo'|'drawing'}
   const [showCamera, setShowCamera] = useState(false);
-  const fileRef = useRef();
-  const annStates = useRef([]);
+  const [cameraForIdx, setCameraForIdx] = useState(null);
+  const filePhotoRef = useRef(); const fileDrawRef = useRef();
+  const activeDrawRef = useRef(null);
+  const [selId, setSelId] = useState(null);
 
-  // Keep annStates in sync with photos
-  while(annStates.current.length < photos.length){
-    const idx = annStates.current.length;
-    annStates.current.push({id:`photo-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]});
+  function updatePhoto(i, update){
+    setPhotos(p=>p.map((x,j)=>j===i?{...x,...update}:x));
   }
-  // Load bgImg when photo data arrives
-  photos.forEach((ph,i)=>{
-    const st=annStates.current[i];
-    if(ph.data && !st.bgImg){
-      const img=new Image(); img.src=ph.data;
-      img.onload=()=>{ st.bgImg=img; };
-      st.bgImg=img;
-    }
-  });
 
   function addPhoto(data){
-    const idx = photos.length;
-    setPhotos(prev=>[...prev,{data,caption:'',objs:[],annotated:null}]);
-    const st={id:`photo-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]};
-    const img=new Image(); img.src=data; img.onload=()=>{st.bgImg=img;};
-    st.bgImg=img;
-    annStates.current.push(st);
-    setActiveIdx(idx);
+    setPhotos(p=>[...p,{data,caption:'',objs:[],nextId:1,drawingData:null,drawingCaption:'',drawingObjs:[],drawingNextId:1}]);
+    setActivePanel({photoIdx:photos.length,side:'photo'});
   }
 
-  function handleFiles(files){
-    Array.from(files).forEach(f=>{
-      const reader=new FileReader();
-      reader.onload=e=>addPhoto(e.target.result);
-      reader.readAsDataURL(f);
-    });
+  function handlePhotoFiles(files){
+    Array.from(files).forEach(f=>{const r=new FileReader();r.onload=e=>addPhoto(e.target.result);r.readAsDataURL(f);});
+    filePhotoRef.current.value='';
+  }
+
+  function handleDrawingFile(idx, file){
+    const r=new FileReader();
+    r.onload=e=>updatePhoto(idx,{drawingData:e.target.result,drawingName:file.name,drawingObjs:[],drawingNextId:1});
+    r.readAsDataURL(file);
+    fileDrawRef.current.value='';
   }
 
   function removePhoto(i){
     setPhotos(p=>p.filter((_,j)=>j!==i));
-    annStates.current.splice(i,1);
-    setActiveIdx(Math.max(0,i-1));
+    setActivePanel(null);
   }
 
-  function updateCaption(i,v){ setPhotos(p=>p.map((x,j)=>j===i?{...x,caption:v}:x)); }
+  const ap = activePanel;
+  const apPhoto = ap?photos[ap.photoIdx]:null;
 
-  const activeSt = annStates.current[activeIdx];
-  const activeSel = activeSt?.selId;
+  function getActiveWrapEl(){
+    if(!ap||!activeDrawRef.current) return null;
+    return activeDrawRef.current;
+  }
 
-  function undo(){
-    if(!activeSt) return;
-    if(activeSt.history.length){ activeSt.objs=JSON.parse(activeSt.history.pop()); activeSt.selId=null; }
-    setActiveIdx(i=>i);
-  }
-  function deleteSelected(){
-    if(!activeSt||activeSt.selId==null) return;
-    activeSt.history.push(JSON.stringify(activeSt.objs));
-    activeSt.objs=activeSt.objs.filter(o=>o.id!==activeSt.selId);
-    activeSt.selId=null; setActiveIdx(i=>i);
-  }
-  function clearAnn(){
-    if(!activeSt) return;
-    activeSt.history.push(JSON.stringify(activeSt.objs));
-    activeSt.objs=[]; activeSt.selId=null; setActiveIdx(i=>i);
-  }
+  function undo(){ const el=getActiveWrapEl(); if(el?._annUndo) el._annUndo(); }
+  function deleteSelected(){ const el=getActiveWrapEl(); if(el?._annDeleteSelected) el._annDeleteSelected(); }
+  function clearAnn(){ const el=getActiveWrapEl(); if(el?._annClear) el._annClear(); }
 
   useEffect(()=>{
-    const handler = e=>{
-      if(e.target.tagName==='INPUT') return;
-      if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
-      if(e.key==='v'||e.key==='V') setTool('select');
+    const handler=e=>{
+      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+      if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();deleteSelected();}
+      if(e.key==='v'||e.key==='V')setTool('select');
       if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();undo();}
     };
     window.addEventListener('keydown',handler);
     return ()=>window.removeEventListener('keydown',handler);
-  },[activeIdx]);
+  },[ap]);
 
-  const activeLabel = photos.length?`Photo ${activeIdx+1}/${photos.length}`:(lang==='fr'?'Aucune photo':'No photo');
+  const activeSide = ap?.side;
+  const activeLabel = ap
+    ? `Photo ${ap.photoIdx+1} — ${ap.side==='photo'?(lang==='fr'?'Photo':'Photo'):(lang==='fr'?'Dessin':'Drawing')}`
+    : (lang==='fr'?'Cliquer un panneau':'Click a panel');
 
   return <>
-    {showCamera&&<CameraModal lang={lang} onCapture={data=>{ addPhoto(data); setShowCamera(false); }} onClose={()=>setShowCamera(false)}/>}
+    {showCamera&&<CameraModal lang={lang}
+      onCapture={data=>{
+        if(cameraForIdx!=null){ updatePhoto(cameraForIdx,{data,objs:[],nextId:1}); setActivePanel({photoIdx:cameraForIdx,side:'photo'}); }
+        else addPhoto(data);
+        setShowCamera(false); setCameraForIdx(null);
+      }}
+      onClose={()=>{setShowCamera(false);setCameraForIdx(null);}}/>}
 
     <AnnToolbar tool={tool} setTool={setTool} color={color} setColor={setColor}
-      strokeSz={strokeSz} setStrokeSz={setStrokeSz}
-      selId={activeSel} onDelete={deleteSelected} onUndo={undo} onClear={clearAnn}
-      activeLabel={activeLabel}/>
+      strokeSz={strokeSz} setStrokeSz={setStrokeSz} selId={null}
+      onDelete={deleteSelected} onUndo={undo} onClear={clearAnn} activeLabel={activeLabel}/>
 
-    {activeSel!=null&&<div className="ann-sel-bar">
-      <i className="ti ti-cursor-text" style={{fontSize:14}} aria-hidden="true"/>
-      <span>{lang==='fr'?'Sélectionné — glisser pour déplacer, handles pour redimensionner, Del pour supprimer, double-clic texte pour éditer':'Selected — drag to move, handles to resize, Del to delete, double-click text to edit'}</span>
-    </div>}
+    {photos.map((ph,i)=><div key={i} style={{marginBottom:12}}>
+      <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}>
 
-    <div className="ann-grid-2">
-      {photos.map((ph,i)=>{
-        const st=annStates.current[i];
-        if(!st) return null;
-        st.dropIcon='ti ti-camera';
-        st.dropLabel=lang==='fr'?'Ajouter une photo':'Add a photo';
-        st.dropSub='PNG · JPG';
-        st.onUploadClick=()=>fileRef.current.click();
-        return <div key={i} className={`ann-panel${activeIdx===i?' ann-active-panel':''}`}>
+        {/* PHOTO PANEL */}
+        <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='photo'?' ann-active-panel':''}`}>
           <div className="ann-panel-header">
             <div className="ann-panel-title">
               <i className="ti ti-camera" style={{fontSize:12}} aria-hidden="true"/>
               Photo {i+1}
-              {activeIdx===i&&<span className="ann-active-badge">active</span>}
+              {ap?.photoIdx===i&&ap?.side==='photo'&&<span className="ann-active-badge">active</span>}
             </div>
             <div className="ann-panel-acts">
-              <button className="ann-pa-btn" title={lang==='fr'?'Caméra':'Camera'} onClick={e=>{e.stopPropagation();setShowCamera(true);}}>
+              <button type="button" className="ann-pa-btn" title="Camera" onClick={e=>{e.stopPropagation();setCameraForIdx(i);setShowCamera(true);}}>
                 <i className="ti ti-camera" aria-hidden="true"/>
               </button>
-              <button className="ann-pa-btn" title="Upload" onClick={e=>{e.stopPropagation();fileRef.current.click();}}>
+              <button type="button" className="ann-pa-btn" title="Upload" onClick={e=>{e.stopPropagation();filePhotoRef.current.click();}}>
                 <i className="ti ti-upload" aria-hidden="true"/>
               </button>
-              <button className="ann-pa-btn" title="Remove" onClick={e=>{e.stopPropagation();removePhoto(i);}}>
+              <button type="button" className="ann-pa-btn" title="Remove" onClick={e=>{e.stopPropagation();removePhoto(i);}}>
                 <i className="ti ti-x" aria-hidden="true"/>
               </button>
             </div>
           </div>
-          <AnnotatorCanvas stateRef={{current:st}} tool={tool} color={color} strokeSz={strokeSz}
-            active={activeIdx===i} onActivate={()=>setActiveIdx(i)} height={240}/>
-          <input className="ann-caption" value={ph.caption} placeholder={lang==='fr'?'Légende…':'Caption…'}
-            onChange={e=>updateCaption(i,e.target.value)}/>
-        </div>;
-      })}
-    </div>
+          <div ref={ap?.photoIdx===i&&ap?.side==='photo'?activeDrawRef:null}
+            onClick={()=>setActivePanel({photoIdx:i,side:'photo'})}>
+            <AnnotatorCanvas
+              bgData={ph.data} persistedObjs={ph.objs} persistedNextId={ph.nextId}
+              onSave={({objs,nextId})=>updatePhoto(i,{objs,nextId})}
+              tool={ap?.photoIdx===i&&ap?.side==='photo'?tool:'select'}
+              color={color} strokeSz={strokeSz} height={220}
+              active={ap?.photoIdx===i&&ap?.side==='photo'}
+              onActivate={()=>setActivePanel({photoIdx:i,side:'photo'})}
+              dropIcon="ti ti-camera"
+              dropLabel={lang==='fr'?'Ajouter une photo':'Add a photo'}
+              dropSub="PNG · JPG"/>
+          </div>
+          <input className="ann-caption" value={ph.caption}
+            placeholder={lang==='fr'?'Légende photo...':'Photo caption...'}
+            onChange={e=>updatePhoto(i,{caption:e.target.value})}/>
+        </div>
+
+        {/* DRAWING PANEL */}
+        <div className={`ann-panel${ap?.photoIdx===i&&ap?.side==='drawing'?' ann-active-panel':''}`}>
+          <div className="ann-panel-header">
+            <div className="ann-panel-title">
+              <i className="ti ti-ruler" style={{fontSize:12}} aria-hidden="true"/>
+              {lang==='fr'?'Dessin technique':'Technical drawing'}
+              {ap?.photoIdx===i&&ap?.side==='drawing'&&<span className="ann-active-badge">active</span>}
+            </div>
+            <div className="ann-panel-acts">
+              <button type="button" className="ann-pa-btn" title="Upload drawing"
+                onClick={e=>{e.stopPropagation();fileDrawRef.current.dataset.idx=i;fileDrawRef.current.click();}}>
+                <i className="ti ti-upload" aria-hidden="true"/>
+              </button>
+              {ph.drawingData&&<button type="button" className="ann-pa-btn" title="Remove drawing"
+                onClick={e=>{e.stopPropagation();updatePhoto(i,{drawingData:null,drawingObjs:[],drawingNextId:1});}}>
+                <i className="ti ti-x" aria-hidden="true"/>
+              </button>}
+            </div>
+          </div>
+          <div ref={ap?.photoIdx===i&&ap?.side==='drawing'?activeDrawRef:null}
+            onClick={()=>setActivePanel({photoIdx:i,side:'drawing'})}>
+            <AnnotatorCanvas
+              bgData={ph.drawingData} persistedObjs={ph.drawingObjs} persistedNextId={ph.drawingNextId}
+              onSave={({objs,nextId})=>updatePhoto(i,{drawingObjs:objs,drawingNextId:nextId})}
+              tool={ap?.photoIdx===i&&ap?.side==='drawing'?tool:'select'}
+              color={color} strokeSz={strokeSz} height={220}
+              active={ap?.photoIdx===i&&ap?.side==='drawing'}
+              onActivate={()=>setActivePanel({photoIdx:i,side:'drawing'})}
+              dropIcon="ti ti-ruler"
+              dropLabel={lang==='fr'?'Ajouter un dessin':'Add technical drawing'}
+              dropSub="PNG · JPG"/>
+          </div>
+          <input className="ann-caption" value={ph.drawingCaption||''}
+            placeholder={lang==='fr'?'Notes / dimensions...':'Notes / dimensions...'}
+            onChange={e=>updatePhoto(i,{drawingCaption:e.target.value})}/>
+        </div>
+      </div>
+    </div>)}
 
     <div className="ann-add-row" style={{marginTop:8}}>
-      <div className="ann-add-btn" onClick={()=>setShowCamera(true)}>
+      <div className="ann-add-btn" onClick={()=>{setCameraForIdx(null);setShowCamera(true);}}>
         <i className="ti ti-camera" aria-hidden="true"/>
         <span>{lang==='fr'?'Prendre une photo':'Take photo'}</span>
       </div>
-      <div className="ann-add-btn" onClick={()=>fileRef.current.click()}>
+      <div className="ann-add-btn" onClick={()=>filePhotoRef.current.click()}>
         <i className="ti ti-photo-up" aria-hidden="true"/>
         <span>{lang==='fr'?'Choisir depuis la galerie':'Upload from gallery'}</span>
       </div>
     </div>
-    <input ref={fileRef} type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
+
+    <input ref={filePhotoRef} type="file" accept="image/*" multiple style={{display:'none'}}
+      onChange={e=>handlePhotoFiles(e.target.files)}/>
+    <input ref={fileDrawRef} type="file" accept="image/*" style={{display:'none'}}
+      onChange={e=>{
+        const idx=+e.target.dataset.idx;
+        if(e.target.files[0]) handleDrawingFile(idx,e.target.files[0]);
+      }}/>
   </>;
 }
 
 // ═══════════════════════════════════════════════════════
-//  TECHNICAL DRAWING TAB
+//  TECHNICAL DRAWING TAB — full plan with zoom
 // ═══════════════════════════════════════════════════════
 function TechnicalDrawingTab({drawings, setDrawings, drawingNotes, setDrawingNotes, lang}){
   const [tool, setTool] = useState('select');
@@ -1532,154 +1511,113 @@ function TechnicalDrawingTab({drawings, setDrawings, drawingNotes, setDrawingNot
   const [activeIdx, setActiveIdx] = useState(0);
   const [zoom, setZoom] = useState(100);
   const fileRef = useRef();
-  const annStates = useRef([]);
+  const activeWrapRef = useRef(null);
+  const [, forceRender] = useState(0);
 
-  while(annStates.current.length < drawings.length){
-    const idx=annStates.current.length;
-    annStates.current.push({id:`drw-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]});
+  function updateDrawing(i, update){
+    setDrawings(p=>p.map((x,j)=>j===i?{...x,...update}:x));
   }
-  drawings.forEach((dr,i)=>{
-    const st=annStates.current[i];
-    if(dr.data&&!st.bgImg){
-      const img=new Image(); img.src=dr.data;
-      img.onload=()=>{st.bgImg=img;};
-      st.bgImg=img;
-    }
-  });
 
   function handleFiles(files){
     Array.from(files).forEach(f=>{
-      const reader=new FileReader();
-      reader.onload=e=>{
-        const idx=drawings.length;
-        setDrawings(prev=>[...prev,{name:f.name,data:e.target.result,type:f.type,note:'',objs:[]}]);
-        const st={id:`drw-${idx}`,bgImg:null,objs:[],selId:null,nextId:1,history:[]};
-        const img=new Image(); img.src=e.target.result; img.onload=()=>{st.bgImg=img;};
-        st.bgImg=img;
-        annStates.current.push(st);
-        setActiveIdx(idx);
+      const r=new FileReader();
+      r.onload=e=>{
+        const newIdx=drawings.length;
+        setDrawings(p=>[...p,{name:f.name,data:e.target.result,type:f.type,note:'',objs:[],nextId:1}]);
+        setActiveIdx(newIdx);
       };
-      reader.readAsDataURL(f);
+      r.readAsDataURL(f);
     });
+    fileRef.current.value='';
   }
 
-  function removeDrawing(i){
-    setDrawings(p=>p.filter((_,j)=>j!==i));
-    annStates.current.splice(i,1);
-    setActiveIdx(Math.max(0,i-1));
-  }
-
-  const activeSt=annStates.current[activeIdx];
   const activeDr=drawings[activeIdx];
-  const activeSel=activeSt?.selId;
   const panelH=Math.round(280*zoom/100);
 
-  function undo(){
-    if(!activeSt) return;
-    if(activeSt.history.length){ activeSt.objs=JSON.parse(activeSt.history.pop()); activeSt.selId=null; }
-    setActiveIdx(i=>i);
-  }
-  function deleteSelected(){
-    if(!activeSt||activeSt.selId==null) return;
-    activeSt.history.push(JSON.stringify(activeSt.objs));
-    activeSt.objs=activeSt.objs.filter(o=>o.id!==activeSt.selId);
-    activeSt.selId=null; setActiveIdx(i=>i);
-  }
-  function clearAnn(){
-    if(!activeSt) return;
-    activeSt.history.push(JSON.stringify(activeSt.objs));
-    activeSt.objs=[]; activeSt.selId=null; setActiveIdx(i=>i);
-  }
+  function undo(){ activeWrapRef.current?._annUndo?.(); }
+  function deleteSelected(){ activeWrapRef.current?._annDeleteSelected?.(); }
+  function clearAnn(){ activeWrapRef.current?._annClear?.(); }
 
   useEffect(()=>{
     const handler=e=>{
-      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA') return;
-      if(e.key==='Delete'||e.key==='Backspace') deleteSelected();
-      if(e.key==='v'||e.key==='V') setTool('select');
+      if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+      if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();deleteSelected();}
+      if(e.key==='v'||e.key==='V')setTool('select');
       if((e.ctrlKey||e.metaKey)&&e.key==='z'){e.preventDefault();undo();}
     };
     window.addEventListener('keydown',handler);
     return ()=>window.removeEventListener('keydown',handler);
   },[activeIdx]);
 
-  const activeLabel = drawings.length?`${lang==='fr'?'Dessin':'Drawing'} ${activeIdx+1}/${drawings.length}`:(lang==='fr'?'Aucun dessin':'No drawing');
+  const activeLabel=drawings.length?`${lang==='fr'?'Dessin':'Drawing'} ${activeIdx+1}/${drawings.length}`:(lang==='fr'?'Aucun dessin':'No drawing');
 
   return <>
     <div style={{background:'var(--blu-l)',border:'0.5px solid var(--blu-b)',borderRadius:'var(--r2)',padding:'9px 12px',marginBottom:12,fontSize:12,color:'var(--blu)',display:'flex',gap:8,alignItems:'center'}}>
       <i className="ti ti-info-circle" style={{fontSize:15,flexShrink:0}} aria-hidden="true"/>
-      {lang==='fr'
-        ?'Chargez le plan technique complet. Annotez directement sur le plan avec toutes les outils. Double-cliquez sur un texte ou une cote pour l\'éditer.'
-        :'Upload the full technical drawing. Annotate directly on the plan. Double-click text or dimension to edit.'}
+      {lang==='fr'?'Plan technique complet — annotez directement, double-cliquez texte/cote pour éditer.':'Full technical plan — annotate directly, double-click text/dimension to edit.'}
     </div>
 
     <AnnToolbar tool={tool} setTool={setTool} color={color} setColor={setColor}
-      strokeSz={strokeSz} setStrokeSz={setStrokeSz}
-      selId={activeSel} onDelete={deleteSelected} onUndo={undo} onClear={clearAnn}
-      activeLabel={activeLabel}/>
-
-    {activeSel!=null&&<div className="ann-sel-bar">
-      <i className="ti ti-cursor-text" style={{fontSize:14}} aria-hidden="true"/>
-      <span>{lang==='fr'?'Sélectionné — double-clic pour éditer':'Selected — double-click to edit'}</span>
-    </div>}
+      strokeSz={strokeSz} setStrokeSz={setStrokeSz} selId={null}
+      onDelete={deleteSelected} onUndo={undo} onClear={clearAnn} activeLabel={activeLabel}/>
 
     <div className="ann-drawing-main">
       <div className="ann-drawing-hdr">
-        <div style={{fontSize:12,fontWeight:600,color:'var(--tx2)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',maxWidth:220}}>
-          {activeDr?.name||(lang==='fr'?'Aucun dessin chargé':'No drawing loaded')}
+        <div style={{fontSize:12,fontWeight:600,color:'var(--tx2)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',maxWidth:200}}>
+          {activeDr?.name||(lang==='fr'?'Aucun dessin':'No drawing')}
         </div>
-        <div style={{display:'flex',alignItems:'center',gap:6}}>
+        <div style={{display:'flex',alignItems:'center',gap:5}}>
           <div className="ann-zoom-row">
-            <button className="ann-btn" onClick={()=>setZoom(z=>Math.max(50,z-25))}><i className="ti ti-zoom-out" aria-hidden="true"/></button>
+            <button type="button" className="ann-btn" onClick={()=>setZoom(z=>Math.max(50,z-25))}><i className="ti ti-zoom-out" aria-hidden="true"/></button>
             <span style={{minWidth:36,textAlign:'center'}}>{zoom}%</span>
-            <button className="ann-btn" onClick={()=>setZoom(z=>Math.min(300,z+25))}><i className="ti ti-zoom-in" aria-hidden="true"/></button>
-            <button className="ann-btn" onClick={()=>setZoom(100)} title="Reset zoom"><i className="ti ti-maximize" aria-hidden="true"/></button>
+            <button type="button" className="ann-btn" onClick={()=>setZoom(z=>Math.min(300,z+25))}><i className="ti ti-zoom-in" aria-hidden="true"/></button>
+            <button type="button" className="ann-btn" onClick={()=>setZoom(100)}><i className="ti ti-maximize" aria-hidden="true"/></button>
           </div>
           <div className="ann-sep" style={{height:18}}/>
-          <button className="ann-btn" title="Upload drawing" onClick={()=>fileRef.current.click()}>
-            <i className="ti ti-upload" aria-hidden="true"/>
-          </button>
+          <button type="button" className="ann-btn" onClick={()=>fileRef.current.click()}><i className="ti ti-upload" aria-hidden="true"/></button>
         </div>
       </div>
 
-      {activeSt&&<div style={{position:'relative'}}>
-        <AnnotatorCanvas stateRef={{current:activeSt}} tool={tool} color={color} strokeSz={strokeSz}
-          active={true} onActivate={()=>{}} height={panelH}/>
-        <div className="ann-page-badge">{activeIdx+1} / {drawings.length||1}</div>
+      <div style={{position:'relative'}}>
+        <div ref={activeWrapRef}>
+          <AnnotatorCanvas
+            bgData={activeDr?.data} persistedObjs={activeDr?.objs} persistedNextId={activeDr?.nextId}
+            onSave={({objs,nextId})=>activeDr&&updateDrawing(activeIdx,{objs,nextId})}
+            tool={tool} color={color} strokeSz={strokeSz} height={panelH}
+            active={true} onActivate={()=>{}}
+            dropIcon="ti ti-ruler" dropLabel={lang==='fr'?'Charger un dessin technique':'Upload technical drawing'} dropSub="PNG · JPG"/>
+        </div>
+        <div className="ann-page-badge">{activeIdx+1} / {Math.max(drawings.length,1)}</div>
         {drawings.length>1&&<>
-          <button onClick={()=>setActiveIdx(i=>Math.max(0,i-1))}
+          <button type="button" onClick={()=>setActiveIdx(i=>Math.max(0,i-1))}
             style={{position:'absolute',left:8,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.85)',border:'0.5px solid var(--brd)',borderRadius:'var(--r)',width:28,height:28,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--tx)'}}>
             <i className="ti ti-chevron-left" style={{fontSize:14}} aria-hidden="true"/>
           </button>
-          <button onClick={()=>setActiveIdx(i=>Math.min(drawings.length-1,i+1))}
+          <button type="button" onClick={()=>setActiveIdx(i=>Math.min(drawings.length-1,i+1))}
             style={{position:'absolute',right:8,top:'50%',transform:'translateY(-50%)',background:'rgba(255,255,255,.85)',border:'0.5px solid var(--brd)',borderRadius:'var(--r)',width:28,height:28,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--tx)'}}>
             <i className="ti ti-chevron-right" style={{fontSize:14}} aria-hidden="true"/>
           </button>
         </>}
-      </div>}
-
-      {!activeSt&&<div style={{height:240,background:'var(--surf2)',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:8,cursor:'pointer'}} onClick={()=>fileRef.current.click()}>
-        <i className="ti ti-ruler" style={{fontSize:32,opacity:.3,color:'var(--muted)'}} aria-hidden="true"/>
-        <span style={{fontSize:13,color:'var(--muted)'}}>{lang==='fr'?'Cliquer pour charger un dessin technique':'Click to upload a technical drawing'}</span>
-      </div>}
+      </div>
 
       <div className="ann-thumb-strip">
         <span style={{fontSize:11,color:'var(--muted)',fontWeight:600,whiteSpace:'nowrap'}}>{lang==='fr'?'Pages:':'Pages:'}</span>
-        {drawings.map((dr,i)=><div key={i} className={`ann-thumb${activeIdx===i?' ann-thumb-active':''}`} onClick={()=>setActiveIdx(i)} title={dr.name}>
+        {drawings.map((dr,i)=><div key={i} className={`ann-thumb${activeIdx===i?' ann-thumb-active':''}`}
+          onClick={()=>setActiveIdx(i)} title={dr.name}>
           {dr.data&&dr.type?.startsWith('image/')
-            ? <img src={dr.data} alt={dr.name}/>
-            : <i className="ti ti-file" style={{fontSize:20,opacity:.4,color:'var(--muted)'}} aria-hidden="true"/>}
+            ?<img src={dr.data} alt={dr.name}/>
+            :<i className="ti ti-file" style={{fontSize:20,opacity:.4,color:'var(--muted)'}} aria-hidden="true"/>}
         </div>)}
-        <div className="ann-thumb ann-thumb-add" onClick={()=>fileRef.current.click()} title={lang==='fr'?'Ajouter une page':'Add page'}>
+        <div className="ann-thumb ann-thumb-add" onClick={()=>fileRef.current.click()} title={lang==='fr'?'Ajouter':'Add'}>
           <i className="ti ti-plus" style={{fontSize:16,opacity:.4,color:'var(--muted)'}} aria-hidden="true"/>
         </div>
         <div style={{marginLeft:'auto',flex:1,minWidth:150}}>
           <input value={drawingNotes} onChange={e=>setDrawingNotes(e.target.value)}
-            placeholder={lang==='fr'?'Notes / dimensions…':'Notes / dimensions…'}
+            placeholder={lang==='fr'?'Notes / dimensions...':'Notes / dimensions...'}
             style={{width:'100%',padding:'4px 8px',fontSize:12,border:'0.5px solid var(--brd)',borderRadius:'var(--r)',background:'var(--surf)',color:'var(--tx)',fontFamily:'var(--ff)'}}/>
         </div>
       </div>
     </div>
-
     <input ref={fileRef} type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
   </>;
 }
@@ -1700,8 +1638,21 @@ const EMPTY_FORM = {
 function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelEdit, showToast, sampling, inspections, weights, thresholds}){
   const [tab, setTab] = useState(0);
   const [form, setForm] = useState(editRecord ? formFromRecord(editRecord) : EMPTY_FORM);
-  const [photos, setPhotos] = useState(editRecord?.photos||[]);
-  const [drawings, setDrawings] = useState(editRecord?.drawings||[]);
+  const [photos, setPhotos] = useState(()=>{
+    if(editRecord?.photos) return editRecord.photos.map(p=>({
+      data:p.data||null, caption:p.caption||'', objs:p.objs||[], nextId:p.nextId||1,
+      drawingData:p.drawingData||null, drawingCaption:p.drawingCaption||'',
+      drawingObjs:p.drawingObjs||[], drawingNextId:p.drawingNextId||1,
+    }));
+    return [];
+  });
+  const [drawings, setDrawings] = useState(()=>{
+    if(editRecord?.drawings) return editRecord.drawings.map(d=>({
+      name:d.name||'', data:d.data||null, type:d.type||'image/png', note:d.note||'',
+      objs:d.objs||[], nextId:d.nextId||1,
+    }));
+    return [];
+  });
   const startTimeRef = useRef(Date.now()); // ⏱ start timer when form mounts
 
   useEffect(()=>{
@@ -1827,7 +1778,7 @@ function InspectionForm({site, lang, t, suppliers, onSave, editRecord, onCancelE
       <button className={`ftab${tab===2?' active':''}`} onClick={()=>setTab(2)}>{t('page3')}{drawBadge}</button>
     </div>
 
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} onKeyDown={e=>{if(e.key==='Enter'&&e.target.tagName!=='BUTTON'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();e.stopPropagation();}}}>      
       {/* PAGE 1 */}
       {tab===0 && <div className="form-layout">
         <div>
