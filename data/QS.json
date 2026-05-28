@@ -2,5 +2,16 @@
   "inspections": [],
   "ncrs": [],
   "suppliers": [],
-  "auditLog": []
+  "auditLog": [
+    {
+      "id": 1780000724522,
+      "timestamp": "2026-05-28T20:38:44.522Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: admin | Sites: QS, NL, QM"
+    }
+  ]
 }
