@@ -689,6 +689,44 @@ td,th{white-space:nowrap;}
     <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode">🌙</button>
   </div>
 </header>
+
+<!-- MOBILE BOTTOM NAV (outside wrap, position:fixed) -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="bn-item active" id="bn-id" onclick="go('id',null);setBN('id')">
+    <span class="bn-ic">📊</span><span data-i18n="n_id">Dashboard</span>
+  </button>
+  <button class="bn-item" id="bn-in" onclick="go('in',null);setBN('in')">
+    <span class="bn-ic">➕</span><span data-i18n="n_in">Inspect</span>
+  </button>
+  <button class="bn-item" id="bn-il" onclick="go('il',null);setBN('il')">
+    <span class="bn-ic">📋</span><span data-i18n="n_il">List</span>
+  </button>
+  <button class="bn-item" id="bn-nd" onclick="go('nd',null);setBN('nd')">
+    <span class="bn-ic">⚠️</span><span>NCR</span>
+    <span class="bn-badge" id="bn-badge" style="display:none">0</span>
+  </button>
+  <button class="bn-item" id="bn-more" onclick="toggleMobileMenu()">
+    <span class="bn-ic">☰</span><span>More</span>
+  </button>
+</nav>
+
+<!-- MOBILE SLIDE-UP MENU (outside wrap, position:fixed) -->
+<div id="mobile-menu" style="display:none;position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.45)" onclick="toggleMobileMenu()">
+  <div onclick="event.stopPropagation()" style="position:absolute;bottom:0;left:0;right:0;background:var(--surf);border-radius:var(--r3) var(--r3) 0 0;padding:20px 16px 32px;box-shadow:var(--sh3);">
+    <div style="width:36px;height:4px;background:var(--brd2);border-radius:2px;margin:0 auto 18px;"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <button class="mob-menu-item" onclick="go('sl',null);toggleMobileMenu()">🏢 <span data-i18n="n_sl">Suppliers</span></button>
+      <button class="mob-menu-item" onclick="go('cd',null);toggleMobileMenu()">🌐 <span data-i18n="n_cd">Consolidated</span></button>
+      <button class="mob-menu-item" onclick="go('sc',null);toggleMobileMenu()">⭐ <span data-i18n="n_sc">Scorecards</span></button>
+      <button class="mob-menu-item" onclick="go('rk',null);toggleMobileMenu()">🏆 <span data-i18n="n_rk">Ranking</span></button>
+      <button class="mob-menu-item" onclick="go('nn',null);toggleMobileMenu()">➕ <span data-i18n="n_nn">New NCR</span></button>
+      <button class="mob-menu-item" onclick="go('wt',null);toggleMobileMenu()">⚖️ <span data-i18n="n_wt">Weights</span></button>
+      <button class="mob-menu-item" onclick="exportAll();toggleMobileMenu()">⬇️ <span data-i18n="n_ex">Export</span></button>
+      <button class="mob-menu-item" onclick="document.getElementById('impf').click();toggleMobileMenu()">⬆️ <span data-i18n="n_im">Import</span></button>
+    </div>
+  </div>
+</div>
+
 <div class="wrap">
 <nav class="sidebar">
   <div class="sb-sec">
@@ -716,51 +754,13 @@ td,th{white-space:nowrap;}
   </div>
   <div class="sb-sec">
     <div class="sb-lbl" data-i18n="sb_set">Settings</div>
-    <div class="nav" onclick="go('pa',this)"><span class="nav-ic">☁️</span><span data-i18n="n_pa">Power Automate</span></div>
+    <div class="nav" onclick="go('pa',this)"><span class="nav-ic">☁️</span><span data-i18n="n_pa">GitHub Storage</span></div>
     <div class="nav" onclick="go('wt',this)"><span class="nav-ic">⚖️</span><span data-i18n="n_wt">Score weights</span></div>
     <div class="nav" onclick="exportAll()"><span class="nav-ic">⬇️</span><span data-i18n="n_ex">Export JSON</span></div>
     <div class="nav" onclick="document.getElementById('impf').click()"><span class="nav-ic">⬆️</span><span data-i18n="n_im">Import JSON</span></div>
     <input type="file" id="impf" accept=".json" style="display:none" onchange="importData(event)"/>
   </div>
 </nav>
-
-<!-- MOBILE BOTTOM NAV -->
-<nav class="bottom-nav" id="bottom-nav">
-  <button class="bn-item active" id="bn-id" onclick="go('id',null);setBN('id')">
-    <span class="bn-ic">📊</span><span data-i18n="n_id">Dashboard</span>
-  </button>
-  <button class="bn-item" id="bn-in" onclick="go('in',null);setBN('in')">
-    <span class="bn-ic">➕</span><span data-i18n="n_in">Inspect</span>
-  </button>
-  <button class="bn-item" id="bn-il" onclick="go('il',null);setBN('il')">
-    <span class="bn-ic">📋</span><span data-i18n="n_il">List</span>
-  </button>
-  <button class="bn-item" id="bn-nd" onclick="go('nd',null);setBN('nd')">
-    <span class="bn-ic">⚠️</span><span>NCR</span>
-    <span class="bn-badge" id="bn-badge" style="display:none">0</span>
-  </button>
-  <button class="bn-item" id="bn-more" onclick="toggleMobileMenu()">
-    <span class="bn-ic">☰</span><span>More</span>
-  </button>
-</nav>
-
-<!-- MOBILE SLIDE-UP MENU -->
-<div id="mobile-menu" style="display:none;position:fixed;inset:0;z-index:350;background:rgba(0,0,0,.45)" onclick="toggleMobileMenu()">
-  <div onclick="event.stopPropagation()" style="position:absolute;bottom:0;left:0;right:0;background:var(--surf);border-radius:var(--r3) var(--r3) 0 0;padding:20px 16px 32px;box-shadow:var(--sh3);">
-    <div style="width:36px;height:4px;background:var(--brd2);border-radius:2px;margin:0 auto 18px;"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-      <button class="mob-menu-item" onclick="go('sl',null);toggleMobileMenu()">🏢 <span data-i18n="n_sl">Suppliers</span></button>
-      <button class="mob-menu-item" onclick="go('cd',null);toggleMobileMenu()">🌐 <span data-i18n="n_cd">Consolidated</span></button>
-      <button class="mob-menu-item" onclick="go('sc',null);toggleMobileMenu()">⭐ <span data-i18n="n_sc">Scorecards</span></button>
-      <button class="mob-menu-item" onclick="go('rk',null);toggleMobileMenu()">🏆 <span data-i18n="n_rk">Ranking</span></button>
-      <button class="mob-menu-item" onclick="go('nn',null);toggleMobileMenu()">➕ <span data-i18n="n_nn">New NCR</span></button>
-      <button class="mob-menu-item" onclick="go('wt',null);toggleMobileMenu()">⚖️ <span data-i18n="n_wt">Weights</span></button>
-      <button class="mob-menu-item" onclick="exportAll();toggleMobileMenu()">⬇️ <span data-i18n="n_ex">Export</span></button>
-      <button class="mob-menu-item" onclick="document.getElementById('impf').click();toggleMobileMenu()">⬆️ <span data-i18n="n_im">Import</span></button>
-    </div>
-  </div>
-</div>
-
 <main class="content">
 <!-- INSPECTION DASHBOARD -->
 <div class="pg active" id="pg-id">
