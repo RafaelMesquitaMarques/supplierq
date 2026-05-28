@@ -421,14 +421,19 @@
       "capa": [],
       "responsible": "",
       "dueDate": "2026-05-28",
-      "status": "open",
+      "status": "closed",
       "history": [
         {
           "date": "2026-05-28T14:00:00.346Z",
           "action": "Created"
+        },
+        {
+          "date": "2026-05-28T14:00:13.433Z",
+          "action": "Closed"
         }
       ],
-      "createdAt": "2026-05-28T14:00:00.349Z"
+      "createdAt": "2026-05-28T14:00:00.349Z",
+      "closedDate": "2026-05-28T14:00:13.433Z"
     }
   ],
   "suppliers": [
