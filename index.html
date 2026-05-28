@@ -190,7 +190,37 @@ textarea{resize:vertical;min-height:68px;}
 .ei{font-size:36px;margin-bottom:7px;}
 #toast{position:fixed;bottom:20px;right:20px;background:var(--tx);color:#fff;padding:8px 15px;border-radius:var(--r);font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .22s;pointer-events:none;z-index:999;}
 #toast.show{opacity:1;transform:translateY(0);}
-@media(max-width:860px){.kg4,.kg5{grid-template-columns:1fr 1fr;}.scg,.pg3,.flayout{grid-template-columns:1fr;}.sidebar{display:none;}.rg{grid-template-columns:1fr;}}
+/* ── Form page tabs ── */
+.form-tabs{display:flex;gap:0;border-bottom:2px solid var(--brd);margin-bottom:18px;}
+.ftab{padding:8px 18px;font-size:13px;font-weight:500;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--ff);}
+.ftab:hover{color:var(--tx);}
+.ftab.active{color:var(--grn);border-bottom-color:var(--grn);font-weight:600;}
+.form-page{display:none;}
+.form-page.active{display:block;}
+/* ── Photo grid ── */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;}
+.photo-slot{position:relative;aspect-ratio:4/3;border:2px dashed var(--brd);border-radius:var(--r);background:var(--surf2);overflow:hidden;cursor:pointer;transition:border-color .15s;}
+.photo-slot:hover{border-color:var(--grn-b);}
+.photo-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-slot .ph-del{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.55);border:none;border-radius:50%;width:22px;height:22px;color:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+.photo-slot .ph-lbl{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:3px 5px;text-align:center;}
+.photo-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;color:var(--muted);font-size:12px;aspect-ratio:4/3;border:2px dashed var(--brd);border-radius:var(--r);background:var(--surf2);cursor:pointer;transition:all .15s;}
+.photo-add:hover{border-color:var(--grn-b);color:var(--grn);}
+.photo-add .pa-ic{font-size:22px;}
+.photo-caption{width:100%;margin-top:4px;padding:4px 6px;border:1px solid var(--brd);border-radius:4px;font-size:11px;font-family:var(--ff);background:var(--surf);color:var(--tx);}
+/* ── Photo lightbox ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:600;align-items:center;justify-content:center;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:90vw;max-height:85vh;border-radius:var(--r);box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.lightbox-close{position:absolute;top:16px;right:20px;color:#fff;font-size:28px;cursor:pointer;background:none;border:none;line-height:1;}
+/* ── Drawing section ── */
+.drawing-list{display:flex;flex-direction:column;gap:8px;}
+.drawing-item{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:10px 12px;display:flex;align-items:center;gap:10px;}
+.drawing-thumb{width:64px;height:64px;border-radius:4px;object-fit:cover;border:1px solid var(--brd);cursor:pointer;flex-shrink:0;}
+.drawing-info{flex:1;min-width:0;}
+.drawing-name{font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.drawing-note{font-size:11px;color:var(--muted);margin-top:2px;}
+@media(max-width:860px){.kg4,.kg5{grid-template-columns:1fr 1fr;}.scg,.pg3,.flayout{grid-template-columns:1fr;}.sidebar{display:none;}.rg{grid-template-columns:1fr;}.photo-grid{grid-template-columns:repeat(2,1fr);}}
 </style>
 </head>
 <body>
@@ -265,6 +295,13 @@ textarea{resize:vertical;min-height:68px;}
 <div class="pg" id="pg-in">
   <div class="pgh"><div><h1 data-i18n="n_in">New inspection</h1><p>Report # <span class="ref-badge" id="preview-ref">—</span></p></div></div>
   <form id="iForm" onsubmit="submitI(event)">
+    <!-- Page tabs -->
+    <div class="form-tabs">
+      <button type="button" class="ftab active" onclick="switchFormPage(1,this)">📋 <span data-i18n="ftab_p1">Page 1 — Report</span></button>
+      <button type="button" class="ftab" onclick="switchFormPage(2,this)">📷 <span data-i18n="ftab_p2">Page 2 — Photos</span> <span id="ph-count-badge" style="display:none;background:var(--blu-l);color:var(--blu);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:3px">0</span></button>
+      <button type="button" class="ftab" onclick="switchFormPage(3,this)">📐 <span data-i18n="ftab_p3">Page 3 — Drawings</span> <span id="dr-count-badge" style="display:none;background:var(--blu-l);color:var(--blu);font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:3px">0</span></button>
+    </div>
+    <div class="form-page active" id="fp1">
     <div class="flayout">
       <div>
         <div class="fc"><div class="fct" data-i18n="fc_ship">General shipment info</div>
@@ -374,6 +411,50 @@ textarea{resize:vertical;min-height:68px;}
           <button type="button" class="btn bmail" onclick="previewEmail()" data-i18n="btn_email">📧 Email</button>
           <button type="submit" class="btn bp" data-i18n="btn_si">Save inspection</button>
         </div>
+      </div>
+    </div><!-- /fp1 flayout -->
+    </div><!-- /fp1 form-page -->
+
+    <!-- PAGE 2 — INSPECTION PHOTOS -->
+    <div class="form-page" id="fp2">
+      <div class="fc">
+        <div class="fct">📷 <span data-i18n="fc_photos">Shipment Inspection Photos</span> — <span style="font-family:var(--fm);font-size:11px;color:var(--muted)" data-i18n="pg_label_2">Page 2/3</span></div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px" data-i18n="ph_hint">Add photos from the shipment inspection. Click a photo to enlarge it.</p>
+        <div class="photo-grid" id="ph-grid"></div>
+        <label class="photo-add" onclick="document.getElementById('ph-file-input').click()">
+          <span class="pa-ic">📷</span>
+          <span data-i18n="ph_add">Add photo</span>
+        </label>
+        <input type="file" id="ph-file-input" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(this)"/>
+      </div>
+      <div class="fl-end">
+        <button type="button" class="btn bg" onclick="switchFormPage(1,document.querySelector('.ftab'))">← <span data-i18n="btn_back">Back</span></button>
+        <button type="button" class="btn bg" onclick="switchFormPage(3,document.querySelectorAll('.ftab')[2])"><span data-i18n="btn_next">Next</span> →</button>
+        <button type="submit" class="btn bp" data-i18n="btn_si">Save inspection</button>
+      </div>
+    </div>
+
+    <!-- PAGE 3 — REFERENCED IMAGES / TECHNICAL DRAWINGS -->
+    <div class="form-page" id="fp3">
+      <div class="fc">
+        <div class="fct">📐 <span data-i18n="fc_drawings">Referenced Images for Inspection</span> — <span style="font-family:var(--fm);font-size:11px;color:var(--muted)" data-i18n="pg_label_3">Page 3/3</span></div>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px" data-i18n="dr_hint">Attach technical drawings, specifications, or reference images for this product.</p>
+        <div class="drawing-list" id="dr-list"></div>
+        <div style="margin-top:10px">
+          <label class="photo-add" onclick="document.getElementById('dr-file-input').click()">
+            <span class="pa-ic">📐</span>
+            <span data-i18n="dr_add">Add drawing / reference image</span>
+          </label>
+          <input type="file" id="dr-file-input" accept="image/*,application/pdf" multiple style="display:none" onchange="handleDrawingUpload(this)"/>
+        </div>
+        <div class="fg" style="margin-top:12px">
+          <label data-i18n="dr_notes">Drawing notes / dimensions</label>
+          <textarea id="f-dr-notes" rows="3" data-i18n-ph="dr_notes_ph" placeholder="Ex: Width 24.5'' ± 0.1'' — ref drawing D-2026-001"></textarea>
+        </div>
+      </div>
+      <div class="fl-end">
+        <button type="button" class="btn bg" onclick="switchFormPage(2,document.querySelectorAll('.ftab')[1])">← <span data-i18n="btn_back">Back</span></button>
+        <button type="submit" class="btn bp" data-i18n="btn_si">Save inspection</button>
       </div>
     </div>
   </form>
@@ -691,6 +772,11 @@ textarea{resize:vertical;min-height:68px;}
 <div class="mo" id="mo-email" onclick="cmo('mo-email',event)">
   <div class="mo-box" onclick="event.stopPropagation()">
     <div class="mo-h"><h2>📧 <span data-i18n="email_preview">Email preview</span></h2><button class="mo-x" onclick="cmo('mo-email')">✕</button></div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
 <script>
 // ════════════════════════════════════════════════════════════════
 // SUPPLIERQ v4 — GitHub as database
@@ -901,7 +987,10 @@ d_color:'Color match',d_missing:'Missing part',d_func:'Functional',d_dim:'Drawin
 d_label:'Wrong label',d_badpkg:'Bad packaging',d_wprod:'Wrong product',d_wqty:'Wrong quantity',d_other_lbl:'Other issues',d_oth:'Other',
 fc_dec:'Final decision',dec_uai:'Use as Is',dec_rw:'Rework',dec_rej:'Rejected',dec_wfd:'Waiting for decision',
 f_uai_qty:'Use as Is qty',f_rw_qty:'Rework qty',f_rej_qty:'Rejected qty',f_wfd_qty:'Waiting qty',
-btn_clr:'Clear',btn_si:'Save inspection',btn_email:'📧 Email',
+btn_clr:'Clear',btn_si:'Save inspection',btn_email:'📧 Email',btn_back:'Back',btn_next:'Next',
+ftab_p1:'Page 1 — Report',ftab_p2:'Page 2 — Photos',ftab_p3:'Page 3 — Drawings',
+fc_photos:'Shipment Inspection Photos',pg_label_2:'Page 2/3',ph_hint:'Add photos from the shipment inspection. Click a photo to enlarge it.',ph_add:'Add photo',ph_caption:'Caption (optional)',
+fc_drawings:'Referenced Images for Inspection',pg_label_3:'Page 3/3',dr_hint:'Attach technical drawings, specifications, or reference images for this product.',dr_add:'Add drawing / reference image',dr_notes:'Drawing notes / dimensions',
 nd_sub:'NCR summary',fc_ni:'NCR information',f_sev:'Severity',sv_c:'Critical',sv_m:'Major',sv_n:'Minor',
 f_def:'Defect',f_desc:'Description',f_iref:'Inspection ref',f_due:'Due date',
 fc_rca:'Root cause (RCA)',f_rcat:'Category',f_rdet:'Detail (5 Whys)',
@@ -938,7 +1027,10 @@ d_color:'Correspondance couleur',d_missing:'Pièce manquante',d_func:'Fonctionne
 d_label:"Erreur d'étiquette",d_badpkg:'Emballage inadéquat',d_wprod:'Mauvais produit',d_wqty:'Mauvaise quantité',d_other_lbl:'Autres problèmes',d_oth:'Autre',
 fc_dec:'Décision finale',dec_uai:'Utiliser tel quel',dec_rw:'Retravail',dec_rej:'Rejeté',dec_wfd:'Attente de décision',
 f_uai_qty:'Qté utiliser tel quel',f_rw_qty:'Qté retravail',f_rej_qty:'Qté rejetée',f_wfd_qty:'Qté en attente',
-btn_clr:'Effacer',btn_si:'Enregistrer',btn_email:'📧 Courriel',
+btn_clr:'Effacer',btn_si:'Enregistrer',btn_email:'📧 Courriel',btn_back:'Retour',btn_next:'Suivant',
+ftab_p1:'Page 1 — Rapport',ftab_p2:'Page 2 — Photos',ftab_p3:'Page 3 — Dessins',
+fc_photos:"Photos d'inspection",pg_label_2:'Page 2/3',ph_hint:"Ajoutez les photos de l'inspection. Cliquez pour agrandir.",ph_add:'Ajouter photo',ph_caption:'Légende (optionnel)',
+fc_drawings:"Images de référence pour l'inspection",pg_label_3:'Page 3/3',dr_hint:"Joignez les dessins techniques, spécifications ou images de référence du produit.",dr_add:'Ajouter dessin / image de référence',dr_notes:'Notes / dimensions',
 nd_sub:'Synthèse NC',fc_ni:'Informations NC',f_sev:'Criticité',sv_c:'Critique',sv_m:'Majeur',sv_n:'Mineur',
 f_def:'Type de défaut',f_desc:'Description',f_iref:'Réf. rapport inspection',f_due:'Échéance',
 fc_rca:'Analyse des causes (RCA)',f_rcat:'Catégorie',f_rdet:'Détail (5 Pourquoi)',
@@ -994,14 +1086,66 @@ function getRounds(){const r=[];for(let n=1;n<=3;n++){const rv=n===1?+document.g
 function setDec(val){document.getElementById('f-dec').value=val;['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');const map={'use-as-is':['db-uai','sel-uai'],'rework':['db-rw','sel-rw'],'rejected':['db-rej','sel-rej'],'waiting':['db-wfd','sel-wfd']};if(map[val])document.getElementById(map[val][0]).classList.add(map[val][1]);}
 function popSup(selId){const sel=document.getElementById(selId);if(!sel)return;const sups=ld('suppliers');const cur=sel.value;sel.innerHTML='<option value="">—</option>';sups.forEach(s=>{const o=document.createElement('option');o.value=s.name;o.textContent=s.name+(s.code?` (${s.code})`:'');sel.appendChild(o);});sel.value=cur;}
 
+// ── FORM PAGE TABS ─────────────────────────────────────────────
+function switchFormPage(n,tabEl){
+  document.querySelectorAll('.form-page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('fp'+n).classList.add('active');
+  if(tabEl)tabEl.classList.add('active');
+}
+
+// ── PHOTOS (Page 2) ────────────────────────────────────────────
+let _photos=[];
+function handlePhotoUpload(input){
+  const files=Array.from(input.files);let loaded=0;
+  files.forEach(file=>{const reader=new FileReader();reader.onload=ev=>{_photos.push({data:ev.target.result,caption:''});loaded++;if(loaded===files.length)renderPhotoGrid();};reader.readAsDataURL(file);});
+  input.value='';
+}
+function renderPhotoGrid(){
+  const grid=document.getElementById('ph-grid');if(!grid)return;grid.innerHTML='';
+  _photos.forEach((ph,i)=>{
+    const wrap=document.createElement('div');
+    const slot=document.createElement('div');slot.className='photo-slot';
+    slot.innerHTML=`<img src="${ph.data}" alt="Photo ${i+1}" onclick="openLightbox(this.src)"/><button type="button" class="ph-del" onclick="removePhoto(${i})">✕</button><div class="ph-lbl">${ph.caption||'Photo '+(i+1)}</div>`;
+    const cap=document.createElement('input');cap.type='text';cap.className='photo-caption';cap.placeholder=t('ph_caption');cap.value=ph.caption||'';
+    cap.oninput=ev=>{_photos[i].caption=ev.target.value;slot.querySelector('.ph-lbl').textContent=ev.target.value||'Photo '+(i+1);};
+    wrap.appendChild(slot);wrap.appendChild(cap);grid.appendChild(wrap);
+  });
+  const b=document.getElementById('ph-count-badge');if(b){b.style.display=_photos.length>0?'inline':'none';b.textContent=_photos.length;}
+}
+function removePhoto(i){_photos.splice(i,1);renderPhotoGrid();}
+
+// ── DRAWINGS (Page 3) ──────────────────────────────────────────
+let _drawings=[];
+function handleDrawingUpload(input){
+  const files=Array.from(input.files);let loaded=0;
+  files.forEach(file=>{const reader=new FileReader();reader.onload=ev=>{_drawings.push({name:file.name,data:ev.target.result,note:'',type:file.type});loaded++;if(loaded===files.length)renderDrawingList();};reader.readAsDataURL(file);});
+  input.value='';
+}
+function renderDrawingList(){
+  const list=document.getElementById('dr-list');if(!list)return;list.innerHTML='';
+  _drawings.forEach((dr,i)=>{
+    const isImg=dr.type&&dr.type.startsWith('image/');
+    const item=document.createElement('div');item.className='drawing-item';
+    item.innerHTML=`${isImg?`<img class="drawing-thumb" src="${dr.data}" alt="${dr.name}" onclick="openLightbox(this.src)"/>`:`<div class="drawing-thumb" style="display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--surf)">📄</div>`}<div class="drawing-info"><div class="drawing-name" title="${dr.name}">${dr.name}</div><input type="text" class="photo-caption" style="margin-top:5px" placeholder="Note / description" value="${dr.note}" oninput="_drawings[${i}].note=this.value"/></div><button type="button" class="btn bd bs" onclick="removeDrawing(${i})">✕</button>`;
+    list.appendChild(item);
+  });
+  const b=document.getElementById('dr-count-badge');if(b){b.style.display=_drawings.length>0?'inline':'none';b.textContent=_drawings.length;}
+}
+function removeDrawing(i){_drawings.splice(i,1);renderDrawingList();}
+
+// ── LIGHTBOX ───────────────────────────────────────────────────
+function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').classList.add('open');}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');}
+
 async function submitI(e){
   e.preventDefault();const dec=document.getElementById('f-dec').value;if(!dec){alert('Please select a final decision');return;}
   const r1rv=+document.getElementById('r1-rv').value||0,r1in=+document.getElementById('r1-in').value||0,r1nc=+document.getElementById('r1-nc').value||0;
   const hasNC=r1nc>0||dec==='rejected'||dec==='rework'||dec==='waiting';
-  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,createdAt:new Date().toISOString()};
+  const rec={id:Date.now(),ref:buildRef(),date:document.getElementById('f-dt').value,dailyN:+document.getElementById('f-dn').value,site,supplier:document.getElementById('f-sp').value,po:document.getElementById('f-po').value,productNo:document.getElementById('f-pn').value,description:document.getElementById('f-desc').value,delivery:document.getElementById('f-del').value,hu:document.getElementById('f-hu').value,country:document.getElementById('f-cty').value,receptionDate:document.getElementById('f-rdt').value,inspector:document.getElementById('f-ip').value,qtyReceived:r1rv,qtyInspected:r1in,rounds:getRounds(),defects:getDefects(),issues:document.getElementById('f-issues').value,notes:document.getElementById('f-notes').value,decision:dec,qtyUseAsIs:+document.getElementById('f-uai').value||0,qtyRework:+document.getElementById('f-rw').value||0,qtyRejected:+document.getElementById('f-rj').value||0,qtyWaiting:+document.getElementById('f-wfd').value||0,hasNC,photos:[..._photos],drawings:[..._drawings],drawingNotes:document.getElementById('f-dr-notes')?.value||'',createdAt:new Date().toISOString()};
   await svRecord('inspections',rec);toast(t('t_is'));updBadge();resetIF();go('id',document.querySelector('.nav'));
 }
-function resetIF(){document.getElementById('iForm').reset();today('f-dt');today('f-rdt');clearDefects();['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');document.getElementById('f-dec').value='';for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}updRef();}
+function resetIF(){document.getElementById('iForm').reset();today('f-dt');today('f-rdt');clearDefects();['db-uai','db-rw','db-rej','db-wfd'].forEach(id=>document.getElementById(id).className='db');document.getElementById('f-dec').value='';for(let n=1;n<=3;n++){document.getElementById(`r${n}-pct`).textContent='—';document.getElementById(`rb${n}`)?.classList.toggle('act',n===1);}_photos=[];_drawings=[];renderPhotoGrid();renderDrawingList();switchFormPage(1,document.querySelector('.ftab'));updRef();}
 function isPass(r){return r.decision==='use-as-is'||(r.decision&&!r.hasNC);}
 function renderID(){const data=ld('inspections');const tot=data.length,pass=data.filter(isPass).length,nc=data.filter(r=>r.hasNC||r.decision==='rejected'||r.decision==='rework').length,wfd=data.filter(r=>r.decision==='waiting').length;document.getElementById('id-tot').textContent=tot;document.getElementById('id-pass').textContent=pass;document.getElementById('id-passp').textContent=tot?Math.round(pass/tot*100)+'%':'—';document.getElementById('id-nc').textContent=nc;document.getElementById('id-ncp').textContent=tot?Math.round(nc/tot*100)+'%':'—';document.getElementById('id-wfd').textContent=wfd;document.getElementById('id-title').textContent=(lang==='fr'?'Tableau de bord — ':'Dashboard — ')+site;const tb=document.getElementById('id-tb');tb.innerHTML='';document.getElementById('id-emp').style.display=data.length?'none':'block';data.slice(0,8).forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
 function renderIL(){const srch=(document.getElementById('il-s')?.value||'').toLowerCase();const st=document.getElementById('il-st')?.value||'';const data=ld('inspections').filter(r=>(!st||r.decision===st)&&(!srch||JSON.stringify(r).toLowerCase().includes(srch)));const tb=document.getElementById('il-tb');tb.innerHTML='';document.getElementById('il-emp').style.display=data.length?'none':'block';data.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML=`<td class="mono" style="font-size:11px">${r.ref}</td><td>${r.date}</td><td>${r.supplier||'—'}</td><td class="mono">${r.po||'—'}</td><td class="mono">${r.productNo||'—'}</td><td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${r.description||'—'}</td><td>${r.qtyReceived??'—'}</td><td>${decPill(r.decision)}</td><td>${r.inspector||'—'}</td><td><button class="btn bg bs" onclick="openIM(${r.id})">${t('btn_ref')}</button></td>`;tb.appendChild(tr);});}
@@ -1010,6 +1154,8 @@ let curI=null;
 function openIM(id){curI=id;const r=ld('inspections').find(x=>x.id===id);if(!r)return;document.getElementById('mo-i-t').textContent=r.ref;let h=`<dl class="dl"><dt>${t('c_date')}</dt><dd>${r.date}</dd><dt>${t('c_sup')}</dt><dd>${r.supplier||'—'}</dd><dt>${t('c_po')}</dt><dd class="mono">${r.po||'—'}</dd><dt>${t('c_prod')}</dt><dd class="mono">${r.productNo||'—'}</dd><dt>${t('c_desc')}</dt><dd>${r.description||'—'}</dd><dt>${t('f_country')}</dt><dd>${r.country||'—'}</dd><dt>${t('f_del')}</dt><dd class="mono">${r.delivery||'—'} / HU ${r.hu||'—'}</dd><dt>${t('c_qr')}</dt><dd>${r.qtyReceived} (insp. ${r.qtyInspected})</dd><dt>${t('f_insp')}</dt><dd>${r.inspector||'—'}</dd><dt>${t('c_dec')}</dt><dd>${decPill(r.decision)}</dd>${(r.qtyUseAsIs||r.qtyRework||r.qtyRejected||r.qtyWaiting)?`<dt>Use as Is / Rework</dt><dd>${r.qtyUseAsIs||0} / ${r.qtyRework||0}</dd><dt>Rejected / Waiting</dt><dd>${r.qtyRejected||0} / ${r.qtyWaiting||0}</dd>`:''}</dl>`;if(r.rounds?.length){h+=`<div class="mo-s"><h3>${t('fc_rounds')}</h3><table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr><th style="padding:4px;border-bottom:1px solid var(--brd);text-align:left">Round</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Recv.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">Insp.</th><th style="padding:4px;border-bottom:1px solid var(--brd)">NC</th><th style="padding:4px;border-bottom:1px solid var(--brd)">%</th></tr></thead><tbody>${r.rounds.map(rn=>`<tr><td style="padding:4px">${rn.round}${rn.round===1?'st':rn.round===2?'nd':'rd'}</td><td style="padding:4px;text-align:center">${rn.recv??'—'}</td><td style="padding:4px;text-align:center">${rn.inspected}</td><td style="padding:4px;text-align:center">${rn.nonConf}</td><td style="padding:4px;text-align:center">${rn.pct}%</td></tr>`).join('')}</tbody></table></div>`;}
 if(r.defects?.length){h+=`<div class="mo-s"><h3>${t('fc_def')}</h3>${r.defects.map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--brd);font-size:13px"><span>• ${d.label}</span>${d.qty?`<span style="color:var(--red);font-weight:600">${d.qty}</span>`:''}</div>`).join('')}</div>`;}
 if(r.issues)h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
+if(r.photos?.length){h+=`<div class="mo-s"><h3>📷 ${t('fc_photos')} (${r.photos.length})</h3><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px">${r.photos.map((ph,i)=>`<div style="cursor:pointer" onclick="openLightbox('${ph.data}')"><img src="${ph.data}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;border:1px solid var(--brd)"/>${ph.caption?`<div style="font-size:10px;color:var(--muted);text-align:center;margin-top:2px">${ph.caption}</div>`:''}</div>`).join('')}</div></div>`;}
+if(r.drawings?.length){h+=`<div class="mo-s"><h3>📐 ${t('fc_drawings')} (${r.drawings.length})</h3><div style="display:flex;flex-direction:column;gap:6px">${r.drawings.map(dr=>{const isImg=dr.type&&dr.type.startsWith('image/');return `<div style="display:flex;align-items:center;gap:9px;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);padding:8px 10px">${isImg?`<img src="${dr.data}" onclick="openLightbox('${dr.data}')" style="width:52px;height:52px;object-fit:cover;border-radius:4px;border:1px solid var(--brd);cursor:pointer"/>`:`<div style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:24px">📄</div>`}<div><div style="font-size:12px;font-weight:600">${dr.name}</div>${dr.note?`<div style="font-size:11px;color:var(--muted);margin-top:2px">${dr.note}</div>`:''}</div></div>`;}).join('')}</div>${r.drawingNotes?`<p style="font-size:12px;margin-top:8px;padding:8px;background:var(--surf2);border-radius:4px;white-space:pre-line">${r.drawingNotes}</p>`:''}</div>`;}
 document.getElementById('mo-i-b').innerHTML=h;document.getElementById('mo-i').classList.add('open');}
 async function delI(){if(!curI||!confirm(t('btn_del')+'?'))return;await rmRecord('inspections',curI);toast(t('t_del'));cmo('mo-i');renderID();renderIL();updBadge();}
 let emailData=null;
