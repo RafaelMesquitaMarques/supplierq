@@ -1800,15 +1800,9 @@ function App(){
           </div>}
         </div>
 
-        {/* Nav items */}
+        {/* Nav items — all sections collapsible */}
         <div className="sb-nav">
-          {/* Dashboard — standalone */}
-          <button className={`nav-item${page==='dashboard'?' active':''}`} onClick={()=>navTo('dashboard')}>
-            <span className="nav-ic">📊</span>{t('dashboard')}
-          </button>
-
-          {/* Collapsible sections */}
-          {NAV.slice(1).map(sec=>{
+          {NAV.map(sec=>{
             const collapsed = collapsedSections[sec.id];
             return <div key={sec.id} className="sb-section">
               <div className="sb-section-header" onClick={()=>toggleSection(sec.id)}>
