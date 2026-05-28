@@ -63,19 +63,130 @@ body{font-family:var(--ff);background:var(--bg);color:var(--tx);font-size:14px;l
 /* ─── LAYOUT ─────────────────────────────────────── */
 .layout{display:flex;flex:1;min-height:0;overflow:hidden;}
 
-/* ─── SIDEBAR ────────────────────────────────────── */
-.sidebar{width:var(--sb);flex-shrink:0;background:var(--surf);border-right:1px solid var(--brd);
-  overflow-y:auto;padding:14px 10px;display:flex;flex-direction:column;gap:2px;}
-.sb-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);padding:8px 10px 4px;margin-top:4px;}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--r);
-  cursor:pointer;font-size:13px;color:var(--tx2);transition:all .12s;border:1px solid transparent;
-  background:none;width:100%;text-align:left;font-family:var(--ff);}
+/* ─── SIDEBAR — Cadence style ─────────────────────── */
+:root{ --sb:260px; }
+.sidebar{
+  width:var(--sb);flex-shrink:0;
+  background:var(--surf);border-right:1px solid var(--brd);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+/* Top: logo + close */
+.sb-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 18px 12px;border-bottom:1px solid var(--brd);flex-shrink:0;
+}
+.sb-logo{display:flex;align-items:center;gap:10px;}
+.sb-logo-icon{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--grn),var(--grn-dk));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.sb-logo-name{font-size:14px;font-weight:700;letter-spacing:.01em;color:var(--tx);}
+.sb-logo-sub{font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.03em;text-transform:uppercase;}
+.sb-close{
+  width:28px;height:28px;border-radius:6px;border:1px solid var(--brd);
+  background:none;cursor:pointer;color:var(--muted);font-size:14px;
+  display:flex;align-items:center;justify-content:center;transition:all .15s;
+}
+.sb-close:hover{background:var(--surf2);color:var(--tx);}
+
+/* Site row */
+.sb-site{
+  display:flex;align-items:center;gap:8px;padding:10px 16px;
+  border-bottom:1px solid var(--brd);cursor:pointer;flex-shrink:0;
+  transition:background .15s;position:relative;
+}
+.sb-site:hover{background:var(--surf2);}
+.sb-site-badge{
+  background:var(--blu);color:#fff;font-size:11px;font-weight:700;
+  padding:2px 8px;border-radius:5px;flex-shrink:0;
+}
+.sb-site-name{font-size:13px;font-weight:500;color:var(--tx);flex:1;}
+.sb-site-sync{color:var(--muted);font-size:13px;transition:color .15s;}
+.sb-site-sync:hover{color:var(--grn);}
+.sb-site-dd{
+  position:absolute;top:calc(100% + 2px);left:0;right:0;
+  background:var(--surf);border:1px solid var(--brd);border-radius:var(--r2);
+  box-shadow:var(--sh3);z-index:300;overflow:hidden;
+}
+.sb-site-opt{
+  padding:10px 16px;cursor:pointer;font-size:13px;color:var(--tx);
+  display:flex;align-items:center;gap:10px;transition:background .1s;
+}
+.sb-site-opt:hover{background:var(--surf2);}
+.sb-site-opt.active{font-weight:600;color:var(--grn);background:var(--grn-l);}
+.sb-site-opt-badge{
+  background:var(--blu);color:#fff;font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:4px;
+}
+
+/* Nav scroll area */
+.sb-nav{flex:1;overflow-y:auto;padding:8px 0;}
+
+/* Section */
+.sb-section{margin-bottom:2px;}
+.sb-section-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 18px 4px;cursor:pointer;transition:background .1s;
+  user-select:none;
+}
+.sb-section-header:hover{background:var(--surf2);}
+.sb-section-label{
+  font-size:10px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);
+}
+.sb-chevron{font-size:10px;color:var(--muted);transition:transform .2s;}
+.sb-chevron.open{transform:rotate(180deg);}
+
+/* Nav item */
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 18px;cursor:pointer;font-size:13px;
+  color:var(--tx2);transition:all .12s;
+  border:none;background:none;width:100%;text-align:left;font-family:var(--ff);
+  position:relative;
+}
 .nav-item:hover{background:var(--surf2);color:var(--tx);}
-.nav-item.active{background:var(--grn-l);color:var(--grn);font-weight:600;border-color:var(--grn-b);}
-.nav-ic{font-size:15px;width:18px;text-align:center;flex-shrink:0;}
-.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;
-  padding:1px 6px;border-radius:20px;min-width:18px;text-align:center;}
+.nav-item.active{
+  background:var(--blu-l);color:var(--blu);font-weight:600;
+}
+.nav-item.active .nav-ic{color:var(--blu);}
+.nav-ic{font-size:15px;width:18px;text-align:center;flex-shrink:0;color:var(--muted);transition:color .12s;}
+.nav-item:hover .nav-ic{color:var(--tx);}
+.nav-badge{
+  margin-left:auto;background:var(--red);color:#fff;
+  font-size:10px;font-weight:700;padding:1px 6px;border-radius:20px;min-width:18px;text-align:center;
+}
+
+/* Sidebar bottom */
+.sb-bottom{
+  border-top:1px solid var(--brd);padding:12px 16px;flex-shrink:0;
+  display:flex;flex-direction:column;gap:10px;
+}
+.sb-lang-row{display:flex;gap:6px;}
+.sb-lang-btn{
+  flex:1;padding:5px 0;border-radius:6px;border:1px solid var(--brd);
+  background:none;font-family:var(--ff);font-size:12px;font-weight:600;
+  color:var(--muted);cursor:pointer;transition:all .15s;
+}
+.sb-lang-btn.active{background:var(--tx);color:var(--bg);border-color:var(--tx);}
+.sb-lang-btn:hover:not(.active){background:var(--surf2);color:var(--tx);}
+.sb-user{
+  display:flex;align-items:center;gap:10px;padding:8px 10px;
+  border-radius:var(--r2);cursor:pointer;transition:background .15s;
+  justify-content:space-between;
+}
+.sb-user:hover{background:var(--surf2);}
+.sb-user-info{display:flex;align-items:center;gap:10px;}
+.sb-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--blu),var(--pur));
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;flex-shrink:0;
+}
+.sb-user-name{font-size:13px;font-weight:600;color:var(--tx);}
+.sb-user-role{font-size:11px;color:var(--muted);}
 
 /* ─── CONTENT ────────────────────────────────────── */
 .content{flex:1;min-width:0;overflow-y:auto;background:var(--bg);}
@@ -93,18 +204,8 @@ body{font-family:var(--ff);background:var(--bg);color:var(--tx);font-size:14px;l
 .btn-email{background:var(--blu-l);color:var(--blu);border:1px solid var(--blu-b);}
 .btn-sm{padding:4px 10px;font-size:12px;}
 
-/* ─── SITE SELECTOR ──────────────────────────────── */
-.site-btn{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);
-  padding:5px 11px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;
-  gap:5px;color:var(--tx);font-family:var(--ff);transition:all .15s;position:relative;}
-.site-btn:hover{border-color:var(--brd2);}
-.site-dd{position:absolute;top:calc(100% + 6px);right:0;background:var(--surf);
-  border:1px solid var(--brd);border-radius:var(--r2);box-shadow:var(--sh3);min-width:180px;
-  z-index:300;overflow:hidden;}
-.site-opt{padding:10px 14px;cursor:pointer;font-size:13px;color:var(--tx);display:flex;
-  align-items:center;gap:8px;transition:background .1s;}
-.site-opt:hover{background:var(--surf2);}
-.site-opt.active{font-weight:600;color:var(--grn);background:var(--grn-l);}
+/* ─── HEADER UTILS ───────────────────────────────── */
+.site-btn,.site-dd,.site-opt{display:none;} /* moved to sidebar */
 .lang-btn,.theme-btn{background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r);
   color:var(--tx);font-family:var(--ff);font-size:12px;font-weight:500;padding:5px 10px;cursor:pointer;}
 .theme-btn{padding:5px 8px;font-size:15px;}
@@ -1584,29 +1685,36 @@ function App(){
     reader.readAsText(f);
   }
 
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [collapsedSections, setCollapsedSections] = useState({});
+
+  function toggleSection(sec){
+    setCollapsedSections(s=>({...s,[sec]:!s[sec]}));
+  }
+
   const NAV = [
-    {section:t('receiving'), items:[
-      {id:'dashboard',icon:'📊',label:t('dashboard')},
-      {id:'new_inspection',icon:'➕',label:t('new_insp')},
-      {id:'all_inspections',icon:'📋',label:t('all_insp')},
+    {section: t('receiving'), id:'reception', items:[
+      {id:'dashboard',      icon:'📊', label:t('dashboard')},
+      {id:'new_inspection', icon:'➕', label:t('new_insp')},
+      {id:'all_inspections',icon:'📋', label:t('all_insp')},
     ]},
-    {section:t('non_conf'), items:[
-      {id:'ncr_dashboard',icon:'⚠️',label:t('ncr_dash')},
-      {id:'new_ncr',icon:'➕',label:t('new_ncr')},
-      {id:'all_ncrs',icon:'📋',label:t('all_ncrs')},
+    {section: t('non_conf'), id:'ncr', items:[
+      {id:'ncr_dashboard',  icon:'⚠️', label:t('ncr_dash')},
+      {id:'new_ncr',        icon:'➕', label:t('new_ncr')},
+      {id:'all_ncrs',       icon:'📋', label:t('all_ncrs')},
     ]},
-    {section:t('suppliers'), items:[
-      {id:'supplier_list',icon:'🏢',label:t('suppliers')},
-      {id:'add_supplier',icon:'➕',label:t('add_sup')},
+    {section: t('suppliers'), id:'suppliers', items:[
+      {id:'supplier_list',  icon:'🏢', label:t('suppliers')},
+      {id:'add_supplier',   icon:'➕', label:t('add_sup')},
     ]},
-    {section:t('scorecard'), items:[
-      {id:'consolidated',icon:'🌐',label:t('consolidated')},
-      {id:'scorecards',icon:'⭐',label:t('scorecards')},
-      {id:'ranking',icon:'🏆',label:t('ranking')},
+    {section: t('scorecard'), id:'scorecard', items:[
+      {id:'consolidated',   icon:'🌐', label:t('consolidated')},
+      {id:'scorecards',     icon:'⭐', label:t('scorecards')},
+      {id:'ranking',        icon:'🏆', label:t('ranking')},
     ]},
-    {section:t('settings'), items:[
-      {id:'gh_storage',icon:'☁️',label:t('gh_storage')},
-      {id:'score_weights',icon:'⚖️',label:t('score_weights')},
+    {section: t('settings'), id:'settings', items:[
+      {id:'gh_storage',     icon:'☁️', label:t('gh_storage')},
+      {id:'score_weights',  icon:'⚖️', label:t('score_weights')},
     ]},
   ];
 
@@ -1649,54 +1757,118 @@ function App(){
   };
 
   return <>
-    {/* HEADER */}
+    {/* MINIMAL HEADER — logo + module + right actions */}
     <header className="hdr">
       <div className="hdr-logo">
         <div className="hdr-logo-icon">SQ</div>
-        SupplierQ
+        <div>
+          <div style={{fontSize:13,fontWeight:700,lineHeight:1.2}}>SupplierQ</div>
+          <div style={{fontSize:9,color:'var(--muted)',textTransform:'uppercase',letterSpacing:'.06em',fontWeight:600}}>by Foliot</div>
+        </div>
       </div>
       <div className="hdr-sep"/>
       <span className="hdr-mod">{pageModMap[page]||'SupplierQ'}</span>
       <div className="hdr-r">
-        <button className="sync-btn" onClick={manualSync}>
-          <span className={`sdot${syncStatus==='syncing'?' syncing':syncStatus==='error'?' error':''}`}/>
-          {syncStatus==='syncing'?t('syncing'):t('sync')}
-        </button>
-        <div style={{position:'relative'}}>
-          <button className="site-btn" onClick={()=>setSiteDD(d=>!d)}>
-            🏭 {site} ▾
-            {siteDD && <div className="site-dd">
-              {SITES.map(s=><div key={s} className={`site-opt${site===s?' active':''}`}
-                onClick={e=>{e.stopPropagation();setSite(s);setSiteDD(false);setTick(k=>k+1);}}>
-                🏭 {s} — {SITE_NAMES[s]}
-              </div>)}
-            </div>}
-          </button>
-        </div>
-        <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')}>{lang==='en'?'FR':'EN'}</button>
         <button className="theme-btn" onClick={()=>setDark(d=>!d)}>{dark?'☀️':'🌙'}</button>
-        {/* export/import hidden */}
-        <button className="lang-btn" onClick={exportData} style={{fontSize:11}}>⬇️</button>
+        <button className="lang-btn" onClick={()=>setLang(l=>l==='en'?'fr':'en')} style={{fontSize:11}}>⬇️ Export</button>
         <label className="lang-btn" style={{fontSize:11,cursor:'pointer'}}>
-          ⬆️<input type="file" accept=".json" style={{display:'none'}} onChange={importData}/>
+          ⬆️ Import<input type="file" accept=".json" style={{display:'none'}} onChange={importData}/>
         </label>
       </div>
     </header>
 
     {/* LAYOUT */}
-    <div className="layout">
-      {/* SIDEBAR */}
-      <nav className="sidebar">
-        {NAV.map(sec=><div key={sec.section}>
-          <div className="sb-lbl">{sec.section}</div>
-          {sec.items.map(item=><button key={item.id} className={`nav-item${page===item.id?' active':''}`}
-            onClick={()=>navTo(item.id)}>
-            <span className="nav-ic">{item.icon}</span>
-            {item.label}
-            {item.id==='ncr_dashboard'&&openNcrCount>0&&<span className="nav-badge">{openNcrCount}</span>}
-          </button>)}
-        </div>)}
+    <div className="layout" style={{position:'relative'}}>
+
+      {/* ── SIDEBAR — Cadence style ── */}
+      <nav className="sidebar" style={{width: sidebarOpen ? 'var(--sb)' : '0', overflow: sidebarOpen ? undefined : 'hidden', transition:'width .2s'}}>
+
+        {/* Logo + close */}
+        <div className="sb-header">
+          <div className="sb-logo">
+            <div className="sb-logo-icon">SQ</div>
+            <div>
+              <div className="sb-logo-name">SupplierQ</div>
+              <div className="sb-logo-sub">by Foliot</div>
+            </div>
+          </div>
+          <button className="sb-close" onClick={()=>setSidebarOpen(false)}>✕</button>
+        </div>
+
+        {/* Site selector */}
+        <div className="sb-site" onClick={()=>setSiteDD(d=>!d)} style={{position:'relative'}}>
+          <span className="sb-site-badge">{site}</span>
+          <span className="sb-site-name">{SITE_NAMES[site]}</span>
+          <span className="sb-site-sync" onClick={e=>{e.stopPropagation();manualSync();}}>
+            <span className={`sdot${syncStatus==='syncing'?' syncing':syncStatus==='error'?' error':''}`} style={{display:'inline-block'}}/>
+          </span>
+          {siteDD && <div className="sb-site-dd" onClick={e=>e.stopPropagation()}>
+            {SITES.map(s=><div key={s} className={`sb-site-opt${site===s?' active':''}`}
+              onClick={()=>{setSite(s);setSiteDD(false);setTick(k=>k+1);}}>
+              <span className="sb-site-opt-badge">{s}</span>
+              {SITE_NAMES[s]}
+            </div>)}
+          </div>}
+        </div>
+
+        {/* Nav items */}
+        <div className="sb-nav">
+          {/* Dashboard — standalone */}
+          <button className={`nav-item${page==='dashboard'?' active':''}`} onClick={()=>navTo('dashboard')}>
+            <span className="nav-ic">📊</span>{t('dashboard')}
+          </button>
+
+          {/* Collapsible sections */}
+          {NAV.slice(1).map(sec=>{
+            const collapsed = collapsedSections[sec.id];
+            return <div key={sec.id} className="sb-section">
+              <div className="sb-section-header" onClick={()=>toggleSection(sec.id)}>
+                <span className="sb-section-label">{sec.section}</span>
+                <span className={`sb-chevron${collapsed?'':' open'}`}>▾</span>
+              </div>
+              {!collapsed && sec.items.map(item=>(
+                <button key={item.id} className={`nav-item${page===item.id?' active':''}`} onClick={()=>navTo(item.id)}>
+                  <span className="nav-ic">{item.icon}</span>
+                  {item.label}
+                  {item.id==='ncr_dashboard'&&openNcrCount>0&&<span className="nav-badge">{openNcrCount}</span>}
+                </button>
+              ))}
+            </div>;
+          })}
+        </div>
+
+        {/* Bottom: lang + user */}
+        <div className="sb-bottom">
+          <div className="sb-lang-row">
+            <button className={`sb-lang-btn${lang==='fr'?' active':''}`} onClick={()=>setLang('fr')}>FR</button>
+            <button className={`sb-lang-btn${lang==='en'?' active':''}`} onClick={()=>setLang('en')}>EN</button>
+          </div>
+          <div className="sb-user">
+            <div className="sb-user-info">
+              <div className="sb-avatar">RA</div>
+              <div>
+                <div className="sb-user-name">Rafael</div>
+                <div className="sb-user-role">Admin</div>
+              </div>
+            </div>
+            <button className="theme-btn" onClick={()=>setDark(d=>!d)} style={{background:'none',border:'none',fontSize:16,cursor:'pointer',padding:4}}>{dark?'☀️':'🌙'}</button>
+          </div>
+        </div>
       </nav>
+
+      {/* Sidebar toggle (when closed) */}
+      {!sidebarOpen && <button onClick={()=>setSidebarOpen(true)} style={{
+        position:'absolute',top:72,left:0,zIndex:50,
+        background:'var(--surf)',border:'1px solid var(--brd)',borderLeft:'none',
+        borderRadius:'0 6px 6px 0',padding:'10px 8px',cursor:'pointer',
+        boxShadow:'var(--sh1)',color:'var(--tx2)',fontSize:16,
+      }}>☰</button>}
+
+      {/* CONTENT */}
+      <main className="content">
+        {renderPage()}
+      </main>
+    </div>
 
       {/* CONTENT */}
       <main className="content">
