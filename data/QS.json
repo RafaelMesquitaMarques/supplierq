@@ -1310,6 +1310,12 @@
       "auditScore": "",
       "notes": "",
       "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "name": "teste",
+      "code": "12345",
+      "country": "Brazil",
+      "status": "active"
     }
   ],
   "auditLog": [
