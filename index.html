@@ -1204,10 +1204,12 @@ function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
             <td>{r.qtyReceived??'—'}</td>
             <td>{decisionPill(r.decision,lang)}</td>
             <td>{r.inspector||'—'}</td>
-            <td style={{whiteSpace:'nowrap',display:'flex',gap:4}}>
-              <button className="btn btn-secondary btn-sm" onClick={()=>onView(r)}>{t('view')}</button>
-              <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'4px 7px'}}>✏️</button>
-              <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'4px 7px'}}>🗑️</button>
+            <td>
+              <div style={{display:'flex',gap:4,alignItems:'center',whiteSpace:'nowrap'}}>
+                <button className="btn btn-secondary btn-sm" onClick={()=>onView(r)}>{t('view')}</button>
+                <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'4px 7px'}}>✏️</button>
+                <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'4px 7px'}}>🗑️</button>
+              </div>
             </td>
           </tr>)}
         </tbody>
