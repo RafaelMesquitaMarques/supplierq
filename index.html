@@ -535,6 +535,11 @@ textarea{resize:vertical;min-height:72px;}
   transition:border-color .15s;
 }
 .drawing-item:hover{border-color:var(--brd2);}
+/* Modal photo/drawing thumbnails — clickable */
+[data-ph-idx]{transition:opacity .15s,transform .15s;}
+[data-ph-idx]:hover{opacity:.85;transform:scale(1.03);}
+[data-dr-abs]{transition:border-color .15s,box-shadow .15s;}
+[data-dr-abs]:hover{border-color:var(--grn-b)!important;box-shadow:0 0 0 2px var(--grn-l);}
 .drawing-thumb{width:64px;height:64px;border-radius:var(--r);object-fit:cover;border:1px solid var(--brd);cursor:pointer;flex-shrink:0;}
 .drawing-info{flex:1;min-width:0;}
 .drawing-name{font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -568,9 +573,9 @@ textarea{resize:vertical;min-height:72px;}
     <button class="sync-btn" onclick="manualSync()"><span class="sdot" id="sdot"></span><span id="slbl">Sync</span></button>
     <div class="site-btn" id="siteBadge" onclick="toggleDD()">🏭 <span id="siteLabel">QS</span> ▾
       <div class="site-dd" id="siteDD">
-        <div class="site-opt active" data-site="QS" onclick="selectSite('QS',event)">🏭 QS — Québec</div>
-        <div class="site-opt" data-site="NL" onclick="selectSite('NL',event)">🏭 NL — Napierville</div>
-        <div class="site-opt" data-site="QM" onclick="selectSite('QM',event)">🏭 QM — Québec Mtl</div>
+        <div class="site-opt active" data-site="QS" onclick="selectSite('QS',event)">🏭 QS — Saint-Jérôme</div>
+        <div class="site-opt" data-site="NL" onclick="selectSite('NL',event)">🏭 NL — Las Vegas</div>
+        <div class="site-opt" data-site="QM" onclick="selectSite('QM',event)">🏭 QM — Mirabel</div>
       </div>
     </div>
     <button class="lang-btn" onclick="toggleLang()" id="langBtn">FR</button>
@@ -1626,32 +1631,34 @@ function openIM(id){
   }
   if(r.issues) h+=`<div class="mo-s"><h3>${t('f_issues')}</h3><p style="font-size:13px;white-space:pre-line">${r.issues}</p></div>`;
 
-  // Photos — use index-based IDs, attach handlers after innerHTML set
+  // Photos — only the wrapper div gets data-ph-idx, img gets pointer-events:none
   if(r.photos?.length){
     h+=`<div class="mo-s"><h3>📷 ${t('fc_photos')} (${r.photos.length})</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px" id="mo-ph-grid">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
         ${r.photos.map((ph,i)=>`
           <div style="cursor:pointer;border-radius:6px;overflow:hidden;border:1px solid var(--brd);" data-ph-idx="${i}">
-            <img src="${ph.data}" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;" data-ph-idx="${i}"/>
-            ${ph.caption?`<div style="font-size:10px;color:var(--muted);text-align:center;padding:3px 5px;background:var(--surf2)">${ph.caption}</div>`:''}
+            <img src="${ph.data}" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;pointer-events:none;"/>
+            ${ph.caption?`<div style="font-size:10px;color:var(--muted);text-align:center;padding:3px 5px;background:var(--surf2);pointer-events:none">${ph.caption}</div>`:''}
           </div>`).join('')}
       </div></div>`;
-    // Cache photos for lightbox
     r.photos.forEach(ph=>_modalImgs.push(ph.data));
   }
 
-  // Drawings — use index-based IDs
+  // Drawings — only image-type drawings get data-dr-idx, content pointer-events:none
   if(r.drawings?.length){
+    let drImgCounter=0;
+    const photoCount=r.photos?.length||0;
     h+=`<div class="mo-s"><h3>📐 ${t('fc_drawings')} (${r.drawings.length})</h3>
-      <div style="display:flex;flex-direction:column;gap:7px" id="mo-dr-grid">
-        ${r.drawings.map((dr,i)=>{
+      <div style="display:flex;flex-direction:column;gap:7px">
+        ${r.drawings.map((dr)=>{
           const isImg=dr.type&&dr.type.startsWith('image/');
-          const imgOffset=r.photos?.length||0;
-          return `<div style="display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r2);padding:10px 12px;${isImg?'cursor:pointer;':''}" ${isImg?`data-dr-idx="${i}" data-img-offset="${imgOffset}"`:''}">
+          const imgIdx=isImg?drImgCounter++:-1;
+          const absIdx=photoCount+imgIdx;
+          return `<div style="display:flex;align-items:center;gap:10px;background:var(--surf2);border:1px solid var(--brd);border-radius:var(--r2);padding:10px 12px;${isImg?'cursor:pointer;':''}" ${isImg?`data-dr-abs="${absIdx}"`:''}">
             ${isImg
-              ? `<img src="${dr.data}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--brd);flex-shrink:0" data-dr-idx="${i}" data-img-offset="${imgOffset}"/>`
+              ? `<img src="${dr.data}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;border:1px solid var(--brd);flex-shrink:0;pointer-events:none"/>`
               : `<div style="width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0">📄</div>`}
-            <div>
+            <div style="pointer-events:none">
               <div style="font-size:12px;font-weight:600">${dr.name}</div>
               ${dr.note?`<div style="font-size:11px;color:var(--muted);margin-top:2px">${dr.note}</div>`:''}
             </div>
@@ -1660,41 +1667,23 @@ function openIM(id){
       </div>
       ${r.drawingNotes?`<p style="font-size:12px;margin-top:8px;padding:9px;background:var(--surf2);border-radius:var(--r);white-space:pre-line">${r.drawingNotes}</p>`:''}
     </div>`;
-    // Cache drawing images for lightbox (after photos)
     r.drawings.filter(dr=>dr.type&&dr.type.startsWith('image/')).forEach(dr=>_modalImgs.push(dr.data));
   }
 
   const body=document.getElementById('mo-i-b');
   body.innerHTML=h;
 
-  // ── Attach click handlers via DOM (safe for large base64) ─────
+  // ── Attach click handlers — only one element per photo/drawing ─
   body.querySelectorAll('[data-ph-idx]').forEach(el=>{
-    el.addEventListener('click',()=>{
-      const idx=+el.getAttribute('data-ph-idx');
-      openLightbox(_modalImgs[idx]);
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      openLightbox(_modalImgs[+el.getAttribute('data-ph-idx')]);
     });
   });
-  body.querySelectorAll('[data-dr-idx]').forEach(el=>{
-    el.addEventListener('click',()=>{
-      const idx=+el.getAttribute('data-dr-idx');
-      const offset=+(el.getAttribute('data-img-offset')||0);
-      // drawings images are pushed after photos in _modalImgs
-      // find this drawing's position among image-only drawings
-      const r2=ld('inspections').find(x=>x.id===curI);
-      if(!r2)return;
-      const imgDrawings=r2.drawings.filter(d=>d.type&&d.type.startsWith('image/'));
-      const imgIdx=imgDrawings.findIndex((_,ii)=>{
-        // map drawing index to image-only index
-        let imgCount=0;
-        for(let k=0;k<r2.drawings.length;k++){
-          if(r2.drawings[k].type&&r2.drawings[k].type.startsWith('image/')){
-            if(k===idx){break;}
-            imgCount++;
-          }
-        }
-        return ii===imgCount;
-      });
-      openLightbox(_modalImgs[offset+imgIdx]);
+  body.querySelectorAll('[data-dr-abs]').forEach(el=>{
+    el.addEventListener('click', e=>{
+      e.stopPropagation();
+      openLightbox(_modalImgs[+el.getAttribute('data-dr-abs')]);
     });
   });
 
