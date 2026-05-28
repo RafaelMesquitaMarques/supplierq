@@ -1788,6 +1788,9 @@ function App(){
       showToast(`Email error: ${err?.text||err?.message||'Check config'}`,'warn');
     }
   }
+
+  useEffect(()=>{
+    setSyncStatus('syncing');
     Promise.all(SITES.map(s=>ghLoad(s)))
       .then(()=>{setSyncStatus('ok');setTick(k=>k+1);})
       .catch(()=>{setSyncStatus('error');setTick(k=>k+1);});
