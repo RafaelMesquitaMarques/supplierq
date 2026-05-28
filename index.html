@@ -758,9 +758,91 @@ function KpiCard({label, value, sub, color, accent}){
   </div>;
 }
 
+// ═══════════════════════════════════════════════════════
+//  CAMERA MODAL (webcam on desktop, native on mobile)
+// ═══════════════════════════════════════════════════════
+function CameraModal({onCapture, onClose, lang}){
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const [stream, setStream] = useState(null);
+  const [error, setError] = useState('');
+  const [facingMode, setFacingMode] = useState('environment');
+
+  useEffect(()=>{
+    startCamera(facingMode);
+    return ()=>stopCamera();
+  },[facingMode]);
+
+  async function startCamera(mode){
+    stopCamera();
+    try{
+      const s = await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:mode, width:{ideal:1920}, height:{ideal:1080}},
+        audio:false
+      });
+      setStream(s);
+      if(videoRef.current){ videoRef.current.srcObject=s; videoRef.current.play(); }
+      setError('');
+    }catch(e){
+      setError(lang==='fr'
+        ?'Impossible d\'accéder à la caméra. Vérifiez les permissions.'
+        :'Cannot access camera. Please check permissions.');
+    }
+  }
+
+  function stopCamera(){
+    if(stream) stream.getTracks().forEach(t=>t.stop());
+  }
+
+  function capture(){
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    if(!video||!canvas) return;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video,0,0);
+    const data = canvas.toDataURL('image/jpeg',0.85);
+    onCapture(data);
+    stopCamera();
+    onClose();
+  }
+
+  function handleClose(){ stopCamera(); onClose(); }
+
+  return <div className="modal-overlay" onClick={handleClose}>
+    <div className="modal-box" style={{maxWidth:640,padding:20}} onClick={e=>e.stopPropagation()}>
+      <div className="modal-header">
+        <h2>📸 {lang==='fr'?'Prendre une photo':'Take a photo'}</h2>
+        <button className="modal-close" onClick={handleClose}>✕</button>
+      </div>
+
+      {error
+        ? <div style={{background:'var(--red-l)',border:'1px solid var(--red-b)',color:'var(--red)',padding:12,borderRadius:'var(--r)',fontSize:13,textAlign:'center'}}>{error}</div>
+        : <div style={{position:'relative',background:'#000',borderRadius:'var(--r2)',overflow:'hidden',aspectRatio:'16/9'}}>
+            <video ref={videoRef} style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}} autoPlay playsInline muted/>
+          </div>
+      }
+
+      <canvas ref={canvasRef} style={{display:'none'}}/>
+
+      <div style={{display:'flex',gap:8,marginTop:14,justifyContent:'center',flexWrap:'wrap'}}>
+        {!error && <>
+          <button className="btn btn-primary" onClick={capture} style={{padding:'10px 24px',fontSize:15}}>
+            📸 {lang==='fr'?'Capturer':'Capture'}
+          </button>
+          <button className="btn btn-secondary" onClick={()=>setFacingMode(m=>m==='environment'?'user':'environment')}>
+            🔄 {lang==='fr'?'Retourner caméra':'Flip camera'}
+          </button>
+        </>}
+        <button className="btn btn-secondary" onClick={handleClose}>{lang==='fr'?'Annuler':'Cancel'}</button>
+      </div>
+    </div>
+  </div>;
+}
+
 function PhotoGrid({photos, setPhotos, lang}){
   const [lightbox, setLightbox] = useState(null);
-  const cameraRef = useRef();
+  const [showCamera, setShowCamera] = useState(false);
   const fileRef = useRef();
 
   const handleFiles = (files) => {
@@ -773,6 +855,7 @@ function PhotoGrid({photos, setPhotos, lang}){
 
   return <>
     {lightbox && <Lightbox src={lightbox} onClose={()=>setLightbox(null)}/>}
+    {showCamera && <CameraModal lang={lang} onCapture={data=>setPhotos(p=>[...p,{data,caption:''}])} onClose={()=>setShowCamera(false)}/>}
     <div className="photo-grid">
       {photos.map((ph,i)=>(
         <div key={i}>
@@ -787,7 +870,7 @@ function PhotoGrid({photos, setPhotos, lang}){
       ))}
     </div>
     <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
-      <div className="photo-add" style={{flex:1,minWidth:140,aspectRatio:'unset',padding:'14px'}} onClick={()=>cameraRef.current.click()}>
+      <div className="photo-add" style={{flex:1,minWidth:140,aspectRatio:'unset',padding:'14px'}} onClick={()=>setShowCamera(true)}>
         <span style={{fontSize:22}}>📸</span>
         <span style={{fontSize:12}}>{lang==='fr'?'Prendre une photo':'Take photo'}</span>
       </div>
@@ -796,7 +879,6 @@ function PhotoGrid({photos, setPhotos, lang}){
         <span style={{fontSize:12}}>{lang==='fr'?'Choisir depuis la galerie':'Upload from gallery'}</span>
       </div>
     </div>
-    <input ref={cameraRef} type="file" accept="image/*" capture="environment" style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
     <input ref={fileRef} type="file" accept="image/*" multiple style={{display:'none'}} onChange={e=>handleFiles(e.target.files)}/>
   </>;
 }
@@ -1466,7 +1548,12 @@ function Scorecards({lang, t, suppliers, weights, thresholds}){
   const allNcrs = getAllData('ncrs');
 
   const cards = useMemo(()=>{
-    return suppliers.filter(s=>{
+    const seen = new Set();
+    const uniqueSups = suppliers.filter(s=>{
+      if(seen.has(s.name)) return false;
+      seen.add(s.name); return true;
+    });
+    return uniqueSups.filter(s=>{
       const sc=calcScore(s,allInsps,allNcrs,weights,thresholds);
       if(!sc) return false;
       if(gradeFilter&&sc.grade!==gradeFilter) return false;
@@ -1619,7 +1706,14 @@ function Consolidated({lang, t}){
 function Ranking({lang, t, weights, thresholds}){
   const allInsps=getAllData('inspections');
   const allNcrs=getAllData('ncrs');
-  const allSups=getAllData('suppliers');
+
+  // Deduplicate suppliers by name — keep first occurrence
+  const seen = new Set();
+  const allSups = getAllData('suppliers').filter(s=>{
+    if(seen.has(s.name)) return false;
+    seen.add(s.name); return true;
+  });
+
   const ranked = allSups
     .map(s=>({...s,sc:calcScore(s,allInsps,allNcrs,weights,thresholds)}))
     .filter(s=>s.sc)
@@ -2006,16 +2100,12 @@ function LoginScreen({onLogin, lang, setLang, dark, setDark}){
           <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="email@foliot.com" required autoFocus/>
         </div>
         <div className="fg"><label>{lang==='fr'?'Mot de passe':'Password'}</label>
-          <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required/>
+          <input type="password" value={password} onChange={e=>setPassword(e.target.value)} placeholder="••••••••" required style={{width:'100%'}}/>
         </div>
         <button type="submit" className="btn btn-primary" style={{width:'100%',justifyContent:'center',marginTop:8,padding:'10px'}} disabled={loading}>
           {loading?(lang==='fr'?'Connexion…':'Signing in…'):(lang==='fr'?'Se connecter':'Sign in')}
         </button>
       </form>
-      <div style={{marginTop:20,padding:'12px',background:'var(--surf2)',borderRadius:'var(--r)',fontSize:12,color:'var(--muted)'}}>
-        💡 {lang==='fr'?'Compte admin par défaut:':'Default admin account:'}<br/>
-        <span style={{fontFamily:'var(--fm)'}}>admin@foliot.com</span> / <span style={{fontFamily:'var(--fm)'}}>admin</span>
-      </div>
     </div>
   </div>;
 }
