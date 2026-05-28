@@ -438,20 +438,6 @@
   ],
   "suppliers": [
     {
-      "name": "Allen Furniture Vietnam Co., Ltd",
-      "code": "",
-      "country": "Vietnam",
-      "contact": "",
-      "email": "",
-      "products": "",
-      "status": "approved",
-      "certs": "",
-      "auditDate": "",
-      "auditScore": "",
-      "notes": "",
-      "createdAt": "2026-01-01T00:00:00.000Z"
-    },
-    {
       "name": "Amazon",
       "code": "",
       "country": "USA",
