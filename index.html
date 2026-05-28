@@ -234,7 +234,7 @@ body{font-family:var(--ff);background:var(--bg);color:var(--tx);font-size:14px;l
 /* ─── TABLES ─────────────────────────────────────── */
 .table-wrap{background:var(--surf);border:1px solid var(--brd);border-radius:var(--r2);
   overflow:hidden;margin-bottom:22px;box-shadow:var(--sh1);overflow-x:auto;}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
 thead{background:var(--surf2);}
 th{padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:.06em;
   text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--brd);white-space:nowrap;}
@@ -1310,57 +1310,88 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
 function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
+  const [sort, setSort] = useState({col:'date', dir:-1}); // -1=desc, 1=asc
+
+  const COLS = [
+    {key:'ref',       label:t('report_num'), mono:true,  w:148},
+    {key:'date',      label:t('date'),       mono:false, w:96},
+    {key:'supplier',  label:t('supplier'),   mono:false, w:140},
+    {key:'po',        label:t('po'),         mono:true,  w:100},
+    {key:'productNo', label:t('product'),    mono:true,  w:110},
+    {key:'description',label:t('description'),mono:false,w:110},
+    {key:'qtyReceived',label:t('qty_recv'),  mono:false, w:64},
+    {key:'decision',  label:'Decision',      mono:false, w:120},
+    {key:'inspector', label:t('inspector'),  mono:false, w:90},
+  ];
+
+  function toggleSort(col){
+    setSort(s=>s.col===col?{col,dir:s.dir*-1}:{col,dir:1});
+  }
+
   const filtered = useMemo(()=>{
     const s=search.toLowerCase();
-    return data.filter(r=>(!filter||r.decision===filter)&&(!s||JSON.stringify(r).toLowerCase().includes(s)));
-  },[data,search,filter]);
+    let arr = data.filter(r=>(!filter||r.decision===filter)&&(!s||
+      [r.ref,r.date,r.supplier,r.po,r.productNo,r.description,r.inspector,r.decision]
+        .join('|').toLowerCase().includes(s)
+    ));
+    arr = arr.slice().sort((a,b)=>{
+      const av = a[sort.col]??''; const bv = b[sort.col]??'';
+      return (av<bv?-1:av>bv?1:0)*sort.dir;
+    });
+    return arr;
+  },[data,search,filter,sort]);
+
+  const SortIcon = ({col})=>{
+    if(sort.col!==col) return <span style={{color:'var(--brd2)',marginLeft:3}}>↕</span>;
+    return <span style={{color:'var(--grn)',marginLeft:3}}>{sort.dir===1?'↑':'↓'}</span>;
+  };
 
   return <div className="page">
-    <div className="page-header"><div><h1>{t('all_insp')}</h1><p>{data.length} {lang==='fr'?'inspection(s)':'inspection(s)'}</p></div></div>
+    <div className="page-header"><div><h1>{t('all_insp')}</h1><p>{filtered.length}/{data.length} {lang==='fr'?'inspection(s)':'inspection(s)'}</p></div></div>
     <div className="filters">
-      <input type="text" placeholder={lang==='fr'?'Rechercher…':'Search…'} value={search} onChange={e=>setSearch(e.target.value)} style={{minWidth:200}}/>
-      <select value={filter} onChange={e=>setFilter(e.target.value)} style={{minWidth:140}}>
+      <input type="text"
+        placeholder={lang==='fr'?'Rechercher dans toutes les colonnes…':'Search all columns…'}
+        value={search} onChange={e=>setSearch(e.target.value)}
+        style={{minWidth:260}}/>
+      <select value={filter} onChange={e=>setFilter(e.target.value)} style={{minWidth:130}}>
         <option value="">{t('all')}</option>
         <option value="use-as-is">Use as Is</option>
         <option value="rework">Rework</option>
         <option value="rejected">Rejected</option>
         <option value="waiting">Waiting</option>
       </select>
+      {(search||filter)&&<button className="btn btn-secondary btn-sm" onClick={()=>{setSearch('');setFilter('');}}>✕ Clear</button>}
     </div>
     <div className="table-wrap">
-      <table style={{tableLayout:'fixed'}}>
+      <table style={{tableLayout:'fixed',fontSize:12}}>
         <colgroup>
-          <col style={{width:160}}/>{/* Report # */}
-          <col style={{width:90}}/>{/* Date */}
-          <col style={{width:150}}/>{/* Supplier */}
-          <col style={{width:110}}/>{/* PO */}
-          <col style={{width:120}}/>{/* Product */}
-          <col style={{width:120}}/>{/* Description */}
-          <col style={{width:80}}/>{/* Qty */}
-          <col style={{width:120}}/>{/* Decision */}
-          <col style={{width:90}}/>{/* Inspector */}
-          <col style={{width:130}}/>{/* Actions */}
+          {COLS.map(c=><col key={c.key} style={{width:c.w}}/>)}
+          <col style={{width:118}}/>
         </colgroup>
         <thead><tr>
-          {[t('report_num'),t('date'),t('supplier'),t('po'),t('product'),t('description'),t('qty_recv'),'Decision',t('inspector'),''].map((h,i)=><th key={i}>{h}</th>)}
+          {COLS.map(c=><th key={c.key} style={{cursor:'pointer',userSelect:'none',whiteSpace:'nowrap'}}
+            onClick={()=>toggleSort(c.key)}>
+            {c.label}<SortIcon col={c.key}/>
+          </th>)}
+          <th></th>
         </tr></thead>
         <tbody>
-          {filtered.length===0 && <tr><td colSpan={10}><div className="empty">📋<br/>{t('no_data')}</div></td></tr>}
+          {filtered.length===0&&<tr><td colSpan={COLS.length+1}><div className="empty">📋<br/>{t('no_data')}</div></td></tr>}
           {filtered.map(r=><tr key={r.id}>
-            <td className="mono" style={{fontSize:11,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.ref}</td>
+            <td className="mono" style={{fontSize:11,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.ref}>{r.ref}</td>
             <td style={{whiteSpace:'nowrap'}}>{r.date}</td>
             <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.supplier}>{r.supplier||'—'}</td>
-            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.po||'—'}</td>
-            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.productNo||'—'}</td>
+            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.po}>{r.po||'—'}</td>
+            <td className="mono" style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.productNo}>{r.productNo||'—'}</td>
             <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}} title={r.description}>{r.description||'—'}</td>
-            <td style={{whiteSpace:'nowrap'}}>{r.qtyReceived??'—'}</td>
+            <td>{r.qtyReceived??'—'}</td>
             <td>{decisionPill(r.decision,lang)}</td>
             <td style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{r.inspector||'—'}</td>
             <td style={{verticalAlign:'middle'}}>
-              <div style={{display:'flex',gap:4,alignItems:'center'}}>
-                <button className="btn btn-secondary btn-sm" onClick={()=>onView(r)}>{t('view')}</button>
-                <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'4px 7px'}}>✏️</button>
-                <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'4px 7px'}}>🗑️</button>
+              <div style={{display:'flex',gap:3,alignItems:'center'}}>
+                <button className="btn btn-secondary btn-sm" style={{padding:'3px 8px',fontSize:11}} onClick={()=>onView(r)}>{t('view')}</button>
+                <button className="btn btn-secondary btn-sm" onClick={()=>onEdit(r)} style={{padding:'3px 6px',fontSize:11}}>✏️</button>
+                <button className="btn btn-danger btn-sm" onClick={()=>onDelete(r)} style={{padding:'3px 6px',fontSize:11}}>🗑️</button>
               </div>
             </td>
           </tr>)}
