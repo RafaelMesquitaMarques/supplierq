@@ -581,8 +581,16 @@ async function ghLoad(site){
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
     const d = await r.json();
     _shas[path] = d.sha;
-    const decoded = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
-    _cache[site] = JSON.parse(decoded);
+    try{
+      const decoded = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
+      const parsed = JSON.parse(decoded);
+      _cache[site] = {inspections:[],ncrs:[],suppliers:[],auditLog:[],...parsed};
+    }catch{
+      // Corrupted JSON — reset to empty
+      console.warn(`Corrupted JSON for ${site}, resetting to empty`);
+      _cache[site] = {inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+      ghSave(site).catch(console.error); // fix the file on GitHub
+    }
     return _cache[site];
   }catch(e){
     if(!_cache[site]) _cache[site]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
@@ -1816,7 +1824,35 @@ function Ranking({lang, t, weights, thresholds}){
 // ═══════════════════════════════════════════════════════
 //  SETTINGS
 // ═══════════════════════════════════════════════════════
-function GithubStorage({lang, t, syncStatus}){
+function GithubStorage({lang, t, syncStatus, showToast}){
+  const [resetting, setResetting] = useState(false);
+
+  async function resetAllData(){
+    if(!confirm(lang==='fr'
+      ?'Ceci va réinitialiser tous les fichiers de données sur GitHub. Les données actuelles seront perdues. Continuer?'
+      :'This will reset all data files on GitHub. Current data will be lost. Continue?')) return;
+    setResetting(true);
+    try{
+      for(const s of SITES){
+        _cache[s]={inspections:[],ncrs:[],suppliers:[],auditLog:[]};
+        _shas[`data/${s}.json`]=undefined;
+        await ghSave(s);
+      }
+      showToast(lang==='fr'?'Fichiers réinitialisés ✓':'Files reset ✓','success');
+    }catch(e){
+      showToast(`Reset error: ${e.message}`,'error');
+    }finally{ setResetting(false); }
+  }
+
+  async function repairFiles(){
+    setResetting(true);
+    try{
+      await Promise.all(SITES.map(s=>ghLoad(s)));
+      showToast(lang==='fr'?'Fichiers réparés ✓':'Files repaired ✓','success');
+    }catch(e){
+      showToast(`Repair error: ${e.message}`,'error');
+    }finally{ setResetting(false); }
+  }
   return <div className="page">
     <div className="page-header"><h1>GitHub — Database</h1></div>
     <div className="sp-banner">
@@ -1826,6 +1862,42 @@ function GithubStorage({lang, t, syncStatus}){
         ✅ Connected — {GH_OWNER}/{GH_REPO}
       </span>
     </div>
+
+    {/* REPAIR TOOLS */}
+    <div className="form-card" style={{marginBottom:14}}>
+      <div className="form-card-title">🔧 {lang==='fr'?'Outils de réparation':'Repair Tools'}</div>
+      <div style={{display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}}>
+        <div style={{flex:1}}>
+          <div style={{fontSize:13,fontWeight:600,marginBottom:2}}>
+            🔄 {lang==='fr'?'Réparer les fichiers':'Repair files'}
+          </div>
+          <div style={{fontSize:12,color:'var(--muted)'}}>
+            {lang==='fr'
+              ?'Recharge les fichiers depuis GitHub. Corrige les erreurs "Unexpected JSON".'
+              :'Reloads files from GitHub. Fixes "Unexpected JSON" errors.'}
+          </div>
+        </div>
+        <button className="btn btn-secondary" onClick={repairFiles} disabled={resetting}>
+          {resetting?'⏳…':'🔄 '+(lang==='fr'?'Réparer':'Repair')}
+        </button>
+      </div>
+      <div style={{borderTop:'1px solid var(--brd)',marginTop:12,paddingTop:12,display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}}>
+        <div style={{flex:1}}>
+          <div style={{fontSize:13,fontWeight:600,color:'var(--red)',marginBottom:2}}>
+            ⚠️ {lang==='fr'?'Réinitialiser toutes les données':'Reset all data'}
+          </div>
+          <div style={{fontSize:12,color:'var(--muted)'}}>
+            {lang==='fr'
+              ?'Efface toutes les inspections, NCRs et fournisseurs. Irréversible.'
+              :'Clears all inspections, NCRs and suppliers. Irreversible.'}
+          </div>
+        </div>
+        <button className="btn btn-danger" onClick={resetAllData} disabled={resetting}>
+          {resetting?'⏳…':'🗑️ Reset'}
+        </button>
+      </div>
+    </div>
+
     {['QS','NL','QM'].map(s=><div key={s} className="pa-step">
       <div className="pa-num">{s[0]}</div>
       <h3 style={{fontSize:14,fontWeight:600,marginBottom:5}}>{s} — {SITE_NAMES[s]}</h3>
@@ -3114,7 +3186,7 @@ function App(){
       case 'consolidated': return <Consolidated lang={lang} t={t}/>;
       case 'scorecards': return <Scorecards lang={lang} t={t} suppliers={getAllData('suppliers')} weights={weights} thresholds={thresholds}/>;
       case 'ranking': return <Ranking lang={lang} t={t} weights={weights} thresholds={thresholds}/>;
-      case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus}/>;
+      case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus} showToast={showToast}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
       case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
       case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;
