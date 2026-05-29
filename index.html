@@ -2100,6 +2100,43 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
 // ═══════════════════════════════════════════════════════
 //  INSPECTION DETAIL MODAL
 // ═══════════════════════════════════════════════════════
+// ── ANNOTATED PHOTO VIEW ─────────────────────────────
+// Renders photo + annotation objects live on a canvas
+// Falls back to annotatedData if objs are missing
+function AnnotatedPhoto({photo, style, onClick}){
+  const canvasRef = useRef();
+  const ph = photo;
+
+  useEffect(()=>{
+    const c = canvasRef.current; if(!c) return;
+    const ctx = c.getContext('2d');
+    const src = ph.data;
+    if(!src){ ctx.clearRect(0,0,c.width,c.height); return; }
+    const img = new Image();
+    img.onload = ()=>{
+      c.width = img.width; c.height = img.height;
+      ctx.drawImage(img,0,0);
+      // Draw annotation objects on top
+      if(ph.objs && ph.objs.length > 0){
+        ph.objs.forEach(o => annDrawObj(ctx, o));
+      }
+    };
+    img.src = src;
+  }, [ph.data, ph.objs]);
+
+  // If we have annotatedData and no objs, just use img tag (faster)
+  if(ph.annotatedData && (!ph.objs || ph.objs.length === 0)){
+    return <img src={ph.annotatedData} style={style} onClick={onClick}/>;
+  }
+  // If original data only, just img tag
+  if(!ph.data){
+    return <div style={{...style, background:'var(--surf3)', display:'flex', alignItems:'center', justifyContent:'center'}}>
+      <i className="ti ti-photo" style={{fontSize:24, opacity:.3}} aria-hidden="true"/>
+    </div>;
+  }
+  return <canvas ref={canvasRef} style={{...style, display:'block'}} onClick={onClick}/>;
+}
+
 function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
   const [lightbox, setLightbox] = useState(null);
   const r = record;
@@ -2155,17 +2192,18 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
           <h3><i className="ti ti-camera" style={{fontSize:14,verticalAlign:-2}} aria-hidden="true"/> {t('photos')} ({r.photos.length})</h3>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))',gap:8}}>
             {r.photos.map((ph,i)=>{
-              // Use annotatedData (with baked-in annotations) if available, else original
-              const displaySrc = ph.annotatedData || ph.data;
               return <div key={i} style={{borderRadius:6,overflow:'hidden',border:'1px solid var(--brd)'}}>
-                <div style={{cursor:'pointer'}} onClick={()=>setLightbox(displaySrc)}>
-                  <img src={displaySrc} style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',display:'block'}}/>
-                </div>
+                <AnnotatedPhoto photo={ph}
+                  style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',cursor:'pointer'}}
+                  onClick={()=>setLightbox(ph.annotatedData||ph.data)}/>
                 {ph.caption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.caption}</div>}
-                {ph.drawingAnnotatedData||ph.drawingData ? <div style={{cursor:'pointer',borderTop:'1px solid var(--brd)'}} onClick={()=>setLightbox(ph.drawingAnnotatedData||ph.drawingData)}>
-                  <img src={ph.drawingAnnotatedData||ph.drawingData} style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',display:'block',opacity:.9}}/>
-                  {ph.drawingCaption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.drawingCaption}</div>}
-                </div> : null}
+                {(ph.drawingAnnotatedData||ph.drawingData||ph.drawingObjs?.length>0)&&
+                  <div style={{borderTop:'1px solid var(--brd)'}}>
+                    <AnnotatedPhoto photo={{data:ph.drawingData,objs:ph.drawingObjs,annotatedData:ph.drawingAnnotatedData}}
+                      style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',cursor:'pointer',opacity:.9}}
+                      onClick={()=>setLightbox(ph.drawingAnnotatedData||ph.drawingData)}/>
+                    {ph.drawingCaption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.drawingCaption}</div>}
+                  </div>}
               </div>;
             })}
           </div>
@@ -2936,9 +2974,15 @@ function EmailSettings({lang, t, emailCfg, setEmailCfg, showToast}){
     {/* Triggers */}
     <div className="form-card">
       <div className="form-card-title">⚡ {lang==='fr'?'Déclencheurs automatiques':'Automatic Triggers'}</div>
+      <div style={{background:'var(--blu-l)',border:'0.5px solid var(--blu-b)',borderRadius:'var(--r)',padding:'8px 12px',marginBottom:12,fontSize:12,color:'var(--blu)',display:'flex',gap:8,alignItems:'center'}}>
+        <i className="ti ti-file-type-pdf" style={{fontSize:15,flexShrink:0}} aria-hidden="true"/>
+        {lang==='fr'
+          ?'Les inspections envoient automatiquement le PDF en pièce jointe. Le PDF est joint si votre plan EmailJS le supporte (plan payant). Sinon, le rapport texte est envoyé.'
+          :'Inspections automatically attach the PDF report. PDF attachment requires an EmailJS paid plan. Otherwise, the text report is sent.'}
+      </div>
       {[
-        {k:'onInspection', icon:'📋', label:lang==='fr'?'Nouvelle inspection (toute décision)':'New inspection (any decision)'},
-        {k:'onNC',         icon:'⚠️', label:lang==='fr'?'Inspection avec NC (Rejeté / Retravail / En attente)':'Inspection with NC (Rejected / Rework / Waiting)'},
+        {k:'onInspection', icon:'📋', label:lang==='fr'?'Nouvelle inspection (toute décision) + PDF':'New inspection (any decision) + PDF'},
+        {k:'onNC',         icon:'⚠️', label:lang==='fr'?'Inspection avec NC (Rejeté / Retravail / En attente) + PDF':'Inspection with NC (Rejected / Rework / Waiting) + PDF'},
         {k:'onNCR',        icon:'🔴', label:lang==='fr'?'Nouveau NCR ouvert':'New NCR opened'},
       ].map(tr=>(
         <div key={tr.k} className="settings-row">
@@ -3779,16 +3823,27 @@ async function generateInspectionPDF(r, lang){
     section(lang==='fr'?`PHOTOS D'INSPECTION (${r.photos.length})`:`INSPECTION PHOTOS (${r.photos.length})`,'📷');
     const ph_per_row=3, ph_w=(CW-8)/ph_per_row, ph_h=ph_w*0.75;
     for(let i=0;i<r.photos.length;i++){
+      const ph=r.photos[i];
       const col=i%ph_per_row;
       if(col===0) checkPage(ph_h+12);
       const px=M+col*(ph_w+4), py=y;
-      try{
-        doc.addImage(r.photos[i].annotatedData||r.photos[i].data,'JPEG',px,py,ph_w,ph_h);
-      }catch{}
-      if(r.photos[i].caption){
-        setFont(7,'normal',GREY);
-        doc.text(doc.splitTextToSize(r.photos[i].caption,ph_w)[0],px,py+ph_h+3.5);
+
+      // Build annotated image: annotatedData > render objs on canvas > original
+      let imgSrc = ph.annotatedData || ph.data;
+      if(!ph.annotatedData && ph.objs && ph.objs.length>0 && ph.data){
+        try{
+          const tc=document.createElement('canvas');
+          const ti=new Image(); ti.src=ph.data;
+          await new Promise(res=>{ti.onload=res;ti.onerror=res;setTimeout(res,3000);});
+          tc.width=ti.width||800; tc.height=ti.height||600;
+          const tx=tc.getContext('2d'); tx.drawImage(ti,0,0);
+          ph.objs.forEach(o=>annDrawObj(tx,o));
+          imgSrc=tc.toDataURL('image/jpeg',0.85);
+        }catch(e){ imgSrc=ph.data; }
       }
+
+      try{ doc.addImage(imgSrc,'JPEG',px,py,ph_w,ph_h); }catch{ try{ doc.addImage(ph.data,'JPEG',px,py,ph_w,ph_h); }catch{} }
+      if(ph.caption){ setFont(7,'normal',GREY); doc.text(doc.splitTextToSize(ph.caption,ph_w)[0],px,py+ph_h+3.5); }
       if(col===ph_per_row-1||i===r.photos.length-1) y+=ph_h+8;
     }
     y+=2;
@@ -3844,6 +3899,23 @@ async function generateInspectionPDF(r, lang){
   }
 
   doc.save(`${r.ref}.pdf`);
+}
+
+// Returns PDF as base64 string without triggering download
+async function generateInspectionPDFBlob(r, lang){
+  const {jsPDF} = window.jspdf;
+  // Temporarily suppress save by generating and returning output
+  // We reuse the same function but intercept the output
+  const originalSave = jsPDF.prototype.save;
+  let pdfBase64 = null;
+  jsPDF.prototype.save = function(){ pdfBase64 = this.output('datauristring'); };
+  try{
+    await generateInspectionPDF(r, lang);
+  }finally{
+    jsPDF.prototype.save = originalSave;
+  }
+  // Return just the base64 part (strip "data:application/pdf;base64,")
+  return pdfBase64 ? pdfBase64.split(',')[1] : null;
 }
 
 function App(){
@@ -3915,20 +3987,21 @@ function App(){
     if(!emailCfg.publicKey||!emailCfg.serviceId||!emailCfg.templateId||!emailCfg.recipients) return;
     try{
       window.emailjs.init(emailCfg.publicKey);
+      const decMap={'approved':'✅ Approved','use-as-is':'⚠️ Use as Is','rework':'🔧 Rework','rejected':'❌ Rejected','waiting':'⏳ Waiting'};
       const defectList = data.defects?.map(d=>`• ${d.label}${d.qty?` (${d.qty})`:''}`).join('\n')||'—';
-      const decMap={'use-as-is':'✅ Use as Is','rework':'🔧 Rework','rejected':'❌ Rejected','waiting':'⏳ Waiting for decision'};
       let subject='', message='';
       if(eventType==='inspection'){
-        subject=`[SupplierQ] Inspection ${data.ref} — ${data.supplier} — ${(decMap[data.decision]||data.decision).replace(/[✅🔧❌⏳]/g,'').trim()}`;
-        message=`Inspection Report\n\nReport #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nP.O. #: ${data.po||'—'}\nQty Received: ${data.qtyReceived}\nQty Inspected: ${data.qtyInspected}\nInspector: ${data.inspector||'—'}\nDecision: ${decMap[data.decision]||data.decision}\n\nQty Breakdown:\nUse as Is: ${data.qtyUseAsIs||0} | Rework: ${data.qtyRework||0} | Rejected: ${data.qtyRejected||0} | Waiting: ${data.qtyWaiting||0}\n\nDefects:\n${defectList}${data.issues?`\n\nNotes:\n${data.issues}`:''}`;
+        subject=`[SupplierQ] Inspection ${data.ref} — ${data.supplier} — ${(decMap[data.decision]||data.decision).replace(/[✅⚠️🔧❌⏳]/g,'').trim()}`;
+        message=`Inspection Report\n\nReport #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nP.O. #: ${data.po||'—'}\nQty Received: ${data.qtyReceived}\nQty Inspected: ${data.qtyInspected}\nInspector: ${data.inspector||'—'}\nDecision: ${decMap[data.decision]||data.decision}\n\nQty Breakdown:\nApproved: ${data.qtyUseAsIs||0} | Rework: ${data.qtyRework||0} | Rejected: ${data.qtyRejected||0} | Waiting: ${data.qtyWaiting||0}\n\nDefects:\n${defectList}${data.issues?`\n\nNotes:\n${data.issues}`:''}`;
       } else if(eventType==='nc'){
-        subject=`[SupplierQ] ⚠️ NC Detected — ${data.ref} — ${data.supplier} — ${(decMap[data.decision]||'').replace(/[✅🔧❌⏳]/g,'').trim()}`;
+        subject=`[SupplierQ] ⚠️ NC Detected — ${data.ref} — ${data.supplier}`;
         message=`Non-Conformance Alert\n\nReport #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nDecision: ${decMap[data.decision]||data.decision}\nQty Rejected: ${data.qtyRejected||0} | Rework: ${data.qtyRework||0}\n\nDefects:\n${defectList}${data.issues?`\n\nIssues:\n${data.issues}`:''}`;
       } else if(eventType==='ncr'){
         subject=`[SupplierQ] 🔴 New NCR — ${data.ref} — ${data.supplier}`;
         message=`New NCR Opened\n\nNCR #: ${data.ref}\nSite: ${data.site}\nDate: ${data.date}\nSupplier: ${data.supplier||'—'}\nProduct #: ${data.productNo||'—'}\nDefect: ${data.defect||'—'}\nSeverity: ${data.severity||'—'}\nStatus: ${data.status}\nDue: ${data.dueDate||'—'}\n\nDescription:\n${data.description||'—'}\n\nCorrective Action:\n${data.corrective||'Pending'}`;
       }
-      await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, {
+
+      const params = {
         to_email: emailCfg.recipients,
         subject,
         report_ref: data.ref,
@@ -3940,8 +4013,32 @@ function App(){
         product_no: data.productNo||'—',
         event_type: eventType==='inspection'?'Inspection':eventType==='nc'?'NC Alert':'NCR',
         message,
-      });
-      showToast(`📧 ${lang==='fr'?'Email envoyé':'Email sent'} ✓`,'info');
+      };
+
+      // Attach PDF for inspection emails
+      if(eventType==='inspection'||eventType==='nc'){
+        try{
+          showToast(lang==='fr'?'Génération PDF…':'Generating PDF…','info');
+          const pdfBase64 = await generateInspectionPDFBlob(data, lang);
+          if(pdfBase64){
+            // EmailJS v4 supports attachments via files array
+            await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, params, {
+              publicKey: emailCfg.publicKey,
+              files: [{name:`${data.ref}.pdf`, data:pdfBase64}],
+            });
+          } else {
+            await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, params);
+          }
+        }catch(pdfErr){
+          // PDF generation failed — send email without attachment
+          console.warn('PDF generation failed, sending without attachment:', pdfErr);
+          await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, params);
+        }
+      } else {
+        await window.emailjs.send(emailCfg.serviceId, emailCfg.templateId, params);
+      }
+
+      showToast(`📧 ${lang==='fr'?'Email envoyé avec PDF':'Email sent with PDF'} ✓`,'info');
     }catch(err){
       console.error('EmailJS error:',err);
       showToast(`Email error: ${err?.text||err?.message||'Check config'}`,'warn');
