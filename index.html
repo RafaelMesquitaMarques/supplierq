@@ -444,7 +444,12 @@ textarea{resize:vertical;min-height:72px;}
 .checkbox-item.checked{border-color:var(--grn-b);background:var(--grn-l);color:var(--grn);font-weight:500;}
 /* ─── BOTTOM NAV ─────────────────────────────────── */
 /* ─── ANNOTATION TOOL ───────────────────────────────── */
-.ann-toolbar{background:var(--surf2);border:0.5px solid var(--brd);border-radius:var(--r2);padding:6px 10px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px}
+.hu-wrap{display:flex;flex-wrap:wrap;gap:5px;align-items:center;padding:5px 8px;border:1px solid var(--brd);border-radius:var(--r);background:var(--surf);cursor:text;min-height:36px;transition:border-color .15s}
+.hu-wrap:focus-within{border-color:var(--grn)}
+.hu-tag{display:inline-flex;align-items:center;gap:4px;background:var(--blu-l);color:var(--blu);border:0.5px solid var(--blu-b);border-radius:4px;padding:2px 7px;font-size:12px;font-weight:500;font-family:var(--fm);white-space:nowrap}
+.hu-tag button{background:none;border:none;cursor:pointer;color:var(--blu);font-size:13px;line-height:1;padding:0;opacity:.6;display:flex;align-items:center}
+.hu-tag button:hover{opacity:1}
+.hu-inp{border:none;outline:none;background:none;font-size:13px;color:var(--tx);font-family:var(--ff);min-width:80px;flex:1;padding:0}border:0.5px solid var(--brd);border-radius:var(--r2);padding:6px 10px;display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px}
 .ann-sep{width:1px;height:20px;background:var(--brd2);margin:0 3px;flex-shrink:0}
 .ann-btn{width:30px;height:30px;border-radius:var(--r);border:0.5px solid transparent;cursor:pointer;background:none;color:var(--tx2);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .1s;flex-shrink:0;position:relative;font-family:var(--ff)}
 .ann-btn:hover{background:var(--surf3);color:var(--tx)}
@@ -1775,12 +1780,70 @@ function TechnicalDrawingTab({drawings, setDrawings, drawingNotes, setDrawingNot
 }
 
 
+// ── HU TAG INPUT ─────────────────────────────────────
+function HuTagInput({value, onChange, label, lang}){
+  const tags = Array.isArray(value) ? value : (value ? [value] : []);
+  const [input, setInput] = useState('');
+  const inputRef = useRef();
+
+  function addTag(raw){
+    // Support pasting multiple HUs separated by comma, space, semicolon
+    const vals = raw.split(/[,;\s]+/).map(v=>v.trim()).filter(Boolean);
+    const newTags = [...tags];
+    vals.forEach(v=>{ if(!newTags.includes(v)) newTags.push(v); });
+    onChange(newTags);
+    setInput('');
+  }
+
+  function removeTag(i){
+    onChange(tags.filter((_,j)=>j!==i));
+  }
+
+  function onKeyDown(e){
+    if((e.key==='Enter'||e.key===','||e.key===';'||e.key===' '||e.key==='Tab') && input.trim()){
+      e.preventDefault(); addTag(input);
+    }
+    if(e.key==='Backspace' && !input && tags.length){
+      onChange(tags.slice(0,-1));
+    }
+  }
+
+  function onPaste(e){
+    e.preventDefault();
+    addTag(e.clipboardData.getData('text'));
+  }
+
+  return <div className="fg">
+    <label style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
+      <span>{label}</span>
+      <span style={{fontSize:11,color:'var(--muted)',fontWeight:400}}>
+        {tags.length>0 && `${tags.length} HU${tags.length>1?'s':''}`}
+      </span>
+    </label>
+    <div className="hu-wrap" onClick={()=>inputRef.current?.focus()}>
+      {tags.map((tag,i)=><span key={i} className="hu-tag">
+        {tag}
+        <button type="button" onClick={e=>{e.stopPropagation();removeTag(i);}}>×</button>
+      </span>)}
+      <input ref={inputRef} className="hu-inp" value={input}
+        placeholder={tags.length===0?(lang==='fr'?'Entrer un HU, Enter pour confirmer':'Enter HU, press Enter to add'):''}
+        onChange={e=>setInput(e.target.value)}
+        onKeyDown={onKeyDown}
+        onPaste={onPaste}
+        onBlur={()=>{ if(input.trim()) addTag(input); }}/>
+    </div>
+    {tags.length>0&&<div style={{fontSize:11,color:'var(--muted)',marginTop:3}}>
+      {lang==='fr'?'Appuyer sur Entrée ou virgule pour ajouter · Retour arrière pour supprimer':'Press Enter or comma to add · Backspace to remove'}
+    </div>}
+  </div>;
+}
+
 // ═══════════════════════════════════════════════════════
 //  INSPECTION FORM
 // ═══════════════════════════════════════════════════════
 const EMPTY_FORM = {
   date:today(), dailyN:1, supplier:'', po:'', productNo:'', description:'',
-  delivery:'', hu:'', country:'', receptionDate:today(), inspector:'',
+  delivery:'', hu:[], country:'', receptionDate:today(), inspector:'',
   r1_recv:0, r1_insp:0, r1_nc:0,
   r2_insp:0, r2_nc:0, r3_insp:0, r3_nc:0,
   defects:{}, other:'', issues:'', notes:'',
@@ -1818,7 +1881,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
     r.defects?.forEach(d=>{defects[d.key]={checked:true,qty:d.qty||0};});
     return {...EMPTY_FORM, date:r.date||today(), dailyN:r.dailyN||1, supplier:r.supplier||'',
       po:r.po||'', productNo:r.productNo||'', description:r.description||'',
-      delivery:r.delivery||'', hu:r.hu||'', country:r.country||'',
+      delivery:r.delivery||'', hu:Array.isArray(r.hu)?r.hu:(r.hu?[r.hu]:[]), country:r.country||'',
       receptionDate:r.receptionDate||today(), inspector:r.inspector||'',
       r1_recv:r1.recv??r.qtyReceived??0, r1_insp:r1.inspected||r.qtyInspected||0, r1_nc:r1.nonConf||0,
       r2_insp:r2.inspected||0, r2_nc:r2.nonConf||0, r3_insp:r3.inspected||0, r3_nc:r3.nonConf||0,
@@ -1960,11 +2023,11 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
               <div className="fg"><label>{t('product')} *</label><input type="text" value={form.productNo} onChange={e=>set('productNo',e.target.value)} required/></div>
             </div>
             <div className="fg"><label>{t('description')}</label><input type="text" value={form.description} onChange={e=>set('description',e.target.value)}/></div>
-            <div className="grid3">
+            <div className="grid2">
               <div className="fg"><label>{t('delivery')}</label><input type="text" value={form.delivery} onChange={e=>set('delivery',e.target.value)}/></div>
-              <div className="fg"><label>{t('hu')}</label><input type="text" value={form.hu} onChange={e=>set('hu',e.target.value)}/></div>
               <div className="fg"><label>{t('country')}</label><input type="text" value={form.country} onChange={e=>set('country',e.target.value)}/></div>
             </div>
+            <HuTagInput value={form.hu} onChange={v=>set('hu',v)} label={t('hu')} lang={lang}/>
             <div className="grid2">
               <div className="fg"><label>{t('rec_date')}</label><input type="date" value={form.receptionDate} onChange={e=>set('receptionDate',e.target.value)}/></div>
               <div className="fg"><label>{t('inspector')}</label>
@@ -2155,7 +2218,7 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
           <dt>{t('product')}</dt><dd className="mono">{r.productNo||'—'}</dd>
           <dt>{t('description')}</dt><dd>{r.description||'—'}</dd>
           <dt>{t('country')}</dt><dd>{r.country||'—'}</dd>
-          <dt>{t('delivery')}</dt><dd className="mono">{r.delivery||'—'} / {r.hu||'—'}</dd>
+          <dt>{t('delivery')}</dt><dd className="mono">{r.delivery||'—'} / {Array.isArray(r.hu)?r.hu.join(', '):(r.hu||'—')}</dd>
           <dt>{t('qty_recv')}</dt><dd>{r.qtyReceived} (insp. {r.qtyInspected})</dd>
           <dt>{t('inspector')}</dt><dd>{r.inspector||'—'}</dd>
           <dt>Decision</dt><dd>{decisionPill(r.decision,lang)}</dd>
@@ -3748,7 +3811,7 @@ async function generateInspectionPDF(r, lang){
     [lang==='fr'?'Description':'Description', r.description||'—'],
     [lang==='fr'?'Pays':'Country', r.country||'—'],
     ['Delivery #', r.delivery||'—'],
-    ['HU', r.hu||'—'],
+    ['HU', Array.isArray(r.hu)?r.hu.join(' / '):(r.hu||'—')],
     [lang==='fr'?'Date réception':'Reception date', r.receptionDate||r.date],
     [lang==='fr'?'Inspecteur':'Inspector', r.inspector||'—'],
     [lang==='fr'?'Site':'Site', r.site||'—'],
