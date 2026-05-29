@@ -1221,13 +1221,15 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
   }
   function renderAnn(){ if(annRef.current) annRenderAll(annRef.current, s.current.objs, s.current.selId); }
   function getAnnotatedData(){
-    // Returns merged image (bg + annotations) as JPEG data URL for storage/display
-    if(!bgRef.current || !annRef.current || !s.current.bgImg) return bgData||null;
+    // Renders bg + annotation objects WITHOUT selection handles/outlines
+    if(!bgRef.current || !s.current.bgImg) return bgData||null;
     const m=document.createElement('canvas');
     m.width=bgRef.current.width; m.height=bgRef.current.height;
     const ctx2=m.getContext('2d');
+    // 1. Draw background image
     ctx2.drawImage(bgRef.current,0,0);
-    ctx2.drawImage(annRef.current,0,0);
+    // 2. Draw annotation objects only — no selection UI
+    s.current.objs.forEach(o=>annDrawObj(ctx2,o));
     return m.toDataURL('image/jpeg',0.85);
   }
 
