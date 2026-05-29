@@ -44,7 +44,7 @@
     "id": 1780054757514,
     "name": "Daniel Meunier",
     "email": "dmeunier@foliot.com",
-    "passwordHash": "dda92b620f76db88337a8aaabd482add267a0be8e80d526bbe626d09b0606aea",
+    "passwordHash": "916fca27234c56183a986400a8779b52be31af2904aa4e1122f30b4592519c92",
     "role": "manager",
     "sites": [
       "QS",
@@ -52,7 +52,8 @@
       "QM"
     ],
     "active": true,
-    "mustChangePassword": true,
-    "createdAt": "2026-05-29T11:39:17.514Z"
+    "mustChangePassword": false,
+    "createdAt": "2026-05-29T11:39:17.514Z",
+    "passwordChangedAt": "2026-05-29T18:56:49.214Z"
   }
 ]
