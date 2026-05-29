@@ -928,6 +928,114 @@ async function compressImage(dataURL, maxW=1200, quality=0.75){
 }
 
 // ═══════════════════════════════════════════════════════
+//  CAMERA MODAL
+// ═══════════════════════════════════════════════════════
+function CameraModal({onCapture, onClose, lang}){
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+  const streamRef = useRef(null);
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState('');
+  const [facingMode, setFacingMode] = useState('environment');
+
+  useEffect(()=>{
+    startCamera(facingMode);
+    return ()=>stopCamera();
+  },[facingMode]);
+
+  async function startCamera(mode){
+    stopCamera(); setReady(false); setError('');
+    await new Promise(r=>setTimeout(r,80));
+    try{
+      if(!navigator.mediaDevices?.getUserMedia){
+        setError(lang==='fr'
+          ?"Caméra non disponible. Utilisez le bouton Importer ci-dessous."
+          :"Camera not available on this browser. Use the Import button below.");
+        return;
+      }
+      const s = await navigator.mediaDevices.getUserMedia({
+        video:{facingMode:mode, width:{ideal:1920}, height:{ideal:1080}}, audio:false
+      });
+      streamRef.current = s;
+      if(videoRef.current){
+        videoRef.current.srcObject = s;
+        await videoRef.current.play();
+        setReady(true);
+      }
+    }catch(e){
+      setError(e.name==='NotAllowedError'
+        ?(lang==='fr'?"Permission caméra refusée. Autorisez l'accès dans les paramètres.":"Camera permission denied. Allow access in browser settings.")
+        :(lang==='fr'?"Impossible d'accéder à la caméra.":"Cannot access camera."));
+    }
+  }
+
+  function stopCamera(){
+    if(streamRef.current){ streamRef.current.getTracks().forEach(t=>t.stop()); streamRef.current=null; }
+    setReady(false);
+  }
+
+  function capture(){
+    const v=videoRef.current, c=canvasRef.current; if(!v||!c) return;
+    c.width=v.videoWidth; c.height=v.videoHeight;
+    c.getContext('2d').drawImage(v,0,0);
+    onCapture(c.toDataURL('image/jpeg',0.85));
+    stopCamera(); onClose();
+  }
+
+  function handleClose(){ stopCamera(); onClose(); }
+
+  return <div className="modal-overlay" onClick={handleClose}>
+    <div className="modal-box" style={{maxWidth:640,padding:20}} onClick={e=>e.stopPropagation()}>
+      <div className="modal-header">
+        <h2><i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Prendre une photo':'Take a photo'}</h2>
+        <button type="button" className="modal-close" onClick={handleClose}>✕</button>
+      </div>
+
+      {error
+        ? <div style={{background:'var(--red-l)',border:'1px solid var(--red-b)',color:'var(--red)',padding:14,borderRadius:'var(--r)',fontSize:13,textAlign:'center',lineHeight:1.6}}>
+            <i className="ti ti-alert-triangle" style={{fontSize:20,display:'block',marginBottom:6}} aria-hidden="true"/>
+            {error}
+          </div>
+        : <div style={{position:'relative',background:'#000',borderRadius:'var(--r2)',overflow:'hidden',aspectRatio:'16/9'}}>
+            <video ref={videoRef} style={{width:'100%',height:'100%',objectFit:'cover',display:'block'}} autoPlay playsInline muted/>
+            {!ready&&<div style={{position:'absolute',inset:0,display:'flex',alignItems:'center',justifyContent:'center',color:'#aaa',fontSize:13,gap:8}}>
+              <i className="ti ti-loader-2" aria-hidden="true"/>
+              {lang==='fr'?'Démarrage...':'Starting...'}
+            </div>}
+          </div>}
+
+      <canvas ref={canvasRef} style={{display:'none'}}/>
+
+      <div style={{display:'flex',gap:8,marginTop:14,justifyContent:'center',flexWrap:'wrap'}}>
+        {!error&&<>
+          <button type="button" className="btn btn-primary" onClick={capture} disabled={!ready}
+            style={{padding:'10px 24px',fontSize:15}}>
+            <i className="ti ti-camera" aria-hidden="true"/> {lang==='fr'?'Capturer':'Capture'}
+          </button>
+          <button type="button" className="btn btn-secondary"
+            onClick={()=>setFacingMode(m=>m==='environment'?'user':'environment')}>
+            <i className="ti ti-switch-horizontal" aria-hidden="true"/> {lang==='fr'?'Retourner':'Flip'}
+          </button>
+        </>}
+        <label className="btn btn-secondary" style={{cursor:'pointer'}}>
+          <i className="ti ti-upload" aria-hidden="true"/> {lang==='fr'?'Importer':'Upload'}
+          <input type="file" accept="image/*" style={{display:'none'}}
+            onChange={e=>{
+              const f=e.target.files[0]; if(!f) return;
+              const r=new FileReader();
+              r.onload=ev=>{onCapture(ev.target.result);stopCamera();onClose();};
+              r.readAsDataURL(f);
+            }}/>
+        </label>
+        <button type="button" className="btn btn-secondary" onClick={handleClose}>
+          {lang==='fr'?'Annuler':'Cancel'}
+        </button>
+      </div>
+    </div>
+  </div>;
+}
+
+// ═══════════════════════════════════════════════════════
 //  ANNOTATION ENGINE — shared object-based vector system
 // ═══════════════════════════════════════════════════════
 const ANN_HR = 7;
@@ -1112,7 +1220,21 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
     x.drawImage(img,(c.width-img.width*r)/2,(c.height-img.height*r)/2,img.width*r,img.height*r);
   }
   function renderAnn(){ if(annRef.current) annRenderAll(annRef.current, s.current.objs, s.current.selId); }
-  function persist(){ onSave?.({objs: s.current.objs, nextId: s.current.nextId}); }
+  function getAnnotatedData(){
+    // Returns merged image (bg + annotations) as JPEG data URL for storage/display
+    if(!bgRef.current || !annRef.current || !s.current.bgImg) return bgData||null;
+    const m=document.createElement('canvas');
+    m.width=bgRef.current.width; m.height=bgRef.current.height;
+    const ctx2=m.getContext('2d');
+    ctx2.drawImage(bgRef.current,0,0);
+    ctx2.drawImage(annRef.current,0,0);
+    return m.toDataURL('image/jpeg',0.85);
+  }
+
+  function persist(){
+    const annotatedData = s.current.objs.length > 0 ? getAnnotatedData() : null;
+    onSave?.({objs: s.current.objs, nextId: s.current.nextId, annotatedData});
+  }
   function saveH(){ s.current.history.push(JSON.stringify(s.current.objs)); if(s.current.history.length>30)s.current.history.shift(); }
 
   function getPos(e){
@@ -1289,7 +1411,7 @@ function AnnotatorCanvas({bgData, persistedObjs, persistedNextId, onSave,
       wrapRef.current._annClear=clearAll;
       wrapRef.current._annGetSelId=getSelId;
     }
-    onMountActions?.({undo, deleteSelected, clearAll, getSelId});
+    onMountActions?.({undo, deleteSelected, clearAll, getSelId, getAnnotatedData});
   });
 
   const cursor=tool==='select'?'default':tool==='text'?'text':'crosshair';
@@ -1452,16 +1574,16 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
             </div>
             <AnnotatorCanvas
               bgData={ph.data} persistedObjs={ph.objs} persistedNextId={ph.nextId}
-              onSave={({objs,nextId})=>updatePhoto(i,{objs,nextId})}
+              onSave={({objs,nextId,annotatedData})=>updatePhoto(i,{objs,nextId,...(annotatedData!=null&&{annotatedData})})}
               tool={ap?.photoIdx===i&&ap?.side==='photo'?tool:'select'}
               color={color} strokeSz={strokeSz} height={220}
               active={ap?.photoIdx===i&&ap?.side==='photo'}
               onActivate={()=>setActivePanel({photoIdx:i,side:'photo'})}
-              onDropClick={()=>filePhotoRef.current.click()}
+              onDropClick={()=>{setCameraForIdx(i);setShowCamera(true);}}
               onMountActions={actions=>{ annActionsRef.current[`${i}-photo`]=actions; }}
               dropIcon="ti ti-camera"
-              dropLabel={lang==='fr'?'Ajouter une photo':'Add a photo'}
-              dropSub="PNG · JPG"/>
+              dropLabel={lang==='fr'?'Appuyer pour prendre une photo':'Tap to take a photo'}
+              dropSub={lang==='fr'?'ou utiliser le bouton ⬆ pour importer':'or use ⬆ to upload from gallery'}/>
             <input className="ann-caption" value={ph.caption}
               placeholder={lang==='fr'?'Légende photo...':'Photo caption...'}
               onChange={e=>updatePhoto(i,{caption:e.target.value})}/>
@@ -1488,7 +1610,7 @@ function PhotoAnnotationTab({photos, setPhotos, lang}){
             </div>
             <AnnotatorCanvas
               bgData={ph.drawingData} persistedObjs={ph.drawingObjs} persistedNextId={ph.drawingNextId}
-              onSave={({objs,nextId})=>updatePhoto(i,{drawingObjs:objs,drawingNextId:nextId})}
+              onSave={({objs,nextId,annotatedData})=>updatePhoto(i,{drawingObjs:objs,drawingNextId:nextId,...(annotatedData!=null&&{drawingAnnotatedData:annotatedData})})}
               tool={ap?.photoIdx===i&&ap?.side==='drawing'?tool:'select'}
               color={color} strokeSz={strokeSz} height={220}
               active={ap?.photoIdx===i&&ap?.side==='drawing'}
@@ -2026,12 +2148,22 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
         {r.issues && <div className="modal-section"><h3>{t('issues')}</h3><p style={{fontSize:13,whiteSpace:'pre-line'}}>{r.issues}</p></div>}
 
         {r.photos?.length>0 && <div className="modal-section">
-          <h3>📷 {t('photos')} ({r.photos.length})</h3>
-          <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
-            {r.photos.map((ph,i)=><div key={i} style={{cursor:'pointer',borderRadius:6,overflow:'hidden',border:'1px solid var(--brd)'}} onClick={()=>setLightbox(ph.data)}>
-              <img src={ph.data} style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',display:'block',pointerEvents:'none'}}/>
-              {ph.caption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.caption}</div>}
-            </div>)}
+          <h3><i className="ti ti-camera" style={{fontSize:14,verticalAlign:-2}} aria-hidden="true"/> {t('photos')} ({r.photos.length})</h3>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))',gap:8}}>
+            {r.photos.map((ph,i)=>{
+              // Use annotatedData (with baked-in annotations) if available, else original
+              const displaySrc = ph.annotatedData || ph.data;
+              return <div key={i} style={{borderRadius:6,overflow:'hidden',border:'1px solid var(--brd)'}}>
+                <div style={{cursor:'pointer'}} onClick={()=>setLightbox(displaySrc)}>
+                  <img src={displaySrc} style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',display:'block'}}/>
+                </div>
+                {ph.caption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.caption}</div>}
+                {ph.drawingAnnotatedData||ph.drawingData ? <div style={{cursor:'pointer',borderTop:'1px solid var(--brd)'}} onClick={()=>setLightbox(ph.drawingAnnotatedData||ph.drawingData)}>
+                  <img src={ph.drawingAnnotatedData||ph.drawingData} style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',display:'block',opacity:.9}}/>
+                  {ph.drawingCaption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.drawingCaption}</div>}
+                </div> : null}
+              </div>;
+            })}
           </div>
         </div>}
 
@@ -2209,6 +2341,78 @@ function Dashboard({site, lang, t, inspections, ncrs, onNewInsp, onViewInsp}){
 // ═══════════════════════════════════════════════════════
 //  NCR DASHBOARD
 // ═══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+//  NCR MODAL
+// ═══════════════════════════════════════════════════════
+function NcrModal({record:r, lang, t, onClose, onEdit, onDelete}){
+  if(!r) return null;
+  const sevColor={critical:'red',major:'amber',minor:'grn',cosmetic:'blue'};
+  const statusColor={open:'red','in-progress':'amb',closed:'grn'};
+  const sc=sevColor[r.severity]||'blue';
+  const stc=statusColor[r.status]||'blue';
+  return <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-box" onClick={e=>e.stopPropagation()}>
+      <div className="modal-header">
+        <h2 style={{fontFamily:'var(--fm)',fontSize:14}}>{r.ref}</h2>
+        <button className="modal-close" onClick={onClose}>✕</button>
+      </div>
+      <div className="modal-body">
+        <div style={{display:'flex',gap:8,marginBottom:14,flexWrap:'wrap'}}>
+          <span className={`badge badge-${sc}`}>{r.severity||'—'}</span>
+          <span className={`badge badge-${stc}`}>{r.status||'—'}</span>
+          {r.dueDate&&<span style={{fontSize:12,color:'var(--muted)'}}>{lang==='fr'?'Échéance':'Due'}: {r.dueDate}</span>}
+        </div>
+        <dl className="modal-dl">
+          <dt>{t('date')}</dt><dd>{r.date}</dd>
+          <dt>{t('supplier')}</dt><dd>{r.supplier||'—'}</dd>
+          <dt>{t('product')}</dt><dd className="mono">{r.productNo||'—'}</dd>
+          <dt>P.O. #</dt><dd>{r.po||'—'}</dd>
+          <dt>Defect</dt><dd>{r.defect||'—'}</dd>
+          <dt>Status</dt><dd>{r.status||'—'}</dd>
+          {r.respons&&<><dt>{lang==='fr'?'Responsable':'Responsible'}</dt><dd>{r.respons}</dd></>}
+        </dl>
+
+        {r.description&&<div className="modal-section">
+          <div className="modal-section-title">{lang==='fr'?'Description':'Description'}</div>
+          <div style={{fontSize:13,color:'var(--tx2)',whiteSpace:'pre-wrap'}}>{r.description}</div>
+        </div>}
+
+        {(r.why1||r.why2||r.why3||r.why4||r.why5)&&<div className="modal-section">
+          <div className="modal-section-title">5 Whys</div>
+          {[r.why1,r.why2,r.why3,r.why4,r.why5].filter(Boolean).map((w,i)=><div key={i} style={{fontSize:13,color:'var(--tx2)',padding:'4px 0',borderBottom:'0.5px solid var(--brd)'}}>
+            <span style={{fontWeight:600,color:'var(--blu)',marginRight:8}}>Why {i+1}</span>{w}
+          </div>)}
+        </div>}
+
+        {r.rootCause&&<div className="modal-section">
+          <div className="modal-section-title">{lang==='fr'?'Cause racine':'Root cause'}</div>
+          <div style={{fontSize:13,color:'var(--tx2)'}}>{r.rootCause}</div>
+        </div>}
+
+        {(r.corrective||r.preventive)&&<div className="modal-section">
+          <div className="modal-section-title">CAPA</div>
+          {r.corrective&&<div style={{marginBottom:6}}>
+            <div style={{fontSize:11,fontWeight:600,color:'var(--muted)',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:2}}>{lang==='fr'?'Action corrective':'Corrective action'}</div>
+            <div style={{fontSize:13,color:'var(--tx2)'}}>{r.corrective}</div>
+          </div>}
+          {r.preventive&&<div>
+            <div style={{fontSize:11,fontWeight:600,color:'var(--muted)',textTransform:'uppercase',letterSpacing:'.05em',marginBottom:2}}>{lang==='fr'?'Action préventive':'Preventive action'}</div>
+            <div style={{fontSize:13,color:'var(--tx2)'}}>{r.preventive}</div>
+          </div>}
+        </div>}
+      </div>
+      <div className="modal-footer">
+        <button className="btn btn-secondary btn-sm" onClick={onEdit}>
+          <i className='ti ti-pencil' aria-hidden='true'/> {t('edit')}
+        </button>
+        <button className="btn btn-danger btn-sm" onClick={onDelete}>
+          <i className='ti ti-trash' aria-hidden='true'/> {t('delete')}
+        </button>
+      </div>
+    </div>
+  </div>;
+}
+
 function NcrDashboard({site, lang, t, ncrs, onNewNcr, onView}){
   const open=ncrs.filter(r=>r.status==='open').length;
   const inProg=ncrs.filter(r=>r.status==='in-progress').length;
@@ -3779,8 +3983,9 @@ function App(){
       const compressedPhotos = await Promise.all((rec.photos||[]).map(async ph=>({
         ...ph,
         data: await compressImage(ph.data),
+        annotatedData: ph.annotatedData ? await compressImage(ph.annotatedData,1200,0.8) : null,
         drawingData: await compressImage(ph.drawingData),
-        // Strip history (not needed in storage)
+        drawingAnnotatedData: ph.drawingAnnotatedData ? await compressImage(ph.drawingAnnotatedData,1200,0.8) : null,
         history: undefined,
         drawingHistory: undefined,
       })));
@@ -4134,6 +4339,18 @@ function App(){
       onDelete={()=>handleDeleteInspection(modal.record)}
       onEmail={()=>setModal({type:'email',record:modal.record})}/>}
     {modal?.type==='email' && <EmailModal record={modal.record} lang={lang} t={t} onClose={()=>setModal(null)}/>}
+    {modal?.type==='ncr' && <NcrModal
+      record={modal.record} lang={lang} t={t}
+      onClose={()=>setModal(null)}
+      onEdit={()=>{setModal(null);navTo('new_ncr');}}
+      onDelete={async()=>{
+        if(!confirm(t('delete')+'?')) return;
+        try{
+          await deleteRecord(site,'ncrs',modal.record.id);
+          setTick(k=>k+1); setModal(null);
+          showToast(t('deleted_ok'),'warn');
+        }catch(err){ showToast(`Error: ${err.message?.slice(0,50)}`,'error'); }
+      }}/>}
 
     <Toast toasts={toasts}/>
   </>;
