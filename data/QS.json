@@ -1836,6 +1836,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780061083762,
+      "timestamp": "2026-05-29T13:24:43.762Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260529-01-656565656",
+      "site": "QS",
+      "details": "Guangdong Hardware Industry | 656565656 | Decision: rejected",
+      "duration": 305
+    },
+    {
       "id": 1780053122458,
       "timestamp": "2026-05-29T11:12:02.458Z",
       "user": "Admin",
