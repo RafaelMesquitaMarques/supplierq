@@ -285,11 +285,12 @@ textarea{resize:vertical;min-height:72px;}
 .ftab:hover:not(.active){color:var(--tx);background:var(--surf3);}
 
 /* ─── DECISION BUTTONS ───────────────────────────── */
-.dec-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.dec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;}
 .dec-btn{padding:12px;border:2px solid var(--brd);border-radius:var(--r2);cursor:pointer;
   font-family:var(--ff);font-size:13px;font-weight:500;background:var(--surf2);color:var(--muted);
   text-align:center;transition:all .15s;}
 .dec-btn:hover{border-color:var(--brd2);color:var(--tx);}
+.dec-btn.sel-app{border-color:#2a7d4f;background:#d4f0e3;color:#1a5c38;}
 .dec-btn.sel-uai{border-color:var(--grn-b);background:var(--grn-l);color:var(--grn);}
 .dec-btn.sel-rw{border-color:var(--amb-b);background:var(--amb-l);color:var(--amb);}
 .dec-btn.sel-rej{border-color:var(--red-b);background:var(--red-l);color:var(--red);}
@@ -563,7 +564,7 @@ const I18N = {
     score_weights:'Score weights', export_json:'Export JSON', import_json:'Import JSON',
     save:'Save', cancel:'Cancel', edit:'Edit', delete:'Delete', view:'View',
     email:'Email', clear:'Clear', back:'Back', next:'Next',
-    dec_uai:'✅ Use as Is', dec_rw:'🔧 Rework', dec_rej:'❌ Rejected', dec_wfd:'⏳ Waiting',
+    dec_app:'✅ Approved', dec_uai:'⚠️ Use as Is', dec_rw:'🔧 Rework', dec_rej:'❌ Rejected', dec_wfd:'⏳ Waiting',
     saved_ok:'Saved ✓', updated_ok:'Updated ✓', deleted_ok:'Deleted', synced_ok:'Synced ✓',
     edit_mode:'Edit mode', edit_hint:'Modify the fields and save to update.',
     page1:'Page 1 — Report', page2:'Photos', page3:'Drawings',
@@ -591,7 +592,7 @@ const I18N = {
     score_weights:'Pondération', export_json:'Exporter JSON', import_json:'Importer JSON',
     save:'Enregistrer', cancel:'Annuler', edit:'Modifier', delete:'Supprimer', view:'Voir',
     email:'Courriel', clear:'Effacer', back:'Retour', next:'Suivant',
-    dec_uai:'✅ Utiliser tel quel', dec_rw:'🔧 Retravail', dec_rej:'❌ Rejeté', dec_wfd:'⏳ En attente',
+    dec_app:'✅ Approuvé', dec_uai:'⚠️ Utiliser tel quel', dec_rw:'🔧 Retravail', dec_rej:'❌ Rejeté', dec_wfd:'⏳ En attente',
     saved_ok:'Enregistré ✓', updated_ok:'Mis à jour ✓', deleted_ok:'Supprimé', synced_ok:'Synchronisé ✓',
     edit_mode:'Mode édition', edit_hint:'Modifiez les champs et sauvegardez pour mettre à jour.',
     page1:'Page 1 — Rapport', page2:'Photos', page3:'Dessins',
@@ -822,7 +823,7 @@ function calcScore(supplier, inspections, ncrs, weights, thresholds){
   const insps = inspections.filter(i=>i.supplier===supplier.name);
   const snc = ncrs.filter(n=>n.supplier===supplier.name);
   if(!insps.length) return null;
-  const pass = insps.filter(i=>i.decision==='use-as-is'||(i.decision&&!i.hasNC)).length;
+  const pass = insps.filter(i=>i.decision==='approved'||i.decision==='use-as-is').length;
   const ac = Math.round(pass/insps.length*100);
   const totR = insps.reduce((a,i)=>a+(i.qtyReceived||0),0);
   const totRej = insps.reduce((a,i)=>a+(i.qtyRejected||0),0);
@@ -839,7 +840,8 @@ function calcScore(supplier, inspections, ncrs, weights, thresholds){
 
 function decisionPill(dec, lang){
   const map = {
-    'use-as-is':{cls:'pill-green', en:'Use as Is', fr:'Tel quel'},
+    'approved':{cls:'pill-green', en:'Approved', fr:'Approuvé'},
+    'use-as-is':{cls:'pill-amber', en:'Use as Is', fr:'Tel quel'},
     'rework':{cls:'pill-amber', en:'Rework', fr:'Retravail'},
     'rejected':{cls:'pill-red', en:'Rejected', fr:'Rejeté'},
     'waiting':{cls:'pill-blue', en:'Waiting', fr:'En attente'},
@@ -1850,7 +1852,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
         .sort((a,b)=>b.id-a.id)
         .slice(0,sampling.skipLotThreshold||5);
       const threshold = sampling.skipLotThreshold||5;
-      if(supInsps.length>=threshold && supInsps.every(i=>!i.hasNC && i.decision==='use-as-is')){
+      if(supInsps.length>=threshold && supInsps.every(i=>i.decision==='approved'||i.decision==='use-as-is')){
         skipLot = true;
       }
     }
@@ -2045,7 +2047,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
           <div className="form-card">
             <div className="form-card-title">{t('final_dec')}</div>
             <div className="dec-grid">
-              {[{v:'use-as-is',cls:'sel-uai',k:'dec_uai'},{v:'rework',cls:'sel-rw',k:'dec_rw'},{v:'rejected',cls:'sel-rej',k:'dec_rej'},{v:'waiting',cls:'sel-wfd',k:'dec_wfd'}].map(d=>(
+              {[{v:'approved',cls:'sel-app',k:'dec_app'},{v:'use-as-is',cls:'sel-uai',k:'dec_uai'},{v:'rework',cls:'sel-rw',k:'dec_rw'},{v:'rejected',cls:'sel-rej',k:'dec_rej'},{v:'waiting',cls:'sel-wfd',k:'dec_wfd'}].map(d=>(
                 <button key={d.v} type="button" className={`dec-btn${form.decision===d.v?' '+d.cls:''}`} onClick={()=>set('decision',form.decision===d.v?'':d.v)}>{t(d.k)}</button>
               ))}
             </div>
@@ -2246,7 +2248,7 @@ function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
         style={{minWidth:260}}/>
       <select value={filter} onChange={e=>setFilter(e.target.value)} style={{minWidth:130}}>
         <option value="">{t('all')}</option>
-        <option value="use-as-is">Use as Is</option>
+        <option value="approved">Approved</option><option value="use-as-is">Use as Is</option>
         <option value="rework">Rework</option>
         <option value="rejected">Rejected</option>
         <option value="waiting">Waiting</option>
@@ -2297,7 +2299,7 @@ function AllInspections({site, lang, t, data, onView, onEdit, onDelete}){
 // ═══════════════════════════════════════════════════════
 function Dashboard({site, lang, t, inspections, ncrs, onNewInsp, onViewInsp}){
   const total=inspections.length;
-  const pass=inspections.filter(r=>r.decision==='use-as-is'||(r.decision&&!r.hasNC)).length;
+  const pass=inspections.filter(r=>r.decision==='approved'||r.decision==='use-as-is').length;
   const passRate=total?Math.round(pass/total*100):0;
   const totR=inspections.reduce((a,r)=>a+(r.qtyReceived||0),0);
   const totJ=inspections.reduce((a,r)=>a+(r.qtyRejected||0),0);
@@ -2657,7 +2659,7 @@ function Consolidated({lang, t}){
   const allInsps=getAllData('inspections');
   const allNcrs=getAllData('ncrs');
   const total=allInsps.length;
-  const pass=allInsps.filter(r=>r.decision==='use-as-is'||(r.decision&&!r.hasNC)).length;
+  const pass=allInsps.filter(r=>r.decision==='approved'||r.decision==='use-as-is').length;
   const passRate=total?Math.round(pass/total*100):0;
   const totR=allInsps.reduce((a,r)=>a+(r.qtyReceived||0),0);
   const totJ=allInsps.reduce((a,r)=>a+(r.qtyRejected||0),0);
@@ -2675,7 +2677,7 @@ function Consolidated({lang, t}){
     <div className="three-grid">
       {SITES.map(s=>{
         const insps=getData(s,'inspections');const ncrs=getData(s,'ncrs');
-        const pass=insps.filter(r=>r.decision==='use-as-is'||(r.decision&&!r.hasNC)).length;
+        const pass=insps.filter(r=>r.decision==='approved'||r.decision==='use-as-is').length;
         const rt=insps.length?Math.round(pass/insps.length*100):0;
         const rv=insps.reduce((a,x)=>a+(x.qtyReceived||0),0),rj=insps.reduce((a,x)=>a+(x.qtyRejected||0),0);
         const pm=rv>0?Math.round(rj/rv*1e6):0;
@@ -3781,7 +3783,7 @@ async function generateInspectionPDF(r, lang){
       if(col===0) checkPage(ph_h+12);
       const px=M+col*(ph_w+4), py=y;
       try{
-        doc.addImage(r.photos[i].data,'JPEG',px,py,ph_w,ph_h);
+        doc.addImage(r.photos[i].annotatedData||r.photos[i].data,'JPEG',px,py,ph_w,ph_h);
       }catch{}
       if(r.photos[i].caption){
         setFont(7,'normal',GREY);
@@ -3793,6 +3795,7 @@ async function generateInspectionPDF(r, lang){
   }
 
   // ── 7. DRAWINGS ───────────────────────────────────────
+  // Collect annotated technical drawings from tab 3
   if(r.drawings?.filter(d=>d.type?.startsWith('image/')).length){
     const imgDrawings=r.drawings.filter(d=>d.type?.startsWith('image/'));
     section(lang==='fr'?`DESSINS / IMAGES DE RÉFÉRENCE (${imgDrawings.length})`:`REFERENCE DRAWINGS (${imgDrawings.length})`,'📐');
@@ -3801,10 +3804,31 @@ async function generateInspectionPDF(r, lang){
       const col=i%2;
       if(col===0) checkPage(dr_h+12);
       const dx=M+col*(dr_w+4);
-      try{ doc.addImage(imgDrawings[i].data,'JPEG',dx,y,dr_w,dr_h); }catch{}
+      // Use annotated version if available
+      const src=imgDrawings[i].annotatedData||imgDrawings[i].data;
+      try{ doc.addImage(src,'JPEG',dx,y,dr_w,dr_h); }catch{}
       setFont(7,'normal',GREY);
       doc.text(doc.splitTextToSize(imgDrawings[i].name,dr_w)[0],dx,y+dr_h+3.5);
       if(col===1||i===imgDrawings.length-1) y+=dr_h+8;
+    }
+  }
+
+  // ── 8. PAIRED PHOTO DRAWINGS (from photos tab) ────────
+  const pairedDrawings=(r.photos||[]).filter(ph=>ph.drawingData||ph.drawingAnnotatedData);
+  if(pairedDrawings.length){
+    section(lang==='fr'?`DESSINS TECHNIQUES ASSOCIÉS (${pairedDrawings.length})`:`PAIRED TECHNICAL DRAWINGS (${pairedDrawings.length})`,'📐');
+    const dr_w=(CW-4)/2, dr_h=dr_w*0.7;
+    for(let i=0;i<pairedDrawings.length;i++){
+      const col=i%2;
+      if(col===0) checkPage(dr_h+12);
+      const dx=M+col*(dr_w+4);
+      const src=pairedDrawings[i].drawingAnnotatedData||pairedDrawings[i].drawingData;
+      try{ doc.addImage(src,'JPEG',dx,y,dr_w,dr_h); }catch{}
+      if(pairedDrawings[i].drawingCaption){
+        setFont(7,'normal',GREY);
+        doc.text(doc.splitTextToSize(pairedDrawings[i].drawingCaption,dr_w)[0],dx,y+dr_h+3.5);
+      }
+      if(col===1||i===pairedDrawings.length-1) y+=dr_h+8;
     }
   }
 
