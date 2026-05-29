@@ -55,5 +55,20 @@
     "mustChangePassword": false,
     "createdAt": "2026-05-29T11:39:17.514Z",
     "passwordChangedAt": "2026-05-29T18:56:49.214Z"
+  },
+  {
+    "id": 1780081213570,
+    "name": "Stephane Jodouin",
+    "email": "sjodouin@foliot.com",
+    "passwordHash": "9318a34ec51b593f33b4803e4d48d2aacadf04e888f258169ceae80e1e0e1f61",
+    "role": "manager",
+    "sites": [
+      "QS",
+      "NL",
+      "QM"
+    ],
+    "active": true,
+    "mustChangePassword": true,
+    "createdAt": "2026-05-29T19:00:13.570Z"
   }
 ]
