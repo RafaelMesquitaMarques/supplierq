@@ -450,15 +450,16 @@ textarea{resize:vertical;min-height:72px;}
 .hu-tag button{background:none;border:none;cursor:pointer;color:var(--blu);font-size:13px;line-height:1;padding:0;opacity:.6;display:flex;align-items:center}
 .hu-tag button:hover{opacity:1}
 .hu-inp{border:none;outline:none;background:none;font-size:13px;color:var(--tx);font-family:var(--ff);min-width:80px;flex:1;padding:0}
-.ann-toolbar{background:var(--surf2);border:0.5px solid var(--brd);border-radius:var(--r2);padding:6px 10px;display:flex;flex-direction:row;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:10px;width:100%}
+.ann-toolbar{background:var(--surf2);border:0.5px solid var(--brd);border-radius:var(--r2);padding:5px 8px;display:flex;flex-direction:row;align-items:center;gap:3px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;margin-bottom:10px;width:100%;scrollbar-width:none;-ms-overflow-style:none}
+.ann-toolbar::-webkit-scrollbar{display:none}
 .ann-sep{width:1px;height:20px;background:var(--brd2);margin:0 3px;flex-shrink:0}
 .ann-btn{width:30px;height:30px;border-radius:var(--r);border:0.5px solid transparent;cursor:pointer;background:none;color:var(--tx2);font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .1s;flex-shrink:0;position:relative;font-family:var(--ff)}
 .ann-btn:hover{background:var(--surf3);color:var(--tx)}
 .ann-btn.ann-on{background:var(--blu-l);color:var(--blu);border-color:var(--blu-b)}
 .ann-col{width:18px;height:18px;border-radius:50%;border:2.5px solid transparent;cursor:pointer;flex-shrink:0;transition:all .1s}
 .ann-col.ann-on{border-color:var(--tx);transform:scale(1.2)}
-.ann-sz{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}
-.ann-sz input{width:50px}
+.ann-sz{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--muted);flex-shrink:0}
+.ann-sz input{width:44px;flex-shrink:0}
 .ann-panel{background:var(--surf);border:0.5px solid var(--brd);border-radius:var(--r2);overflow:hidden;display:flex;flex-direction:column;margin-bottom:10px}
 .ann-panel.ann-active-panel{outline:2px solid var(--blu);outline-offset:-1px}
 .ann-panel-header{padding:6px 10px;background:var(--surf2);border-bottom:0.5px solid var(--brd);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
