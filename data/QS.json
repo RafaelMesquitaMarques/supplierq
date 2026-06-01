@@ -905,6 +905,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780338751271,
+      "timestamp": "2026-06-01T18:32:31.271Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260601-01-0021321",
+      "site": "QS",
+      "details": "Attaches Viscan | 21321 | Decision: approved",
+      "duration": 1050
+    },
+    {
       "id": 1780276992858,
       "timestamp": "2026-06-01T01:23:12.858Z",
       "user": "Admin",
