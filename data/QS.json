@@ -4,6 +4,16 @@
   "suppliers": [],
   "auditLog": [
     {
+      "id": 1780276736365,
+      "timestamp": "2026-06-01T01:18:56.365Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
+    },
+    {
       "id": 1780276734749,
       "timestamp": "2026-06-01T01:18:54.749Z",
       "user": "Admin",
