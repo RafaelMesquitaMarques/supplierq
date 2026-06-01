@@ -4,8 +4,8 @@
   "suppliers": [],
   "auditLog": [
     {
-      "id": 1780276402110,
-      "timestamp": "2026-06-01T01:13:22.110Z",
+      "id": 1780276734749,
+      "timestamp": "2026-06-01T01:18:54.749Z",
       "user": "Admin",
       "userEmail": "admin@foliot.com",
       "action": "user_login",
