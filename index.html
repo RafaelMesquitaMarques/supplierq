@@ -674,11 +674,9 @@ async function ghLoad(site){
         if(!loadBackup()) _cache[site]=empty;
       }
     }catch{
-      console.warn(`Corrupted JSON for ${site}, trying backup`);
-      if(!loadBackup()){
-        _cache[site]=empty;
-        ghSave(site).catch(console.error);
-      }
+      console.warn(`Corrupted JSON for ${site}, trying localStorage backup`);
+      if(!loadBackup()) _cache[site]=empty;
+      // NOTE: do NOT call ghSave here — would overwrite real data with empty cache
     }
     return _cache[site];
   }catch(e){
@@ -796,16 +794,19 @@ async function deleteRecord(site, type, key){
 
 // ── AUDIT LOG ──────────────────────────────────────────
 function addAuditLog(site, entry){
-  // Safety: never create empty cache — skip if site data not loaded yet
+  // Safety: only run if site has actual data loaded (prevents wiping on login)
   if(!_cache[site] || !Array.isArray(_cache[site].inspections)) return;
+  const hasContent = (_cache[site].inspections?.length||0) +
+                     (_cache[site].suppliers?.length||0) +
+                     (_cache[site].ncrs?.length||0) > 0;
   if(!_cache[site].auditLog) _cache[site].auditLog=[];
-  _cache[site].auditLog.unshift({
-    id: Date.now(),
-    timestamp: new Date().toISOString(),
-    ...entry,
-  });
+  _cache[site].auditLog.unshift({id:Date.now(), timestamp:new Date().toISOString(), ...entry});
   if(_cache[site].auditLog.length>500) _cache[site].auditLog=_cache[site].auditLog.slice(0,500);
-  ghSave(site).catch(console.error);
+  // ONLY save to GitHub if there is actual inspection/supplier/NCR data
+  // This prevents the audit log from wiping data on a fresh/empty cache
+  if(hasContent){
+    ghSave(site).catch(console.error);
+  }
 }
 
 function getAuditLog(site){
@@ -2848,6 +2849,37 @@ function Ranking({lang, t, weights, thresholds}){
 function GithubStorage({lang, t, syncStatus, showToast}){
   const [resetting, setResetting] = useState(false);
 
+  async function recoverFromBackup(){
+    let recovered = 0;
+    const results = [];
+    for(const s of SITES){
+      try{
+        const b = localStorage.getItem(`sq_backup_${s}`);
+        if(b){
+          const parsed = JSON.parse(b);
+          const n = (parsed.inspections?.length||0)+(parsed.suppliers?.length||0)+(parsed.ncrs?.length||0);
+          if(n > 0){
+            _cache[s] = {...{inspections:[],ncrs:[],suppliers:[],auditLog:[]}, ...parsed};
+            await ghSave(s);
+            recovered++;
+            results.push(`${s}: ${n} records restored`);
+          } else {
+            results.push(`${s}: backup empty`);
+          }
+        } else {
+          results.push(`${s}: no backup found`);
+        }
+      }catch(e){ results.push(`${s}: error — ${e.message}`); }
+    }
+    if(recovered > 0){
+      showToast(`Recovered ${recovered} site(s) from backup ✓`, 'success');
+      alert('Recovery complete:\n\n'+results.join('\n')+'\n\nPlease reload the page.');
+    } else {
+      showToast('No backup data found in browser', 'error');
+      alert('Recovery results:\n\n'+results.join('\n'));
+    }
+  }
+
   async function resetAllData(){
     if(!confirm(lang==='fr'
       ?'Ceci va réinitialiser tous les fichiers de données sur GitHub. Les données actuelles seront perdues. Continuer?'
@@ -2904,9 +2936,22 @@ function GithubStorage({lang, t, syncStatus, showToast}){
       </div>
       <div style={{borderTop:'1px solid var(--brd)',marginTop:12,paddingTop:12,display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}}>
         <div style={{flex:1}}>
-          <div style={{fontSize:13,fontWeight:600,color:'var(--red)',marginBottom:2}}>
-            ⚠️ {lang==='fr'?'Réinitialiser toutes les données':'Reset all data'}
+          <div style={{fontSize:13,fontWeight:600,color:'var(--grn)',marginBottom:2}}>
+            💾 {lang==='fr'?'Récupérer depuis la sauvegarde locale':'Recover from local backup'}
           </div>
+          <div style={{fontSize:12,color:'var(--muted)'}}>
+            {lang==='fr'
+              ?'Si les données ont disparu, restaure depuis le cache du navigateur.'
+              :'If data disappeared, restores from the browser cache.'}
+          </div>
+        </div>
+        <button className="btn btn-secondary" onClick={recoverFromBackup} disabled={resetting}>
+          💾 {lang==='fr'?'Récupérer':'Recover'}
+        </button>
+      </div>
+      <div style={{borderTop:'1px solid var(--brd)',marginTop:12,paddingTop:12,display:'flex',gap:10,flexWrap:'wrap',alignItems:'center'}}>
+        <div style={{flex:1}}>
+          <div style={{fontSize:13,fontWeight:600,color:'var(--red)',marginBottom:2}}>⚠️ {lang==='fr'?'Réinitialiser toutes les données':'Reset all data'}</div>
           <div style={{fontSize:12,color:'var(--muted)'}}>
             {lang==='fr'
               ?'Efface toutes les inspections, NCRs et fournisseurs. Irréversible.'
