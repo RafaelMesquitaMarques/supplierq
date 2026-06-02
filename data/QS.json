@@ -1002,6 +1002,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780410391717,
+      "timestamp": "2026-06-02T14:26:31.717Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260602-01-0011111",
+      "site": "QS",
+      "details": "Amazon | 11111 | Decision: use-as-is",
+      "duration": 103
+    },
+    {
       "id": 1780400302619,
       "timestamp": "2026-06-02T11:38:22.619Z",
       "user": "Admin",
