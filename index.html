@@ -1931,6 +1931,37 @@ function HuTagInput({value, onChange, label, lang}){
   </div>;
 }
 
+// ── COUNTRIES LIST ────────────────────────────────────
+const COUNTRIES_EN = [
+  // Most common for furniture sourcing — listed first
+  'China','Vietnam','USA','Canada','Mexico','India','Taiwan','Malaysia','Indonesia',
+  'Cambodia','Bangladesh','Thailand','South Korea','Japan','Italy','Germany',
+  'France','Turkey','Brazil','Portugal','Spain','Poland','Czech Republic',
+  'Romania','Hungary','Belgium','Netherlands','Sweden','Denmark','Finland',
+  'Norway','Switzerland','Austria','United Kingdom','Ireland','Australia',
+  'New Zealand','Argentina','Chile','Colombia','Peru','Honduras','Guatemala',
+  'Costa Rica','Dominican Republic','Haiti','Morocco','Tunisia','Egypt','Israel',
+  'UAE','Saudi Arabia','Pakistan','Sri Lanka','Philippines','Myanmar','Laos',
+  'Singapore','Hong Kong','Ukraine','Russia','Other',
+];
+const COUNTRIES_FR = [
+  'Chine','Vietnam','États-Unis','Canada','Mexique','Inde','Taïwan','Malaisie','Indonésie',
+  'Cambodge','Bangladesh','Thaïlande','Corée du Sud','Japon','Italie','Allemagne',
+  'France','Turquie','Brésil','Portugal','Espagne','Pologne','République tchèque',
+  'Roumanie','Hongrie','Belgique','Pays-Bas','Suède','Danemark','Finlande',
+  'Norvège','Suisse','Autriche','Royaume-Uni','Irlande','Australie',
+  'Nouvelle-Zélande','Argentine','Chili','Colombie','Pérou','Honduras','Guatemala',
+  'Costa Rica','République dominicaine','Haïti','Maroc','Tunisie','Égypte','Israël',
+  'Émirats arabes unis','Arabie saoudite','Pakistan','Sri Lanka','Philippines','Myanmar','Laos',
+  'Singapour','Hong Kong','Ukraine','Russie','Autre',
+];
+
+const FOLIOT_PLANTS = [
+  {id:'QS', label:'QS — Saint-Jérôme'},
+  {id:'NL', label:'NL — Las Vegas'},
+  {id:'QM', label:'QM — Mirabel'},
+];
+
 // ── PRODUCT INPUT WITH AUTOCOMPLETE ──────────────────
 function ProductInput({value, onChange, onDescriptionFound, lang, required}){
   const [suggestions, setSuggestions] = useState([]);
@@ -2007,7 +2038,7 @@ function ProductInput({value, onChange, onDescriptionFound, lang, required}){
 // ═══════════════════════════════════════════════════════
 const EMPTY_FORM = {
   date:today(), dailyN:1, supplier:'', po:'', productNo:'', description:'',
-  delivery:'', hu:[], country:'', receptionDate:today(), inspector:'',
+  delivery:'', hu:[], country:'', plant:'', receptionDate:today(), inspector:'',
   r1_recv:0, r1_insp:0, r1_nc:0,
   r2_insp:0, r2_nc:0, r3_insp:0, r3_nc:0,
   defects:{}, other:'', issues:'', notes:'',
@@ -2045,7 +2076,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
     r.defects?.forEach(d=>{defects[d.key]={checked:true,qty:d.qty||0};});
     return {...EMPTY_FORM, date:r.date||today(), dailyN:r.dailyN||1, supplier:r.supplier||'',
       po:r.po||'', productNo:r.productNo||'', description:r.description||'',
-      delivery:r.delivery||'', hu:Array.isArray(r.hu)?r.hu:(r.hu?[r.hu]:[]), country:r.country||'',
+      delivery:r.delivery||'', hu:Array.isArray(r.hu)?r.hu:(r.hu?[r.hu]:[]), country:r.country||'', plant:r.plant||'',
       receptionDate:r.receptionDate||today(), inspector:r.inspector||'',
       r1_recv:r1.recv??r.qtyReceived??0, r1_insp:r1.inspected||r.qtyInspected||0, r1_nc:r1.nonConf||0,
       r2_insp:r2.inspected||0, r2_nc:r2.nonConf||0, r3_insp:r3.inspected||0, r3_nc:r3.nonConf||0,
@@ -2117,7 +2148,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
       site, date:form.date, dailyN:+form.dailyN,
       supplier:form.supplier, po:form.po, productNo:form.productNo,
       description:form.description, delivery:form.delivery, hu:form.hu,
-      country:form.country, receptionDate:form.receptionDate, inspector:form.inspector,
+      country:form.country, plant:form.plant, receptionDate:form.receptionDate, inspector:form.inspector,
       qtyReceived:+form.r1_recv, qtyInspected:+form.r1_insp,
       rounds, defects:getDefects(), issues:form.issues, notes:form.notes,
       decision:form.decision, qtyUseAsIs:+form.uai, qtyRework:+form.rw,
@@ -2191,9 +2222,23 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
             <div className="fg"><label>{t('description')}</label><input type="text" value={form.description} onChange={e=>set('description',e.target.value)}/></div>
             <div className="grid2">
               <div className="fg"><label>{t('delivery')}</label><input type="text" value={form.delivery} onChange={e=>set('delivery',e.target.value)}/></div>
-              <div className="fg"><label>{t('country')}</label><input type="text" value={form.country} onChange={e=>set('country',e.target.value)}/></div>
+              <div className="fg">
+                <label>{lang==='fr'?'Pays d\'origine':'Country of origin'}</label>
+                <select value={form.country} onChange={e=>set('country',e.target.value)}>
+                  <option value="">—</option>
+                  {(lang==='fr'?COUNTRIES_FR:COUNTRIES_EN).map((c,i)=><option key={i} value={COUNTRIES_EN[i]}>{c}</option>)}
+                </select>
+              </div>
             </div>
-            <HuTagInput value={form.hu} onChange={v=>set('hu',v)} label={t('hu')} lang={lang}/>
+            <div className="grid2">
+              <div className="fg">
+                <label>{lang==='fr'?'Usine destinataire':'Receiving plant'}</label>
+                <select value={form.plant||site} onChange={e=>set('plant',e.target.value)}>
+                  {FOLIOT_PLANTS.map(p=><option key={p.id} value={p.id}>{p.label}</option>)}
+                </select>
+              </div>
+              <HuTagInput value={form.hu} onChange={v=>set('hu',v)} label={t('hu')} lang={lang}/>
+            </div>
             <div className="grid2">
               <div className="fg"><label>{t('rec_date')}</label><input type="date" value={form.receptionDate} onChange={e=>set('receptionDate',e.target.value)}/></div>
               <div className="fg"><label>{t('inspector')}</label>
@@ -2388,6 +2433,7 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
           <dt>{t('product')}</dt><dd className="mono">{r.productNo||'—'}</dd>
           <dt>{t('description')}</dt><dd>{r.description||'—'}</dd>
           <dt>{t('country')}</dt><dd>{r.country||'—'}</dd>
+          {r.plant&&<><dt>{lang==='fr'?'Usine':'Plant'}</dt><dd>{FOLIOT_PLANTS.find(p=>p.id===r.plant)?.label||r.plant}</dd></>}
           <dt>{t('delivery')}</dt><dd className="mono">{r.delivery||'—'} / {Array.isArray(r.hu)?r.hu.join(', '):(r.hu||'—')}</dd>
           <dt>{t('qty_recv')}</dt><dd>{r.qtyReceived} (insp. {r.qtyInspected})</dd>
           <dt>{t('inspector')}</dt><dd>{r.inspector||'—'}</dd>
@@ -4031,7 +4077,8 @@ async function generateInspectionPDF(r, lang){
     ['P.O. #', r.po||'—'],
     ['Product #', r.productNo||'—'],
     [lang==='fr'?'Description':'Description', r.description||'—'],
-    [lang==='fr'?'Pays':'Country', r.country||'—'],
+    [lang==='fr'?'Pays d\'origine':'Country of origin', r.country||'—'],
+    [lang==='fr'?'Usine':'Plant', r.plant?(FOLIOT_PLANTS.find(p=>p.id===r.plant)?.label||r.plant):'—'],
     ['Delivery #', r.delivery||'—'],
     ['HU', Array.isArray(r.hu)?r.hu.join(' / '):(r.hu||'—')],
     [lang==='fr'?'Date réception':'Reception date', r.receptionDate||r.date],
