@@ -461,6 +461,14 @@ textarea{resize:vertical;min-height:72px;}
 .hu-tag button{background:none;border:none;cursor:pointer;color:var(--blu);font-size:13px;line-height:1;padding:0;opacity:.6;display:flex;align-items:center}
 .hu-tag button:hover{opacity:1}
 .hu-inp{border:none;outline:none;background:none;font-size:13px;color:var(--tx);font-family:var(--ff);min-width:80px;flex:1;padding:0}
+.prod-wrap{position:relative;}
+.prod-dropdown{position:absolute;top:100%;left:0;right:0;background:var(--surf);border:1px solid var(--brd);border-radius:var(--r2);z-index:100;box-shadow:0 4px 16px rgba(0,0,0,.15);max-height:240px;overflow-y:auto;margin-top:2px;}
+.prod-item{padding:8px 12px;cursor:pointer;font-size:13px;display:flex;flex-direction:column;gap:2px;border-bottom:0.5px solid var(--brd);}
+.prod-item:last-child{border-bottom:none;}
+.prod-item:hover,.prod-item.active{background:var(--blu-l);}
+.prod-item-no{font-family:var(--fm);font-size:12px;font-weight:600;color:var(--blu);}
+.prod-item-desc{color:var(--tx2);font-size:12px;}
+.prod-filled{font-size:10px;color:var(--grn);font-weight:600;padding:2px 6px;background:var(--grn-l);border-radius:4px;display:inline-flex;align-items:center;gap:3px;margin-top:3px;}
 .ann-toolbar{background:var(--surf2);border:0.5px solid var(--brd);border-radius:var(--r2);padding:5px 8px;display:flex;flex-direction:row;align-items:center;gap:3px;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;margin-bottom:10px;width:100%;scrollbar-width:none;-ms-overflow-style:none}
 .ann-toolbar::-webkit-scrollbar{display:none}
 .ann-sep{width:1px;height:20px;background:var(--brd2);margin:0 3px;flex-shrink:0}
@@ -549,6 +557,50 @@ const { useState, useEffect, useRef, useCallback, useMemo } = React;
 // ═══════════════════════════════════════════════════════
 const GH_OWNER = 'RafaelMesquitaMarques';
 const GH_REPO  = 'supplierq';
+
+// ── PRODUCT CATALOG ────────────────────────────────────
+// Loaded once from data/products.json via raw GitHub URL
+// Format: {"212491":["EN desc","FR desc"], ...}
+let _productCatalog = null;
+let _productCatalogLoading = false;
+
+async function loadProductCatalog(){
+  if(_productCatalog) return _productCatalog;
+  if(_productCatalogLoading) return null;
+  _productCatalogLoading = true;
+  try{
+    const url = `https://raw.githubusercontent.com/${GH_OWNER}/${GH_REPO}/main/data/products.json`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('products.json not found');
+    _productCatalog = await r.json();
+    console.log(`Product catalog loaded: ${Object.keys(_productCatalog).length} products`);
+  }catch(e){
+    console.warn('Product catalog not loaded:', e.message);
+    _productCatalog = {};
+  }finally{ _productCatalogLoading = false; }
+  return _productCatalog;
+}
+
+function lookupProduct(no, lang){
+  if(!_productCatalog || !no) return null;
+  const entry = _productCatalog[no.trim()];
+  if(!entry) return null;
+  return { en: entry[0], fr: entry[1], desc: lang==='fr' ? (entry[1]||entry[0]) : (entry[0]||entry[1]) };
+}
+
+function searchProducts(query, lang, maxResults=8){
+  if(!_productCatalog || !query || query.length < 2) return [];
+  const q = query.trim().toLowerCase();
+  const results = [];
+  for(const [no, descs] of Object.entries(_productCatalog)){
+    if(no.toLowerCase().startsWith(q) || no.toLowerCase().includes(q)){
+      const desc = lang==='fr' ? (descs[1]||descs[0]) : (descs[0]||descs[1]);
+      results.push({no, desc});
+      if(results.length >= maxResults) break;
+    }
+  }
+  return results;
+}
 const GH_TOKEN = ['ghp_8dsz','Qcb0TmLlf','UAqyXQUAw14Q2eTg013ovZw'].join('');
 const SITES    = ['QS','NL','QM'];
 const SITE_NAMES = {QS:'Saint-Jérôme', NL:'Las Vegas', QM:'Mirabel'};
@@ -1879,6 +1931,77 @@ function HuTagInput({value, onChange, label, lang}){
   </div>;
 }
 
+// ── PRODUCT INPUT WITH AUTOCOMPLETE ──────────────────
+function ProductInput({value, onChange, onDescriptionFound, lang, required}){
+  const [suggestions, setSuggestions] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(-1);
+  const [filledFrom, setFilledFrom] = useState(false);
+  const wrapRef = useRef();
+
+  function handleChange(e){
+    const v = e.target.value;
+    onChange(v);
+    setFilledFrom(false);
+    if(!v.trim()){ setSuggestions([]); setOpen(false); return; }
+    // Exact match → auto-fill immediately
+    const exact = lookupProduct(v, lang);
+    if(exact && v.trim() === v.trim()){
+      onDescriptionFound(exact.desc);
+      setFilledFrom(true);
+    }
+    // Search for suggestions
+    const s = searchProducts(v, lang, 8);
+    setSuggestions(s);
+    setOpen(s.length > 0);
+    setActiveIdx(-1);
+  }
+
+  function pick(item){
+    onChange(item.no);
+    onDescriptionFound(item.desc);
+    setFilledFrom(true);
+    setSuggestions([]); setOpen(false);
+  }
+
+  function onKeyDown(e){
+    if(!open) return;
+    if(e.key==='ArrowDown'){e.preventDefault();setActiveIdx(i=>Math.min(suggestions.length-1,i+1));}
+    if(e.key==='ArrowUp'){e.preventDefault();setActiveIdx(i=>Math.max(-1,i-1));}
+    if(e.key==='Enter'&&activeIdx>=0){e.preventDefault();pick(suggestions[activeIdx]);}
+    if(e.key==='Escape'){setOpen(false);}
+    if(e.key==='Tab'&&activeIdx>=0){e.preventDefault();pick(suggestions[activeIdx]);}
+  }
+
+  useEffect(()=>{
+    function handleClick(e){ if(wrapRef.current&&!wrapRef.current.contains(e.target)) setOpen(false); }
+    document.addEventListener('mousedown',handleClick);
+    return ()=>document.removeEventListener('mousedown',handleClick);
+  },[]);
+
+  return <div className="fg prod-wrap" ref={wrapRef}>
+    <label>{lang==='fr'?'Produit #':'Product #'} {required&&'*'}</label>
+    <input type="text" value={value}
+      onChange={handleChange}
+      onKeyDown={onKeyDown}
+      onFocus={()=>{ if(suggestions.length>0) setOpen(true); }}
+      autoComplete="off"
+      required={required}/>
+    {filledFrom&&<div className="prod-filled">
+      <i className="ti ti-check" style={{fontSize:10}} aria-hidden="true"/>
+      {lang==='fr'?'Depuis le catalogue':'From catalog'}
+    </div>}
+    {open&&suggestions.length>0&&<div className="prod-dropdown">
+      {suggestions.map((s,i)=><div key={s.no}
+        className={`prod-item${i===activeIdx?' active':''}`}
+        onMouseDown={e=>{e.preventDefault();pick(s);}}>
+        <span className="prod-item-no">{s.no}</span>
+        <span className="prod-item-desc">{s.desc}</span>
+      </div>)}
+    </div>}
+  </div>;
+}
+
 // ═══════════════════════════════════════════════════════
 //  INSPECTION FORM
 // ═══════════════════════════════════════════════════════
@@ -2061,7 +2184,9 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
             </div>
             <div className="grid2">
               <div className="fg"><label>{t('po')}</label><input type="text" value={form.po} onChange={e=>set('po',e.target.value)}/></div>
-              <div className="fg"><label>{t('product')} *</label><input type="text" value={form.productNo} onChange={e=>set('productNo',e.target.value)} required/></div>
+              <ProductInput value={form.productNo} onChange={v=>set('productNo',v)}
+                onDescriptionFound={desc=>{ if(desc&&!form.description) set('description',desc); }}
+                lang={lang} required/>
             </div>
             <div className="fg"><label>{t('description')}</label><input type="text" value={form.description} onChange={e=>set('description',e.target.value)}/></div>
             <div className="grid2">
@@ -4213,6 +4338,8 @@ function App(){
         setTick(k=>k+1);
         // Load users for inspector dropdown
         loadUsers().then(us=>setAppUsers(us||[])).catch(()=>{});
+        // Load product catalog in background
+        loadProductCatalog();
         // Safe to log login now — data is loaded
         const session = JSON.parse(localStorage.getItem('sq_session')||'null');
         if(session){
