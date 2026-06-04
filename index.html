@@ -372,12 +372,23 @@ textarea{resize:vertical;min-height:72px;}
 .dl dt{color:var(--muted);font-weight:500;}
 
 /* ─── LIGHTBOX ───────────────────────────────────── */
-.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:600;
-  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
-.lightbox img{max-width:90vw;max-height:88vh;border-radius:var(--r2);box-shadow:0 20px 60px rgba(0,0,0,.7);}
-.lightbox-close{position:absolute;top:18px;right:22px;color:#fff;font-size:24px;cursor:pointer;
-  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);
-  width:36px;height:36px;display:flex;align-items:center;justify-content:center;}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:600;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
+.lightbox-img{max-width:calc(100vw - 40px);max-height:calc(100vh - 80px);object-fit:contain;border-radius:6px;user-select:none;transition:transform .2s;}
+.lightbox-close{position:fixed;top:14px;right:18px;color:#fff;font-size:20px;cursor:pointer;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;z-index:2;transition:background .15s;}
+.lightbox-close:hover{background:rgba(255,255,255,.25);}
+.lightbox-nav{position:fixed;top:50%;transform:translateY(-50%);color:#fff;cursor:pointer;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:8px;
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2;transition:background .15s;}
+.lightbox-nav:hover{background:rgba(255,255,255,.28);}
+.lightbox-nav.prev{left:14px;}
+.lightbox-nav.next{right:14px;}
+.lightbox-counter{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);
+  font-size:13px;background:rgba(0,0,0,.5);padding:4px 12px;border-radius:20px;z-index:2;}
+.lightbox-caption{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.85);
+  font-size:13px;background:rgba(0,0,0,.5);padding:5px 14px;border-radius:6px;z-index:2;max-width:70vw;text-align:center;}
 
 /* ─── EDIT BANNER ────────────────────────────────── */
 .edit-banner{display:flex;align-items:center;gap:10px;background:var(--amb-l);
@@ -889,15 +900,42 @@ function Toast({toasts}){
   </div>;
 }
 
-function Lightbox({src, onClose}){
+function Lightbox({src, onClose, photos, initialIndex}){
+  const [idx, setIdx] = useState(initialIndex||0);
+  const [zoom, setZoom] = useState(false);
+  const list = photos && photos.length ? photos : [{src, caption:''}];
+  const current = list[Math.min(idx, list.length-1)];
+  const total = list.length;
+
   useEffect(()=>{
-    const h=e=>{if(e.key==='Escape')onClose();};
+    const h=e=>{
+      if(e.key==='Escape') onClose();
+      if(e.key==='ArrowRight'||e.key==='ArrowDown') setIdx(i=>Math.min(total-1,i+1));
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp') setIdx(i=>Math.max(0,i-1));
+    };
     window.addEventListener('keydown',h);
     return ()=>window.removeEventListener('keydown',h);
-  },[onClose]);
+  },[total, onClose]);
+
   return <div className="lightbox" onClick={onClose}>
-    <button className="lightbox-close" onClick={onClose}>✕</button>
-    <img src={src} alt="" onClick={e=>e.stopPropagation()}/>
+    <button className="lightbox-close" onClick={onClose} title="Close (Esc)">
+      <i className="ti ti-x" aria-hidden="true"/>
+    </button>
+    {total>1&&idx>0&&
+      <button className="lightbox-nav prev" onClick={e=>{e.stopPropagation();setZoom(false);setIdx(i=>i-1);}}>
+        <i className="ti ti-chevron-left" aria-hidden="true"/>
+      </button>}
+    <img className="lightbox-img" src={current.src} alt=""
+      onClick={e=>e.stopPropagation()}
+      onDoubleClick={e=>{e.stopPropagation();setZoom(z=>!z);}}
+      style={{transform:zoom?'scale(1.9)':'scale(1)',cursor:zoom?'zoom-out':'zoom-in',
+              transition:'transform .25s ease'}}/>
+    {total>1&&idx<total-1&&
+      <button className="lightbox-nav next" onClick={e=>{e.stopPropagation();setZoom(false);setIdx(i=>i+1);}}>
+        <i className="ti ti-chevron-right" aria-hidden="true"/>
+      </button>}
+    {current.caption&&<div className="lightbox-caption">{current.caption}</div>}
+    {total>1&&<div className="lightbox-counter">{idx+1} / {total}</div>}
   </div>;
 }
 
@@ -2204,10 +2242,14 @@ function AnnotatedPhoto({photo, style, onClick}){
 }
 
 function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
-  const [lightbox, setLightbox] = useState(null);
+  const [lightbox, setLightbox] = useState(null); // {idx, list:[{src,caption}]}
+
+  function openLightbox(list, idx){
+    setLightbox({photos:list, initialIndex:idx});
+  }
   const r = record;
   return <>
-    {lightbox && <Lightbox src={lightbox} onClose={()=>setLightbox(null)}/>}
+    {lightbox && <Lightbox src={lightbox.photos?.[lightbox.initialIndex]?.src} photos={lightbox.photos} initialIndex={lightbox.initialIndex} onClose={()=>setLightbox(null)}/>}
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
         <div className="modal-header">
@@ -2258,16 +2300,24 @@ function InspectionModal({record, lang, t, onClose, onEdit, onDelete, onEmail}){
           <h3><i className="ti ti-camera" style={{fontSize:14,verticalAlign:-2}} aria-hidden="true"/> {t('photos')} ({r.photos.length})</h3>
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(200px,1fr))',gap:8}}>
             {r.photos.map((ph,i)=>{
+              // Build full lightbox list from all photos (photo + drawing pairs)
+              const allImgs = r.photos.flatMap((p,j)=>{
+                const items = [];
+                if(p.data||p.annotatedData) items.push({src:p.annotatedData||p.data, caption:p.caption||(j===i?'Photo '+(j+1):'')});
+                if(p.drawingData||p.drawingAnnotatedData) items.push({src:p.drawingAnnotatedData||p.drawingData, caption:p.drawingCaption||(lang==='fr'?'Dessin technique':'Technical drawing')});
+                return items;
+              });
+              const photoIdx = r.photos.slice(0,i).reduce((acc,p)=>acc+(p.data||p.annotatedData?1:0)+(p.drawingData||p.drawingAnnotatedData?1:0),0);
               return <div key={i} style={{borderRadius:6,overflow:'hidden',border:'1px solid var(--brd)'}}>
                 <AnnotatedPhoto photo={ph}
                   style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',cursor:'pointer'}}
-                  onClick={()=>setLightbox(ph.annotatedData||ph.data)}/>
+                  onClick={()=>openLightbox(allImgs, photoIdx)}/>
                 {ph.caption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.caption}</div>}
                 {(ph.drawingAnnotatedData||ph.drawingData||ph.drawingObjs?.length>0)&&
                   <div style={{borderTop:'1px solid var(--brd)'}}>
                     <AnnotatedPhoto photo={{data:ph.drawingData,objs:ph.drawingObjs,annotatedData:ph.drawingAnnotatedData}}
                       style={{width:'100%',aspectRatio:'4/3',objectFit:'cover',cursor:'pointer',opacity:.9}}
-                      onClick={()=>setLightbox(ph.drawingAnnotatedData||ph.drawingData)}/>
+                      onClick={()=>openLightbox(allImgs, photoIdx+1)}/>
                     {ph.drawingCaption&&<div style={{fontSize:10,color:'var(--muted)',textAlign:'center',padding:'3px 5px',background:'var(--surf2)'}}>{ph.drawingCaption}</div>}
                   </div>}
               </div>;
