@@ -176,9 +176,9 @@
       "issues": "1- Dimensions are not as the drawing states. \n2- We keep receiving the opposite side for the product number (the left side is labeled as the right side and vice versa).",
       "notes": "",
       "decision": "use-as-is",
-      "qtyUseAsIs": 36,
-      "qtyRework": 0,
-      "qtyRejected": 0,
+      "qtyUseAsIs": 20,
+      "qtyRework": 6,
+      "qtyRejected": 10,
       "qtyWaiting": 0,
       "hasNC": true,
       "photos": [
@@ -228,7 +228,7 @@
       ],
       "drawingNotes": "",
       "createdAt": "2026-06-04T17:04:19.742Z",
-      "updatedAt": "2026-06-04T17:07:20.727Z",
+      "updatedAt": "2026-06-04T17:08:49.061Z",
       "duration": 399
     }
   ],
