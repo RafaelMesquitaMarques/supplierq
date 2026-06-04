@@ -25,7 +25,8 @@
       "QM"
     ],
     "active": true,
-    "createdAt": "2026-05-28T19:15:43.084Z"
+    "createdAt": "2026-05-28T19:15:43.084Z",
+    "mustChangePassword": true
   },
   {
     "id": 1780005848954,
