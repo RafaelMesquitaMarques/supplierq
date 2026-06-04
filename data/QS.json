@@ -1020,6 +1020,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780592662472,
+      "timestamp": "2026-06-04T17:04:22.472Z",
+      "user": "Sylvain Leclair",
+      "userEmail": "sleclair@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260604-01-0201061",
+      "site": "QS",
+      "details": "Foamextra VPC Group Inc | 201061 | Decision: use-as-is",
+      "duration": 399
+    },
+    {
       "id": 1780591445215,
       "timestamp": "2026-06-04T16:44:05.215Z",
       "user": "Sylvain Leclair",
