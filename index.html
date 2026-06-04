@@ -1008,10 +1008,10 @@ function KpiCard({label, value, sub, color, accent}){
 // ── IMAGE COMPRESSION ─────────────────────────────────
 // Compresses photos to max 1200px / JPEG 75% before saving
 // Prevents GitHub API failures from oversized JSON
-async function compressImage(dataURL, maxW=1200, quality=0.75){
+async function compressImage(dataURL, maxW=1920, quality=0.88){
   if(!dataURL) return dataURL;
-  // Skip if already small enough (under ~300KB in base64)
-  if(dataURL.length < 400000) return dataURL;
+  // Skip if already small enough (under ~600KB in base64)
+  if(dataURL.length < 800000) return dataURL;
   return new Promise(resolve=>{
     const img=new Image();
     img.onload=()=>{
@@ -4440,9 +4440,9 @@ function App(){
       const compressedPhotos = await Promise.all((rec.photos||[]).map(async ph=>({
         ...ph,
         data: await compressImage(ph.data),
-        annotatedData: ph.annotatedData ? await compressImage(ph.annotatedData,1200,0.8) : null,
+        annotatedData: ph.annotatedData ? await compressImage(ph.annotatedData,1920,0.88) : null,
         drawingData: await compressImage(ph.drawingData),
-        drawingAnnotatedData: ph.drawingAnnotatedData ? await compressImage(ph.drawingAnnotatedData,1200,0.8) : null,
+        drawingAnnotatedData: ph.drawingAnnotatedData ? await compressImage(ph.drawingAnnotatedData,1920,0.88) : null,
         history: undefined,
         drawingHistory: undefined,
       })));
