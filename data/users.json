@@ -76,13 +76,14 @@
     "id": 1780412845497,
     "name": "Natalya Robles",
     "email": "qsqualityreceiving@foliot.com",
-    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "passwordHash": "d8d58df80834ac052efd2eea9bc686f57747440baf5c9c371d5bdb8f72b2e96d",
     "role": "inspector",
     "sites": [
       "QS"
     ],
     "active": true,
-    "mustChangePassword": true,
-    "createdAt": "2026-06-02T15:07:25.497Z"
+    "mustChangePassword": false,
+    "createdAt": "2026-06-02T15:07:25.497Z",
+    "passwordChangedAt": "2026-06-08T12:24:54.423Z"
   }
 ]
