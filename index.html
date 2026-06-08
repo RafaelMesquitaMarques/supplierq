@@ -727,15 +727,24 @@ async function ghLoad(site){
     try{
       const decoded = decodeURIComponent(escape(atob(d.content.replace(/\n/g,''))));
       const parsed = JSON.parse(decoded);
-      const hasData = (parsed.inspections?.length||0)+(parsed.suppliers?.length||0)+(parsed.ncrs?.length||0)>0;
-      if(hasData){
+       const githubCount = (parsed.inspections?.length||0)+(parsed.suppliers?.length||0)+(parsed.ncrs?.length||0);
+      let backupCount = 0;
+      try{
+        const b = localStorage.getItem(`sq_backup_${site}`);
+        if(b){ const bp=JSON.parse(b); backupCount=(bp.inspections?.length||0)+(bp.suppliers?.length||0)+(bp.ncrs?.length||0); }
+      }catch{}
+      if(githubCount > 0 && githubCount >= backupCount){
         _cache[site] = {...empty,...parsed};
-        // Update localStorage backup with latest from GitHub
         try{ localStorage.setItem(`sq_backup_${site}`, JSON.stringify(_cache[site])); }catch{}
+      } else if(backupCount > githubCount){
+        console.warn(`${site}: localStorage has ${backupCount} records vs GitHub ${githubCount} — restoring from backup`);
+        if(loadBackup()){
+          setTimeout(()=>ghSave(site).catch(e=>console.warn('Re-sync failed:',e)), 3000);
+        } else { _cache[site]=empty; }
       } else {
-        // GitHub has empty data — try localStorage backup
-        if(!loadBackup()) _cache[site]=empty;
+        _cache[site]=empty;
       }
+ 
     }catch{
       console.warn(`Corrupted JSON for ${site}, trying localStorage backup`);
       if(!loadBackup()) _cache[site]=empty;
@@ -783,7 +792,7 @@ async function ghSave(site){
   _shas[path] = d.content.sha;
 }
 
-function getData(site, type){ return (_cache[site]||{})[type]||[]; }
+function getData(site, type){ return [...((_cache[site]||{})[type]||[])]; }
 function getAllData(type){ return SITES.flatMap(s=>getData(s,type)); }
 
 // ── USERS (stored in data/users.json) ─────────────
@@ -846,6 +855,8 @@ async function saveRecord(site, type, record){
   const arr = _cache[site][type];
   const idx = arr.findIndex(r=>(r.id||r.name)==(record.id||record.name));
   if(idx>=0) arr[idx]=record; else arr.push(record);
+  // Always backup to localStorage immediately so data survives any GitHub failure
+  try{ localStorage.setItem(`sq_backup_${site}`, JSON.stringify(_cache[site])); }catch{}
   await ghSave(site); // ← await: ensures data is on GitHub before navigating
 }
 
@@ -4636,11 +4647,11 @@ function App(){
         onSave={handleSaveInspection} editRecord={editRecord}
         onCancelEdit={()=>{setEditRecord(null);navTo('all_inspections');}}
         showToast={showToast} sampling={sampling} inspections={inspections} weights={weights} thresholds={thresholds}/>;
-      case 'all_inspections': return <AllInspections site={site} lang={lang} t={t} data={inspections}
+      case 'all_inspections': return <AllInspections key={tick} site={site} lang={lang} t={t} data={inspections}
         onView={r=>setModal({type:'inspection',record:r})}
         onEdit={r=>{setEditRecord(r);navTo('new_inspection');}}
         onDelete={handleDeleteInspection}/>;
-      case 'ncr_dashboard': return <NcrDashboard site={site} lang={lang} t={t} ncrs={ncrs}
+      case 'ncr_dashboard': return <NcrDashboard key={tick} site={site} lang={lang} t={t} ncrs={ncrs}
         onNewNcr={()=>navTo('new_ncr')} onView={r=>setModal({type:'ncr',record:r})}/>;
       case 'new_ncr': return <NcrForm site={site} lang={lang} t={t} suppliers={suppliers} onSave={handleSaveNcr} showToast={showToast}/>;
       case 'all_ncrs': return <NcrDashboard site={site} lang={lang} t={t} ncrs={ncrs}
