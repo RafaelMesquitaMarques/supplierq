@@ -939,6 +939,17 @@
   ],
   "auditLog": [
     {
+      "id": 1780930083596,
+      "timestamp": "2026-06-08T14:48:03.596Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260608-01-0212122",
+      "site": "QS",
+      "details": "Fastenal | 212122 | Decision: approved",
+      "duration": 28
+    },
+    {
       "id": 1780930050507,
       "timestamp": "2026-06-08T14:47:30.507Z",
       "user": "Admin",
