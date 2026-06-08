@@ -939,6 +939,16 @@
   ],
   "auditLog": [
     {
+      "id": 1780932440106,
+      "timestamp": "2026-06-08T15:27:20.106Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: admin | Sites: QS, NL, QM"
+    },
+    {
       "id": 1780932435427,
       "timestamp": "2026-06-08T15:27:15.427Z",
       "user": "Admin",
