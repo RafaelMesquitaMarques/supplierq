@@ -759,8 +759,8 @@ async function ghLoad(site){
 
 async function ghSave(site){
   const path = `data/${site}.json`;
-  const json = JSON.stringify(_cache[site],null,2);
-  const content = btoa(unescape(encodeURIComponent(json)));
+  let json = JSON.stringify(_cache[site],null,2);
+  let content = btoa(unescape(encodeURIComponent(json)));
 
   // Always backup to localStorage immediately
   try{ localStorage.setItem(`sq_backup_${site}`, json); }catch{}
@@ -776,13 +776,22 @@ async function ghSave(site){
 
   let r = await tryPut(_shas[path]);
 
-  // SHA conflict (409/422) — fetch latest SHA and retry once
+  // SHA conflict (409/422) — merge with latest GitHub data and retry once
+  // Without merging, a stale open browser session would overwrite another user's recent saves
   if(r.status===409 || r.status===422){
     const check = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`,
       {headers:{Authorization:`token ${GH_TOKEN}`, Accept:'application/vnd.github.v3+json'}});
     if(check.ok){
       const d = await check.json();
       _shas[path] = d.sha;
+      try{
+        const ghData = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\n/g,'')))));
+        const merged = _mergeData(_cache[site], ghData);
+        _cache[site] = merged;
+        json = JSON.stringify(merged, null, 2);
+        content = btoa(unescape(encodeURIComponent(json)));
+        try{ localStorage.setItem(`sq_backup_${site}`, json); }catch{}
+      }catch(e){ console.warn('Merge on conflict failed, using local data:', e); }
       r = await tryPut(d.sha);
     }
   }
@@ -790,6 +799,24 @@ async function ghSave(site){
   if(!r.ok) throw new Error(`ghSave ${site}: HTTP ${r.status}`);
   const d = await r.json();
   _shas[path] = d.content.sha;
+}
+
+function _mergeData(local, remote){
+  function mergeArr(loc, rem, key){
+    const map = new Map();
+    (rem||[]).forEach(r=>map.set(r[key],r));
+    (loc||[]).forEach(r=>map.set(r[key],r)); // local wins on same key (latest edit)
+    return [...map.values()];
+  }
+  const auditMerged = [...new Map(
+    [...(remote.auditLog||[]),...(local.auditLog||[])].map(e=>[e.id,e])
+  ).values()].sort((a,b)=>b.id-a.id).slice(0,500);
+  return {
+    inspections: mergeArr(local.inspections, remote.inspections, 'id'),
+    ncrs: mergeArr(local.ncrs, remote.ncrs, 'id'),
+    suppliers: mergeArr(local.suppliers, remote.suppliers, 'name'),
+    auditLog: auditMerged,
+  };
 }
 
 function getData(site, type){ return [...((_cache[site]||{})[type]||[])]; }
