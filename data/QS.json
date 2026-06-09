@@ -149,6 +149,57 @@
       "createdAt": "2026-06-09T11:35:13.897Z",
       "updatedAt": "2026-06-09T11:35:13.897Z",
       "duration": 22
+    },
+    {
+      "id": 1781005328193,
+      "ref": "QS20260609-01-0211557",
+      "site": "QS",
+      "date": "2026-06-09",
+      "dailyN": 1,
+      "supplier": "Foliot furniture Pacific (Las Vegas)",
+      "po": "45000459874",
+      "productNo": "211557",
+      "description": "MTL Screw Flat Head 50mm Black",
+      "delivery": "",
+      "hu": [
+        "500177884"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-06-09",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 10,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 5,
+          "nonConf": 1,
+          "pct": 20
+        }
+      ],
+      "defects": [
+        {
+          "key": "broken",
+          "label": "Broken",
+          "qty": 1
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 1,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-09T11:42:08.193Z",
+      "updatedAt": "2026-06-09T11:42:08.193Z",
+      "duration": 75
     }
   ],
   "ncrs": [],
