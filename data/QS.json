@@ -1033,6 +1033,16 @@
   ],
   "auditLog": [
     {
+      "id": 1781034506124,
+      "timestamp": "2026-06-09T19:48:26.124Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "QS20260608-01-0212122",
+      "site": "QS",
+      "details": "Fastenal | 212122"
+    },
+    {
       "id": 1781034500253,
       "timestamp": "2026-06-09T19:48:20.253Z",
       "user": "Natalya Robles",
