@@ -1033,6 +1033,17 @@
   ],
   "auditLog": [
     {
+      "id": 1781005329302,
+      "timestamp": "2026-06-09T11:42:09.302Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260609-01-0211557",
+      "site": "QS",
+      "details": "Foliot furniture Pacific (Las Vegas) | 211557 | Decision: waiting",
+      "duration": 75
+    },
+    {
       "id": 1781005232509,
       "timestamp": "2026-06-09T11:40:32.509Z",
       "user": "Natalya Robles",
