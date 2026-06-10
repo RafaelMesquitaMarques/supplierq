@@ -1172,6 +1172,17 @@
   ],
   "auditLog": [
     {
+      "id": 1781108804817,
+      "timestamp": "2026-06-10T16:26:44.817Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260610-01-0101212",
+      "site": "QS",
+      "details": "Barsky Fleming Marketing, Inc. | 101212 | Decision: approved",
+      "duration": 60
+    },
+    {
       "id": 1781098858500,
       "timestamp": "2026-06-10T13:40:58.500Z",
       "user": "Admin",
