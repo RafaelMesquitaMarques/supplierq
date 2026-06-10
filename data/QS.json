@@ -245,6 +245,51 @@
       "createdAt": "2026-06-10T11:51:48.404Z",
       "updatedAt": "2026-06-10T11:51:48.406Z",
       "duration": 1830
+    },
+    {
+      "id": 1781092798466,
+      "ref": "QS20260610-01-0213837",
+      "site": "QS",
+      "date": "2026-06-10",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500091184",
+      "productNo": "213837",
+      "description": "Screw FH #6 X 2\" Black-Oxide",
+      "delivery": "410001809427",
+      "hu": [
+        "801651700"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-08",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 8000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-10T11:59:58.466Z",
+      "updatedAt": "2026-06-10T11:59:58.466Z",
+      "duration": 58
     }
   ],
   "ncrs": [],
