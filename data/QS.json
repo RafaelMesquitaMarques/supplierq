@@ -290,6 +290,55 @@
       "createdAt": "2026-06-10T11:59:58.466Z",
       "updatedAt": "2026-06-10T11:59:58.466Z",
       "duration": 58
+    },
+    {
+      "id": 1781108803533,
+      "ref": "QS20260610-01-0101212",
+      "site": "QS",
+      "date": "2026-06-10",
+      "dailyN": 1,
+      "supplier": "Barsky Fleming Marketing, Inc.",
+      "po": "123333",
+      "productNo": "101212",
+      "description": "Caster Twin Wheel 60mm Black TPS",
+      "delivery": "",
+      "hu": [],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-06-10",
+      "inspector": "Simon Perreault",
+      "qtyReceived": 1200,
+      "qtyInspected": 1200,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1200,
+          "inspected": 1200,
+          "nonConf": 10,
+          "pct": 1
+        }
+      ],
+      "defects": [
+        {
+          "key": "broken",
+          "label": "Broken",
+          "qty": 10
+        }
+      ],
+      "issues": "sdds",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 10,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-10T16:26:43.533Z",
+      "updatedAt": "2026-06-10T16:26:43.533Z",
+      "duration": 60
     }
   ],
   "ncrs": [],
