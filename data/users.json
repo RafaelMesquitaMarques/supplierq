@@ -77,9 +77,11 @@
     "name": "Natalya Robles",
     "email": "qsqualityreceiving@foliot.com",
     "passwordHash": "d8d58df80834ac052efd2eea9bc686f57747440baf5c9c371d5bdb8f72b2e96d",
-    "role": "manager",
+    "role": "admin",
     "sites": [
-      "QS"
+      "QS",
+      "NL",
+      "QM"
     ],
     "active": true,
     "mustChangePassword": false,
