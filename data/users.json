@@ -113,5 +113,18 @@
     "active": true,
     "mustChangePassword": true,
     "createdAt": "2026-06-12T12:16:43.520Z"
+  },
+  {
+    "id": 1781267720273,
+    "name": "Dominic Dotson",
+    "email": "nlqualityreceiving@foliot.com",
+    "passwordHash": "2d1cbc95b6532133f7d4f78832cc95f4aa2f18e842afbe58c765ecccd8793ead",
+    "role": "inspector",
+    "sites": [
+      "NL"
+    ],
+    "active": true,
+    "mustChangePassword": true,
+    "createdAt": "2026-06-12T12:35:20.273Z"
   }
 ]
