@@ -66,29 +66,29 @@
       "id": 1780930082466,
       "ref": "QS20260608-01-0212122",
       "site": "QS",
-      "date": "2026-06-08",
-      "dailyN": 1,
-      "supplier": "Fastenal",
-      "po": "123456",
-      "productNo": "212122",
+      "date": "2026-06-15",
+      "dailyN": 4,
+      "supplier": "Attaches Viscan",
+      "po": "4500092210",
+      "productNo": "201243",
       "description": "Caster Twin Wheel 60mm Black TPS",
-      "delivery": "121212",
+      "delivery": "410001812221",
       "hu": [
-        "12121212"
+        "801654427"
       ],
-      "country": "USA",
+      "country": "Canada",
       "plant": "",
-      "receptionDate": "2026-06-08",
-      "inspector": "",
-      "qtyReceived": 1111,
-      "qtyInspected": 111,
+      "receptionDate": "2026-06-11",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 150500,
+      "qtyInspected": 1,
       "rounds": [
         {
           "round": 1,
-          "recv": 1111,
-          "inspected": 111,
-          "nonConf": 1,
-          "pct": 1
+          "recv": 150500,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
         }
       ],
       "defects": [],
@@ -99,12 +99,12 @@
       "qtyRework": 0,
       "qtyRejected": 0,
       "qtyWaiting": 0,
-      "hasNC": true,
+      "hasNC": false,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-06-08T14:48:02.467Z",
-      "updatedAt": "2026-06-08T14:48:02.467Z",
+      "updatedAt": "2026-06-15T12:37:08.867Z",
       "duration": 28
     },
     {
