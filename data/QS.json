@@ -154,51 +154,51 @@
       "id": 1781005328193,
       "ref": "QS20260609-01-0211557",
       "site": "QS",
-      "date": "2026-06-09",
-      "dailyN": 1,
-      "supplier": "Foliot furniture Pacific (Las Vegas)",
-      "po": "45000459874",
-      "productNo": "211557",
+      "date": "2026-06-15",
+      "dailyN": 2,
+      "supplier": "Attaches Viscan",
+      "po": "45000492210",
+      "productNo": "201875",
       "description": "MTL Screw Flat Head 50mm Black",
-      "delivery": "",
+      "delivery": "410001812221",
       "hu": [
-        "500177884"
+        "801654425"
       ],
-      "country": "USA",
+      "country": "Canada",
       "plant": "",
-      "receptionDate": "2026-06-09",
+      "receptionDate": "2026-06-11",
       "inspector": "Natalya Robles",
-      "qtyReceived": 10,
-      "qtyInspected": 5,
+      "qtyReceived": 6000,
+      "qtyInspected": 1,
       "rounds": [
         {
           "round": 1,
-          "recv": 10,
-          "inspected": 5,
-          "nonConf": 1,
-          "pct": 20
+          "recv": 6000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
         }
       ],
       "defects": [
         {
           "key": "broken",
           "label": "Broken",
-          "qty": 1
+          "qty": 0
         }
       ],
       "issues": "",
       "notes": "",
-      "decision": "waiting",
+      "decision": "approved",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
       "qtyRejected": 0,
       "qtyWaiting": 1,
-      "hasNC": true,
+      "hasNC": false,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-06-09T11:42:08.193Z",
-      "updatedAt": "2026-06-09T11:42:08.193Z",
+      "updatedAt": "2026-06-15T12:34:48.748Z",
       "duration": 75
     },
     {
