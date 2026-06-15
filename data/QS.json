@@ -111,25 +111,27 @@
       "id": 1781004913897,
       "ref": "QS20260609-01-0121212",
       "site": "QS",
-      "date": "2026-06-09",
-      "dailyN": 1,
-      "supplier": "Amazon",
-      "po": "121212",
-      "productNo": "121212",
+      "date": "2026-06-15",
+      "dailyN": 3,
+      "supplier": "Attaches Viscan",
+      "po": "4500092210",
+      "productNo": "201265",
       "description": "Caster Twin Wheel 60mm Black TPS",
-      "delivery": "12212",
-      "hu": [],
-      "country": "France",
+      "delivery": "410001812221",
+      "hu": [
+        "801654426"
+      ],
+      "country": "Canada",
       "plant": "",
-      "receptionDate": "2026-06-09",
-      "inspector": "",
-      "qtyReceived": 1111,
-      "qtyInspected": 11,
+      "receptionDate": "2026-06-11",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 6480,
+      "qtyInspected": 1,
       "rounds": [
         {
           "round": 1,
-          "recv": 1111,
-          "inspected": 11,
+          "recv": 6480,
+          "inspected": 1,
           "nonConf": 0,
           "pct": 0
         }
@@ -147,7 +149,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-06-09T11:35:13.897Z",
-      "updatedAt": "2026-06-09T11:35:13.897Z",
+      "updatedAt": "2026-06-15T12:35:58.267Z",
       "duration": 22
     },
     {
