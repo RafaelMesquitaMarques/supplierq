@@ -382,6 +382,51 @@
       "createdAt": "2026-06-15T12:38:13.802Z",
       "updatedAt": "2026-06-15T12:38:13.803Z",
       "duration": 46
+    },
+    {
+      "id": 1781527161978,
+      "ref": "QS20260615-06-0213314",
+      "site": "QS",
+      "date": "2026-06-15",
+      "dailyN": 6,
+      "supplier": "Attaches Viscan",
+      "po": "4500092210",
+      "productNo": "213314",
+      "description": "Screw Zinc RH Washer S-D LR #8x1-3/4\"",
+      "delivery": "410001812221",
+      "hu": [
+        "801654429"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-11",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 9000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 9000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-15T12:39:21.978Z",
+      "updatedAt": "2026-06-15T12:39:21.979Z",
+      "duration": 61
     }
   ],
   "ncrs": [],
