@@ -290,6 +290,51 @@
       "createdAt": "2026-06-10T11:59:58.466Z",
       "updatedAt": "2026-06-10T11:59:58.466Z",
       "duration": 58
+    },
+    {
+      "id": 1781526791445,
+      "ref": "QS20260615-01-0216250",
+      "site": "QS",
+      "date": "2026-06-15",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500091184",
+      "productNo": "216250",
+      "description": "Screw Euro FH Quadrex 6.3mmx14mm Zinc",
+      "delivery": "410001811563",
+      "hu": [
+        "801653793"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 60000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-15T12:33:11.445Z",
+      "updatedAt": "2026-06-15T12:33:11.445Z",
+      "duration": 76
     }
   ],
   "ncrs": [],
