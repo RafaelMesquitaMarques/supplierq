@@ -13,6 +13,7 @@
       "delivery": "",
       "hu": [],
       "country": "China",
+      "plant": "",
       "receptionDate": "2026-06-04",
       "inspector": "Sylvain Leclair",
       "qtyReceived": 2,
@@ -59,7 +60,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-06-04T16:44:02.419Z",
-      "updatedAt": "2026-06-04T16:44:02.419Z",
+      "updatedAt": "2026-06-16T14:14:41.603Z",
       "duration": 5591
     },
     {
