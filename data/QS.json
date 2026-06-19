@@ -1357,6 +1357,16 @@
   ],
   "auditLog": [
     {
+      "id": 1781878899114,
+      "timestamp": "2026-06-19T14:21:39.114Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Quincallerie Canmade ",
+      "site": "QS",
+      "details": "Quincallerie Canmade  | Canada"
+    },
+    {
       "id": 1781878768970,
       "timestamp": "2026-06-19T14:19:28.970Z",
       "user": "Natalya Robles",
