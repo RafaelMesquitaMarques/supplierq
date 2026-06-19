@@ -1402,6 +1402,17 @@
   ],
   "auditLog": [
     {
+      "id": 1781879018174,
+      "timestamp": "2026-06-19T14:23:38.175Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260619-01-0213778",
+      "site": "QS",
+      "details": "Quincallerie Canmade  | 213778 | Decision: approved",
+      "duration": 62
+    },
+    {
       "id": 1781878899114,
       "timestamp": "2026-06-19T14:21:39.114Z",
       "user": "Natalya Robles",
