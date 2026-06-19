@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-<script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -2282,7 +2282,7 @@ function InspectionForm({site, lang, t, suppliers, allSuppliers, users, onSave, 
               <div className="fg"><label>{t('inspector')}</label>
                 <select value={form.inspector} onChange={e=>set('inspector',e.target.value)}>
                   <option value="">{lang==='fr'?'— Choisir un inspecteur —':'— Select inspector —'}</option>
-                  {(users||[]).filter(u=>u.active!==false&&(u.role==='admin'||u.role==='manager'||(u.sites||[]).includes(site))).map(u=><option key={u.id} value={u.name}>{u.name}</option>)}
+                  {(users||[]).filter(u=>u.active!==false).slice().sort((a,b)=>a.name.localeCompare(b.name)).map(u=><option key={u.id} value={u.name}>{u.name}</option>)}
                 </select>
               </div>
             </div>
@@ -3846,7 +3846,7 @@ function LoginScreen({onLogin, lang, setLang, dark, setDark}){
 // ═══════════════════════════════════════════════════════
 //  USER MANAGEMENT PAGE
 // ═══════════════════════════════════════════════════════
-function UserManagement({lang, currentUser, showToast}){
+function UserManagement({lang, currentUser, showToast, onUsersChanged}){
   const [users, setUsers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editUser, setEditUser] = useState(null);
@@ -3881,6 +3881,7 @@ function UserManagement({lang, currentUser, showToast}){
 
     setUsers(updated);
     await saveUsers(updated);
+    onUsersChanged?.(updated);
     setShowForm(false); setEditUser(null);
     setForm({name:'',email:'',password:'',role:'inspector',sites:['QS'],active:true});
 
@@ -3895,6 +3896,7 @@ function UserManagement({lang, currentUser, showToast}){
     if(user.id===currentUser.id){ showToast(lang==='fr'?'Vous ne pouvez pas vous désactiver':'Cannot deactivate yourself','error'); return; }
     const updated = users.map(u=>u.id===user.id?{...u,active:!u.active}:u);
     setUsers(updated); await saveUsers(updated);
+    onUsersChanged?.(updated);
     showToast(user.active?(lang==='fr'?'Désactivé':'Deactivated'):(lang==='fr'?'Activé':'Activated'),'info');
   }
 
@@ -3903,6 +3905,7 @@ function UserManagement({lang, currentUser, showToast}){
     if(!confirm((lang==='fr'?'Supprimer':'Delete')+` ${user.name}?`)) return;
     const updated = users.filter(u=>u.id!==user.id);
     setUsers(updated); await saveUsers(updated);
+    onUsersChanged?.(updated);
     showToast(lang==='fr'?'Supprimé':'Deleted','warn');
   }
 
@@ -4692,7 +4695,7 @@ function App(){
       case 'gh_storage': return <GithubStorage lang={lang} t={t} syncStatus={syncStatus} showToast={showToast}/>;
       case 'score_weights': return <ScoreWeights lang={lang} t={t} weights={weights} thresholds={thresholds} setWeights={setWeights} setThresholds={setThresholds}/>;
       case 'email_settings': return <EmailSettings lang={lang} t={t} emailCfg={emailCfg} setEmailCfg={setEmailCfg} showToast={showToast}/>;
-      case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;
+      case 'user_management': return isAdmin?<UserManagement lang={lang} currentUser={currentUser} showToast={showToast} onUsersChanged={setAppUsers}/>:<div className="page"><div className="empty">🔒 Access denied</div></div>;
       case 'sampling_plans': return <SamplingPlans lang={lang} sampling={sampling} setSampling={setSampling}/>;
       case 'audit_trail':    return <AuditTrail lang={lang} site={site}/>;      default: return <div className="page"><div className="empty">Page not found</div></div>;
     }
@@ -4851,30 +4854,7 @@ function App(){
   </>;
 }
 
-class ErrorBoundary extends React.Component{
-  constructor(p){super(p);this.state={err:null};}
-  static getDerivedStateFromError(e){return {err:e};}
-  componentDidCatch(e,info){console.error('SupplierQ crash:',e,info);}
-  render(){
-    if(this.state.err){
-      return <div style={{padding:32,fontFamily:'monospace',maxWidth:700,margin:'40px auto'}}>
-        <div style={{background:'#fee2e2',border:'1px solid #f87171',borderRadius:12,padding:20,marginBottom:16}}>
-          <div style={{fontSize:18,fontWeight:700,color:'#991b1b',marginBottom:8}}>⚠️ SupplierQ — Erro de renderização</div>
-          <div style={{fontSize:13,color:'#7f1d1d',marginBottom:12}}>A aplicação encontrou um erro. Por favor copia e envia este erro:</div>
-          <pre style={{fontSize:11,background:'#fff',padding:12,borderRadius:6,overflow:'auto',color:'#111',border:'1px solid #fca5a5',whiteSpace:'pre-wrap',wordBreak:'break-all'}}>
-            {this.state.err.toString()}{'\n\n'}{this.state.err.stack}
-          </pre>
-        </div>
-        <button onClick={()=>window.location.reload()} style={{padding:'8px 20px',background:'#1d4ed8',color:'#fff',border:'none',borderRadius:8,cursor:'pointer',fontSize:14}}>
-          🔄 Reload
-        </button>
-      </div>;
-    }
-    return this.props.children;
-  }
-}
-
-ReactDOM.createRoot(document.getElementById('root')).render(<ErrorBoundary><App/></ErrorBoundary>);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
 </html>
