@@ -563,41 +563,6 @@
       "createdAt": "2026-06-19T14:23:36.774Z",
       "updatedAt": "2026-06-19T14:23:36.774Z",
       "duration": 62
-    },
-    {
-      "id": 1781892014436,
-      "ref": "QS20260619-01-0205282",
-      "site": "QS",
-      "date": "2026-06-19",
-      "dailyN": 1,
-      "supplier": "Allen Furniture Vietnam Co., Ltd",
-      "po": "450000364",
-      "productNo": "205282",
-      "description": "Adhesive Tape Clear 100mx48mm",
-      "delivery": "1111",
-      "hu": [],
-      "country": "",
-      "plant": "",
-      "receptionDate": "2026-06-19",
-      "inspector": "John Doe",
-      "qtyReceived": 11,
-      "qtyInspected": 0,
-      "rounds": [],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-06-19T18:00:14.436Z",
-      "updatedAt": "2026-06-19T18:00:14.436Z",
-      "duration": 124
     }
   ],
   "ncrs": [],
@@ -1436,6 +1401,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1781892328326,
+      "timestamp": "2026-06-19T18:05:28.326Z",
+      "user": "Sylvain Leclair",
+      "userEmail": "sleclair@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "QS20260619-01-0205282",
+      "site": "QS",
+      "details": "Allen Furniture Vietnam Co., Ltd | 205282"
+    },
     {
       "id": 1781892016158,
       "timestamp": "2026-06-19T18:00:16.158Z",
