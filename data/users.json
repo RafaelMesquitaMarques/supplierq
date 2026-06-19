@@ -126,5 +126,19 @@
     "active": true,
     "mustChangePassword": true,
     "createdAt": "2026-06-12T12:35:20.273Z"
+  },
+  {
+    "id": 1781891442873,
+    "name": "John Doe",
+    "email": "jdoe@foliot.com",
+    "passwordHash": "dcf9a5b6d8f6a4ad509411e7f47f330c5872ccfc625539c17bad8c92bce973f8",
+    "role": "inspector",
+    "sites": [
+      "QS",
+      "NL"
+    ],
+    "active": true,
+    "mustChangePassword": true,
+    "createdAt": "2026-06-19T17:50:42.873Z"
   }
 ]
