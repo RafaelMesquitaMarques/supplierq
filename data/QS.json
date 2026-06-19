@@ -1437,6 +1437,17 @@
   ],
   "auditLog": [
     {
+      "id": 1781892016158,
+      "timestamp": "2026-06-19T18:00:16.158Z",
+      "user": "Sylvain Leclair",
+      "userEmail": "sleclair@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260619-01-0205282",
+      "site": "QS",
+      "details": "Allen Furniture Vietnam Co., Ltd | 205282 | Decision: approved",
+      "duration": 124
+    },
+    {
       "id": 1781891889175,
       "timestamp": "2026-06-19T17:58:09.175Z",
       "user": "Sylvain Leclair",
