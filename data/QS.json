@@ -563,6 +563,51 @@
       "createdAt": "2026-06-19T14:23:36.774Z",
       "updatedAt": "2026-06-19T14:23:36.774Z",
       "duration": 62
+    },
+    {
+      "id": 1782399116510,
+      "ref": "QS20260625-01-0216380",
+      "site": "QS",
+      "date": "2026-06-25",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500092612",
+      "productNo": "216380",
+      "description": "Steel Connecting Bolt 15mmx50mm Allen",
+      "delivery": "410001816752",
+      "hu": [
+        "801658657"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-18",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 1200,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1200,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-25T14:51:56.510Z",
+      "updatedAt": "2026-06-25T14:51:56.510Z",
+      "duration": 227
     }
   ],
   "ncrs": [],
