@@ -608,6 +608,54 @@
       "createdAt": "2026-06-25T14:51:56.510Z",
       "updatedAt": "2026-06-25T14:51:56.510Z",
       "duration": 227
+    },
+    {
+      "id": 1782476131151,
+      "ref": "QS20260626-01-7000000946",
+      "site": "QS",
+      "date": "2026-06-26",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "4500074886",
+      "productNo": "7000000946",
+      "description": "Bed Frame Adj W/Hook 54x79\" M010-ST",
+      "delivery": "410001819259",
+      "hu": [
+        "801661540",
+        "801661541",
+        "801661542",
+        "801661543"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-06-26",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 150,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 150,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-26T12:15:31.151Z",
+      "updatedAt": "2026-06-26T12:15:31.151Z",
+      "duration": 57
     }
   ],
   "ncrs": [],
