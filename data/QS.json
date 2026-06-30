@@ -1540,6 +1540,16 @@
   ],
   "auditLog": [
     {
+      "id": 1782835742925,
+      "timestamp": "2026-06-30T16:09:02.925Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: inspector | Sites: QS"
+    },
+    {
       "id": 1782834457845,
       "timestamp": "2026-06-30T15:47:37.845Z",
       "user": "Natalya Robles",
