@@ -1540,6 +1540,17 @@
   ],
   "auditLog": [
     {
+      "id": 1782834457845,
+      "timestamp": "2026-06-30T15:47:37.845Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260630-01-0210953",
+      "site": "QS",
+      "details": "Impekk | 210953 | Decision: approved",
+      "duration": 58
+    },
+    {
       "id": 1782834391072,
       "timestamp": "2026-06-30T15:46:31.072Z",
       "user": "Natalya Robles",
