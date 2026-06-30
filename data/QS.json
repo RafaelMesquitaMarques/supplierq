@@ -656,6 +656,51 @@
       "createdAt": "2026-06-26T12:15:31.151Z",
       "updatedAt": "2026-06-26T12:15:31.151Z",
       "duration": 57
+    },
+    {
+      "id": 1782834456690,
+      "ref": "QS20260630-01-0210953",
+      "site": "QS",
+      "date": "2026-06-30",
+      "dailyN": 1,
+      "supplier": "Impekk",
+      "po": "4500090098",
+      "productNo": "210953",
+      "description": "MTL Pull PG1-144 M194-BR",
+      "delivery": "410001821514",
+      "hu": [
+        "801663224"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-26",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 2000,
+      "qtyInspected": 200,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 200,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-06-30T15:47:36.690Z",
+      "updatedAt": "2026-06-30T15:47:36.690Z",
+      "duration": 58
     }
   ],
   "ncrs": [],
