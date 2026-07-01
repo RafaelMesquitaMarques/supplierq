@@ -1660,6 +1660,16 @@
   ],
   "auditLog": [
     {
+      "id": 1782928853062,
+      "timestamp": "2026-07-01T18:00:53.062Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Lafab",
+      "site": "QS",
+      "details": "Lafab | Canada"
+    },
+    {
       "id": 1782926848842,
       "timestamp": "2026-07-01T17:27:28.842Z",
       "user": "Natalya Robles",
