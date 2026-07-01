@@ -119,14 +119,15 @@
     "id": 1781267720273,
     "name": "Dominic Dotson",
     "email": "nlqualityreceiving@foliot.com",
-    "passwordHash": "2d1cbc95b6532133f7d4f78832cc95f4aa2f18e842afbe58c765ecccd8793ead",
+    "passwordHash": "096b0c20fcfbf98a8ba8f78ac055cc7eed98525f9c3d2477bc0f9bfad71a661b",
     "role": "inspector",
     "sites": [
       "NL"
     ],
     "active": true,
-    "mustChangePassword": true,
-    "createdAt": "2026-06-12T12:35:20.273Z"
+    "mustChangePassword": false,
+    "createdAt": "2026-06-12T12:35:20.273Z",
+    "passwordChangedAt": "2026-07-01T17:08:37.665Z"
   },
   {
     "id": 1781891442873,
