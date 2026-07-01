@@ -105,14 +105,15 @@
     "id": 1781266603520,
     "name": "Milena Correia",
     "email": "qmqualityreceiving@foliot.com",
-    "passwordHash": "e4e91a07da982a00b3102b15bbc5e06992aad9fd545509578c69b43a565d4618",
+    "passwordHash": "35bed67865961f5bd7d74b7c21d872bb8a566739b585b1daa1274ac9f43eeabe",
     "role": "inspector",
     "sites": [
       "QM"
     ],
     "active": true,
-    "mustChangePassword": true,
-    "createdAt": "2026-06-12T12:16:43.520Z"
+    "mustChangePassword": false,
+    "createdAt": "2026-06-12T12:16:43.520Z",
+    "passwordChangedAt": "2026-07-01T17:20:08.317Z"
   },
   {
     "id": 1781267720273,
