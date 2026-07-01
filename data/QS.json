@@ -1697,6 +1697,17 @@
   ],
   "auditLog": [
     {
+      "id": 1782928912394,
+      "timestamp": "2026-07-01T18:01:52.394Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260701-01-0201578",
+      "site": "QS",
+      "details": "Lafab | 201578 | Decision: approved",
+      "duration": 49
+    },
+    {
       "id": 1782928853062,
       "timestamp": "2026-07-01T18:00:53.062Z",
       "user": "Natalya Robles",
