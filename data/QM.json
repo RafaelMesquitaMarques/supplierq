@@ -12,26 +12,27 @@
       "description": "Desk Frame Steel LS 23.75x30.25 Black",
       "delivery": "410001822829",
       "hu": [
-        "500190174"
+        "500190174",
+        "500190160"
       ],
       "country": "China",
       "plant": "",
       "receptionDate": "2026-06-30",
       "inspector": "Milena Correia",
       "qtyReceived": 8,
-      "qtyInspected": 2,
+      "qtyInspected": 4,
       "rounds": [
         {
           "round": 1,
           "recv": 8,
-          "inspected": 2,
+          "inspected": 4,
           "nonConf": 0,
           "pct": 0
         }
       ],
       "defects": [],
       "issues": "",
-      "notes": "",
+      "notes": "500190160 Delivery # 410001822841",
       "decision": "approved",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
@@ -42,7 +43,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-01T17:28:19.724Z",
-      "updatedAt": "2026-07-01T17:28:19.724Z",
+      "updatedAt": "2026-07-01T17:40:02.508Z",
       "duration": 314
     }
   ],
