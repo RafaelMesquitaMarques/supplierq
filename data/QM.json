@@ -233,6 +233,51 @@
       "createdAt": "2026-07-02T18:31:53.962Z",
       "updatedAt": "2026-07-02T18:31:53.962Z",
       "duration": 108
+    },
+    {
+      "id": 1783017367400,
+      "ref": "QM20260702-01-0200950",
+      "site": "QM",
+      "date": "2026-07-02",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089547",
+      "productNo": "200950",
+      "description": "BRKT Bed Rail Attached Desk M003-ST",
+      "delivery": "410001822841",
+      "hu": [
+        "500190159"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 8,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-02T18:36:07.400Z",
+      "updatedAt": "2026-07-02T18:36:07.400Z",
+      "duration": 118
     }
   ],
   "ncrs": [],
