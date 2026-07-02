@@ -143,5 +143,20 @@
     "active": true,
     "mustChangePassword": true,
     "createdAt": "2026-06-19T17:50:42.873Z"
+  },
+  {
+    "id": 1782997701515,
+    "name": "Louis Phillipe",
+    "email": "lhebert@foliot.com",
+    "passwordHash": "ff88334afcc41d5019ae138ad824bde259afad990e260ac298c6f0002fe6e7d5",
+    "role": "admin",
+    "sites": [
+      "QS",
+      "NL",
+      "QM"
+    ],
+    "active": true,
+    "mustChangePassword": true,
+    "createdAt": "2026-07-02T13:08:21.515Z"
   }
 ]
