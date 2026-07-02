@@ -1697,14 +1697,14 @@
   ],
   "auditLog": [
     {
-      "id": 1783012178905,
-      "timestamp": "2026-07-02T17:09:38.905Z",
-      "user": "Natalya Robles",
-      "userEmail": "qsqualityreceiving@foliot.com",
-      "action": "user_login",
+      "id": 1783013306666,
+      "timestamp": "2026-07-02T17:28:26.666Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "user_logout",
       "ref": "—",
       "site": "QS",
-      "details": "Role: inspector | Sites: QS"
+      "details": "Session ended"
     },
     {
       "id": 1783012238182,
@@ -1725,6 +1725,16 @@
       "ref": "—",
       "site": "QS",
       "details": "Role: admin | Sites: QS, NL, QM"
+    },
+    {
+      "id": 1783012178905,
+      "timestamp": "2026-07-02T17:09:38.905Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: inspector | Sites: QS"
     },
     {
       "id": 1782997603761,
