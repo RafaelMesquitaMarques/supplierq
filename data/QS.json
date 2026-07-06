@@ -897,6 +897,51 @@
       "createdAt": "2026-07-06T11:21:51.627Z",
       "updatedAt": "2026-07-06T11:21:51.627Z",
       "duration": 79
+    },
+    {
+      "id": 1783354020781,
+      "ref": "QS20260706-01-0216004",
+      "site": "QS",
+      "date": "2026-07-06",
+      "dailyN": 1,
+      "supplier": "9392-4116 Québec Inc ",
+      "po": "4500088432",
+      "productNo": "216004",
+      "description": "Driver Taped LED Light 24V/20W",
+      "delivery": "410001815415",
+      "hu": [
+        "801657486"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-06-26",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 300,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-06T16:07:00.781Z",
+      "updatedAt": "2026-07-06T16:07:00.781Z",
+      "duration": 41
     }
   ],
   "ncrs": [],
