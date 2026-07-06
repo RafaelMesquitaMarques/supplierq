@@ -1742,6 +1742,17 @@
   ],
   "auditLog": [
     {
+      "id": 1783336913276,
+      "timestamp": "2026-07-06T11:21:53.276Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260706-01-0202418",
+      "site": "QS",
+      "details": "Byrne Electrical Specialists, Inc. | 202418 | Decision: approved",
+      "duration": 79
+    },
+    {
       "id": 1783336826965,
       "timestamp": "2026-07-06T11:20:26.965Z",
       "user": "Natalya Robles",
