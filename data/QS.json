@@ -1748,6 +1748,16 @@
   ],
   "auditLog": [
     {
+      "id": 1783353978813,
+      "timestamp": "2026-07-06T16:06:18.813Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "9392-4116 Québec Inc ",
+      "site": "QS",
+      "details": "9392-4116 Québec Inc  | —"
+    },
+    {
       "id": 1783336913276,
       "timestamp": "2026-07-06T11:21:53.276Z",
       "user": "Natalya Robles",
