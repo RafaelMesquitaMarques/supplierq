@@ -987,6 +987,51 @@
       "createdAt": "2026-07-06T16:08:26.939Z",
       "updatedAt": "2026-07-06T16:08:26.939Z",
       "duration": 83
+    },
+    {
+      "id": 1783357149055,
+      "ref": "QS20260706-01-0203283",
+      "site": "QS",
+      "date": "2026-07-06",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093081",
+      "productNo": "203283",
+      "description": "Washer Zinc Fender 5/16x1-1/4\"",
+      "delivery": "410001824637",
+      "hu": [
+        "801666257"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-02",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 6260,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6260,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-06T16:59:09.055Z",
+      "updatedAt": "2026-07-06T16:59:09.055Z",
+      "duration": 50
     }
   ],
   "ncrs": [],
