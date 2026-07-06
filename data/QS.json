@@ -1167,6 +1167,51 @@
       "createdAt": "2026-07-06T17:02:43.115Z",
       "updatedAt": "2026-07-06T17:02:43.115Z",
       "duration": 96
+    },
+    {
+      "id": 1783357457291,
+      "ref": "QS20260706-01-0202663",
+      "site": "QS",
+      "date": "2026-07-06",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093081",
+      "productNo": "202663",
+      "description": "Screw Zinc FH Nibs Qx Notch #8x1-1/2\"",
+      "delivery": "410001824637",
+      "hu": [
+        "801666264"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-02",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 15000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 15000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-06T17:04:17.291Z",
+      "updatedAt": "2026-07-06T17:04:17.291Z",
+      "duration": 90
     }
   ],
   "ncrs": [],
