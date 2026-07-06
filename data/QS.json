@@ -2018,6 +2018,17 @@
   ],
   "auditLog": [
     {
+      "id": 1783357364837,
+      "timestamp": "2026-07-06T17:02:44.837Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260706-01-0202652",
+      "site": "QS",
+      "details": "Attaches Viscan | 202652 | Decision: approved",
+      "duration": 96
+    },
+    {
       "id": 1783357263639,
       "timestamp": "2026-07-06T17:01:03.639Z",
       "user": "Natalya Robles",
