@@ -90,6 +90,53 @@
       "createdAt": "2026-07-07T14:35:08.040Z",
       "updatedAt": "2026-07-07T14:35:08.040Z",
       "duration": 1141
+    },
+    {
+      "id": 1783445464088,
+      "ref": "NL20260707-03-7000006106",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003747",
+      "productNo": "7000006106",
+      "description": "Mtl L Back Log Stool 24\" F037 V3/M197-PC",
+      "delivery": "410001819508",
+      "hu": [
+        "500189519",
+        "500163204",
+        "500163205"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 90,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 90,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T17:31:04.088Z",
+      "updatedAt": "2026-07-07T17:31:04.088Z",
+      "duration": 8777
     }
   ],
   "ncrs": [],
