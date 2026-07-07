@@ -605,6 +605,54 @@
       "createdAt": "2026-07-07T14:17:32.376Z",
       "updatedAt": "2026-07-07T14:17:32.376Z",
       "duration": 148
+    },
+    {
+      "id": 1783437493629,
+      "ref": "QM20260707-01-7000009620",
+      "site": "QM",
+      "date": "2026-07-07",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500088842",
+      "productNo": "7000009620",
+      "description": "WD NS W/DF/PG 26W F280/M242-PC V2",
+      "delivery": "410001822589",
+      "hu": [
+        "500190058",
+        "500190059",
+        "500190060",
+        "500190061"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 40,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 40,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Rush for Anick",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T15:18:13.629Z",
+      "updatedAt": "2026-07-07T15:18:13.629Z",
+      "duration": 192
     }
   ],
   "ncrs": [],
