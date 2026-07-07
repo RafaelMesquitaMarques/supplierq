@@ -653,6 +653,55 @@
       "createdAt": "2026-07-07T15:18:13.629Z",
       "updatedAt": "2026-07-07T15:18:13.629Z",
       "duration": 192
+    },
+    {
+      "id": 1783439962490,
+      "ref": "QM20260707-01-7000006748",
+      "site": "QM",
+      "date": "2026-07-07",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500088379",
+      "productNo": "7000006748",
+      "description": "WD Coffee Bar RS 72'' F259/F260/M012 CN",
+      "delivery": "410001811063",
+      "hu": [
+        "500188609",
+        "500188611",
+        "500188612",
+        "500188613",
+        "500188614"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-11",
+      "inspector": "Milena Correia",
+      "qtyReceived": 5,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Could only do a visiual inspection, to heavy to remove from crate and no one to help",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T15:59:22.490Z",
+      "updatedAt": "2026-07-07T15:59:22.490Z",
+      "duration": 422
     }
   ],
   "ncrs": [],
