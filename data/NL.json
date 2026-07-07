@@ -228,6 +228,51 @@
       "createdAt": "2026-07-07T17:48:34.781Z",
       "updatedAt": "2026-07-07T18:24:17.284Z",
       "duration": 244
+    },
+    {
+      "id": 1783452418365,
+      "ref": "NL20260707-06-0214280",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 6,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003747",
+      "productNo": "214280",
+      "description": "MTL Profil Lugg Bench Strip 34\" M003-PC",
+      "delivery": "410001819508",
+      "hu": [
+        "500178483"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 120,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 120,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T19:26:58.365Z",
+      "updatedAt": "2026-07-07T19:26:58.365Z",
+      "duration": 2977
     }
   ],
   "ncrs": [],
