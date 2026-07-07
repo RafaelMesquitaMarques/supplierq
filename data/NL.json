@@ -273,6 +273,52 @@
       "createdAt": "2026-07-07T19:26:58.365Z",
       "updatedAt": "2026-07-07T19:26:58.365Z",
       "duration": 2977
+    },
+    {
+      "id": 1783452735877,
+      "ref": "NL20260707-07-0214623",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003747",
+      "productNo": "214623",
+      "description": "MTL Base Com TB 30.75x1.375x2 M240-PC",
+      "delivery": "4100011819508",
+      "hu": [
+        "500189482",
+        "500189533"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T19:32:15.877Z",
+      "updatedAt": "2026-07-07T19:32:15.877Z",
+      "duration": 301
     }
   ],
   "ncrs": [],
