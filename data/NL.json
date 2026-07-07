@@ -137,6 +137,51 @@
       "createdAt": "2026-07-07T17:31:04.088Z",
       "updatedAt": "2026-07-07T17:31:04.088Z",
       "duration": 8777
+    },
+    {
+      "id": 1783445953645,
+      "ref": "NL20260707-04-0211890",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003747",
+      "productNo": "211890",
+      "description": "MTL Frame TB 25.75x17.75x27 M240-PC",
+      "delivery": "410001819508",
+      "hu": [
+        "500181549"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T17:39:13.645Z",
+      "updatedAt": "2026-07-07T17:39:13.645Z",
+      "duration": 380
     }
   ],
   "ncrs": [],
