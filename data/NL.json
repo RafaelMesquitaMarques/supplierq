@@ -319,6 +319,51 @@
       "createdAt": "2026-07-07T19:32:15.877Z",
       "updatedAt": "2026-07-07T19:32:15.877Z",
       "duration": 301
+    },
+    {
+      "id": 1783454087482,
+      "ref": "NL20260707-08-0213705",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 8,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003747",
+      "productNo": "213705",
+      "description": "MTL C-Table FR 16x16x27,75\" M215-PC",
+      "delivery": "4100001819508",
+      "hu": [
+        "500176462"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T19:54:47.482Z",
+      "updatedAt": "2026-07-07T19:54:47.482Z",
+      "duration": 1048
     }
   ],
   "ncrs": [],
