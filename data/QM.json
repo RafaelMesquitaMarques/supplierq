@@ -461,6 +461,52 @@
       "createdAt": "2026-07-07T11:56:12.655Z",
       "updatedAt": "2026-07-07T11:56:12.655Z",
       "duration": 116
+    },
+    {
+      "id": 1783428330808,
+      "ref": "QM20260707-01-0200494",
+      "site": "QM",
+      "date": "2026-07-07",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089804",
+      "productNo": "200494",
+      "description": "Stru Steel TV Center Kit 28x15.5 M010-ST",
+      "delivery": "410001822512",
+      "hu": [
+        "500190403",
+        "500190404"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-02",
+      "inspector": "Milena Correia",
+      "qtyReceived": 200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Inspected only 10 rush for QS",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-07T12:45:30.808Z",
+      "updatedAt": "2026-07-07T12:45:30.808Z",
+      "duration": 199
     }
   ],
   "ncrs": [],
