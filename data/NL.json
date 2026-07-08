@@ -551,6 +551,51 @@
       "createdAt": "2026-07-08T17:20:23.005Z",
       "updatedAt": "2026-07-08T17:26:06.195Z",
       "duration": 2527
+    },
+    {
+      "id": 1783538830926,
+      "ref": "NL20260708-05-0213273",
+      "site": "NL",
+      "date": "2026-07-08",
+      "dailyN": 5,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090380",
+      "productNo": "213273",
+      "description": "MTL Bracket for Leg TB 10x10x2\"M003-ST",
+      "delivery": "410001826263",
+      "hu": [
+        "900816826"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 108,
+      "qtyInspected": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 108,
+          "inspected": 7,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-08T19:27:10.926Z",
+      "updatedAt": "2026-07-08T19:27:10.926Z",
+      "duration": 470
     }
   ],
   "ncrs": [],
