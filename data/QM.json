@@ -841,6 +841,51 @@
       "createdAt": "2026-07-08T13:21:29.320Z",
       "updatedAt": "2026-07-08T13:21:29.320Z",
       "duration": 104
+    },
+    {
+      "id": 1783519940007,
+      "ref": "QM20260708-01-0213853",
+      "site": "QM",
+      "date": "2026-07-08",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500089011",
+      "productNo": "213853",
+      "description": "WD Frame LB Check In 48\" F214",
+      "delivery": "410001822591",
+      "hu": [
+        "500190062"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-06-29",
+      "inspector": "Milena Correia",
+      "qtyReceived": 8,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-08T14:12:20.008Z",
+      "updatedAt": "2026-07-08T14:12:20.008Z",
+      "duration": 129
     }
   ],
   "ncrs": [],
