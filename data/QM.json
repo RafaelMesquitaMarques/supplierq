@@ -2034,6 +2034,17 @@
   ],
   "auditLog": [
     {
+      "id": 1783601021488,
+      "timestamp": "2026-07-09T12:43:41.488Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260709-01-0212890",
+      "site": "QM",
+      "details": "Hongruifeng Home Trading Co.,Ltd / 36102 | 212890 | Decision: approved",
+      "duration": 125
+    },
+    {
       "id": 1783599141086,
       "timestamp": "2026-07-09T12:12:21.086Z",
       "user": "Milena Correia",
