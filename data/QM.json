@@ -1249,6 +1249,51 @@
       "createdAt": "2026-07-09T13:25:54.333Z",
       "updatedAt": "2026-07-09T13:25:54.333Z",
       "duration": 125
+    },
+    {
+      "id": 1783607018632,
+      "ref": "QM20260709-01-0213983",
+      "site": "QM",
+      "date": "2026-07-09",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089753",
+      "productNo": "213983",
+      "description": "Mtl Frame Sofa Table 78\" M003-ST",
+      "delivery": "410001822836",
+      "hu": [
+        "500190147"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 5,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-09T14:23:38.632Z",
+      "updatedAt": "2026-07-09T14:23:38.632Z",
+      "duration": 80
     }
   ],
   "ncrs": [],
