@@ -1156,6 +1156,51 @@
       "createdAt": "2026-07-09T12:12:20.165Z",
       "updatedAt": "2026-07-09T12:12:20.165Z",
       "duration": 175
+    },
+    {
+      "id": 1783601020552,
+      "ref": "QM20260709-01-0212890",
+      "site": "QM",
+      "date": "2026-07-09",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500089549",
+      "productNo": "212890",
+      "description": "MTL Pull PG1-183 1.5\" M242-PC",
+      "delivery": "410001825291",
+      "hu": [
+        "500190454"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-06",
+      "inspector": "Milena Correia",
+      "qtyReceived": 500,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 500,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-09T12:43:40.552Z",
+      "updatedAt": "2026-07-09T12:43:40.552Z",
+      "duration": 125
     }
   ],
   "ncrs": [],
