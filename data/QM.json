@@ -1066,6 +1066,51 @@
       "createdAt": "2026-07-09T11:22:40.313Z",
       "updatedAt": "2026-07-09T11:22:40.313Z",
       "duration": 170
+    },
+    {
+      "id": 1783597971922,
+      "ref": "QM20260709-01-0212540",
+      "site": "QM",
+      "date": "2026-07-09",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500089549",
+      "productNo": "212540",
+      "description": "Support Oval End M195-PL",
+      "delivery": "410001825291",
+      "hu": [
+        "500190453"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-07",
+      "inspector": "Milena Correia",
+      "qtyReceived": 200,
+      "qtyInspected": 20,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 20,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-09T11:52:51.922Z",
+      "updatedAt": "2026-07-09T11:52:51.922Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
