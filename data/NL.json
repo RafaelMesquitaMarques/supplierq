@@ -707,8 +707,16 @@
       "receptionDate": "2026-07-08",
       "inspector": "Dominic Dotson",
       "qtyReceived": 30,
-      "qtyInspected": 0,
-      "rounds": [],
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 30,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
       "defects": [],
       "issues": "",
       "notes": "",
@@ -722,7 +730,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-09T15:11:53.837Z",
-      "updatedAt": "2026-07-09T15:11:53.837Z",
+      "updatedAt": "2026-07-09T15:12:06.132Z",
       "duration": 750
     }
   ],
