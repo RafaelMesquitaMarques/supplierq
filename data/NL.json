@@ -641,6 +641,52 @@
       "createdAt": "2026-07-09T11:51:50.735Z",
       "updatedAt": "2026-07-09T11:51:50.735Z",
       "duration": 58794
+    },
+    {
+      "id": 1783602952925,
+      "ref": "NL20260709-01-7000000298",
+      "site": "NL",
+      "date": "2026-07-09",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "4500090380",
+      "productNo": "7000000298",
+      "description": "MTL Bed Leg  W/Assem BRKT 22\" M003-ST",
+      "delivery": "410001826263",
+      "hu": [
+        "900817025",
+        "900817026"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 125,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 125,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-09T13:15:52.925Z",
+      "updatedAt": "2026-07-09T13:15:52.925Z",
+      "duration": 1458
     }
   ],
   "ncrs": [],
