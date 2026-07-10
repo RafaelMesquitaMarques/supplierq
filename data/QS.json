@@ -1347,6 +1347,51 @@
       "createdAt": "2026-07-10T15:21:24.931Z",
       "updatedAt": "2026-07-10T15:21:24.931Z",
       "duration": 80
+    },
+    {
+      "id": 1783697171747,
+      "ref": "QS20260710-01-0201505",
+      "site": "QS",
+      "date": "2026-07-10",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093081",
+      "productNo": "201505",
+      "description": "Screw Zinc PnH Cruciform M4x12",
+      "delivery": "410001827268",
+      "hu": [
+        "801669055"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 5200,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5200,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-10T15:26:11.747Z",
+      "updatedAt": "2026-07-10T15:26:11.747Z",
+      "duration": 274
     }
   ],
   "ncrs": [],
