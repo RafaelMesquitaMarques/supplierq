@@ -1496,6 +1496,51 @@
       "createdAt": "2026-07-09T18:54:23.568Z",
       "updatedAt": "2026-07-09T18:54:23.568Z",
       "duration": 211
+    },
+    {
+      "id": 1783942283408,
+      "ref": "QM20260713-01-0209694",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Huizhou Chengfei Industrial Co",
+      "po": "4500092578",
+      "productNo": "209694",
+      "description": "Plastic Retainer Clip 24.5x12x45mm White",
+      "delivery": "410001826053",
+      "hu": [
+        "500190614"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-07",
+      "inspector": "",
+      "qtyReceived": 26400,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 26400,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T11:31:23.409Z",
+      "updatedAt": "2026-07-13T11:31:23.409Z",
+      "duration": 155
     }
   ],
   "ncrs": [],
