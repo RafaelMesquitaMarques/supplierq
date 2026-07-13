@@ -2058,6 +2058,51 @@
       "createdAt": "2026-07-13T17:22:08.197Z",
       "updatedAt": "2026-07-13T17:22:08.197Z",
       "duration": 106
+    },
+    {
+      "id": 1783965131016,
+      "ref": "QM20260713-01-0213473",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090239",
+      "productNo": "213473",
+      "description": "MTL Leg W/Glides 3 3/16\" M003-PCM",
+      "delivery": "410001828139",
+      "hu": [
+        "500190987"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "",
+      "qtyReceived": 512,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 512,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T17:52:11.016Z",
+      "updatedAt": "2026-07-13T17:52:11.016Z",
+      "duration": 90
     }
   ],
   "ncrs": [],
