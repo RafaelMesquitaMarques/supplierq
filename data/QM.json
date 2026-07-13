@@ -2013,6 +2013,51 @@
       "createdAt": "2026-07-13T16:46:53.055Z",
       "updatedAt": "2026-07-13T16:46:53.055Z",
       "duration": 84
+    },
+    {
+      "id": 1783963328196,
+      "ref": "QM20260713-01-0207684",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089330",
+      "productNo": "207684",
+      "description": "MTL Leg RS 2.25x21.375x29\" M003-PC",
+      "delivery": "410001823163",
+      "hu": [
+        "500190278"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T17:22:08.197Z",
+      "updatedAt": "2026-07-13T17:22:08.197Z",
+      "duration": 106
     }
   ],
   "ncrs": [],
