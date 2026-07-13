@@ -1562,7 +1562,7 @@
       "country": "China",
       "plant": "",
       "receptionDate": "2026-07-10",
-      "inspector": "",
+      "inspector": "Milena Correia",
       "qtyReceived": 96,
       "qtyInspected": 5,
       "rounds": [
@@ -1587,7 +1587,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-13T13:21:37.372Z",
-      "updatedAt": "2026-07-13T13:21:37.372Z",
+      "updatedAt": "2026-07-13T19:17:01.493Z",
       "duration": 166
     },
     {
