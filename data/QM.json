@@ -1968,6 +1968,51 @@
       "createdAt": "2026-07-13T15:20:29.747Z",
       "updatedAt": "2026-07-13T15:20:29.747Z",
       "duration": 214
+    },
+    {
+      "id": 1783961213055,
+      "ref": "QM20260713-01-0207683",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089330",
+      "productNo": "207683",
+      "description": "MTL Leg LS 2.25x21.375x29\" M003-PC",
+      "delivery": "410001823163",
+      "hu": [
+        "500190277"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T16:46:53.055Z",
+      "updatedAt": "2026-07-13T16:46:53.055Z",
+      "duration": 84
     }
   ],
   "ncrs": [],
