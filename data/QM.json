@@ -1828,6 +1828,56 @@
       "createdAt": "2026-07-13T13:59:49.653Z",
       "updatedAt": "2026-07-13T13:59:49.653Z",
       "duration": 91
+    },
+    {
+      "id": 1783951367630,
+      "ref": "QM20260713-01-0201675",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089638",
+      "productNo": "201675",
+      "description": "Base TB Cocktail/Coffee 33.25'' M010-ST",
+      "delivery": "410001822835",
+      "hu": [
+        "500190118",
+        "500190119",
+        "500190120",
+        "500190121",
+        "500190122",
+        "500190123"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "",
+      "qtyReceived": 94,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 94,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T14:02:47.630Z",
+      "updatedAt": "2026-07-13T14:02:47.630Z",
+      "duration": 124
     }
   ],
   "ncrs": [],
