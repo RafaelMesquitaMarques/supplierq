@@ -2148,6 +2148,51 @@
       "createdAt": "2026-07-13T19:08:13.142Z",
       "updatedAt": "2026-07-13T19:08:13.142Z",
       "duration": 134
+    },
+    {
+      "id": 1783969945046,
+      "ref": "QM20260713-01-0206462",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089547",
+      "productNo": "206462",
+      "description": "BRKT Bed Shelf 6x5.5x1.5\" M003-ST",
+      "delivery": "410001823170",
+      "hu": [
+        "500190231"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1000,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T19:12:25.046Z",
+      "updatedAt": "2026-07-13T19:12:25.046Z",
+      "duration": 155
     }
   ],
   "ncrs": [],
