@@ -1589,6 +1589,58 @@
       "createdAt": "2026-07-13T13:21:37.372Z",
       "updatedAt": "2026-07-13T13:21:37.372Z",
       "duration": 166
+    },
+    {
+      "id": 1783949147565,
+      "ref": "QM20260713-01-7000007668",
+      "site": "QM",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090141",
+      "productNo": "7000007668",
+      "description": "MTL Bed Frame W/Slats 37x73 M003-ST",
+      "delivery": "410001828161",
+      "hu": [
+        "500191073",
+        "500191074",
+        "500191075",
+        "500191076",
+        "500191077",
+        "500191078",
+        "500191079",
+        "500191083"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 304,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 304,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-13T13:25:47.565Z",
+      "updatedAt": "2026-07-13T13:25:47.565Z",
+      "duration": 158
     }
   ],
   "ncrs": [],
