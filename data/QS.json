@@ -2333,6 +2333,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784032491134,
+      "timestamp": "2026-07-14T12:34:51.134Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260714-01-0216008",
+      "site": "QS",
+      "details": "Self Electronics USA Corporation | 216008 | Decision: approved",
+      "duration": 41
+    },
+    {
       "id": 1784032446157,
       "timestamp": "2026-07-14T12:34:06.157Z",
       "user": "Natalya Robles",
