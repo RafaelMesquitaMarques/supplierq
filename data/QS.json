@@ -1572,6 +1572,51 @@
       "createdAt": "2026-07-14T13:14:43.929Z",
       "updatedAt": "2026-07-14T13:14:43.929Z",
       "duration": 38
+    },
+    {
+      "id": 1784034929441,
+      "ref": "QS20260714-01-0201621",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093411",
+      "productNo": "201621",
+      "description": "Bolt Flat H Socket Cap 5/16-18x1\"",
+      "delivery": "410001829137",
+      "hu": [
+        "801670804"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 5000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T13:15:29.441Z",
+      "updatedAt": "2026-07-14T13:15:29.441Z",
+      "duration": 34
     }
   ],
   "ncrs": [],
