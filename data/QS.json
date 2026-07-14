@@ -1797,6 +1797,51 @@
       "createdAt": "2026-07-14T13:33:50.267Z",
       "updatedAt": "2026-07-14T13:33:50.267Z",
       "duration": 37
+    },
+    {
+      "id": 1784036069491,
+      "ref": "QS20260714-01-0201876",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093411",
+      "productNo": "201876",
+      "description": "Screw FH Qx Sharp Point #8x3\"",
+      "delivery": "410001829137",
+      "hu": [
+        "801670818"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 2400,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2400,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T13:34:29.491Z",
+      "updatedAt": "2026-07-14T13:34:29.491Z",
+      "duration": 32
     }
   ],
   "ncrs": [],
