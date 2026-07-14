@@ -1707,6 +1707,51 @@
       "createdAt": "2026-07-14T13:32:29.435Z",
       "updatedAt": "2026-07-14T13:32:29.435Z",
       "duration": 36
+    },
+    {
+      "id": 1784035983651,
+      "ref": "QS20260714-01-0202865",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093411",
+      "productNo": "202865",
+      "description": "Bolt Zinc TH Comb H10 8-32x3/4\"",
+      "delivery": "410001829137",
+      "hu": [
+        "801670815"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 4000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T13:33:03.651Z",
+      "updatedAt": "2026-07-14T13:33:03.651Z",
+      "duration": 28
     }
   ],
   "ncrs": [],
