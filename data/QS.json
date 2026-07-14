@@ -1437,6 +1437,51 @@
       "createdAt": "2026-07-14T12:34:03.948Z",
       "updatedAt": "2026-07-14T12:34:03.948Z",
       "duration": 46
+    },
+    {
+      "id": 1784032489315,
+      "ref": "QS20260714-01-0216008",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Self Electronics USA Corporation",
+      "po": "4500093075",
+      "productNo": "216008",
+      "description": "Driver LED Downlight 5.25x1.75x0.75\"",
+      "delivery": "410001830051",
+      "hu": [
+        "801671553"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 3,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T12:34:49.315Z",
+      "updatedAt": "2026-07-14T12:34:49.315Z",
+      "duration": 41
     }
   ],
   "ncrs": [],
