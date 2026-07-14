@@ -1662,6 +1662,51 @@
       "createdAt": "2026-07-14T13:31:48.404Z",
       "updatedAt": "2026-07-14T13:31:48.404Z",
       "duration": 72
+    },
+    {
+      "id": 1784035949435,
+      "ref": "QS20260714-01-0202699",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093411",
+      "productNo": "202699",
+      "description": "Screw PnH Qx L-R #8x5/8\" Black",
+      "delivery": "410001829137",
+      "hu": [
+        "801670812"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 7000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 7000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T13:32:29.435Z",
+      "updatedAt": "2026-07-14T13:32:29.435Z",
+      "duration": 36
     }
   ],
   "ncrs": [],
