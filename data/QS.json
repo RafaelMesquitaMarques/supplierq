@@ -2738,6 +2738,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784064997184,
+      "timestamp": "2026-07-14T21:36:37.184Z",
+      "user": "Sylvain Leclair",
+      "userEmail": "sleclair@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: admin | Sites: QS, NL, QM"
+    },
+    {
       "id": 1784036112463,
       "timestamp": "2026-07-14T13:35:12.463Z",
       "user": "Natalya Robles",
