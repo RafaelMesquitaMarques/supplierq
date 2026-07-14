@@ -1482,6 +1482,51 @@
       "createdAt": "2026-07-14T12:34:49.315Z",
       "updatedAt": "2026-07-14T12:34:49.315Z",
       "duration": 41
+    },
+    {
+      "id": 1784034837074,
+      "ref": "QS20260714-01-0202647",
+      "site": "QS",
+      "date": "2026-07-14",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093411",
+      "productNo": "202647",
+      "description": "Bolt Zinc PnH Phill M4 0.7mmx35mm",
+      "delivery": "410001829137",
+      "hu": [
+        "801670800"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 4000,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4000,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-14T13:13:57.074Z",
+      "updatedAt": "2026-07-14T13:13:57.074Z",
+      "duration": 46
     }
   ],
   "ncrs": [],
