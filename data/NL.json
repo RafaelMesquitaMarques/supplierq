@@ -957,6 +957,51 @@
       "createdAt": "2026-07-15T20:25:02.603Z",
       "updatedAt": "2026-07-15T20:25:02.603Z",
       "duration": 100
+    },
+    {
+      "id": 1784147191924,
+      "ref": "NL20260709-05-0216028",
+      "site": "NL",
+      "date": "2026-07-09",
+      "dailyN": 5,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090010",
+      "productNo": "216028",
+      "description": "MDF F248 GR UDo HR PG1-201 14.87x29.75\"",
+      "delivery": "410001827841",
+      "hu": [
+        "900817332"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 144,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 144,
+          "inspected": 6,
+          "nonConf": 1,
+          "pct": 17
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-15T20:26:31.924Z",
+      "updatedAt": "2026-07-15T20:26:31.924Z",
+      "duration": 82
     }
   ],
   "ncrs": [],
