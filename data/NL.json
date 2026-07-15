@@ -1616,6 +1616,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784146536798,
+      "timestamp": "2026-07-15T20:15:36.798Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260715-01-7000000519",
+      "site": "NL",
+      "details": "ZhongShang JDM Metal Products Co | 7000000519 | Decision: approved",
+      "duration": 834
+    },
+    {
       "id": 1784144785211,
       "timestamp": "2026-07-15T19:46:25.211Z",
       "user": "Dominic Dotson",
