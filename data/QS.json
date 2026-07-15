@@ -1887,6 +1887,51 @@
       "createdAt": "2026-07-14T13:35:10.245Z",
       "updatedAt": "2026-07-14T13:35:10.245Z",
       "duration": 38
+    },
+    {
+      "id": 1784147045488,
+      "ref": "QS20260715-01-0215143",
+      "site": "QS",
+      "date": "2026-07-15",
+      "dailyN": 1,
+      "supplier": "Furnlite / Groupe Dekko, Inc.",
+      "po": "4500092750",
+      "productNo": "215143",
+      "description": "Outlet 5.4A/1PG/1USB/1USB-C Silver",
+      "delivery": "410001824828",
+      "hu": [
+        "801666433"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-14",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 183,
+      "qtyInspected": 20,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 183,
+          "inspected": 20,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-15T20:24:05.489Z",
+      "updatedAt": "2026-07-15T20:24:05.489Z",
+      "duration": 41
     }
   ],
   "ncrs": [],
