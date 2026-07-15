@@ -2738,6 +2738,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784123319547,
+      "timestamp": "2026-07-15T13:48:39.547Z",
+      "user": "Daniel Meunier",
+      "userEmail": "dmeunier@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: manager | Sites: QS, NL, QM"
+    },
+    {
       "id": 1784064997184,
       "timestamp": "2026-07-14T21:36:37.184Z",
       "user": "Sylvain Leclair",
