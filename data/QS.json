@@ -2783,6 +2783,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784147047446,
+      "timestamp": "2026-07-15T20:24:07.446Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260715-01-0215143",
+      "site": "QS",
+      "details": "Furnlite / Groupe Dekko, Inc. | 215143 | Decision: approved",
+      "duration": 41
+    },
+    {
       "id": 1784146992554,
       "timestamp": "2026-07-15T20:23:12.554Z",
       "user": "Natalya Robles",
