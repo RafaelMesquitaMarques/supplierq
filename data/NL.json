@@ -822,6 +822,51 @@
       "createdAt": "2026-07-15T20:20:05.491Z",
       "updatedAt": "2026-07-15T20:20:05.491Z",
       "duration": 79
+    },
+    {
+      "id": 1784146907373,
+      "ref": "NL20260709-02-0213147",
+      "site": "NL",
+      "date": "2026-07-09",
+      "dailyN": 2,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090010",
+      "productNo": "213147",
+      "description": "MDF F248 GR Ufalse PN 29.84x28.50\"",
+      "delivery": "410001827841",
+      "hu": [
+        "900817328"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 73,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 73,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-15T20:21:47.373Z",
+      "updatedAt": "2026-07-15T20:21:47.373Z",
+      "duration": 74
     }
   ],
   "ncrs": [],
