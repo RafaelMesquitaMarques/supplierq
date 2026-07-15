@@ -2929,6 +2929,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784150379741,
+      "timestamp": "2026-07-15T21:19:39.741Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260715-02-0215786",
+      "site": "QS",
+      "details": "Vinag7 Joint Stock Company | 215786 | Decision: waiting",
+      "duration": 90
+    },
+    {
       "id": 1784150258473,
       "timestamp": "2026-07-15T21:17:38.473Z",
       "user": "Natalya Robles",
