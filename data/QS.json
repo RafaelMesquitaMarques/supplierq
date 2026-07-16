@@ -2078,6 +2078,51 @@
       "createdAt": "2026-07-15T21:19:37.698Z",
       "updatedAt": "2026-07-15T21:19:37.698Z",
       "duration": 90
+    },
+    {
+      "id": 1784236659456,
+      "ref": "QS20260716-01-0213387",
+      "site": "QS",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090141",
+      "productNo": "213387",
+      "description": "MTL Leg W/Plate 4-1/2\" M003-ST",
+      "delivery": "410001831699",
+      "hu": [
+        "500191314"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 416,
+      "qtyInspected": 20,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 416,
+          "inspected": 20,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T21:17:39.456Z",
+      "updatedAt": "2026-07-16T21:17:39.456Z",
+      "duration": 41
     }
   ],
   "ncrs": [],
