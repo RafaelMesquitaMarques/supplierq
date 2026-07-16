@@ -1398,6 +1398,51 @@
       "createdAt": "2026-07-16T15:35:20.186Z",
       "updatedAt": "2026-07-16T15:35:20.186Z",
       "duration": 95
+    },
+    {
+      "id": 1784216298690,
+      "ref": "NL20260715-04-0214215",
+      "site": "NL",
+      "date": "2026-07-15",
+      "dailyN": 4,
+      "supplier": "Symmetry Resources",
+      "po": "4500091827",
+      "productNo": "214215",
+      "description": "Fabric UV Endurance Crimson CAL117 FRLC",
+      "delivery": "410001827770",
+      "hu": [
+        "900817135"
+      ],
+      "country": "South Korea",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 10,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T15:38:18.690Z",
+      "updatedAt": "2026-07-16T15:38:18.690Z",
+      "duration": 125
     }
   ],
   "ncrs": [],
