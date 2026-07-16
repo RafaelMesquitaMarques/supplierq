@@ -2342,6 +2342,51 @@
       "createdAt": "2026-07-16T13:52:04.361Z",
       "updatedAt": "2026-07-16T13:52:04.361Z",
       "duration": 175
+    },
+    {
+      "id": 1784210912891,
+      "ref": "QM20260716-01-7000000317",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090239",
+      "productNo": "7000000317",
+      "description": "Pin RD Ends 70mmx9.5mm Zinc",
+      "delivery": "410001828133",
+      "hu": [
+        "500190994"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 10000,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10000,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T14:08:32.891Z",
+      "updatedAt": "2026-07-16T14:08:32.891Z",
+      "duration": 143
     }
   ],
   "ncrs": [],
