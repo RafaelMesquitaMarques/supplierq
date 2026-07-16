@@ -2048,6 +2048,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784213268595,
+      "timestamp": "2026-07-16T14:47:48.595Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260713-01-0212513",
+      "site": "NL",
+      "details": "Fabric Innovations by Covington / Calhou | 212513 | Decision: approved",
+      "duration": 163
+    },
+    {
       "id": 1784211686381,
       "timestamp": "2026-07-16T14:21:26.381Z",
       "user": "Dominic Dotson",
