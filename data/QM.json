@@ -2432,6 +2432,57 @@
       "createdAt": "2026-07-16T15:10:53.424Z",
       "updatedAt": "2026-07-16T15:12:27.567Z",
       "duration": 1567
+    },
+    {
+      "id": 1784220623955,
+      "ref": "QM20260716-02-0215683",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 2,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088736",
+      "productNo": "215683",
+      "description": "MTL Cleat 33\" M003-PC",
+      "delivery": "410001823161",
+      "hu": [
+        "500190282"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Milena Correia",
+      "qtyReceived": 25,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "missing",
+          "label": "Missing part",
+          "qty": 25
+        }
+      ],
+      "issues": "Cleat has 17 holes, should be 32 holes",
+      "notes": "",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 25,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T16:50:23.956Z",
+      "updatedAt": "2026-07-16T16:50:23.956Z",
+      "duration": 209
     }
   ],
   "ncrs": [],
