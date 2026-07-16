@@ -1203,6 +1203,52 @@
       "createdAt": "2026-07-16T14:47:40.853Z",
       "updatedAt": "2026-07-16T14:47:40.853Z",
       "duration": 163
+    },
+    {
+      "id": 1784213548267,
+      "ref": "NL20260713-02-0212152",
+      "site": "NL",
+      "date": "2026-07-13",
+      "dailyN": 2,
+      "supplier": "Fabric Innovations by Covington / Calhou",
+      "po": "4500092153",
+      "productNo": "212152",
+      "description": "Fabric Royal - Blue Moon CAL 117-FRLC",
+      "delivery": "410001813132",
+      "hu": [
+        "900812363",
+        "900818836"
+      ],
+      "country": "India",
+      "plant": "",
+      "receptionDate": "2026-06-18",
+      "inspector": "",
+      "qtyReceived": 48,
+      "qtyInspected": 48,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 48,
+          "inspected": 48,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T14:52:28.267Z",
+      "updatedAt": "2026-07-16T14:52:28.267Z",
+      "duration": 266
     }
   ],
   "ncrs": [],
