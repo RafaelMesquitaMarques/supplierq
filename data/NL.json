@@ -2249,6 +2249,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784216128276,
+      "timestamp": "2026-07-16T15:35:28.276Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260715-03-0214228",
+      "site": "NL",
+      "details": "CULP Inc | 214228 | Decision: approved",
+      "duration": 95
+    },
+    {
       "id": 1784216004658,
       "timestamp": "2026-07-16T15:33:24.658Z",
       "user": "Dominic Dotson",
