@@ -1157,6 +1157,52 @@
       "createdAt": "2026-07-16T14:17:31.748Z",
       "updatedAt": "2026-07-16T14:17:31.748Z",
       "duration": 126
+    },
+    {
+      "id": 1784213260853,
+      "ref": "NL20260713-01-0212513",
+      "site": "NL",
+      "date": "2026-07-13",
+      "dailyN": 1,
+      "supplier": "Fabric Innovations by Covington / Calhou",
+      "po": "4500092153",
+      "productNo": "212513",
+      "description": "Vinyl Wanna be Khaki CAL 117-FRCF",
+      "delivery": "410001816738",
+      "hu": [
+        "900812399",
+        "900818830"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-18",
+      "inspector": "",
+      "qtyReceived": 52,
+      "qtyInspected": 57,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 52,
+          "inspected": 57,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T14:47:40.853Z",
+      "updatedAt": "2026-07-16T14:47:40.853Z",
+      "duration": 163
     }
   ],
   "ncrs": [],
