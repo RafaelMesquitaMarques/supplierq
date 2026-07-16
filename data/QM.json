@@ -2483,6 +2483,51 @@
       "createdAt": "2026-07-16T16:50:23.956Z",
       "updatedAt": "2026-07-16T17:33:38.810Z",
       "duration": 209
+    },
+    {
+      "id": 1784224532980,
+      "ref": "QM20260716-01-0215979",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088736",
+      "productNo": "215979",
+      "description": "MTL Cleat 48W M003-PC V2",
+      "delivery": "410001823161",
+      "hu": [
+        "500190283"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Milena Correia",
+      "qtyReceived": 40,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 40,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T17:55:32.980Z",
+      "updatedAt": "2026-07-16T17:55:32.980Z",
+      "duration": 105
     }
   ],
   "ncrs": [],
