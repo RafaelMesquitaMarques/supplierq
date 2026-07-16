@@ -1302,6 +1302,56 @@
       "createdAt": "2026-07-16T15:00:19.209Z",
       "updatedAt": "2026-07-16T15:00:19.209Z",
       "duration": 165
+    },
+    {
+      "id": 1784215997786,
+      "ref": "NL20260715-02-0214225",
+      "site": "NL",
+      "date": "2026-07-15",
+      "dailyN": 2,
+      "supplier": "CULP Inc",
+      "po": "4500092512",
+      "productNo": "214225",
+      "description": "Vinyl Dillon Sage CAL-117 FRLC",
+      "delivery": "410001820311",
+      "hu": [
+        "900819462",
+        "900819461",
+        "900819460",
+        "900819459",
+        "900819458",
+        "900819457"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-06-25",
+      "inspector": "",
+      "qtyReceived": 142,
+      "qtyInspected": 140,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 142,
+          "inspected": 140,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T15:33:17.786Z",
+      "updatedAt": "2026-07-16T15:33:17.786Z",
+      "duration": 229
     }
   ],
   "ncrs": [],
