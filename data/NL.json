@@ -2100,6 +2100,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784213852976,
+      "timestamp": "2026-07-16T14:57:32.976Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Fil Doux Textiles",
+      "site": "NL",
+      "details": "Fil Doux Textiles | Chile"
+    },
+    {
       "id": 1784213720219,
       "timestamp": "2026-07-16T14:55:20.219Z",
       "user": "Dominic Dotson",
