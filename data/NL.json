@@ -3065,6 +3065,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784235039263,
+      "timestamp": "2026-07-16T20:50:39.263Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "NL20260714-01-7000009713",
+      "site": "NL",
+      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000009713 | Decision: use-as-is",
+      "duration": 0
+    },
+    {
       "id": 1784234419594,
       "timestamp": "2026-07-16T20:40:19.594Z",
       "user": "Dominic Dotson",
