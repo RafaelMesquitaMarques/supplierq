@@ -1352,6 +1352,52 @@
       "createdAt": "2026-07-16T15:33:17.786Z",
       "updatedAt": "2026-07-16T15:33:17.786Z",
       "duration": 229
+    },
+    {
+      "id": 1784216120186,
+      "ref": "NL20260715-03-0214228",
+      "site": "NL",
+      "date": "2026-07-15",
+      "dailyN": 3,
+      "supplier": "CULP Inc",
+      "po": "4500092512",
+      "productNo": "214228",
+      "description": "Vinyl Dillon Ocean CAL-117 FRLC",
+      "delivery": "410001820311",
+      "hu": [
+        "900819407",
+        "900814189"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "",
+      "qtyReceived": 10,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T15:35:20.186Z",
+      "updatedAt": "2026-07-16T15:35:20.186Z",
+      "duration": 95
     }
   ],
   "ncrs": [],
