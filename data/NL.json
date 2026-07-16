@@ -2153,6 +2153,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784214028776,
+      "timestamp": "2026-07-16T15:00:28.776Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260713-03-0212514",
+      "site": "NL",
+      "details": "Fil Doux Textiles | 212514 | Decision: approved",
+      "duration": 165
+    },
+    {
       "id": 1784213852976,
       "timestamp": "2026-07-16T14:57:32.976Z",
       "user": "Dominic Dotson",
