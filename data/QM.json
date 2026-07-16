@@ -2193,6 +2193,55 @@
       "createdAt": "2026-07-13T19:12:25.046Z",
       "updatedAt": "2026-07-13T19:12:25.046Z",
       "duration": 155
+    },
+    {
+      "id": 1784203456498,
+      "ref": "QM20260716-01-0216129",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090171",
+      "productNo": "216129",
+      "description": "MTL Ottoman Frame 17.5625\" M003-PCM",
+      "delivery": "410001828162",
+      "hu": [],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 60,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 60
+        }
+      ],
+      "issues": "Levelers extend 5.41mm beyond tube should be 3mm",
+      "notes": "",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 6,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T12:04:16.498Z",
+      "updatedAt": "2026-07-16T12:04:16.498Z",
+      "duration": 204
     }
   ],
   "ncrs": [],
