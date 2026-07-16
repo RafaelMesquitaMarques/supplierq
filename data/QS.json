@@ -2123,6 +2123,51 @@
       "createdAt": "2026-07-16T21:17:39.456Z",
       "updatedAt": "2026-07-16T21:17:39.456Z",
       "duration": 41
+    },
+    {
+      "id": 1784237099920,
+      "ref": "QS20260716-01-7000000024",
+      "site": "QS",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090141",
+      "productNo": "7000000024",
+      "description": "MTL Bed Leg W/PL Cap14\" M003-ST",
+      "delivery": "410001831699",
+      "hu": [
+        "500191312"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T21:24:59.920Z",
+      "updatedAt": "2026-07-16T21:24:59.920Z",
+      "duration": 30
     }
   ],
   "ncrs": [],
