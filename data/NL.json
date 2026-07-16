@@ -1402,6 +1402,51 @@
       "createdAt": "2026-07-16T16:57:45.147Z",
       "updatedAt": "2026-07-16T16:57:45.147Z",
       "duration": 569
+    },
+    {
+      "id": 1784222178787,
+      "ref": "NL20260716-08-0214713",
+      "site": "NL",
+      "date": "2026-07-16",
+      "dailyN": 8,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500089890",
+      "productNo": "214713",
+      "description": "MTL Finger Pull Handle PG1-196 M240-PCV2",
+      "delivery": "410001829317",
+      "hu": [
+        "900818145"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 25,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T17:16:18.787Z",
+      "updatedAt": "2026-07-16T17:16:18.787Z",
+      "duration": 1105
     }
   ],
   "ncrs": [],
