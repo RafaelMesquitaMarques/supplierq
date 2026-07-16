@@ -2466,22 +2466,22 @@
         {
           "key": "dimensional",
           "label": "Drawing / Dimensional",
-          "qty": 0
+          "qty": 25
         }
       ],
       "issues": "Cleat has 17 holes, should be 32 holes / Holes should be 5mm not 4.71mm / First hole to edge should be 25mm not 13.1mm",
-      "notes": "",
-      "decision": "waiting",
-      "qtyUseAsIs": 0,
+      "notes": "Use As Is as per PL",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 25,
       "qtyRework": 0,
       "qtyRejected": 0,
-      "qtyWaiting": 25,
-      "hasNC": true,
+      "qtyWaiting": 0,
+      "hasNC": false,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-16T16:50:23.956Z",
-      "updatedAt": "2026-07-16T17:33:38.810Z",
+      "updatedAt": "2026-07-16T18:00:11.283Z",
       "duration": 209
     },
     {
