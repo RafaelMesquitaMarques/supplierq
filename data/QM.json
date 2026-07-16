@@ -2573,6 +2573,51 @@
       "createdAt": "2026-07-16T18:38:50.308Z",
       "updatedAt": "2026-07-16T18:38:50.308Z",
       "duration": 94
+    },
+    {
+      "id": 1784229100793,
+      "ref": "QM20260716-01-0215138",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500089810",
+      "productNo": "215138",
+      "description": "MTL Side Frame Banquette 59W M003-PC",
+      "delivery": "410001831676",
+      "hu": [
+        "500191528"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T19:11:40.793Z",
+      "updatedAt": "2026-07-16T19:11:40.793Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
