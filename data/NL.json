@@ -1673,6 +1673,51 @@
       "createdAt": "2026-07-16T19:19:02.874Z",
       "updatedAt": "2026-07-16T19:19:02.874Z",
       "duration": 129
+    },
+    {
+      "id": 1784229996035,
+      "ref": "NL20260716-13-0201750",
+      "site": "NL",
+      "date": "2026-07-16",
+      "dailyN": 13,
+      "supplier": "Allen Furniture Vietnam Co., Ltd",
+      "po": "1500003768",
+      "productNo": "201750",
+      "description": "BRKT Metal 1x1x15\" Black",
+      "delivery": "410001828436",
+      "hu": [
+        "201750"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-14",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T19:26:36.035Z",
+      "updatedAt": "2026-07-16T19:26:36.035Z",
+      "duration": 359
     }
   ],
   "ncrs": [],
