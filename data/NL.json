@@ -1492,6 +1492,51 @@
       "createdAt": "2026-07-16T17:22:44.243Z",
       "updatedAt": "2026-07-16T17:22:44.243Z",
       "duration": 246
+    },
+    {
+      "id": 1784222861627,
+      "ref": "NL20260716-10-0203211",
+      "site": "NL",
+      "date": "2026-07-16",
+      "dailyN": 10,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "1500003768",
+      "productNo": "203211",
+      "description": "Foam Corner Bl PPE 3 SD 1720-B 4.25x5.25",
+      "delivery": "410001828436",
+      "hu": [
+        "801666228"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-14",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T17:27:41.627Z",
+      "updatedAt": "2026-07-16T17:27:41.627Z",
+      "duration": 250
     }
   ],
   "ncrs": [],
