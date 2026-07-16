@@ -2242,6 +2242,51 @@
       "createdAt": "2026-07-16T12:04:16.498Z",
       "updatedAt": "2026-07-16T13:12:58.302Z",
       "duration": 204
+    },
+    {
+      "id": 1784207708686,
+      "ref": "QM20260716-01-0215320",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090373",
+      "productNo": "215320",
+      "description": "MTL Bed platform Edge mending plate",
+      "delivery": "410001828243",
+      "hu": [
+        "500191198"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "Milena Correia",
+      "qtyReceived": 3800,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3800,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T13:15:08.686Z",
+      "updatedAt": "2026-07-16T13:15:08.686Z",
+      "duration": 92
     }
   ],
   "ncrs": [],
