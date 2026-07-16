@@ -2528,6 +2528,51 @@
       "createdAt": "2026-07-16T17:55:32.980Z",
       "updatedAt": "2026-07-16T17:55:32.980Z",
       "duration": 105
+    },
+    {
+      "id": 1784227130308,
+      "ref": "QM20260716-01-0215875",
+      "site": "QM",
+      "date": "2026-07-16",
+      "dailyN": 1,
+      "supplier": "Consun Furniture Hardware Factory",
+      "po": "4500089894",
+      "productNo": "215875",
+      "description": "Label Foliot 40x15mm (New)",
+      "delivery": "410001826375",
+      "hu": [
+        "500190681"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-07",
+      "inspector": "Milena Correia",
+      "qtyReceived": 60030,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60030,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-16T18:38:50.308Z",
+      "updatedAt": "2026-07-16T18:38:50.308Z",
+      "duration": 94
     }
   ],
   "ncrs": [],
