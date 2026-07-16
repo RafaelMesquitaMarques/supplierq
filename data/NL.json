@@ -2094,6 +2094,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784213613491,
+      "timestamp": "2026-07-16T14:53:33.491Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Fabric Innovations by Covington",
+      "site": "NL",
+      "details": "Fabric Innovations by Covington | India"
+    },
+    {
       "id": 1784213569770,
       "timestamp": "2026-07-16T14:52:49.770Z",
       "user": "Dominic Dotson",
