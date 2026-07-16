@@ -2002,6 +2002,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784211686381,
+      "timestamp": "2026-07-16T14:21:26.381Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Fabric Innovations by Covington / Calhou",
+      "site": "NL",
+      "details": "Fabric Innovations by Covington / Calhou | China"
+    },
+    {
       "id": 1784211458087,
       "timestamp": "2026-07-16T14:17:38.087Z",
       "user": "Dominic Dotson",
