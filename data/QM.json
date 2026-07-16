@@ -2229,18 +2229,18 @@
         }
       ],
       "issues": "Levelers extend 5.41mm beyond tube should be 3mm",
-      "notes": "",
-      "decision": "waiting",
+      "notes": "Was approved by PL (use as is)",
+      "decision": "use-as-is",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
       "qtyRejected": 0,
       "qtyWaiting": 6,
-      "hasNC": true,
+      "hasNC": false,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-16T12:04:16.498Z",
-      "updatedAt": "2026-07-16T12:04:16.498Z",
+      "updatedAt": "2026-07-16T13:12:58.302Z",
       "duration": 204
     }
   ],
