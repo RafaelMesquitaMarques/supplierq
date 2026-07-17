@@ -2228,82 +2228,30 @@
       "duration": 2398
     },
     {
-      "id": 1784295969437,
-      "ref": "NL20260717-01-0216013",
-      "site": "NL",
-      "date": "2026-07-17",
-      "dailyN": 1,
-      "supplier": "Vinag7 Joint Stock Company",
-      "po": "4500088969",
-      "productNo": "216013",
-      "description": "WD Base RD DinTB37.75DIAx29\"F280/M012-BR",
-      "delivery": "410001827839",
-      "hu": [
-        "900817369",
-        "900817370",
-        "900817371",
-        "900817372",
-        "900817373",
-        "900817374",
-        "900817971",
-        "900817970"
-      ],
-      "country": "Vietnam",
-      "plant": "",
-      "receptionDate": "2026-07-09",
-      "inspector": "",
-      "qtyReceived": 48,
-      "qtyInspected": 1,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 48,
-          "inspected": 1,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-17T13:46:09.437Z",
-      "updatedAt": "2026-07-17T13:46:09.437Z",
-      "duration": 515
-    },
-    {
-      "id": 1784296180180,
-      "ref": "NL20260710-01-0216047",
+      "id": 1784296202155,
+      "ref": "NL20260710-01-0216095",
       "site": "NL",
       "date": "2026-07-10",
       "dailyN": 1,
       "supplier": "Vinag7 Joint Stock Company",
       "po": "4500090010",
-      "productNo": "216047",
-      "description": "MDF F248 GR UDo HR PG1-201 23.84x58.00\"",
+      "productNo": "216095",
+      "description": "MDF F248 GR UDo HL PG1-201 23.84x58.00\"",
       "delivery": "410001827841",
       "hu": [
-        "900817334"
+        "900817345"
       ],
       "country": "Vietnam",
       "plant": "",
       "receptionDate": "2026-07-09",
       "inspector": "",
-      "qtyReceived": 30,
-      "qtyInspected": 2,
+      "qtyReceived": 41,
+      "qtyInspected": 3,
       "rounds": [
         {
           "round": 1,
-          "recv": 30,
-          "inspected": 2,
+          "recv": 41,
+          "inspected": 3,
           "nonConf": 0,
           "pct": 0
         }
@@ -2320,9 +2268,9 @@
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
-      "createdAt": "2026-07-17T13:49:40.180Z",
-      "updatedAt": "2026-07-17T13:49:40.180Z",
-      "duration": 186
+      "createdAt": "2026-07-17T13:50:02.155Z",
+      "updatedAt": "2026-07-17T13:50:02.155Z",
+      "duration": 751
     }
   ],
   "ncrs": [],
@@ -3174,26 +3122,14 @@
   ],
   "auditLog": [
     {
-      "id": 1784296184111,
-      "timestamp": "2026-07-17T13:49:44.111Z",
+      "id": 1784295385783,
+      "timestamp": "2026-07-17T13:36:25.783Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260710-01-0216047",
+      "action": "user_login",
+      "ref": "—",
       "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216047 | Decision: approved",
-      "duration": 186
-    },
-    {
-      "id": 1784295975241,
-      "timestamp": "2026-07-17T13:46:15.241Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260717-01-0216013",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216013 | Decision: approved",
-      "duration": 515
+      "details": "Role: inspector | Sites: NL"
     },
     {
       "id": 1784295315574,
