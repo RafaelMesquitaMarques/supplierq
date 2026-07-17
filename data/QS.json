@@ -3025,6 +3025,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784287339005,
+      "timestamp": "2026-07-17T11:22:19.005Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Davis Metal Works, LLC ",
+      "site": "QS",
+      "details": "Davis Metal Works, LLC  | —"
+    },
+    {
       "id": 1784287313749,
       "timestamp": "2026-07-17T11:21:53.749Z",
       "user": "Natalya Robles",
