@@ -3787,6 +3787,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784301142899,
+      "timestamp": "2026-07-17T15:12:22.899Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260717-01-0211897",
+      "site": "QM",
+      "details": "Xiamen Yiree Smart Industried Co. Ltd | 211897 | Decision: use-as-is",
+      "duration": 255
+    },
+    {
       "id": 1784296932420,
       "timestamp": "2026-07-17T14:02:12.420Z",
       "user": "Milena Correia",
