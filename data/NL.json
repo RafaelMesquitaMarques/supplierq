@@ -2446,6 +2446,51 @@
       "createdAt": "2026-07-17T16:19:59.148Z",
       "updatedAt": "2026-07-17T16:19:59.148Z",
       "duration": 215
+    },
+    {
+      "id": 1784306850115,
+      "ref": "NL20260717-16-7000006445",
+      "site": "NL",
+      "date": "2026-07-17",
+      "dailyN": 16,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "7000006445",
+      "description": "Dble Queen ADA Nightstand HB 30.75\" F257",
+      "delivery": "410001826855",
+      "hu": [
+        "500190559"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T16:47:30.115Z",
+      "updatedAt": "2026-07-17T16:47:30.115Z",
+      "duration": 218
     }
   ],
   "ncrs": [],
@@ -3284,6 +3329,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1784306617452,
+      "timestamp": "2026-07-17T16:43:37.452Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "NL",
+      "details": "Role: inspector | Sites: NL"
+    },
     {
       "id": 1784305200311,
       "timestamp": "2026-07-17T16:20:00.311Z",
