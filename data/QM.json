@@ -2663,6 +2663,52 @@
       "createdAt": "2026-07-17T11:29:11.761Z",
       "updatedAt": "2026-07-17T11:29:11.761Z",
       "duration": 175
+    },
+    {
+      "id": 1784288942373,
+      "ref": "QM20260717-01-0215528",
+      "site": "QM",
+      "date": "2026-07-17",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088736",
+      "productNo": "215528",
+      "description": "MTL Cleat BRKT 2.5-3 M003-PC",
+      "delivery": "410001823161",
+      "hu": [
+        "500190230",
+        "500190240"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Milena Correia",
+      "qtyReceived": 6016,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6016,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T11:49:02.373Z",
+      "updatedAt": "2026-07-17T11:49:02.373Z",
+      "duration": 105
     }
   ],
   "ncrs": [],
