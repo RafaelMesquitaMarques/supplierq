@@ -2262,6 +2262,51 @@
       "createdAt": "2026-07-17T14:38:12.876Z",
       "updatedAt": "2026-07-17T14:38:12.876Z",
       "duration": 974
+    },
+    {
+      "id": 1784299280220,
+      "ref": "NL20260716-12-0201623",
+      "site": "NL",
+      "date": "2026-07-16",
+      "dailyN": 12,
+      "supplier": "Stafast Products, Inc. Ontario",
+      "po": "4500093633",
+      "productNo": "201623",
+      "description": "T-Nut Hopper Feed CB3 5/16-18x5/8\"",
+      "delivery": "410001833038",
+      "hu": [
+        "900819994"
+      ],
+      "country": "Japan",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 5000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T14:41:20.220Z",
+      "updatedAt": "2026-07-17T14:41:20.220Z",
+      "duration": 181
     }
   ],
   "ncrs": [],
