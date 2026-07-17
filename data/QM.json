@@ -2618,6 +2618,51 @@
       "createdAt": "2026-07-16T19:11:40.793Z",
       "updatedAt": "2026-07-16T19:11:40.793Z",
       "duration": 107
+    },
+    {
+      "id": 1784287751761,
+      "ref": "QM20260717-01-0200025",
+      "site": "QM",
+      "date": "2026-07-17",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090239",
+      "productNo": "200025",
+      "description": "Stopper Angle Sliding Door W/Rubber",
+      "delivery": "410001828133",
+      "hu": [
+        "500190995"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 6000,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6000,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T11:29:11.761Z",
+      "updatedAt": "2026-07-17T11:29:11.761Z",
+      "duration": 175
     }
   ],
   "ncrs": [],
