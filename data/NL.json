@@ -2627,52 +2627,6 @@
       "createdAt": "2026-07-17T19:41:52.219Z",
       "updatedAt": "2026-07-17T19:41:52.219Z",
       "duration": 184
-    },
-    {
-      "id": 1784317436514,
-      "ref": "NL20260717-19-0200353",
-      "site": "NL",
-      "date": "2026-07-17",
-      "dailyN": 19,
-      "supplier": "Foliot Furniture (Mirabel)",
-      "po": "1500003750",
-      "productNo": "200353",
-      "description": "CB Box 68x26x6.5\" #201",
-      "delivery": "410001827174",
-      "hu": [
-        "500161735",
-        "500161760"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-07-15",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 200,
-      "qtyInspected": 2,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 200,
-          "inspected": 2,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-17T19:43:56.514Z",
-      "updatedAt": "2026-07-17T19:43:56.514Z",
-      "duration": 95
     }
   ],
   "ncrs": [],
@@ -3511,6 +3465,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1784317526527,
+      "timestamp": "2026-07-17T19:45:26.527Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260717-19-0200353",
+      "site": "NL",
+      "details": "Foliot Furniture (Mirabel) | 200353"
+    },
     {
       "id": 1784317447816,
       "timestamp": "2026-07-17T19:44:07.816Z",
