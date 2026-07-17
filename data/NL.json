@@ -2068,7 +2068,7 @@
       ],
       "defects": [],
       "issues": "",
-      "notes": "Supplier needs to be changed to OneMonroe when an option",
+      "notes": "",
       "decision": "approved",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
@@ -2079,7 +2079,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-17T13:10:27.668Z",
-      "updatedAt": "2026-07-17T13:10:27.668Z",
+      "updatedAt": "2026-07-17T13:10:44.332Z",
       "duration": 1728
     }
   ],
