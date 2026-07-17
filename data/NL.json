@@ -2296,7 +2296,7 @@
       "country": "Vietnam",
       "plant": "",
       "receptionDate": "2026-07-09",
-      "inspector": "",
+      "inspector": "Dominic Dotson",
       "qtyReceived": 30,
       "qtyInspected": 2,
       "rounds": [
@@ -2321,7 +2321,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-17T13:49:40.180Z",
-      "updatedAt": "2026-07-17T13:49:40.180Z",
+      "updatedAt": "2026-07-17T13:58:01.195Z",
       "duration": 186
     }
   ],
