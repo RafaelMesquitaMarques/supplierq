@@ -2904,7 +2904,7 @@
       "ref": "QM20260717-01-0211897",
       "site": "QM",
       "date": "2026-07-17",
-      "dailyN": 1,
+      "dailyN": 2,
       "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
       "po": "4500089889",
       "productNo": "211897",
@@ -2952,7 +2952,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-17T15:12:21.869Z",
-      "updatedAt": "2026-07-17T15:12:21.869Z",
+      "updatedAt": "2026-07-17T15:33:16.883Z",
       "duration": 255
     }
   ],
