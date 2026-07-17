@@ -2965,6 +2965,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784294138715,
+      "timestamp": "2026-07-17T13:15:38.715Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260716-08-0201241",
+      "site": "NL",
+      "details": "Amazon | 201241 | Decision: approved",
+      "duration": 281
+    },
+    {
       "id": 1784293845938,
       "timestamp": "2026-07-17T13:10:45.938Z",
       "user": "Dominic Dotson",
