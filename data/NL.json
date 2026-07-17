@@ -873,7 +873,7 @@
       "ref": "NL20260709-03-0216119",
       "site": "NL",
       "date": "2026-07-09",
-      "dailyN": 3,
+      "dailyN": 7,
       "supplier": "Vinag7 Joint Stock Company",
       "po": "4500090010",
       "productNo": "216119",
@@ -910,7 +910,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-15T20:23:19.323Z",
-      "updatedAt": "2026-07-15T20:23:19.323Z",
+      "updatedAt": "2026-07-17T14:17:32.526Z",
       "duration": 88
     },
     {
