@@ -2353,6 +2353,54 @@
       "createdAt": "2026-07-17T15:06:10.956Z",
       "updatedAt": "2026-07-17T15:06:10.956Z",
       "duration": 388
+    },
+    {
+      "id": 1784301057124,
+      "ref": "NL20260716-14-0207794",
+      "site": "NL",
+      "date": "2026-07-16",
+      "dailyN": 14,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "207794",
+      "description": "PB + Vinyl Queen Wall Barret HVS-10037",
+      "delivery": "410001824809",
+      "hu": [
+        "500152130",
+        "500188422",
+        "500188425",
+        "801411343"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-14",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 239,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 239,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T15:10:57.124Z",
+      "updatedAt": "2026-07-17T15:10:57.124Z",
+      "duration": 276
     }
   ],
   "ncrs": [],
