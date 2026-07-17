@@ -2633,58 +2633,6 @@
       "duration": 2398
     },
     {
-      "id": 1784295969437,
-      "ref": "NL20260717-01-0216013",
-      "site": "NL",
-      "date": "2026-07-10",
-      "dailyN": 1,
-      "supplier": "Vinag7 Joint Stock Company",
-      "po": "4500088969",
-      "productNo": "216013",
-      "description": "WD Base RD DinTB37.75DIAx29\"F280/M012-BR",
-      "delivery": "410001827839",
-      "hu": [
-        "900817369",
-        "900817370",
-        "900817371",
-        "900817372",
-        "900817373",
-        "900817374",
-        "900817971",
-        "900817970"
-      ],
-      "country": "Vietnam",
-      "plant": "",
-      "receptionDate": "2026-07-09",
-      "inspector": "",
-      "qtyReceived": 48,
-      "qtyInspected": 1,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 48,
-          "inspected": 1,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-17T13:46:09.437Z",
-      "updatedAt": "2026-07-17T13:52:31.788Z",
-      "duration": 515
-    },
-    {
       "id": 1784296180180,
       "ref": "NL20260710-01-0216047",
       "site": "NL",
@@ -3668,6 +3616,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1784301850774,
+      "timestamp": "2026-07-17T15:24:10.774Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260717-01-0216013",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216013"
+    },
     {
       "id": 1784298942513,
       "timestamp": "2026-07-17T14:35:42.513Z",
