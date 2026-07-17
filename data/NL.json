@@ -2177,7 +2177,7 @@
       "ref": "NL20260716-08-7000004491",
       "site": "NL",
       "date": "2026-07-16",
-      "dailyN": 8,
+      "dailyN": 10,
       "supplier": "Foliot Furniture (Mirabel)",
       "po": "1500003750",
       "productNo": "7000004491",
@@ -2214,7 +2214,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-17T14:18:06.892Z",
-      "updatedAt": "2026-07-17T14:18:06.892Z",
+      "updatedAt": "2026-07-17T14:18:22.596Z",
       "duration": 239
     }
   ],
