@@ -3375,6 +3375,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784312759768,
+      "timestamp": "2026-07-17T18:25:59.768Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "NL",
+      "details": "Role: inspector | Sites: NL"
+    },
+    {
       "id": 1784312739186,
       "timestamp": "2026-07-17T18:25:39.186Z",
       "user": "Dominic Dotson",
