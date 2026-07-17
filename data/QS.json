@@ -2738,8 +2738,8 @@
   ],
   "auditLog": [
     {
-      "id": 1784306619442,
-      "timestamp": "2026-07-17T16:43:39.442Z",
+      "id": 1784309759131,
+      "timestamp": "2026-07-17T17:35:59.131Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2756,6 +2756,16 @@
       "ref": "—",
       "site": "QS",
       "details": "Role: admin | Sites: QS, NL, QM"
+    },
+    {
+      "id": 1784306619442,
+      "timestamp": "2026-07-17T16:43:39.442Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
     },
     {
       "id": 1784304974842,
