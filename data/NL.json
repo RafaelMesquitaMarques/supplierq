@@ -3375,6 +3375,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784314415827,
+      "timestamp": "2026-07-17T18:53:35.827Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "NL20260716-11-0200018",
+      "site": "NL",
+      "details": "Fastenal | 200018 | Decision: approved",
+      "duration": 0
+    },
+    {
       "id": 1784314384123,
       "timestamp": "2026-07-17T18:53:04.123Z",
       "user": "Dominic Dotson",
