@@ -2323,6 +2323,51 @@
       "createdAt": "2026-07-17T13:49:40.180Z",
       "updatedAt": "2026-07-17T13:58:01.195Z",
       "duration": 186
+    },
+    {
+      "id": 1784298226397,
+      "ref": "NL20260709-08-0216120",
+      "site": "NL",
+      "date": "2026-07-09",
+      "dailyN": 8,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090010",
+      "productNo": "216120",
+      "description": "MDF F248 GR Ufalse PN MW 29.84x26.00\"",
+      "delivery": "410001827841",
+      "hu": [
+        "900817327"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 70,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 70,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T14:23:46.397Z",
+      "updatedAt": "2026-07-17T14:23:46.397Z",
+      "duration": 298
     }
   ],
   "ncrs": [],
@@ -3173,26 +3218,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784298211283,
-      "timestamp": "2026-07-17T14:23:31.283Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_deleted",
-      "ref": "NL20260709-01-0216120",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216120"
-    },
-    {
-      "id": 1784297966137,
-      "timestamp": "2026-07-17T14:19:26.137Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784297925883,
       "timestamp": "2026-07-17T14:18:45.883Z",
