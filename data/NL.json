@@ -2062,10 +2062,16 @@
           "pct": 0
         }
       ],
-      "defects": [],
+      "defects": [
+        {
+          "key": "other",
+          "label": "Sewing line",
+          "qty": 0
+        }
+      ],
       "issues": "Tow rolls were sewed together.",
       "notes": "",
-      "decision": "approved",
+      "decision": "use-as-is",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
       "qtyRejected": 0,
@@ -2075,7 +2081,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-16T15:33:17.786Z",
-      "updatedAt": "2026-07-16T17:43:12.097Z",
+      "updatedAt": "2026-07-17T13:35:10.391Z",
       "duration": 229
     },
     {
