@@ -3787,6 +3787,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784301191675,
+      "timestamp": "2026-07-17T15:13:11.675Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "QM20260717-01-0215670",
+      "site": "QM",
+      "details": "Vinag7 Joint Stock Company | 215670 | Decision: use-as-is",
+      "duration": 0
+    },
+    {
       "id": 1784301142899,
       "timestamp": "2026-07-17T15:12:22.899Z",
       "user": "Milena Correia",
