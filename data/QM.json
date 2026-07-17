@@ -2709,6 +2709,54 @@
       "createdAt": "2026-07-17T11:49:02.373Z",
       "updatedAt": "2026-07-17T11:49:02.373Z",
       "duration": 105
+    },
+    {
+      "id": 1784291217282,
+      "ref": "QM20260717-01-0211890",
+      "site": "QM",
+      "date": "2026-07-17",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500089889",
+      "productNo": "211890",
+      "description": "MTL Frame TB 25.75x17.75x27 M240-PC",
+      "delivery": "410001831678",
+      "hu": [
+        "500191532",
+        "500191533",
+        "500191534",
+        "500191535"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 50,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 50,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T12:26:57.282Z",
+      "updatedAt": "2026-07-17T12:26:57.282Z",
+      "duration": 210
     }
   ],
   "ncrs": [],
