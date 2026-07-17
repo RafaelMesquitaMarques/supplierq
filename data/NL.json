@@ -2650,6 +2650,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784289966898,
+      "timestamp": "2026-07-17T12:06:06.898Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260716-01-0201750",
+      "site": "NL",
+      "details": "Allen Furniture Vietnam Co., Ltd | 201750 | Decision: approved",
+      "duration": 342
+    },
+    {
       "id": 1784234419594,
       "timestamp": "2026-07-16T20:40:19.594Z",
       "user": "Dominic Dotson",
