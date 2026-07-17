@@ -2818,6 +2818,77 @@
       "createdAt": "2026-07-17T15:49:06.811Z",
       "updatedAt": "2026-07-17T15:49:06.811Z",
       "duration": 100
+    },
+    {
+      "id": 1784310179323,
+      "ref": "NL20260701-01-0216097",
+      "site": "NL",
+      "date": "2026-07-01",
+      "dailyN": 1,
+      "supplier": "Amazon",
+      "po": "4500092854",
+      "productNo": "216097",
+      "description": "Fabric COM Brussels Autumn CAL117-FRLC",
+      "delivery": "410001819012",
+      "hu": [
+        "900813273",
+        "900815322",
+        "900815323",
+        "900815324",
+        "900815325",
+        "900815326",
+        "900815327",
+        "900815328",
+        "900815329",
+        "900815330",
+        "900815331",
+        "900815649",
+        "900815650",
+        "900815651",
+        "900815652",
+        "900815653",
+        "900815654",
+        "900815655",
+        "900815656",
+        "900815657",
+        "900815658"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-06-23",
+      "inspector": "",
+      "qtyReceived": 438,
+      "qtyInspected": 437,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 438,
+          "inspected": 437,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "broken",
+          "label": "Broken",
+          "qty": 0
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "rejected",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 2,
+      "qtyWaiting": 0,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T17:42:59.323Z",
+      "updatedAt": "2026-07-17T17:42:59.323Z",
+      "duration": 413
     }
   ],
   "ncrs": [],
