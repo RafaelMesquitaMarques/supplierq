@@ -3146,6 +3146,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784299281544,
+      "timestamp": "2026-07-17T14:41:21.544Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260716-12-0201623",
+      "site": "NL",
+      "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
+      "duration": 181
+    },
+    {
       "id": 1784299095066,
       "timestamp": "2026-07-17T14:38:15.066Z",
       "user": "Dominic Dotson",
