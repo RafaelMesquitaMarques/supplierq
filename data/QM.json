@@ -2847,6 +2847,57 @@
       "createdAt": "2026-07-17T13:12:06.310Z",
       "updatedAt": "2026-07-17T13:12:06.310Z",
       "duration": 75
+    },
+    {
+      "id": 1784296931186,
+      "ref": "QM20260717-01-0215670",
+      "site": "QM",
+      "date": "2026-07-17",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500085397",
+      "productNo": "215670",
+      "description": "WD Leg 15.5\"W F269/F280",
+      "delivery": "410001775784",
+      "hu": [
+        "500182720"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-04-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "bad_finish",
+          "label": "Bad finishing",
+          "qty": 2
+        }
+      ],
+      "issues": "No finishings on both ends of wooden legs",
+      "notes": "",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 2,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-17T14:02:11.186Z",
+      "updatedAt": "2026-07-17T14:02:11.186Z",
+      "duration": 152
     }
   ],
   "ncrs": [],
