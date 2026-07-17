@@ -3375,6 +3375,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784309774500,
+      "timestamp": "2026-07-17T17:36:14.500Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260717-17-0215049",
+      "site": "NL",
+      "details": "Fujian Dav Technologies Co. Ltd. | 215049 | Decision: approved",
+      "duration": 440
+    },
+    {
       "id": 1784309719288,
       "timestamp": "2026-07-17T17:35:19.288Z",
       "user": "Dominic Dotson",
