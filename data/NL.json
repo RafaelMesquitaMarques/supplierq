@@ -3667,6 +3667,51 @@
       "createdAt": "2026-07-18T15:52:06.318Z",
       "updatedAt": "2026-07-18T15:52:06.318Z",
       "duration": 215
+    },
+    {
+      "id": 1784392122543,
+      "ref": "NL20260718-05-0214864",
+      "site": "NL",
+      "date": "2026-07-18",
+      "dailyN": 5,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "214864",
+      "description": "Slide Outside part for Soft Close 14\" KS",
+      "delivery": "410001826855",
+      "hu": [
+        "500190542"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 120,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 120,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T16:28:42.543Z",
+      "updatedAt": "2026-07-18T16:28:42.543Z",
+      "duration": 121
     }
   ],
   "ncrs": [],
