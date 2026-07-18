@@ -4210,6 +4210,51 @@
       "createdAt": "2026-07-18T19:54:57.242Z",
       "updatedAt": "2026-07-18T19:54:57.242Z",
       "duration": 90
+    },
+    {
+      "id": 1784404816042,
+      "ref": "NL20260718-16-0213104",
+      "site": "NL",
+      "date": "2026-07-18",
+      "dailyN": 16,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "213104",
+      "description": "MTL Frame Q HB 60x48'' M003-ST",
+      "delivery": "410001826855",
+      "hu": [
+        "500176634"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T20:00:16.042Z",
+      "updatedAt": "2026-07-18T20:00:16.042Z",
+      "duration": 145
     }
   ],
   "ncrs": [],
