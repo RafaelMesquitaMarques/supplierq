@@ -3397,6 +3397,51 @@
       "createdAt": "2026-07-18T13:16:41.094Z",
       "updatedAt": "2026-07-18T13:16:41.094Z",
       "duration": 206
+    },
+    {
+      "id": 1784380739661,
+      "ref": "NL20260713-05-0200170",
+      "site": "NL",
+      "date": "2026-07-13",
+      "dailyN": 5,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "200170",
+      "description": "Footboard Bed Metal 15.50x36\" M010-ST",
+      "delivery": "410001826855",
+      "hu": [
+        "500161015"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 80,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 80,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T13:18:59.661Z",
+      "updatedAt": "2026-07-18T13:18:59.661Z",
+      "duration": 133
     }
   ],
   "ncrs": [],
@@ -4247,16 +4292,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784380704322,
-      "timestamp": "2026-07-18T13:18:24.322Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784380604522,
       "timestamp": "2026-07-18T13:16:44.522Z",
