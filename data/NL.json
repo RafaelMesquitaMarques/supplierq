@@ -3350,6 +3350,53 @@
       "createdAt": "2026-07-17T18:48:27.855Z",
       "updatedAt": "2026-07-17T18:48:27.855Z",
       "duration": 3442
+    },
+    {
+      "id": 1784380601094,
+      "ref": "NL20260713-04-0215857",
+      "site": "NL",
+      "date": "2026-07-13",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "215857",
+      "description": "MTL Frame Vnty 47.5 M242-PC",
+      "delivery": "410001826855",
+      "hu": [
+        "500190235",
+        "500190238",
+        "500190329"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 72,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 72,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T13:16:41.094Z",
+      "updatedAt": "2026-07-18T13:16:41.094Z",
+      "duration": 206
     }
   ],
   "ncrs": [],
@@ -4200,16 +4247,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784380487246,
-      "timestamp": "2026-07-18T13:14:47.246Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784380067941,
       "timestamp": "2026-07-18T13:07:47.941Z",
