@@ -4165,6 +4165,51 @@
       "createdAt": "2026-07-18T18:39:52.747Z",
       "updatedAt": "2026-07-18T18:39:52.747Z",
       "duration": 93
+    },
+    {
+      "id": 1784404497242,
+      "ref": "NL20260718-15-0215529",
+      "site": "NL",
+      "date": "2026-07-18",
+      "dailyN": 15,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "215529",
+      "description": "MTL Cleat BRKT 2.75-3.5 M003-PC",
+      "delivery": "410001826855",
+      "hu": [
+        "500190549"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 96,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 96,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T19:54:57.242Z",
+      "updatedAt": "2026-07-18T19:54:57.242Z",
+      "duration": 90
     }
   ],
   "ncrs": [],
