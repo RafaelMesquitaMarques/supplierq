@@ -4300,6 +4300,51 @@
       "createdAt": "2026-07-18T20:05:43.193Z",
       "updatedAt": "2026-07-18T20:05:43.193Z",
       "duration": 307
+    },
+    {
+      "id": 1784405262569,
+      "ref": "NL20260718-18-7000009620",
+      "site": "NL",
+      "date": "2026-07-18",
+      "dailyN": 18,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "7000009620",
+      "description": "WD NS W/DF/PG 26W F280/M242-PC V2",
+      "delivery": "410001826855",
+      "hu": [
+        "500190684"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-18",
+      "inspector": "",
+      "qtyReceived": 3,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-18T20:07:42.569Z",
+      "updatedAt": "2026-07-18T20:07:42.569Z",
+      "duration": 99
     }
   ],
   "ncrs": [],
