@@ -2738,6 +2738,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784380704851,
+      "timestamp": "2026-07-18T13:18:24.851Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
+    },
+    {
       "id": 1784380501133,
       "timestamp": "2026-07-18T13:15:01.133Z",
       "user": "Dominic Dotson",
@@ -2758,8 +2768,8 @@
       "details": "Session ended"
     },
     {
-      "id": 1784318353048,
-      "timestamp": "2026-07-17T19:59:13.048Z",
+      "id": 1784318358301,
+      "timestamp": "2026-07-17T19:59:18.301Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2768,8 +2778,8 @@
       "details": "Session ended"
     },
     {
-      "id": 1784318358301,
-      "timestamp": "2026-07-17T19:59:18.301Z",
+      "id": 1784318353048,
+      "timestamp": "2026-07-17T19:59:13.048Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2838,8 +2848,8 @@
       "details": "Session ended"
     },
     {
-      "id": 1784309725633,
-      "timestamp": "2026-07-17T17:35:25.633Z",
+      "id": 1784309759131,
+      "timestamp": "2026-07-17T17:35:59.131Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2848,8 +2858,8 @@
       "details": "Session ended"
     },
     {
-      "id": 1784309759131,
-      "timestamp": "2026-07-17T17:35:59.131Z",
+      "id": 1784309725633,
+      "timestamp": "2026-07-17T17:35:25.633Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
