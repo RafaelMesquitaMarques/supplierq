@@ -3282,7 +3282,7 @@
         {
           "key": "broken",
           "label": "Broken",
-          "qty": 0
+          "qty": 2
         }
       ],
       "issues": "",
@@ -3297,7 +3297,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-17T17:42:59.323Z",
-      "updatedAt": "2026-07-17T17:42:59.323Z",
+      "updatedAt": "2026-07-18T13:07:45.681Z",
       "duration": 413
     },
     {
