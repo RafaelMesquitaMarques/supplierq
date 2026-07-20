@@ -2738,8 +2738,28 @@
   ],
   "auditLog": [
     {
+      "id": 1784559698108,
+      "timestamp": "2026-07-20T15:01:38.108Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
+    },
+    {
       "id": 1784558882224,
       "timestamp": "2026-07-20T14:48:02.224Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
+    },
+    {
+      "id": 1784558318033,
+      "timestamp": "2026-07-20T14:38:38.033Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2768,10 +2788,10 @@
       "details": "Session ended"
     },
     {
-      "id": 1784558318033,
-      "timestamp": "2026-07-20T14:38:38.033Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
+      "id": 1784557703897,
+      "timestamp": "2026-07-20T14:28:23.897Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
       "action": "user_logout",
       "ref": "—",
       "site": "QS",
@@ -2782,16 +2802,6 @@
       "timestamp": "2026-07-20T14:17:11.638Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_logout",
-      "ref": "—",
-      "site": "QS",
-      "details": "Session ended"
-    },
-    {
-      "id": 1784557703897,
-      "timestamp": "2026-07-20T14:28:23.897Z",
-      "user": "Milena Correia",
-      "userEmail": "qmqualityreceiving@foliot.com",
       "action": "user_logout",
       "ref": "—",
       "site": "QS",
