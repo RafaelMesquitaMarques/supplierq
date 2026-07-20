@@ -3677,6 +3677,54 @@
       "createdAt": "2026-07-20T15:41:00.799Z",
       "updatedAt": "2026-07-20T15:41:00.799Z",
       "duration": 273
+    },
+    {
+      "id": 1784563159739,
+      "ref": "QM20260720-01-0214988",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Guangdong Hardware Industry",
+      "po": "4500089335",
+      "productNo": "214988",
+      "description": "MTL Keyboard Slides 16x2.375x3.875\" Zinc",
+      "delivery": "410001832759",
+      "hu": [
+        "500191488",
+        "500191489",
+        "500191490",
+        "500191491"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-17",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2000,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T15:59:19.739Z",
+      "updatedAt": "2026-07-20T15:59:19.739Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
