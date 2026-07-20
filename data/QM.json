@@ -4657,6 +4657,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784574564367,
+      "timestamp": "2026-07-20T19:09:24.367Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "QM20260720-01-0200546",
+      "site": "QM",
+      "details": "Fortress Industry Trade | 200546 | Decision: use-as-is",
+      "duration": 0
+    },
+    {
       "id": 1784569175359,
       "timestamp": "2026-07-20T17:39:35.359Z",
       "user": "Milena Correia",
