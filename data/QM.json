@@ -4136,6 +4136,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784551086995,
+      "timestamp": "2026-07-20T12:38:06.995Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260720-01-0200702",
+      "site": "QM",
+      "details": "Foshan Meilv Hardware Products Co. Ltd. | 200702 | Decision: approved",
+      "duration": 115
+    },
+    {
       "id": 1784547976561,
       "timestamp": "2026-07-20T11:46:16.561Z",
       "user": "Milena Correia",
