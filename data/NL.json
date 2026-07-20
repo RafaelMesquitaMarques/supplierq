@@ -3802,6 +3802,58 @@
       "createdAt": "2026-07-20T16:56:03.597Z",
       "updatedAt": "2026-07-20T16:56:03.597Z",
       "duration": 168
+    },
+    {
+      "id": 1784566903597,
+      "ref": "NL20260720-25-0215999",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 25,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090456",
+      "productNo": "215999",
+      "description": "MTL CH 2Pos WO Arms-GSA 22x24x32\"M003-ST",
+      "delivery": "410001817620",
+      "hu": [
+        "900812792",
+        "900812793",
+        "900812795",
+        "900812797",
+        "900812803",
+        "900812804",
+        "900812805",
+        "900812806"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-14",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T17:01:43.597Z",
+      "updatedAt": "2026-07-20T17:01:43.597Z",
+      "duration": 302
     }
   ],
   "ncrs": [],
