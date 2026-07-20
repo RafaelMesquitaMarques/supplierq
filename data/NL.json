@@ -4079,6 +4079,52 @@
       "createdAt": "2026-07-20T19:55:13.731Z",
       "updatedAt": "2026-07-20T19:55:13.731Z",
       "duration": 92
+    },
+    {
+      "id": 1784583955980,
+      "ref": "NL20260720-31-7000006737",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 31,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500088844",
+      "productNo": "7000006737",
+      "description": "WD Top LIB TB 96'' Box#1",
+      "delivery": "410001833944",
+      "hu": [
+        "900821019",
+        "900821020"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 25,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T21:45:55.980Z",
+      "updatedAt": "2026-07-20T21:45:55.980Z",
+      "duration": 290
     }
   ],
   "ncrs": [],
