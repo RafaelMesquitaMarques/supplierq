@@ -3351,6 +3351,51 @@
       "createdAt": "2026-07-20T16:13:26.630Z",
       "updatedAt": "2026-07-20T16:13:26.630Z",
       "duration": 236
+    },
+    {
+      "id": 1784564181804,
+      "ref": "NL20260720-15-0203516",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 15,
+      "supplier": "Amazon",
+      "po": "4500093739",
+      "productNo": "203516",
+      "description": "Screw Zinc FH Qx Nibs Notch #8x1-1/4\"",
+      "delivery": "410001834794",
+      "hu": [
+        "900820702"
+      ],
+      "country": "Taiwan",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 9000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 9000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Change supplier to OneMonroe whenever possible.",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T16:16:21.804Z",
+      "updatedAt": "2026-07-20T16:16:21.804Z",
+      "duration": 167
     }
   ],
   "ncrs": [],
