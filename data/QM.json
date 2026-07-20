@@ -3451,6 +3451,52 @@
       "createdAt": "2026-07-20T13:19:05.738Z",
       "updatedAt": "2026-07-20T13:19:05.738Z",
       "duration": 120
+    },
+    {
+      "id": 1784556227894,
+      "ref": "QM20260720-01-0209819",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "209819",
+      "description": "Footboard Bed Metal 26x54\" M003-ST",
+      "delivery": "410001828135",
+      "hu": [
+        "500190918",
+        "500190919"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 160,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 160,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T14:03:47.894Z",
+      "updatedAt": "2026-07-20T14:03:47.894Z",
+      "duration": 117
     }
   ],
   "ncrs": [],
