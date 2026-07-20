@@ -3441,6 +3441,51 @@
       "createdAt": "2026-07-20T16:17:53.757Z",
       "updatedAt": "2026-07-20T16:17:53.757Z",
       "duration": 86
+    },
+    {
+      "id": 1784564983324,
+      "ref": "NL20260720-17-0205485",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 17,
+      "supplier": "Amazon",
+      "po": "4500093739",
+      "productNo": "205485",
+      "description": "Bit Square #2 50mm",
+      "delivery": "410001834794",
+      "hu": [
+        "900820701"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 20,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Change supplier to OneMonroe whenever possible.",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T16:29:43.324Z",
+      "updatedAt": "2026-07-20T16:29:43.324Z",
+      "duration": 126
     }
   ],
   "ncrs": [],
