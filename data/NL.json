@@ -4055,6 +4055,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784559350496,
+      "timestamp": "2026-07-20T14:55:50.496Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260720-11-0201264",
+      "site": "NL",
+      "details": "McMaster-Carr (L V) | 201264 | Decision: approved",
+      "duration": 184
+    },
+    {
       "id": 1784558603877,
       "timestamp": "2026-07-20T14:43:23.877Z",
       "user": "Dominic Dotson",
