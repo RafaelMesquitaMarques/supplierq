@@ -4145,6 +4145,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784561450168,
+      "timestamp": "2026-07-20T15:30:50.168Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260720-13-0200265",
+      "site": "NL",
+      "details": "Robby Hardware | 200265 | Decision: approved",
+      "duration": 708
+    },
+    {
       "id": 1784560718894,
       "timestamp": "2026-07-20T15:18:38.894Z",
       "user": "Dominic Dotson",
