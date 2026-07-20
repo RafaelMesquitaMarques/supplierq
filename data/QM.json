@@ -4510,6 +4510,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784562062294,
+      "timestamp": "2026-07-20T15:41:02.294Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260720-01-0210267",
+      "site": "QM",
+      "details": "Right Fame LTD (Zhonggu) Hardware | 210267 | Decision: approved",
+      "duration": 273
+    },
+    {
       "id": 1784559513471,
       "timestamp": "2026-07-20T14:58:33.471Z",
       "user": "Milena Correia",
