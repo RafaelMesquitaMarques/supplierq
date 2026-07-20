@@ -3258,6 +3258,51 @@
       "createdAt": "2026-07-20T11:46:15.537Z",
       "updatedAt": "2026-07-20T11:46:15.537Z",
       "duration": 144
+    },
+    {
+      "id": 1784551085573,
+      "ref": "QM20260720-01-0200702",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Foshan Meilv Hardware Products Co. Ltd.",
+      "po": "4500089802",
+      "productNo": "200702",
+      "description": "Plate Square Coat Hook M201-SN FB",
+      "delivery": "410001832777",
+      "hu": [
+        "500191476"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2040,
+      "qtyInspected": 120,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2040,
+          "inspected": 120,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T12:38:05.573Z",
+      "updatedAt": "2026-07-20T12:38:05.573Z",
+      "duration": 115
     }
   ],
   "ncrs": [],
