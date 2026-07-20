@@ -2856,6 +2856,51 @@
       "createdAt": "2026-07-20T12:45:54.649Z",
       "updatedAt": "2026-07-20T12:45:54.649Z",
       "duration": 351
+    },
+    {
+      "id": 1784554444216,
+      "ref": "NL20260720-04-0216015",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 4,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500088969",
+      "productNo": "216015",
+      "description": "WD Frame Uph Bench 25.5\" F280",
+      "delivery": "410001828950",
+      "hu": [
+        "900818211"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-11",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 14,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 14,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T13:34:04.216Z",
+      "updatedAt": "2026-07-20T13:34:04.216Z",
+      "duration": 2409
     }
   ],
   "ncrs": [],
