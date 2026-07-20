@@ -3828,12 +3828,12 @@
       "plant": "",
       "receptionDate": "2026-07-14",
       "inspector": "Dominic Dotson",
-      "qtyReceived": 4,
+      "qtyReceived": 240,
       "qtyInspected": 1,
       "rounds": [
         {
           "round": 1,
-          "recv": 4,
+          "recv": 240,
           "inspected": 1,
           "nonConf": 0,
           "pct": 0
@@ -3852,7 +3852,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-20T17:01:43.597Z",
-      "updatedAt": "2026-07-20T17:01:43.597Z",
+      "updatedAt": "2026-07-20T17:01:58.571Z",
       "duration": 302
     }
   ],
