@@ -3401,6 +3401,56 @@
       "createdAt": "2026-07-20T13:05:20.394Z",
       "updatedAt": "2026-07-20T13:05:20.394Z",
       "duration": 79
+    },
+    {
+      "id": 1784553545738,
+      "ref": "QM20260720-01-0215049",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089773",
+      "productNo": "215049",
+      "description": "MTL Fra Storage Bench 81\" M240-PC",
+      "delivery": "410001822511",
+      "hu": [
+        "500190296",
+        "500190297",
+        "500190298",
+        "500190336",
+        "500190337",
+        "500190338"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "Milena Correia",
+      "qtyReceived": 32,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 32,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T13:19:05.738Z",
+      "updatedAt": "2026-07-20T13:19:05.738Z",
+      "duration": 120
     }
   ],
   "ncrs": [],
