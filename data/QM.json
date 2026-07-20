@@ -4375,6 +4375,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784557699801,
+      "timestamp": "2026-07-20T14:28:19.801Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QM",
+      "details": "Role: inspector | Sites: QM"
+    },
+    {
       "id": 1784556761870,
       "timestamp": "2026-07-20T14:12:41.870Z",
       "user": "Milena Correia",
