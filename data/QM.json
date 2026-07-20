@@ -3587,6 +3587,51 @@
       "createdAt": "2026-07-20T14:32:42.324Z",
       "updatedAt": "2026-07-20T14:32:42.324Z",
       "duration": 208
+    },
+    {
+      "id": 1784559512490,
+      "ref": "QM20260720-01-0201162",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088355",
+      "productNo": "201162",
+      "description": "Footboard Bed Metal 26x36\" M010-ST",
+      "delivery": "410001822832",
+      "hu": [
+        "500190178"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T14:58:32.490Z",
+      "updatedAt": "2026-07-20T14:58:32.490Z",
+      "duration": 98
     }
   ],
   "ncrs": [],
