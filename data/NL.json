@@ -3759,51 +3759,6 @@
       "duration": 181
     },
     {
-      "id": 1784566337276,
-      "ref": "NL20260720-23-0213848",
-      "site": "NL",
-      "date": "2026-07-20",
-      "dailyN": 23,
-      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
-      "po": "1500003768",
-      "productNo": "213848",
-      "description": "Butt Hinge 270° 19x19mm Black Nickel",
-      "delivery": "410001828436",
-      "hu": [
-        "801667827"
-      ],
-      "country": "Canada",
-      "plant": "",
-      "receptionDate": "2026-07-14",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 4,
-      "qtyInspected": 1,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 4,
-          "inspected": 1,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-20T16:52:17.276Z",
-      "updatedAt": "2026-07-20T16:52:17.276Z",
-      "duration": 210
-    },
-    {
       "id": 1784566563596,
       "ref": "NL20260720-24-0213848",
       "site": "NL",
@@ -4685,6 +4640,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1784566590900,
+      "timestamp": "2026-07-20T16:56:30.900Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260720-23-0213848",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 213848"
+    },
     {
       "id": 1784566579418,
       "timestamp": "2026-07-20T16:56:19.418Z",
