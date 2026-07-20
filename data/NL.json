@@ -4935,6 +4935,51 @@
       "createdAt": "2026-07-18T20:31:18.619Z",
       "updatedAt": "2026-07-18T20:31:18.619Z",
       "duration": 162
+    },
+    {
+      "id": 1784559121505,
+      "ref": "NL20260713-07-0215683",
+      "site": "NL",
+      "date": "2026-07-13",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003750",
+      "productNo": "215683",
+      "description": "MTL Cleat 33\" M003-PC",
+      "delivery": "410001826855",
+      "hu": [
+        "500190552"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-13",
+      "inspector": "",
+      "qtyReceived": 225,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 225,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T14:52:01.505Z",
+      "updatedAt": "2026-07-20T14:52:01.505Z",
+      "duration": 257
     }
   ],
   "ncrs": [],
@@ -5785,16 +5830,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784558880724,
-      "timestamp": "2026-07-20T14:48:00.724Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784558302319,
       "timestamp": "2026-07-20T14:38:22.319Z",
