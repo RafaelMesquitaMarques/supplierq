@@ -3261,6 +3261,51 @@
       "createdAt": "2026-07-20T15:18:36.301Z",
       "updatedAt": "2026-07-20T15:18:36.301Z",
       "duration": 1040
+    },
+    {
+      "id": 1784561448189,
+      "ref": "NL20260720-13-0200265",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 13,
+      "supplier": "Robby Hardware",
+      "po": "4500090886",
+      "productNo": "200265",
+      "description": "Caster Unidirectionnal 2-5/8\" Grey",
+      "delivery": "410001834380",
+      "hu": [
+        "900820687"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 3000,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3000,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T15:30:48.189Z",
+      "updatedAt": "2026-07-20T15:30:48.189Z",
+      "duration": 708
     }
   ],
   "ncrs": [],
