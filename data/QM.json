@@ -3771,6 +3771,59 @@
       "createdAt": "2026-07-20T16:57:13.761Z",
       "updatedAt": "2026-07-20T16:57:13.761Z",
       "duration": 272
+    },
+    {
+      "id": 1784569174357,
+      "ref": "QM20260720-01-0200546",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Fortress Industry Trade",
+      "po": "4500090235",
+      "productNo": "200546",
+      "description": "PL Leg Sofa 100mm Black SLG-122",
+      "delivery": "410001832770",
+      "hu": [
+        "500191481",
+        "500191482",
+        "500191483"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Milena Correia",
+      "qtyReceived": 10000,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10000,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 100
+        }
+      ],
+      "issues": "Inner depth should be 30mm not 21.61mm",
+      "notes": "",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 99,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T17:39:34.358Z",
+      "updatedAt": "2026-07-20T17:39:34.358Z",
+      "duration": 946
     }
   ],
   "ncrs": [],
