@@ -3210,6 +3210,54 @@
       "createdAt": "2026-07-17T19:19:51.462Z",
       "updatedAt": "2026-07-17T19:19:51.462Z",
       "duration": 202
+    },
+    {
+      "id": 1784547975537,
+      "ref": "QM20260720-01-7000000024",
+      "site": "QM",
+      "date": "2026-07-20",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090141",
+      "productNo": "7000000024",
+      "description": "Freight",
+      "delivery": "410001828161",
+      "hu": [
+        "500191055",
+        "500191057",
+        "500191065",
+        "500191072"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1200,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1200,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-20T11:46:15.537Z",
+      "updatedAt": "2026-07-20T11:46:15.537Z",
+      "duration": 144
     }
   ],
   "ncrs": [],
