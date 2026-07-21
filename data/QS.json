@@ -3086,6 +3086,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784639437797,
+      "timestamp": "2026-07-21T13:10:37.797Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260721-01-7000009096",
+      "site": "QS",
+      "details": "EMEIER INTERNATIONAL PTE. LTD | 7000009096 | Decision: approved",
+      "duration": 103
+    },
+    {
       "id": 1784639277365,
       "timestamp": "2026-07-21T13:07:57.365Z",
       "user": "Natalya Robles",
