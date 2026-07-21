@@ -3160,6 +3160,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784641320983,
+      "timestamp": "2026-07-21T13:42:00.983Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260721-01-0214696",
+      "site": "QS",
+      "details": "Foamextra VPC Group Inc | 214696 | Decision: rejected",
+      "duration": 185
+    },
+    {
       "id": 1784639437797,
       "timestamp": "2026-07-21T13:10:37.797Z",
       "user": "Natalya Robles",
