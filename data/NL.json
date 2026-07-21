@@ -6872,6 +6872,52 @@
       "createdAt": "2026-07-21T15:39:02.827Z",
       "updatedAt": "2026-07-21T15:45:30.056Z",
       "duration": 54
+    },
+    {
+      "id": 1784654078309,
+      "ref": "NL20260720-32-0212511",
+      "site": "NL",
+      "date": "2026-07-20",
+      "dailyN": 32,
+      "supplier": "Amazon",
+      "po": "4500093602",
+      "productNo": "212511",
+      "description": "Vinyl Verona 6 CAL 117-FRCF",
+      "delivery": "410001834775",
+      "hu": [
+        "900821058",
+        "900821057"
+      ],
+      "country": "Turkey",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "",
+      "qtyReceived": 54,
+      "qtyInspected": 53,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 54,
+          "inspected": 53,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-21T17:14:38.310Z",
+      "updatedAt": "2026-07-21T17:14:38.310Z",
+      "duration": 225
     }
   ],
   "ncrs": [],
