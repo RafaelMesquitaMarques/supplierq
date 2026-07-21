@@ -6314,6 +6314,51 @@
       "createdAt": "2026-07-20T15:22:04.203Z",
       "updatedAt": "2026-07-20T15:22:04.203Z",
       "duration": 293
+    },
+    {
+      "id": 1784645488950,
+      "ref": "NL20260701-02-0215473",
+      "site": "NL",
+      "date": "2026-07-01",
+      "dailyN": 2,
+      "supplier": "Symmetry Resources",
+      "po": "4500090753",
+      "productNo": "215473",
+      "description": "Fabric Schofield Gunmetal CAL117 FRCF",
+      "delivery": "410001821313",
+      "hu": [
+        "900814592"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-06-26",
+      "inspector": "",
+      "qtyReceived": 54,
+      "qtyInspected": 54,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 54,
+          "inspected": 54,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-21T14:51:28.950Z",
+      "updatedAt": "2026-07-21T14:51:28.950Z",
+      "duration": 279
     }
   ],
   "ncrs": [],
@@ -7164,16 +7209,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784645299778,
-      "timestamp": "2026-07-21T14:48:19.778Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784641059386,
       "timestamp": "2026-07-21T13:37:39.386Z",
