@@ -6663,7 +6663,12 @@
       "productNo": "215484",
       "description": "Vinyl Zenith Oxford Blue CAL117 FRLC",
       "delivery": "410001819425",
-      "hu": [],
+      "hu": [
+        "\"900815921",
+        "900815917",
+        "900815916",
+        "900815915\""
+      ],
       "country": "USA",
       "plant": "",
       "receptionDate": "2026-06-23",
@@ -6692,7 +6697,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-21T15:35:15.772Z",
-      "updatedAt": "2026-07-21T15:35:15.772Z",
+      "updatedAt": "2026-07-21T15:53:34.528Z",
       "duration": 88
     },
     {
