@@ -6792,7 +6792,14 @@
       "productNo": "214512",
       "description": "Fabric Heritage Navy CAL 117 FRLC",
       "delivery": "410001819425",
-      "hu": [],
+      "hu": [
+        "900814633",
+        "900814632",
+        "900814631",
+        "900813784",
+        "900813783",
+        "900813489"
+      ],
       "country": "China",
       "plant": "",
       "receptionDate": "2026-06-23",
@@ -6821,7 +6828,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-21T15:39:02.827Z",
-      "updatedAt": "2026-07-21T15:39:02.827Z",
+      "updatedAt": "2026-07-21T15:45:30.056Z",
       "duration": 54
     }
   ],
