@@ -3031,9 +3031,25 @@
       "code": "",
       "country": "",
       "status": "active"
+    },
+    {
+      "name": "EMEIER INTERNATIONAL PTE. LTD",
+      "code": "",
+      "country": "",
+      "status": "active"
     }
   ],
   "auditLog": [
+    {
+      "id": 1784636564964,
+      "timestamp": "2026-07-21T12:22:44.964Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: inspector | Sites: QS"
+    },
     {
       "id": 1784636260679,
       "timestamp": "2026-07-21T12:17:40.679Z",
