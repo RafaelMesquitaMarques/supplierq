@@ -6620,7 +6620,9 @@
       "productNo": "214861",
       "description": "Vinyl Zenith Agate CAL 117 FRLC",
       "delivery": "410001819425",
-      "hu": [],
+      "hu": [
+        "900813448"
+      ],
       "country": "Canada",
       "plant": "",
       "receptionDate": "2026-06-23",
@@ -6649,7 +6651,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-21T15:33:37.028Z",
-      "updatedAt": "2026-07-21T15:33:37.028Z",
+      "updatedAt": "2026-07-21T15:53:58.680Z",
       "duration": 107
     },
     {
