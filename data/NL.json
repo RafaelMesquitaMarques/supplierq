@@ -4174,6 +4174,54 @@
       "createdAt": "2026-07-21T12:31:05.501Z",
       "updatedAt": "2026-07-21T12:31:05.501Z",
       "duration": 1729
+    },
+    {
+      "id": 1784639069549,
+      "ref": "NL20260721-02-0211897",
+      "site": "NL",
+      "date": "2026-07-21",
+      "dailyN": 2,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090364",
+      "productNo": "211897",
+      "description": "MTL Fra Lugg Bench 24x19'' M240-PC",
+      "delivery": "410001833945",
+      "hu": [
+        "900821015",
+        "900821016",
+        "900821017",
+        "900821018"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 48,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 48,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-21T13:04:29.549Z",
+      "updatedAt": "2026-07-21T13:04:29.549Z",
+      "duration": 156
     }
   ],
   "ncrs": [],
