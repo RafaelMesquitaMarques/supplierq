@@ -2178,6 +2178,51 @@
       "createdAt": "2026-07-16T21:24:59.920Z",
       "updatedAt": "2026-07-16T21:24:59.920Z",
       "duration": 30
+    },
+    {
+      "id": 1784639411641,
+      "ref": "QS20260721-01-7000009096",
+      "site": "QS",
+      "date": "2026-07-21",
+      "dailyN": 1,
+      "supplier": "EMEIER INTERNATIONAL PTE. LTD",
+      "po": "4500088581",
+      "productNo": "7000009096",
+      "description": "Uph Task Chair Xander-AG Gray 22.5\" V2",
+      "delivery": "410001831808",
+      "hu": [
+        "500190444"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 63,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 63,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-21T13:10:11.642Z",
+      "updatedAt": "2026-07-21T13:10:11.642Z",
+      "duration": 103
     }
   ],
   "ncrs": [],
@@ -3040,6 +3085,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1784639277365,
+      "timestamp": "2026-07-21T13:07:57.365Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "EMEIER INTERNATIONAL PTE. LTD",
+      "site": "QS",
+      "details": "EMEIER INTERNATIONAL PTE. LTD | —"
+    },
     {
       "id": 1784636564964,
       "timestamp": "2026-07-21T12:22:44.964Z",
