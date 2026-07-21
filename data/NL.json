@@ -7210,6 +7210,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784645492652,
+      "timestamp": "2026-07-21T14:51:32.652Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260701-02-0215473",
+      "site": "NL",
+      "details": "Symmetry Resources | 215473 | Decision: approved",
+      "duration": 279
+    },
+    {
       "id": 1784641059386,
       "timestamp": "2026-07-21T13:37:39.386Z",
       "user": "Dominic Dotson",
