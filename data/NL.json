@@ -4358,6 +4358,51 @@
       "createdAt": "2026-07-21T19:30:34.041Z",
       "updatedAt": "2026-07-21T19:30:34.041Z",
       "duration": 96
+    },
+    {
+      "id": 1784662344112,
+      "ref": "NL20260721-06-7000007456",
+      "site": "NL",
+      "date": "2026-07-21",
+      "dailyN": 6,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500088844",
+      "productNo": "7000007456",
+      "description": "WD Leg for LIB TB F260 Box#3",
+      "delivery": "410001833945",
+      "hu": [
+        "900821021"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 17,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 17,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-21T19:32:24.112Z",
+      "updatedAt": "2026-07-21T19:32:24.112Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
