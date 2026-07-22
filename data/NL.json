@@ -4130,7 +4130,7 @@
       "id": 1784637065501,
       "ref": "NL20260721-01-0211895",
       "site": "NL",
-      "date": "2026-07-21",
+      "date": "2026-07-22",
       "dailyN": 1,
       "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
       "po": "4500090364",
@@ -4146,7 +4146,7 @@
       ],
       "country": "China",
       "plant": "",
-      "receptionDate": "2026-07-20",
+      "receptionDate": "2026-07-21",
       "inspector": "Dominic Dotson",
       "qtyReceived": 100,
       "qtyInspected": 2,
@@ -4172,7 +4172,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-21T12:31:05.501Z",
-      "updatedAt": "2026-07-21T12:31:05.501Z",
+      "updatedAt": "2026-07-22T16:34:32.511Z",
       "duration": 1729
     },
     {
