@@ -7797,6 +7797,53 @@
       "createdAt": "2026-07-22T18:34:30.225Z",
       "updatedAt": "2026-07-22T18:34:30.225Z",
       "duration": 67
+    },
+    {
+      "id": 1784745523497,
+      "ref": "NL20260722-15-0212862",
+      "site": "NL",
+      "date": "2026-07-22",
+      "dailyN": 15,
+      "supplier": "Amazon",
+      "po": "4500093299",
+      "productNo": "212862",
+      "description": "Fabric Vanasco Midnight CAL117 FRCF",
+      "delivery": "410001829247",
+      "hu": [
+        "900821745",
+        "900821744",
+        "900821743"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-17",
+      "inspector": "",
+      "qtyReceived": 60,
+      "qtyInspected": 57,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60,
+          "inspected": 57,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T18:38:43.497Z",
+      "updatedAt": "2026-07-22T18:38:43.497Z",
+      "duration": 162
     }
   ],
   "ncrs": [],
