@@ -2261,7 +2261,7 @@
         }
       ],
       "issues": "We received the wrong product.",
-      "notes": "",
+      "notes": "We did a mat to mat with the good product number (201919)",
       "decision": "rejected",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
@@ -2295,7 +2295,7 @@
       ],
       "drawingNotes": "",
       "createdAt": "2026-07-21T13:41:42.964Z",
-      "updatedAt": "2026-07-21T13:41:42.964Z",
+      "updatedAt": "2026-07-22T15:15:47.577Z",
       "duration": 185
     },
     {
