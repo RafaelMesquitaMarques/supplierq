@@ -3918,6 +3918,55 @@
       "createdAt": "2026-07-22T13:00:48.645Z",
       "updatedAt": "2026-07-22T13:00:48.645Z",
       "duration": 120
+    },
+    {
+      "id": 1784735026988,
+      "ref": "QM20260722-01-0200626",
+      "site": "QM",
+      "date": "2026-07-22",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089804",
+      "productNo": "200626",
+      "description": "MTL Frame Desk LR 23.25x2x29\" M010-ST",
+      "delivery": "410001822512",
+      "hu": [
+        "500190332",
+        "500190334",
+        "500190335",
+        "500190400",
+        "500190401"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-02",
+      "inspector": "Milena Correia",
+      "qtyReceived": 498,
+      "qtyInspected": 40,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 498,
+          "inspected": 40,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T15:43:46.988Z",
+      "updatedAt": "2026-07-22T15:43:46.988Z",
+      "duration": 762
     }
   ],
   "ncrs": [],
