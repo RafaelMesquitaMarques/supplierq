@@ -7327,6 +7327,52 @@
       "createdAt": "2026-07-21T17:14:38.310Z",
       "updatedAt": "2026-07-21T17:14:38.310Z",
       "duration": 225
+    },
+    {
+      "id": 1784728518365,
+      "ref": "NL20260707-09-0216171",
+      "site": "NL",
+      "date": "2026-07-07",
+      "dailyN": 9,
+      "supplier": "Amazon",
+      "po": "4500090803",
+      "productNo": "216171",
+      "description": "Fabric Momentum Hitch Nori CAL117-FRLC",
+      "delivery": "410001824454",
+      "hu": [
+        "900816011",
+        "900816010"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-02",
+      "inspector": "",
+      "qtyReceived": 50,
+      "qtyInspected": 49,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 50,
+          "inspected": 49,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T13:55:18.365Z",
+      "updatedAt": "2026-07-22T13:55:18.365Z",
+      "duration": 278
     }
   ],
   "ncrs": [],
@@ -8177,16 +8223,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1784728251847,
-      "timestamp": "2026-07-22T13:50:51.847Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1784728047608,
       "timestamp": "2026-07-22T13:47:27.608Z",
