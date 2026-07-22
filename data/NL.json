@@ -4364,7 +4364,7 @@
       "ref": "NL20260721-06-7000007456",
       "site": "NL",
       "date": "2026-07-21",
-      "dailyN": 8,
+      "dailyN": 6,
       "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
       "po": "4500088844",
       "productNo": "7000007456",
@@ -4401,7 +4401,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-21T19:32:24.112Z",
-      "updatedAt": "2026-07-22T17:32:42.550Z",
+      "updatedAt": "2026-07-22T17:37:13.870Z",
       "duration": 107
     },
     {
