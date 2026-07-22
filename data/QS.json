@@ -3290,6 +3290,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784733319123,
+      "timestamp": "2026-07-22T15:15:19.123Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "QS20260721-02-0216261",
+      "site": "QS",
+      "details": "9392-4116 Québec Inc  | 216261 | Decision: use-as-is",
+      "duration": 0
+    },
+    {
       "id": 1784733299142,
       "timestamp": "2026-07-22T15:14:59.142Z",
       "user": "Natalya Robles",
