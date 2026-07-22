@@ -8858,6 +8858,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784756675531,
+      "timestamp": "2026-07-22T21:44:35.531Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260722-29-0201243",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 201243 | Decision: approved",
+      "duration": 301
+    },
+    {
       "id": 1784756349707,
       "timestamp": "2026-07-22T21:39:09.707Z",
       "user": "Dominic Dotson",
