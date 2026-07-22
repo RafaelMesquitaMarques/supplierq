@@ -8007,6 +8007,51 @@
       "createdAt": "2026-07-22T21:44:32.146Z",
       "updatedAt": "2026-07-22T21:44:32.146Z",
       "duration": 301
+    },
+    {
+      "id": 1784756843281,
+      "ref": "NL20260722-30-0202865",
+      "site": "NL",
+      "date": "2026-07-22",
+      "dailyN": 30,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "1500003745",
+      "productNo": "202865",
+      "description": "Bolt Zinc TH Comb H10 8-32x3/4\"",
+      "delivery": "410001832993",
+      "hu": [
+        "801670815"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 400,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 400,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T21:47:23.281Z",
+      "updatedAt": "2026-07-22T21:47:23.281Z",
+      "duration": 150
     }
   ],
   "ncrs": [],
