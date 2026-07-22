@@ -7373,6 +7373,51 @@
       "createdAt": "2026-07-22T13:55:18.365Z",
       "updatedAt": "2026-07-22T13:55:18.365Z",
       "duration": 278
+    },
+    {
+      "id": 1784730471741,
+      "ref": "NL20260708-06-0201870",
+      "site": "NL",
+      "date": "2026-07-08",
+      "dailyN": 6,
+      "supplier": "Amazon",
+      "po": "4500092437",
+      "productNo": "201870",
+      "description": "Glide Adj 1-3/8x5/16-18x1-12\" Nickel",
+      "delivery": "410001827059",
+      "hu": [
+        "900816964"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-08",
+      "inspector": "",
+      "qtyReceived": 300,
+      "qtyInspected": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 15,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T14:27:51.741Z",
+      "updatedAt": "2026-07-22T14:27:51.741Z",
+      "duration": 1917
     }
   ],
   "ncrs": [],
