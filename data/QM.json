@@ -3873,6 +3873,51 @@
       "createdAt": "2026-07-22T11:45:41.194Z",
       "updatedAt": "2026-07-22T11:45:41.194Z",
       "duration": 158
+    },
+    {
+      "id": 1784725248645,
+      "ref": "QM20260722-01-0209006",
+      "site": "QM",
+      "date": "2026-07-22",
+      "dailyN": 1,
+      "supplier": "Foshan Meilv Hardware Products Co. Ltd.",
+      "po": "4500089802",
+      "productNo": "209006",
+      "description": "MTL Pull PG1-135 4x1.625x0.75'' Black",
+      "delivery": "410001832777",
+      "hu": [
+        "500191475"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2000,
+      "qtyInspected": 200,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 200,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T13:00:48.645Z",
+      "updatedAt": "2026-07-22T13:00:48.645Z",
+      "duration": 120
     }
   ],
   "ncrs": [],
