@@ -4583,6 +4583,54 @@
       "createdAt": "2026-07-22T12:50:52.642Z",
       "updatedAt": "2026-07-22T12:50:52.642Z",
       "duration": 358
+    },
+    {
+      "id": 1784726557340,
+      "ref": "NL20260721-03-0201675",
+      "site": "NL",
+      "date": "2026-07-21",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "201675",
+      "description": "Base TB Cocktail/Coffee 33.25'' M010-ST",
+      "delivery": "410001830126",
+      "hu": [
+        "500190167",
+        "500190281",
+        "500190965",
+        "500190966"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 52,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 52,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T13:22:37.340Z",
+      "updatedAt": "2026-07-22T13:22:37.340Z",
+      "duration": 1046
     }
   ],
   "ncrs": [],
