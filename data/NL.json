@@ -4946,6 +4946,51 @@
       "createdAt": "2026-07-22T15:29:11.720Z",
       "updatedAt": "2026-07-22T15:29:11.720Z",
       "duration": 118
+    },
+    {
+      "id": 1784734806193,
+      "ref": "NL20260721-11-0209694",
+      "site": "NL",
+      "date": "2026-07-21",
+      "dailyN": 11,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "209694",
+      "description": "Plastic Retainer Clip 24.5x12x45mm White",
+      "delivery": "410001830126",
+      "hu": [
+        "500191115"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4800,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4800,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T15:40:06.193Z",
+      "updatedAt": "2026-07-22T15:40:06.193Z",
+      "duration": 518
     }
   ],
   "ncrs": [],
