@@ -3967,6 +3967,51 @@
       "createdAt": "2026-07-22T15:43:46.988Z",
       "updatedAt": "2026-07-22T15:43:46.988Z",
       "duration": 762
+    },
+    {
+      "id": 1784739772705,
+      "ref": "QM20260722-01-0202963",
+      "site": "QM",
+      "date": "2026-07-22",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088375",
+      "productNo": "202963",
+      "description": "MTL Fra DK LR 23.75\" W/O holes M003-ST",
+      "delivery": "410001828159",
+      "hu": [
+        "500191081"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-22T17:02:52.705Z",
+      "updatedAt": "2026-07-22T17:02:52.705Z",
+      "duration": 242
     }
   ],
   "ncrs": [],
