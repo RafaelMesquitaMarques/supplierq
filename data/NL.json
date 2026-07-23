@@ -6056,6 +6056,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784817431510,
+      "timestamp": "2026-07-23T14:37:11.510Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260709-10-0209085",
+      "site": "NL",
+      "details": "Hu Hua Metal Products CO. Ltd | 209085 | Decision: approved",
+      "duration": 413
+    },
+    {
       "id": 1784816996464,
       "timestamp": "2026-07-23T14:29:56.464Z",
       "user": "Dominic Dotson",
