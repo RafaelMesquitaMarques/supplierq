@@ -8547,6 +8547,51 @@
       "createdAt": "2026-07-23T12:28:44.617Z",
       "updatedAt": "2026-07-23T12:28:44.617Z",
       "duration": 178
+    },
+    {
+      "id": 1784810041784,
+      "ref": "NL20260723-03-7000001120",
+      "site": "NL",
+      "date": "2026-07-23",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "7000001120",
+      "description": "Strainer Stainless/SS/ADA Sink H2",
+      "delivery": "410001830126",
+      "hu": [
+        "500190988"
+      ],
+      "country": "Malaysia",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 21,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 21,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-23T12:34:01.784Z",
+      "updatedAt": "2026-07-23T12:34:01.784Z",
+      "duration": 239
     }
   ],
   "ncrs": [],
