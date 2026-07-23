@@ -8863,6 +8863,51 @@
       "createdAt": "2026-07-23T19:42:53.590Z",
       "updatedAt": "2026-07-23T19:42:53.590Z",
       "duration": 233
+    },
+    {
+      "id": 1784836801163,
+      "ref": "NL20260723-08-0200656",
+      "site": "NL",
+      "date": "2026-07-23",
+      "dailyN": 8,
+      "supplier": "Foshan Meilv Hardware Products Co. Ltd.",
+      "po": "4500090883",
+      "productNo": "200656",
+      "description": "MTL Pull PG1-113 174mm M201-SN",
+      "delivery": "410001837270",
+      "hu": [
+        "900821791"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-22",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2000,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-23T20:00:01.163Z",
+      "updatedAt": "2026-07-23T20:00:01.163Z",
+      "duration": 907
     }
   ],
   "ncrs": [],
