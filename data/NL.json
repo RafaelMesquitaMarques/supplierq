@@ -5171,6 +5171,52 @@
       "createdAt": "2026-07-23T14:28:29.660Z",
       "updatedAt": "2026-07-23T14:28:29.660Z",
       "duration": 649
+    },
+    {
+      "id": 1784817430148,
+      "ref": "NL20260709-10-0209085",
+      "site": "NL",
+      "date": "2026-07-09",
+      "dailyN": 10,
+      "supplier": "Hu Hua Metal Products CO. Ltd",
+      "po": "4500091794",
+      "productNo": "209085",
+      "description": "Slide CR WO/PVC Dowels 14\" Black",
+      "delivery": "410001827860",
+      "hu": [
+        "900817174",
+        "900817175"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 2000,
+      "qtyInspected": 20,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 20,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-23T14:37:10.148Z",
+      "updatedAt": "2026-07-23T14:37:10.148Z",
+      "duration": 413
     }
   ],
   "ncrs": [],
