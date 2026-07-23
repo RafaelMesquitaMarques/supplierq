@@ -9759,6 +9759,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784836803638,
+      "timestamp": "2026-07-23T20:00:03.638Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260723-08-0200656",
+      "site": "NL",
+      "details": "Foshan Meilv Hardware Products Co. Ltd. | 200656 | Decision: approved",
+      "duration": 907
+    },
+    {
       "id": 1784835776131,
       "timestamp": "2026-07-23T19:42:56.131Z",
       "user": "Dominic Dotson",
