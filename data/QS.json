@@ -2738,8 +2738,8 @@
   ],
   "auditLog": [
     {
-      "id": 1784816134306,
-      "timestamp": "2026-07-23T14:15:34.306Z",
+      "id": 1784816170281,
+      "timestamp": "2026-07-23T14:16:10.281Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
@@ -2748,8 +2748,8 @@
       "details": "Session ended"
     },
     {
-      "id": 1784816170281,
-      "timestamp": "2026-07-23T14:16:10.281Z",
+      "id": 1784816134306,
+      "timestamp": "2026-07-23T14:15:34.306Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
