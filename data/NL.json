@@ -8818,6 +8818,51 @@
       "createdAt": "2026-07-23T19:25:21.425Z",
       "updatedAt": "2026-07-23T19:25:21.425Z",
       "duration": 271
+    },
+    {
+      "id": 1784835773590,
+      "ref": "NL20260723-07-0212376",
+      "site": "NL",
+      "date": "2026-07-23",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "212376",
+      "description": "Mtl Pull Dresser PG1-141 5.37 M210-PC",
+      "delivery": "410001830126",
+      "hu": [
+        "500191035"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-22",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 400,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 400,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-23T19:42:53.590Z",
+      "updatedAt": "2026-07-23T19:42:53.590Z",
+      "duration": 233
     }
   ],
   "ncrs": [],
