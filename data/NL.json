@@ -8953,6 +8953,51 @@
       "createdAt": "2026-07-24T12:21:28.399Z",
       "updatedAt": "2026-07-24T12:21:28.399Z",
       "duration": 504
+    },
+    {
+      "id": 1784895982853,
+      "ref": "NL20260724-02-0212960",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "212960",
+      "description": "Hinge Inset 105° w Spring w/o dowel CN",
+      "delivery": "410001830126",
+      "hu": [
+        "500191009"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1400,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1400,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T12:26:22.853Z",
+      "updatedAt": "2026-07-24T12:26:22.853Z",
+      "duration": 286
     }
   ],
   "ncrs": [],
