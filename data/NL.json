@@ -6147,6 +6147,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784923985736,
+      "timestamp": "2026-07-24T20:13:05.736Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260710-04-7000005514",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 7000005514 | Decision: approved",
+      "duration": 326
+    },
+    {
       "id": 1784923634838,
       "timestamp": "2026-07-24T20:07:14.838Z",
       "user": "Dominic Dotson",
