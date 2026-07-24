@@ -9043,6 +9043,51 @@
       "createdAt": "2026-07-24T12:32:12.901Z",
       "updatedAt": "2026-07-24T12:32:12.901Z",
       "duration": 345
+    },
+    {
+      "id": 1784899991266,
+      "ref": "NL20260724-04-0207004",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "207004",
+      "description": "MTL Leg SQ W/Leveler 28-15/16\" M010-ST",
+      "delivery": "410001830126 ",
+      "hu": [
+        "500191005"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T13:33:11.266Z",
+      "updatedAt": "2026-07-24T13:33:11.266Z",
+      "duration": 157
     }
   ],
   "ncrs": [],
