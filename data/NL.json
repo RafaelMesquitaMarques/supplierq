@@ -5262,6 +5262,52 @@
       "createdAt": "2026-07-24T20:07:13.561Z",
       "updatedAt": "2026-07-24T20:07:13.561Z",
       "duration": 2209
+    },
+    {
+      "id": 1784923984288,
+      "ref": "NL20260710-04-7000005514",
+      "site": "NL",
+      "date": "2026-07-10",
+      "dailyN": 4,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500088729",
+      "productNo": "7000005514",
+      "description": "WD Nesting TB KD(kit of 2)42x36.37\" F270",
+      "delivery": "410001827840",
+      "hu": [
+        "900817365",
+        "900817366"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-09",
+      "inspector": "",
+      "qtyReceived": 19,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 19,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T20:13:04.288Z",
+      "updatedAt": "2026-07-24T20:13:04.288Z",
+      "duration": 326
     }
   ],
   "ncrs": [],
