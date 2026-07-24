@@ -5217,6 +5217,51 @@
       "createdAt": "2026-07-23T14:37:10.148Z",
       "updatedAt": "2026-07-23T14:37:10.148Z",
       "duration": 413
+    },
+    {
+      "id": 1784923633561,
+      "ref": "NL20260702-03-0216145",
+      "site": "NL",
+      "date": "2026-07-02",
+      "dailyN": 3,
+      "supplier": "Amazon",
+      "po": "4500092849",
+      "productNo": "216145",
+      "description": "Wire Management Self-Adh 1.5\" Clear",
+      "delivery": "410001824059",
+      "hu": [
+        "900815795"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-01",
+      "inspector": "",
+      "qtyReceived": 300,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T20:07:13.561Z",
+      "updatedAt": "2026-07-24T20:07:13.561Z",
+      "duration": 2209
     }
   ],
   "ncrs": [],
