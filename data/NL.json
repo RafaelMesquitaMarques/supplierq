@@ -9178,6 +9178,51 @@
       "createdAt": "2026-07-24T13:43:23.478Z",
       "updatedAt": "2026-07-24T13:43:23.478Z",
       "duration": 216
+    },
+    {
+      "id": 1784910386140,
+      "ref": "NL20260724-07-0201876",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 7,
+      "supplier": "Fastenal",
+      "po": "4500093742",
+      "productNo": "201876",
+      "description": "Screw FH Qx Sharp Point #8x3\"",
+      "delivery": "410001838321",
+      "hu": [
+        "900822503"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-23",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 3000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T16:26:26.140Z",
+      "updatedAt": "2026-07-24T16:26:26.140Z",
+      "duration": 333
     }
   ],
   "ncrs": [],
