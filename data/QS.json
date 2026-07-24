@@ -2818,16 +2818,6 @@
       "details": "Session ended"
     },
     {
-      "id": 1784817840722,
-      "timestamp": "2026-07-23T14:44:00.722Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_logout",
-      "ref": "—",
-      "site": "QS",
-      "details": "Session ended"
-    },
-    {
       "id": 1784818242153,
       "timestamp": "2026-07-23T14:50:42.153Z",
       "user": "Dominic Dotson",
@@ -2860,6 +2850,16 @@
     {
       "id": 1784818132681,
       "timestamp": "2026-07-23T14:48:52.681Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_logout",
+      "ref": "—",
+      "site": "QS",
+      "details": "Session ended"
+    },
+    {
+      "id": 1784817840722,
+      "timestamp": "2026-07-23T14:44:00.722Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_logout",
