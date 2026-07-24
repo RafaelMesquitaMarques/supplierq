@@ -4109,6 +4109,57 @@
       "createdAt": "2026-07-24T11:21:19.682Z",
       "updatedAt": "2026-07-24T11:21:19.682Z",
       "duration": 107
+    },
+    {
+      "id": 1784903739765,
+      "ref": "QM20260724-01-0211889",
+      "site": "QM",
+      "date": "2026-07-24",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090365",
+      "productNo": "211889",
+      "description": "MTL Fra King HB 82'' M237-PC",
+      "delivery": "410001830835",
+      "hu": [
+        "500191436",
+        "500191437",
+        "500191465",
+        "500191466",
+        "500191467",
+        "500191469",
+        "500191474"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 150,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 150,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Could only inspect 2, no one to help",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T14:35:39.765Z",
+      "updatedAt": "2026-07-24T14:35:39.765Z",
+      "duration": 154
     }
   ],
   "ncrs": [],
