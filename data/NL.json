@@ -9223,6 +9223,58 @@
       "createdAt": "2026-07-24T16:26:26.140Z",
       "updatedAt": "2026-07-24T16:26:26.140Z",
       "duration": 333
+    },
+    {
+      "id": 1784914047502,
+      "ref": "NL20260724-08-7000001265",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 8,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090906",
+      "productNo": "7000001265",
+      "description": "WD HB Adj 38-9/16x2.5x60\" F165",
+      "delivery": "410001838036",
+      "hu": [
+        "900822180",
+        "900822181",
+        "900822183",
+        "900822184",
+        "900822185",
+        "900822186",
+        "900822187",
+        "900822188"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-23",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 400,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 400,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-24T17:27:27.502Z",
+      "updatedAt": "2026-07-24T17:27:27.502Z",
+      "duration": 474
     }
   ],
   "ncrs": [],
