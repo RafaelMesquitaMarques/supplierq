@@ -9922,51 +9922,6 @@
       "createdAt": "2026-07-25T13:32:34.444Z",
       "updatedAt": "2026-07-25T13:32:34.444Z",
       "duration": 167
-    },
-    {
-      "id": 1784987098880,
-      "ref": "NL20260724-02-7000009802",
-      "site": "NL",
-      "date": "2026-07-24",
-      "dailyN": 2,
-      "supplier": "Fushan Furniture Co Ltd",
-      "po": "4500089799",
-      "productNo": "7000009802",
-      "description": "MTL Lara Chair W/Uph Grey M010-ST",
-      "delivery": "410001832691",
-      "hu": [
-        "900819687"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-07-16",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 26,
-      "qtyInspected": 2,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 26,
-          "inspected": 2,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "Unit had no reference document.",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-25T13:44:58.880Z",
-      "updatedAt": "2026-07-25T13:44:58.880Z",
-      "duration": 311
     }
   ],
   "ncrs": [],
