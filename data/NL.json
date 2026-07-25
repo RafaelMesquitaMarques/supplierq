@@ -9560,6 +9560,51 @@
       "createdAt": "2026-07-25T12:03:48.381Z",
       "updatedAt": "2026-07-25T12:03:48.381Z",
       "duration": 297
+    },
+    {
+      "id": 1784981131446,
+      "ref": "NL20260724-13-7000007157",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 13,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "7000007157",
+      "description": "MTL Chair Aspen W/UPH Seat Black M003-PC",
+      "delivery": "410001830126",
+      "hu": [
+        "500191006"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-22",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 24,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 24,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T12:05:31.446Z",
+      "updatedAt": "2026-07-25T12:05:31.446Z",
+      "duration": 98
     }
   ],
   "ncrs": [],
