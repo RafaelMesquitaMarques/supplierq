@@ -9967,6 +9967,56 @@
       "createdAt": "2026-07-25T15:06:32.855Z",
       "updatedAt": "2026-07-25T15:06:32.855Z",
       "duration": 188
+    },
+    {
+      "id": 1784992170687,
+      "ref": "NL20260725-05-7000006999",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 5,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090880",
+      "productNo": "7000006999",
+      "description": "MTL Leg (kit of 4) w caster M248-PC",
+      "delivery": "410001839371",
+      "hu": [
+        "900822919",
+        "900822920",
+        "900822921",
+        "900822922",
+        "900822923",
+        "900822924"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 500,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 500,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T15:09:30.687Z",
+      "updatedAt": "2026-07-25T15:09:30.687Z",
+      "duration": 162
     }
   ],
   "ncrs": [],
