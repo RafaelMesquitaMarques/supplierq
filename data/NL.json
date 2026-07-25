@@ -10062,6 +10062,51 @@
       "createdAt": "2026-07-25T15:12:35.863Z",
       "updatedAt": "2026-07-25T15:12:35.863Z",
       "duration": 179
+    },
+    {
+      "id": 1784992455998,
+      "ref": "NL20260725-07-7000006998",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 7,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090880",
+      "productNo": "7000006998",
+      "description": "MTL Leg (kit of 4) TB 29'' M003-PCM",
+      "delivery": "410001839371",
+      "hu": [
+        "900822912"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 50,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 50,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T15:14:15.998Z",
+      "updatedAt": "2026-07-25T15:14:15.998Z",
+      "duration": 86
     }
   ],
   "ncrs": [],
