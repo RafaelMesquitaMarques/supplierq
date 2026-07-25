@@ -10274,6 +10274,51 @@
       "createdAt": "2026-07-25T17:28:09.176Z",
       "updatedAt": "2026-07-25T17:28:09.176Z",
       "duration": 1943
+    },
+    {
+      "id": 1785000600878,
+      "ref": "NL20260725-10-0215045",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 10,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "215045",
+      "description": "MTL Fra VNTY Base ADA LS 44.625 M240-PC",
+      "delivery": "410001830126",
+      "hu": [
+        "500191039"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "",
+      "qtyReceived": 5,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T17:30:00.878Z",
+      "updatedAt": "2026-07-25T17:30:00.878Z",
+      "duration": 95
     }
   ],
   "ncrs": [],
