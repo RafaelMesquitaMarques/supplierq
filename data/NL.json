@@ -10319,6 +10319,54 @@
       "createdAt": "2026-07-25T17:30:00.878Z",
       "updatedAt": "2026-07-25T17:30:00.878Z",
       "duration": 95
+    },
+    {
+      "id": 1785002011380,
+      "ref": "NL20260725-11-7000007000",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 11,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090881",
+      "productNo": "7000007000",
+      "description": "MTL Leg (kit of 4) w caster M003-PCM",
+      "delivery": "410001839370",
+      "hu": [
+        "900822913",
+        "900822914",
+        "900822915",
+        "900822916"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T17:53:31.380Z",
+      "updatedAt": "2026-07-25T17:53:31.380Z",
+      "duration": 286
     }
   ],
   "ncrs": [],
