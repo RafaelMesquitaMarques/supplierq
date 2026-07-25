@@ -9605,6 +9605,51 @@
       "createdAt": "2026-07-25T12:05:31.446Z",
       "updatedAt": "2026-07-25T12:07:26.710Z",
       "duration": 98
+    },
+    {
+      "id": 1784981414516,
+      "ref": "NL20260724-14-0212354",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 14,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "212354",
+      "description": "MTL Stretcher 39.1875x0.75\" M210-PC",
+      "delivery": "410001830126",
+      "hu": [
+        "500191045"
+      ],
+      "country": "India",
+      "plant": "",
+      "receptionDate": "2026-07-24",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 40,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 40,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T12:10:14.516Z",
+      "updatedAt": "2026-07-25T12:10:14.516Z",
+      "duration": 163
     }
   ],
   "ncrs": [],
