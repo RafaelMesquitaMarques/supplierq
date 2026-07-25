@@ -9695,6 +9695,51 @@
       "createdAt": "2026-07-25T12:12:23.332Z",
       "updatedAt": "2026-07-25T12:12:23.332Z",
       "duration": 104
+    },
+    {
+      "id": 1784982786663,
+      "ref": "NL20260724-16-0212373",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 16,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "212373",
+      "description": "MTL Leg Dresser 5x14.75x6\" M210-PC",
+      "delivery": "410001830126",
+      "hu": [
+        "500190990"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-24",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 103,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 103,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T12:33:06.663Z",
+      "updatedAt": "2026-07-25T12:33:06.663Z",
+      "duration": 1126
     }
   ],
   "ncrs": [],
