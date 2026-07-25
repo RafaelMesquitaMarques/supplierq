@@ -10411,6 +10411,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784981032022,
+      "timestamp": "2026-07-25T12:03:52.022Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260724-12-0215683",
+      "site": "NL",
+      "details": "Foliot Furniture (Mirabel) | 215683 | Decision: approved",
+      "duration": 297
+    },
+    {
       "id": 1784923985736,
       "timestamp": "2026-07-24T20:13:05.736Z",
       "user": "Dominic Dotson",
