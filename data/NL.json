@@ -9740,6 +9740,51 @@
       "createdAt": "2026-07-25T12:33:06.663Z",
       "updatedAt": "2026-07-25T12:33:06.663Z",
       "duration": 1126
+    },
+    {
+      "id": 1784983764101,
+      "ref": "NL20260724-17-0210658",
+      "site": "NL",
+      "date": "2026-07-24",
+      "dailyN": 17,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003758",
+      "productNo": "210658",
+      "description": "PL Leveler Adj 60-80mm Black",
+      "delivery": "410001830126",
+      "hu": [
+        "500190999"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 600,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 600,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T12:49:24.101Z",
+      "updatedAt": "2026-07-25T12:49:24.101Z",
+      "duration": 233
     }
   ],
   "ncrs": [],
