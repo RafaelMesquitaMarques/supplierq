@@ -10818,6 +10818,16 @@
   ],
   "auditLog": [
     {
+      "id": 1784991799935,
+      "timestamp": "2026-07-25T15:03:19.935Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260724-02-7000009802",
+      "site": "NL",
+      "details": "Fushan Furniture Co Ltd | 7000009802"
+    },
+    {
       "id": 1784987102595,
       "timestamp": "2026-07-25T13:45:02.595Z",
       "user": "Dominic Dotson",
