@@ -9785,6 +9785,53 @@
       "createdAt": "2026-07-25T12:49:24.101Z",
       "updatedAt": "2026-07-25T12:49:24.101Z",
       "duration": 233
+    },
+    {
+      "id": 1784985003993,
+      "ref": "NL20260725-01-0213814",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 1,
+      "supplier": "NHAN HOANG FURNITURE CORPORATION / Ho Ch",
+      "po": "4500089870",
+      "productNo": "213814",
+      "description": "MTL Leg for Bench 8\" M215-PC",
+      "delivery": "410001837413",
+      "hu": [
+        "900822130",
+        "900822131",
+        "900822132"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-23",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 450,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 450,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T13:10:03.993Z",
+      "updatedAt": "2026-07-25T13:10:03.993Z",
+      "duration": 95
     }
   ],
   "ncrs": [],
