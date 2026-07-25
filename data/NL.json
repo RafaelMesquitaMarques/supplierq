@@ -10683,6 +10683,17 @@
   ],
   "auditLog": [
     {
+      "id": 1784985005964,
+      "timestamp": "2026-07-25T13:10:05.964Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260725-01-0213814",
+      "site": "NL",
+      "details": "NHAN HOANG FURNITURE CORPORATION / Ho Ch | 213814 | Decision: approved",
+      "duration": 95
+    },
+    {
       "id": 1784984906998,
       "timestamp": "2026-07-25T13:08:26.998Z",
       "user": "Dominic Dotson",
