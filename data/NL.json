@@ -10107,6 +10107,52 @@
       "createdAt": "2026-07-25T15:14:15.998Z",
       "updatedAt": "2026-07-25T15:14:15.998Z",
       "duration": 86
+    },
+    {
+      "id": 1784994986180,
+      "ref": "NL20260725-08-7000009351",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 8,
+      "supplier": "Fushan Furniture Co Ltd",
+      "po": "4500090903",
+      "productNo": "7000009351",
+      "description": "MTL Log Chair Tubular F037 V3/M197-PC V4",
+      "delivery": "410001839428",
+      "hu": [
+        "900822939",
+        "900822940"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 240,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 240,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-25T15:56:26.181Z",
+      "updatedAt": "2026-07-25T15:56:26.181Z",
+      "duration": 215
     }
   ],
   "ncrs": [],
