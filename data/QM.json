@@ -4207,6 +4207,51 @@
       "createdAt": "2026-07-24T17:42:34.255Z",
       "updatedAt": "2026-07-24T17:42:34.255Z",
       "duration": 97
+    },
+    {
+      "id": 1785165814486,
+      "ref": "QM20260727-01-0214190",
+      "site": "QM",
+      "date": "2026-07-27",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500088375",
+      "productNo": "214190",
+      "description": "MTL Frame K HB 76x48\" M003-ST",
+      "delivery": "410001822830",
+      "hu": [
+        "500190175"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T15:23:34.486Z",
+      "updatedAt": "2026-07-27T15:23:34.486Z",
+      "duration": 75
     }
   ],
   "ncrs": [],
