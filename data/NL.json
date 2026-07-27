@@ -5690,6 +5690,57 @@
       "createdAt": "2026-07-27T17:40:45.513Z",
       "updatedAt": "2026-07-27T17:40:45.513Z",
       "duration": 1290
+    },
+    {
+      "id": 1785174213281,
+      "ref": "NL20260725-22-0208557",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 22,
+      "supplier": "Amazon",
+      "po": "4500092924",
+      "productNo": "208557",
+      "description": "Vinyl Tygart Sand CAL117-FRCF",
+      "delivery": "410001825315",
+      "hu": [
+        "900822932",
+        "900822930",
+        "900822929",
+        "900822928",
+        "900822927",
+        "900822926",
+        "900822925"
+      ],
+      "country": "Sri Lanka",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "",
+      "qtyReceived": 180,
+      "qtyInspected": 176,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 180,
+          "inspected": 176,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T17:43:33.281Z",
+      "updatedAt": "2026-07-27T17:43:33.281Z",
+      "duration": 155
     }
   ],
   "ncrs": [],
