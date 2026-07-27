@@ -5365,6 +5365,54 @@
       "createdAt": "2026-07-27T15:27:50.850Z",
       "updatedAt": "2026-07-27T15:27:50.850Z",
       "duration": 1218
+    },
+    {
+      "id": 1785166239241,
+      "ref": "NL20260725-15-0201086",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 15,
+      "supplier": "Amazon",
+      "po": "4500093285",
+      "productNo": "201086",
+      "description": "Vinyl Muse Cashmere Throw (Linen)",
+      "delivery": "410001827151",
+      "hu": [
+        "900823153",
+        "900823152",
+        "900823151",
+        "900823149"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "",
+      "qtyReceived": 120,
+      "qtyInspected": 119,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 120,
+          "inspected": 119,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T15:30:39.241Z",
+      "updatedAt": "2026-07-27T15:30:39.241Z",
+      "duration": 150
     }
   ],
   "ncrs": [],
