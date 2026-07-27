@@ -5413,6 +5413,51 @@
       "createdAt": "2026-07-27T15:30:39.241Z",
       "updatedAt": "2026-07-27T15:30:39.241Z",
       "duration": 150
+    },
+    {
+      "id": 1785166413057,
+      "ref": "NL20260725-16-0214095",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 16,
+      "supplier": "Symmetry Resources",
+      "po": "4500091827",
+      "productNo": "214095",
+      "description": "Fabric Aeryn Cerulean CAL117 FRCF",
+      "delivery": "410001836715",
+      "hu": [
+        "900821527"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-22",
+      "inspector": "",
+      "qtyReceived": 22,
+      "qtyInspected": 22,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 22,
+          "inspected": 22,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T15:33:33.057Z",
+      "updatedAt": "2026-07-27T15:33:33.057Z",
+      "duration": 164
     }
   ],
   "ncrs": [],
