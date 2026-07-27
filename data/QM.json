@@ -4252,6 +4252,51 @@
       "createdAt": "2026-07-27T15:23:34.486Z",
       "updatedAt": "2026-07-27T15:23:34.486Z",
       "duration": 75
+    },
+    {
+      "id": 1785167678456,
+      "ref": "QM20260727-01-0216085",
+      "site": "QM",
+      "date": "2026-07-27",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089753",
+      "productNo": "216085",
+      "description": "MTL TB Base X RD Ends 24x30x29\" M003-ST",
+      "delivery": "410001822836",
+      "hu": [
+        "500190177"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 12,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 12,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T15:54:38.457Z",
+      "updatedAt": "2026-07-27T15:54:38.457Z",
+      "duration": 84
     }
   ],
   "ncrs": [],
