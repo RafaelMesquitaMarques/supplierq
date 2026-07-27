@@ -4391,6 +4391,51 @@
       "createdAt": "2026-07-27T17:12:33.794Z",
       "updatedAt": "2026-07-27T17:12:33.794Z",
       "duration": 655
+    },
+    {
+      "id": 1785174068367,
+      "ref": "QM20260727-01-0214479",
+      "site": "QM",
+      "date": "2026-07-27",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089804",
+      "productNo": "214479",
+      "description": "MTL Rod for footrest 96.75\" M010-ST",
+      "delivery": "410001822843",
+      "hu": [
+        "500190166"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 50,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 50,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T17:41:08.367Z",
+      "updatedAt": "2026-07-27T17:41:08.367Z",
+      "duration": 89
     }
   ],
   "ncrs": [],
