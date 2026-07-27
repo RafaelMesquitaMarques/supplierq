@@ -5741,6 +5741,51 @@
       "createdAt": "2026-07-27T17:43:33.281Z",
       "updatedAt": "2026-07-27T17:43:33.281Z",
       "duration": 155
+    },
+    {
+      "id": 1785174286464,
+      "ref": "NL20260725-23-0214092",
+      "site": "NL",
+      "date": "2026-07-25",
+      "dailyN": 23,
+      "supplier": "Amazon",
+      "po": "4500092924",
+      "productNo": "214092",
+      "description": "Fabric Sandusky Pebble CAL117 FRCF",
+      "delivery": "410001825315",
+      "hu": [
+        "900819507"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "",
+      "qtyReceived": 13,
+      "qtyInspected": 13,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 13,
+          "inspected": 13,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-27T17:44:46.464Z",
+      "updatedAt": "2026-07-27T17:44:46.464Z",
+      "duration": 68
     }
   ],
   "ncrs": [],
