@@ -11758,6 +11758,51 @@
       "createdAt": "2026-07-28T19:01:01.050Z",
       "updatedAt": "2026-07-28T19:01:01.050Z",
       "duration": 296
+    },
+    {
+      "id": 1785266977436,
+      "ref": "NL20260728-08-0216250",
+      "site": "NL",
+      "date": "2026-07-28",
+      "dailyN": 8,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003745",
+      "productNo": "216250",
+      "description": "Screw Euro FH Quadrex 6.3mmx14mm Zinc",
+      "delivery": "410001832993",
+      "hu": [
+        "801670313"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 40000,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 40000,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T19:29:37.436Z",
+      "updatedAt": "2026-07-28T19:29:37.436Z",
+      "duration": 214
     }
   ],
   "ncrs": [],
