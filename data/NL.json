@@ -11310,51 +11310,6 @@
       "duration": 1202
     },
     {
-      "id": 1785242977478,
-      "ref": "NL20260728-01-7000009615",
-      "site": "NL",
-      "date": "2026-07-28",
-      "dailyN": 1,
-      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
-      "po": "4500090622",
-      "productNo": "7000009615",
-      "description": "MTL Market Slatwall Kit 21.6875\" M012-BR",
-      "delivery": "410001839372",
-      "hu": [
-        "900822973"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-07-25",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 5,
-      "qtyInspected": 1,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 5,
-          "inspected": 1,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-07-28T12:49:37.478Z",
-      "updatedAt": "2026-07-28T12:49:37.478Z",
-      "duration": 255
-    },
-    {
       "id": 1785243126542,
       "ref": "NL20260728-01-7000009616",
       "site": "NL",
@@ -12293,6 +12248,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1785246270569,
+      "timestamp": "2026-07-28T13:44:30.569Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260728-01-7000009615",
+      "site": "NL",
+      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000009615"
+    },
     {
       "id": 1785246251834,
       "timestamp": "2026-07-28T13:44:11.834Z",
@@ -17615,17 +17580,6 @@
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 215035 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1783445466260,
-      "timestamp": "2026-07-07T17:31:06.260Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260707-03-7000006106",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 7000006106 | Decision: approved",
-      "duration": 8777
     }
   ]
 }
