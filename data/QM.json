@@ -4436,6 +4436,52 @@
       "createdAt": "2026-07-27T17:41:08.367Z",
       "updatedAt": "2026-07-27T17:41:08.367Z",
       "duration": 89
+    },
+    {
+      "id": 1785237031560,
+      "ref": "QM20260728-01-0214131",
+      "site": "QM",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Guangzhou ilin lighting & Electrical",
+      "po": "4500089557",
+      "productNo": "214131",
+      "description": "Outlet 15A/2PG/1USB/1USB-C White",
+      "delivery": "410001826351",
+      "hu": [
+        "500190662",
+        "500190663"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-08",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1008,
+      "qtyInspected": 36,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1008,
+          "inspected": 36,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T11:10:31.560Z",
+      "updatedAt": "2026-07-28T11:10:31.560Z",
+      "duration": 85
     }
   ],
   "ncrs": [],
