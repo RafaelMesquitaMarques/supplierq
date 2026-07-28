@@ -4528,6 +4528,51 @@
       "createdAt": "2026-07-28T11:38:01.379Z",
       "updatedAt": "2026-07-28T11:38:01.379Z",
       "duration": 76
+    },
+    {
+      "id": 1785240014732,
+      "ref": "QM20260728-01-0213475",
+      "site": "QM",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500089889",
+      "productNo": "213475",
+      "description": "MTL TB Base Steel T 30x28,375\" M236-PC",
+      "delivery": "410001831678",
+      "hu": [
+        "500191542"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-16",
+      "inspector": "Milena Correia",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T12:00:14.732Z",
+      "updatedAt": "2026-07-28T12:00:14.732Z",
+      "duration": 93
     }
   ],
   "ncrs": [],
