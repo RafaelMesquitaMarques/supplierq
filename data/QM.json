@@ -4665,6 +4665,51 @@
       "createdAt": "2026-07-28T13:16:56.642Z",
       "updatedAt": "2026-07-28T13:16:56.642Z",
       "duration": 94
+    },
+    {
+      "id": 1785248429687,
+      "ref": "QM20260728-01-0216128",
+      "site": "QM",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090171",
+      "productNo": "216128",
+      "description": "WD Chair Leg 5\"W F003/M003-PCM",
+      "delivery": "410001839821",
+      "hu": [
+        "500192340"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 240,
+      "qtyInspected": 24,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 240,
+          "inspected": 24,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T14:20:29.687Z",
+      "updatedAt": "2026-07-28T14:20:29.687Z",
+      "duration": 95
     }
   ],
   "ncrs": [],
