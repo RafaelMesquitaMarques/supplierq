@@ -2427,6 +2427,53 @@
       "createdAt": "2026-07-22T15:14:54.196Z",
       "updatedAt": "2026-07-22T15:14:54.196Z",
       "duration": 856
+    },
+    {
+      "id": 1785240046101,
+      "ref": "QS20260728-01-0216185",
+      "site": "QS",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "216185",
+      "description": "MTL 3 Point Locking Mech for Arm72\"H GSA",
+      "delivery": "410001840138",
+      "hu": [
+        "801681112",
+        "801681113",
+        "801681115"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 300,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "I only was able to inspect what was not assembled ",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T12:00:46.101Z",
+      "updatedAt": "2026-07-28T12:00:46.101Z",
+      "duration": 98
     }
   ],
   "ncrs": [],
