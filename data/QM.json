@@ -4800,6 +4800,51 @@
       "createdAt": "2026-07-28T15:15:45.789Z",
       "updatedAt": "2026-07-28T15:15:45.789Z",
       "duration": 113
+    },
+    {
+      "id": 1785253331680,
+      "ref": "QM20260728-01-0201910",
+      "site": "QM",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090494",
+      "productNo": "201910",
+      "description": "BRKT Metal Right 5x8\"x3.5mm M003-ST",
+      "delivery": "410001839823",
+      "hu": [
+        "500192337"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 298,
+      "qtyInspected": 29,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 298,
+          "inspected": 29,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T15:42:11.680Z",
+      "updatedAt": "2026-07-28T15:42:11.680Z",
+      "duration": 81
     }
   ],
   "ncrs": [],
