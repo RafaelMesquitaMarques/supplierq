@@ -4845,6 +4845,51 @@
       "createdAt": "2026-07-28T15:42:11.680Z",
       "updatedAt": "2026-07-28T15:42:11.680Z",
       "duration": 81
+    },
+    {
+      "id": 1785256941268,
+      "ref": "QM20260728-01-0206468",
+      "site": "QM",
+      "date": "2026-07-28",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090494",
+      "productNo": "206468",
+      "description": "BRKT Support Metal 2x3.4375x14\" M010-ST",
+      "delivery": "410001839823",
+      "hu": [
+        "500192343"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 520,
+      "qtyInspected": 52,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 520,
+          "inspected": 52,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T16:42:21.268Z",
+      "updatedAt": "2026-07-28T16:42:21.268Z",
+      "duration": 110
     }
   ],
   "ncrs": [],
