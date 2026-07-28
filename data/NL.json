@@ -11415,7 +11415,7 @@
       ],
       "country": "China",
       "plant": "",
-      "receptionDate": "2026-07-25",
+      "receptionDate": "2026-07-27",
       "inspector": "Dominic Dotson",
       "qtyReceived": 15,
       "qtyInspected": 1,
@@ -11441,7 +11441,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-28T13:43:00.555Z",
-      "updatedAt": "2026-07-28T13:43:00.555Z",
+      "updatedAt": "2026-07-28T13:43:19.691Z",
       "duration": 121
     }
   ],
