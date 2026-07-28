@@ -5876,6 +5876,51 @@
       "createdAt": "2026-07-28T16:48:42.749Z",
       "updatedAt": "2026-07-28T16:48:42.749Z",
       "duration": 144
+    },
+    {
+      "id": 1785257477245,
+      "ref": "NL20260727-08-0212152",
+      "site": "NL",
+      "date": "2026-07-27",
+      "dailyN": 8,
+      "supplier": "Amazon",
+      "po": "4500093294",
+      "productNo": "212152",
+      "description": "Fabric Royal - Blue Moon CAL 117-FRLC",
+      "delivery": "410001831774",
+      "hu": [
+        "900819498"
+      ],
+      "country": "India",
+      "plant": "",
+      "receptionDate": "2026-07-15",
+      "inspector": "",
+      "qtyReceived": 41,
+      "qtyInspected": 41,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 41,
+          "inspected": 41,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T16:51:17.245Z",
+      "updatedAt": "2026-07-28T16:51:17.245Z",
+      "duration": 117
     }
   ],
   "ncrs": [],
