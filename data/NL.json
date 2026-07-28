@@ -11398,6 +11398,51 @@
       "createdAt": "2026-07-28T12:52:06.542Z",
       "updatedAt": "2026-07-28T12:52:06.542Z",
       "duration": 124
+    },
+    {
+      "id": 1785246180555,
+      "ref": "NL20260728-03-7000007534",
+      "site": "NL",
+      "date": "2026-07-28",
+      "dailyN": 3,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500090880",
+      "productNo": "7000007534",
+      "description": "WD Top Panel/Keyboard L 31.75\" F260 B#1",
+      "delivery": "410001839363",
+      "hu": [
+        "900823445"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 15,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 15,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T13:43:00.555Z",
+      "updatedAt": "2026-07-28T13:43:00.555Z",
+      "duration": 121
     }
   ],
   "ncrs": [],
