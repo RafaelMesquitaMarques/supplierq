@@ -11488,6 +11488,51 @@
       "createdAt": "2026-07-28T14:25:19.635Z",
       "updatedAt": "2026-07-28T14:25:19.635Z",
       "duration": 90
+    },
+    {
+      "id": 1785250547406,
+      "ref": "NL20260728-05-0201234",
+      "site": "NL",
+      "date": "2026-07-28",
+      "dailyN": 5,
+      "supplier": "Amazon",
+      "po": "4500093614",
+      "productNo": "201234",
+      "description": "Mirror Clear 4 SD 40-7/8x14-7/8\"x3mm",
+      "delivery": "410001839707",
+      "hu": [
+        "900823138"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 10,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Finch Industries Inc / Thomasville NC 27 Needs to be added as a supplier. change when it gets added.",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-28T14:55:47.406Z",
+      "updatedAt": "2026-07-28T14:55:47.406Z",
+      "duration": 247
     }
   ],
   "ncrs": [],
