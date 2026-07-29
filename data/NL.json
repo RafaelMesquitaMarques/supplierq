@@ -10428,6 +10428,51 @@
       "createdAt": "2026-07-29T17:12:41.302Z",
       "updatedAt": "2026-07-29T17:12:41.302Z",
       "duration": 110
+    },
+    {
+      "id": 1785345405543,
+      "ref": "NL20260729-07-0202673",
+      "site": "NL",
+      "date": "2026-07-29",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "202673",
+      "description": "Mending Plate Steel W/4 Holes 2x3-1/8\"",
+      "delivery": "410001836870",
+      "hu": [
+        "500191764"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1400,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1400,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T17:16:45.543Z",
+      "updatedAt": "2026-07-29T17:16:45.543Z",
+      "duration": 102
     }
   ],
   "ncrs": [],
