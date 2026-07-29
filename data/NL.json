@@ -5972,6 +5972,57 @@
       "createdAt": "2026-07-29T18:26:18.886Z",
       "updatedAt": "2026-07-29T18:26:18.886Z",
       "duration": 156
+    },
+    {
+      "id": 1785349679034,
+      "ref": "NL20260708-09-0214734",
+      "site": "NL",
+      "date": "2026-07-08",
+      "dailyN": 9,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003756",
+      "productNo": "214734",
+      "description": "Slide Inner part for Soft Close 12\"KS",
+      "delivery": "410001822284",
+      "hu": [
+        "500189874"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-08",
+      "inspector": "",
+      "qtyReceived": 200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "wrong_label",
+          "label": "Wrong label",
+          "qty": 200
+        }
+      ],
+      "issues": "Labeled as 214733",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T18:27:59.034Z",
+      "updatedAt": "2026-07-29T18:27:59.034Z",
+      "duration": 93
     }
   ],
   "ncrs": [],
