@@ -11330,6 +11330,57 @@
       "createdAt": "2026-07-29T18:50:52.315Z",
       "updatedAt": "2026-07-29T18:50:52.315Z",
       "duration": 182
+    },
+    {
+      "id": 1785351164473,
+      "ref": "NL20260729-11-0216237",
+      "site": "NL",
+      "date": "2026-07-29",
+      "dailyN": 11,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "1500003786",
+      "productNo": "216237",
+      "description": "Cardboard Lounge CH HGVPL",
+      "delivery": "410001839376",
+      "hu": [
+        "801678965"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "",
+      "qtyReceived": 80,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 80,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "wrong_label",
+          "label": "Wrong label",
+          "qty": 80
+        }
+      ],
+      "issues": "",
+      "notes": "",
+      "decision": "use-as-is",
+      "qtyUseAsIs": 80,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T18:52:44.473Z",
+      "updatedAt": "2026-07-29T18:52:44.473Z",
+      "duration": 97
     }
   ],
   "ncrs": [],
