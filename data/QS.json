@@ -3624,6 +3624,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785336353435,
+      "timestamp": "2026-07-29T14:45:53.435Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260729-01-7000009966",
+      "site": "QS",
+      "details": "Sena Furniture CO., LTD   | 7000009966 | Decision: rejected",
+      "duration": 279
+    },
+    {
       "id": 1785336044047,
       "timestamp": "2026-07-29T14:40:44.047Z",
       "user": "Natalya Robles",
