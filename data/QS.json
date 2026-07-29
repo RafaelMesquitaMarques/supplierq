@@ -2519,6 +2519,51 @@
       "createdAt": "2026-07-29T11:15:24.523Z",
       "updatedAt": "2026-07-29T11:15:24.523Z",
       "duration": 72
+    },
+    {
+      "id": 1785323774720,
+      "ref": "QS20260729-01-0214428",
+      "site": "QS",
+      "date": "2026-07-29",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093915",
+      "productNo": "214428",
+      "description": "Screw Black FH Qx Nibs Notch #8x1-1/4\"",
+      "delivery": "410001841062",
+      "hu": [
+        "801681949"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 3500,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3500,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T11:16:14.720Z",
+      "updatedAt": "2026-07-29T11:16:14.720Z",
+      "duration": 41
     }
   ],
   "ncrs": [],
