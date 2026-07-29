@@ -3478,6 +3478,16 @@
   ],
   "auditLog": [
     {
+      "id": 1785336044047,
+      "timestamp": "2026-07-29T14:40:44.047Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Sena Furniture CO., LTD  ",
+      "site": "QS",
+      "details": "Sena Furniture CO., LTD   | —"
+    },
+    {
       "id": 1785328885005,
       "timestamp": "2026-07-29T12:41:25.005Z",
       "user": "Dominic Dotson",
