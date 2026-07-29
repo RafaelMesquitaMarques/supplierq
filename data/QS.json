@@ -2564,6 +2564,51 @@
       "createdAt": "2026-07-29T11:16:14.720Z",
       "updatedAt": "2026-07-29T11:16:14.720Z",
       "duration": 41
+    },
+    {
+      "id": 1785323826984,
+      "ref": "QS20260729-01-0203279",
+      "site": "QS",
+      "date": "2026-07-29",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093629",
+      "productNo": "203279",
+      "description": "Bolt FH Allen 1/4-20x2-3/4\" Black",
+      "delivery": "410001841064",
+      "hu": [
+        "801681947"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 800,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 800,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T11:17:06.984Z",
+      "updatedAt": "2026-07-29T11:17:06.984Z",
+      "duration": 37
     }
   ],
   "ncrs": [],
