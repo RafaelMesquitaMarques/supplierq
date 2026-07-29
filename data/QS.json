@@ -2474,6 +2474,51 @@
       "createdAt": "2026-07-28T12:00:46.101Z",
       "updatedAt": "2026-07-28T12:00:46.101Z",
       "duration": 98
+    },
+    {
+      "id": 1785323724523,
+      "ref": "QS20260729-01-0214450",
+      "site": "QS",
+      "date": "2026-07-29",
+      "dailyN": 1,
+      "supplier": "Attaches Viscan",
+      "po": "4500093915",
+      "productNo": "214450",
+      "description": "Screw Flat Vrex Tek Black #12-14 X 1 1/2",
+      "delivery": "410001841062",
+      "hu": [
+        "801681948"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 49500,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 49500,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-29T11:15:24.523Z",
+      "updatedAt": "2026-07-29T11:15:24.523Z",
+      "duration": 72
     }
   ],
   "ncrs": [],
