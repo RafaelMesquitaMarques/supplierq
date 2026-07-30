@@ -12537,6 +12537,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785442182672,
+      "timestamp": "2026-07-30T20:09:42.672Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260730-02-0215116",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 215116 | Decision: approved",
+      "duration": 363
+    },
+    {
       "id": 1785441816554,
       "timestamp": "2026-07-30T20:03:36.554Z",
       "user": "Dominic Dotson",
@@ -17856,17 +17867,6 @@
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 214280 | Decision: approved",
       "duration": 2977
-    },
-    {
-      "id": 1783448658202,
-      "timestamp": "2026-07-07T18:24:18.202Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260707-01-0211086",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 211086 | Decision: approved",
-      "duration": 0
     }
   ]
 }
