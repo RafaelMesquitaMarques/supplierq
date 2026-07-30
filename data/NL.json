@@ -11957,6 +11957,51 @@
       "createdAt": "2026-07-30T20:26:30.675Z",
       "updatedAt": "2026-07-30T20:26:30.675Z",
       "duration": 124
+    },
+    {
+      "id": 1785443336601,
+      "ref": "NL20260730-09-0215139",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 9,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "215139",
+      "description": "MTL Stretcher Banquette 23W M003-PC",
+      "delivery": "410001836870",
+      "hu": [
+        "801680749"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-30T20:28:56.601Z",
+      "updatedAt": "2026-07-30T20:28:56.601Z",
+      "duration": 132
     }
   ],
   "ncrs": [],
