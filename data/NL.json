@@ -11821,6 +11821,51 @@
       "createdAt": "2026-07-30T20:17:34.804Z",
       "updatedAt": "2026-07-30T20:17:34.804Z",
       "duration": 132
+    },
+    {
+      "id": 1785442787412,
+      "ref": "NL20260730-06-7000008006",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 6,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003786",
+      "productNo": "7000008006",
+      "description": "WD FR Mission Loves 54\" F165",
+      "delivery": "410001839376",
+      "hu": [
+        "801677382"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "No drawing to reference\n",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-30T20:19:47.412Z",
+      "updatedAt": "2026-07-30T20:19:47.412Z",
+      "duration": 77
     }
   ],
   "ncrs": [],
