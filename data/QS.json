@@ -3523,6 +3523,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785436666443,
+      "timestamp": "2026-07-30T18:37:46.443Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260730-01-0212892",
+      "site": "QS",
+      "details": "Hongruifeng Home Trading Co.,Ltd | 212892 | Decision: approved",
+      "duration": 50
+    },
+    {
       "id": 1785436606364,
       "timestamp": "2026-07-30T18:36:46.364Z",
       "user": "Natalya Robles",
