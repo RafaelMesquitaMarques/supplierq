@@ -5258,6 +5258,52 @@
       "createdAt": "2026-07-31T13:11:19.725Z",
       "updatedAt": "2026-07-31T13:11:19.725Z",
       "duration": 207
+    },
+    {
+      "id": 1785511213484,
+      "ref": "QM20260731-01-0216096",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "8000006126",
+      "productNo": "216096",
+      "description": "Wooden Base 23.25\" Savannah F258",
+      "delivery": "410001839082",
+      "hu": [
+        "500192431",
+        "500192430"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Milena Correia",
+      "qtyReceived": 59,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 59,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Transfer from QS (rework)/ Original supplier: Vinag7 Joint Stock com. \n3 Original PO's: 45*77139 , 45*80582 & 45*78690\nOriginal product number: 214162",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T15:20:13.484Z",
+      "updatedAt": "2026-07-31T15:20:13.485Z",
+      "duration": 319
     }
   ],
   "ncrs": [],
