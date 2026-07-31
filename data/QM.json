@@ -5213,6 +5213,51 @@
       "createdAt": "2026-07-31T12:43:35.887Z",
       "updatedAt": "2026-07-31T12:43:35.887Z",
       "duration": 102
+    },
+    {
+      "id": 1785503479725,
+      "ref": "QM20260731-01-0212892",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500090907",
+      "productNo": "212892",
+      "description": "MTL Handle PG1-181 8\" M242-PC",
+      "delivery": "410001841707",
+      "hu": [
+        "500192536"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1000,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T13:11:19.725Z",
+      "updatedAt": "2026-07-31T13:11:19.725Z",
+      "duration": 207
     }
   ],
   "ncrs": [],
