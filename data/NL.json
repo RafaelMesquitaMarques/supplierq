@@ -12182,6 +12182,54 @@
       "createdAt": "2026-07-31T12:20:58.931Z",
       "updatedAt": "2026-07-31T12:20:58.931Z",
       "duration": 89
+    },
+    {
+      "id": 1785500637932,
+      "ref": "NL20260730-13-7000001296",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 13,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090366",
+      "productNo": "7000001296",
+      "description": "WD Mission HB Adj 54x2.5x36\" F068",
+      "delivery": "410001842153",
+      "hu": [
+        "900824336",
+        "900824337",
+        "900824338",
+        "900824339"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-30",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 200,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T12:23:57.932Z",
+      "updatedAt": "2026-07-31T12:23:57.932Z",
+      "duration": 173
     }
   ],
   "ncrs": [],
