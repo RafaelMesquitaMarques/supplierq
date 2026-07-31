@@ -12784,6 +12784,51 @@
       "createdAt": "2026-07-31T16:45:27.914Z",
       "updatedAt": "2026-07-31T16:45:27.914Z",
       "duration": 115
+    },
+    {
+      "id": 1785516504635,
+      "ref": "NL20260731-05-0215047",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 5,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003772",
+      "productNo": "215047",
+      "description": "MTL Fra VNTY Base STD 44\" M240-PC",
+      "delivery": "410001836870",
+      "hu": [
+        "500191886"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 8,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T16:48:24.635Z",
+      "updatedAt": "2026-07-31T16:48:24.635Z",
+      "duration": 123
     }
   ],
   "ncrs": [],
