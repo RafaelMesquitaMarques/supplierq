@@ -12648,6 +12648,51 @@
       "createdAt": "2026-07-31T16:37:54.933Z",
       "updatedAt": "2026-07-31T16:37:54.933Z",
       "duration": 144
+    },
+    {
+      "id": 1785516012581,
+      "ref": "NL20260731-02-7000005265",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "7000005265",
+      "description": "MTL Frame RD Cocktail TB 18.75'' M214-PC",
+      "delivery": "410001836870",
+      "hu": [
+        "500191887"
+      ],
+      "country": "Mexico",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T16:40:12.581Z",
+      "updatedAt": "2026-07-31T16:40:12.581Z",
+      "duration": 106
     }
   ],
   "ncrs": [],
