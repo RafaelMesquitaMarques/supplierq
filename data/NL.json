@@ -12137,6 +12137,51 @@
       "createdAt": "2026-07-31T12:16:22.981Z",
       "updatedAt": "2026-07-31T12:16:22.981Z",
       "duration": 95
+    },
+    {
+      "id": 1785500302108,
+      "ref": "NL20260730-01-0212915",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "212915",
+      "description": "WD Leg W Panel 15,5\"W F280/F301",
+      "delivery": "410001836870",
+      "hu": [
+        "500191753"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T12:18:22.108Z",
+      "updatedAt": "2026-07-31T12:18:22.108Z",
+      "duration": 90
     }
   ],
   "ncrs": [],
