@@ -13222,6 +13222,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785509715753,
+      "timestamp": "2026-07-31T14:55:15.753Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260730-17-0215001",
+      "site": "NL",
+      "details": "Guangdong Hardware Industry | 215001 | Decision: approved",
+      "duration": 57
+    },
+    {
       "id": 1785509637211,
       "timestamp": "2026-07-31T14:53:57.211Z",
       "user": "Dominic Dotson",
@@ -18541,17 +18552,6 @@
       "ref": "—",
       "site": "NL",
       "details": "Role: inspector | Sites: NL"
-    },
-    {
-      "id": 1783602954142,
-      "timestamp": "2026-07-09T13:15:54.142Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260709-01-7000000298",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 7000000298 | Decision: approved",
-      "duration": 1458
     }
   ]
 }
