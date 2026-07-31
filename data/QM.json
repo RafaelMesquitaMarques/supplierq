@@ -5078,6 +5078,51 @@
       "createdAt": "2026-07-31T11:24:51.002Z",
       "updatedAt": "2026-07-31T11:26:03.361Z",
       "duration": 165
+    },
+    {
+      "id": 1785498487098,
+      "ref": "QM20260731-01-0212924",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500090367",
+      "productNo": "212924",
+      "description": "Tape Anti-Skid 1.125\" Wide x 1/16\" Black",
+      "delivery": "410001841705",
+      "hu": [
+        "500192548"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-29",
+      "inspector": "Milena Correia",
+      "qtyReceived": 582,
+      "qtyInspected": 32,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 582,
+          "inspected": 32,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T11:48:07.098Z",
+      "updatedAt": "2026-07-31T11:48:07.098Z",
+      "duration": 134
     }
   ],
   "ncrs": [],
