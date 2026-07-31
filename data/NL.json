@@ -12466,6 +12466,52 @@
       "createdAt": "2026-07-31T14:57:31.059Z",
       "updatedAt": "2026-07-31T14:57:31.059Z",
       "duration": 47
+    },
+    {
+      "id": 1785509909002,
+      "ref": "NL20260730-20-0212889",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 20,
+      "supplier": "Consun Furniture Hardware Factory",
+      "po": "4500090927",
+      "productNo": "212889",
+      "description": "MTL Handle 9,375 PG1-187 M242-PC",
+      "delivery": "410001842040",
+      "hu": [
+        "900824244",
+        "900824245"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-29",
+      "inspector": "",
+      "qtyReceived": 3400,
+      "qtyInspected": 75,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3400,
+          "inspected": 75,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T14:58:29.002Z",
+      "updatedAt": "2026-07-31T14:58:29.002Z",
+      "duration": 45
     }
   ],
   "ncrs": [],
