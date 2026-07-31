@@ -13363,6 +13363,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785509911527,
+      "timestamp": "2026-07-31T14:58:31.527Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260730-20-0212889",
+      "site": "NL",
+      "details": "Consun Furniture Hardware Factory | 212889 | Decision: approved",
+      "duration": 45
+    },
+    {
       "id": 1785509853516,
       "timestamp": "2026-07-31T14:57:33.516Z",
       "user": "Dominic Dotson",
@@ -18683,17 +18694,6 @@
       "ref": "—",
       "site": "NL",
       "details": "Role: inspector | Sites: NL"
-    },
-    {
-      "id": 1783609927380,
-      "timestamp": "2026-07-09T15:12:07.380Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260709-03-0214189",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 214189 | Decision: approved",
-      "duration": 0
     }
   ]
 }
