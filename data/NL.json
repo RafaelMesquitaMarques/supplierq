@@ -13499,6 +13499,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785515877495,
+      "timestamp": "2026-07-31T16:37:57.495Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260731-01-7000003975",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 7000003975 | Decision: approved",
+      "duration": 144
+    },
+    {
       "id": 1785510121310,
       "timestamp": "2026-07-31T15:02:01.310Z",
       "user": "Dominic Dotson",
@@ -18822,16 +18833,6 @@
       "site": "NL",
       "details": "ZhongShang JDM Metal Products Co | 7000000519 | Decision: approved",
       "duration": 834
-    },
-    {
-      "id": 1784144785211,
-      "timestamp": "2026-07-15T19:46:25.211Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_logout",
-      "ref": "—",
-      "site": "NL",
-      "details": "Session ended"
     }
   ]
 }
