@@ -5398,6 +5398,51 @@
       "createdAt": "2026-07-31T17:28:33.524Z",
       "updatedAt": "2026-07-31T17:28:33.524Z",
       "duration": 182
+    },
+    {
+      "id": 1785523462780,
+      "ref": "QM20260731-01-0211237",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Consun Furniture Hardware Factory",
+      "po": "4500086921",
+      "productNo": "211237",
+      "description": "MTL Pull Short Tub. black PG1-152",
+      "delivery": "410001843983",
+      "hu": [
+        "500192713"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "Milena Correia",
+      "qtyReceived": 25,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T18:44:22.780Z",
+      "updatedAt": "2026-07-31T18:44:22.780Z",
+      "duration": 1428
     }
   ],
   "ncrs": [],
