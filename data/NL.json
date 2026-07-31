@@ -12417,6 +12417,55 @@
       "createdAt": "2026-07-31T14:56:28.682Z",
       "updatedAt": "2026-07-31T14:56:28.682Z",
       "duration": 61
+    },
+    {
+      "id": 1785509851059,
+      "ref": "NL20260730-19-0214968",
+      "site": "NL",
+      "date": "2026-07-30",
+      "dailyN": 19,
+      "supplier": "Guangdong Hardware Industry",
+      "po": "4500090008",
+      "productNo": "214968",
+      "description": "Slide Cabinet WO PVC Dowels 14\" Zinc GD",
+      "delivery": "410001842041",
+      "hu": [
+        "900824262",
+        "900824263",
+        "900824264",
+        "900824265",
+        "900824266"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-07-29",
+      "inspector": "",
+      "qtyReceived": 9900,
+      "qtyInspected": 200,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 9900,
+          "inspected": 200,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T14:57:31.059Z",
+      "updatedAt": "2026-07-31T14:57:31.059Z",
+      "duration": 47
     }
   ],
   "ncrs": [],
