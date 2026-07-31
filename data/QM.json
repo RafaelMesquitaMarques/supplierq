@@ -5304,6 +5304,55 @@
       "createdAt": "2026-07-31T15:20:13.484Z",
       "updatedAt": "2026-07-31T15:20:13.485Z",
       "duration": 319
+    },
+    {
+      "id": 1785516548575,
+      "ref": "QM20260731-01-0212491",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "212491",
+      "description": "MTB TB Frame 19''DIA M244-PC",
+      "delivery": "410001839824",
+      "hu": [
+        "500192327",
+        "500192328",
+        "500192329",
+        "500192330",
+        "500192331"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "",
+      "qtyReceived": 75,
+      "qtyInspected": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 75,
+          "inspected": 7,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T16:49:08.575Z",
+      "updatedAt": "2026-07-31T16:49:08.575Z",
+      "duration": 139
     }
   ],
   "ncrs": [],
