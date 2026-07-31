@@ -13544,6 +13544,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785516015170,
+      "timestamp": "2026-07-31T16:40:15.170Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260731-02-7000005265",
+      "site": "NL",
+      "details": "Foliot Furniture (Mirabel) | 7000005265 | Decision: approved",
+      "duration": 106
+    },
+    {
       "id": 1785515877495,
       "timestamp": "2026-07-31T16:37:57.495Z",
       "user": "Dominic Dotson",
@@ -18867,17 +18878,6 @@
       "site": "NL",
       "details": "Vinag7 Joint Stock Company | 216120 | Decision: approved",
       "duration": 79
-    },
-    {
-      "id": 1784146536798,
-      "timestamp": "2026-07-15T20:15:36.798Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260715-01-7000000519",
-      "site": "NL",
-      "details": "ZhongShang JDM Metal Products Co | 7000000519 | Decision: approved",
-      "duration": 834
     }
   ]
 }
