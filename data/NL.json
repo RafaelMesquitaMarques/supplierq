@@ -13317,6 +13317,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785509853516,
+      "timestamp": "2026-07-31T14:57:33.516Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260730-19-0214968",
+      "site": "NL",
+      "details": "Guangdong Hardware Industry | 214968 | Decision: approved",
+      "duration": 47
+    },
+    {
       "id": 1785509791516,
       "timestamp": "2026-07-31T14:56:31.516Z",
       "user": "Dominic Dotson",
@@ -18637,17 +18648,6 @@
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 214189 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1783609916118,
-      "timestamp": "2026-07-09T15:11:56.118Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260709-03-0214189",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 214189 | Decision: approved",
-      "duration": 750
     }
   ]
 }
