@@ -5033,6 +5033,51 @@
       "createdAt": "2026-07-28T18:44:39.822Z",
       "updatedAt": "2026-07-28T18:44:39.822Z",
       "duration": 235
+    },
+    {
+      "id": 1785497091002,
+      "ref": "QM20260731-01-0201035",
+      "site": "QM",
+      "date": "2026-07-31",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "201035",
+      "description": "Drapery Rod Closet Kit 45-60\" H2",
+      "delivery": "410001839824",
+      "hu": [
+        "500192342"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 504,
+      "qtyInspected": 56,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 504,
+          "inspected": 56,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "8 had dirt and was able to remove with windex and magic sponge (no report needed)",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-07-31T11:24:51.002Z",
+      "updatedAt": "2026-07-31T11:24:51.002Z",
+      "duration": 165
     }
   ],
   "ncrs": [],
