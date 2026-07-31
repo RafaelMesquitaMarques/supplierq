@@ -6137,6 +6137,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785511214570,
+      "timestamp": "2026-07-31T15:20:14.570Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260731-01-0216096",
+      "site": "QM",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 216096 | Decision: approved",
+      "duration": 319
+    },
+    {
       "id": 1785503481965,
       "timestamp": "2026-07-31T13:11:21.965Z",
       "user": "Milena Correia",
