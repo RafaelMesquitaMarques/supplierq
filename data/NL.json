@@ -14169,6 +14169,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785788350870,
+      "timestamp": "2026-08-03T20:19:10.870Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260803-04-0200933",
+      "site": "NL",
+      "details": "Amazon | 200933 | Decision: approved",
+      "duration": 224
+    },
+    {
       "id": 1785788121853,
       "timestamp": "2026-08-03T20:15:21.853Z",
       "user": "Dominic Dotson",
@@ -19493,17 +19504,6 @@
       "ref": "Fabric Innovations by Covington / Calhou",
       "site": "NL",
       "details": "Fabric Innovations by Covington / Calhou"
-    },
-    {
-      "id": 1784213556736,
-      "timestamp": "2026-07-16T14:52:36.736Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260713-02-0212152",
-      "site": "NL",
-      "details": "Fabric Innovations by Covington / Calhou | 212152 | Decision: approved",
-      "duration": 266
     }
   ]
 }
