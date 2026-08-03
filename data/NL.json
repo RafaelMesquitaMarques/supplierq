@@ -12924,6 +12924,51 @@
       "createdAt": "2026-08-03T12:23:16.974Z",
       "updatedAt": "2026-08-03T12:23:16.974Z",
       "duration": 65
+    },
+    {
+      "id": 1785760152628,
+      "ref": "NL20260731-08-0201241",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 8,
+      "supplier": "Amazon",
+      "po": "4500093945",
+      "productNo": "201241",
+      "description": "Bolt Zinc HH 5/16-18x2\"",
+      "delivery": "410001843159",
+      "hu": [
+        "900824793"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1000,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Supplier not found, change to OneMonroe when available.",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:29:12.628Z",
+      "updatedAt": "2026-08-03T12:29:12.628Z",
+      "duration": 233
     }
   ],
   "ncrs": [],
