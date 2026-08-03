@@ -5623,6 +5623,51 @@
       "createdAt": "2026-08-03T11:44:18.082Z",
       "updatedAt": "2026-08-03T11:44:18.082Z",
       "duration": 77
+    },
+    {
+      "id": 1785759199980,
+      "ref": "QM20260803-01-0209493",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Guangzhou ilin lighting & Electrical",
+      "po": "4500090806",
+      "productNo": "209493",
+      "description": "Driver LED Neon 5.5x3.5x6cm",
+      "delivery": "410001843973",
+      "hu": [
+        "500192711"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1600,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1600,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:13:19.980Z",
+      "updatedAt": "2026-08-03T12:13:19.980Z",
+      "duration": 114
     }
   ],
   "ncrs": [],
