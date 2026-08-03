@@ -12829,6 +12829,56 @@
       "createdAt": "2026-07-31T16:48:24.635Z",
       "updatedAt": "2026-07-31T16:48:24.635Z",
       "duration": 123
+    },
+    {
+      "id": 1785759715014,
+      "ref": "NL20260731-06-0201780",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 6,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090791",
+      "productNo": "201780",
+      "description": "Desk Frame Steel LR 23.25x29\" M003-ST",
+      "delivery": "410001843196",
+      "hu": [
+        "\"900824748",
+        "900824749",
+        "900824750",
+        "900824751",
+        "900824752",
+        "900824753\""
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-30",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 600,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 600,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:21:55.014Z",
+      "updatedAt": "2026-08-03T12:21:55.014Z",
+      "duration": 173
     }
   ],
   "ncrs": [],
@@ -13679,16 +13729,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1785759294923,
-      "timestamp": "2026-08-03T12:14:54.923Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1785758647662,
       "timestamp": "2026-08-03T12:04:07.662Z",
@@ -19012,6 +19052,17 @@
       "site": "NL",
       "details": "Vinag7 Joint Stock Company | 216046 | Decision: approved",
       "duration": 78
+    },
+    {
+      "id": 1784147193037,
+      "timestamp": "2026-07-15T20:26:33.037Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260709-05-0216028",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216028 | Decision: approved",
+      "duration": 82
     }
   ]
 }
