@@ -5578,6 +5578,51 @@
       "createdAt": "2026-08-03T11:32:32.886Z",
       "updatedAt": "2026-08-03T11:32:32.886Z",
       "duration": 97
+    },
+    {
+      "id": 1785757458081,
+      "ref": "QM20260803-01-0216158",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Consun Furniture Hardware Factory",
+      "po": "4500090424",
+      "productNo": "216158",
+      "description": "MTL Tag 09/26",
+      "delivery": "410001843985",
+      "hu": [
+        "500192708"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "Milena Correia",
+      "qtyReceived": 5028,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5028,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T11:44:18.082Z",
+      "updatedAt": "2026-08-03T11:44:18.082Z",
+      "duration": 77
     }
   ],
   "ncrs": [],
