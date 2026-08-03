@@ -6547,6 +6547,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785760028289,
+      "timestamp": "2026-08-03T12:27:08.289Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260803-01-0209445",
+      "site": "QM",
+      "details": "Guangzhou ilin lighting & Electrical | 209445 | Decision: approved",
+      "duration": 88
+    },
+    {
       "id": 1785759201201,
       "timestamp": "2026-08-03T12:13:21.201Z",
       "user": "Milena Correia",
