@@ -12969,6 +12969,51 @@
       "createdAt": "2026-08-03T12:29:12.628Z",
       "updatedAt": "2026-08-03T12:29:12.628Z",
       "duration": 233
+    },
+    {
+      "id": 1785760369451,
+      "ref": "NL20260731-09-0216436",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 9,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500093497",
+      "productNo": "216436",
+      "description": "Mtl Warning Tag for Ladder 3.5x1x0.0625\"",
+      "delivery": "410001841888",
+      "hu": [
+        "900824138"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-29",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:32:49.451Z",
+      "updatedAt": "2026-08-03T12:32:49.451Z",
+      "duration": 201
     }
   ],
   "ncrs": [],
