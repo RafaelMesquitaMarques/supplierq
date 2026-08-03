@@ -5668,6 +5668,52 @@
       "createdAt": "2026-08-03T12:13:19.980Z",
       "updatedAt": "2026-08-03T12:13:19.980Z",
       "duration": 114
+    },
+    {
+      "id": 1785760027108,
+      "ref": "QM20260803-01-0209445",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Guangzhou ilin lighting & Electrical",
+      "po": "4500090806",
+      "productNo": "209445",
+      "description": "Neon LED W/Hand Sensor 450mm",
+      "delivery": "410001843973",
+      "hu": [
+        "500192709",
+        "500192710"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-31",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1500,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1500,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:27:07.108Z",
+      "updatedAt": "2026-08-03T12:27:07.108Z",
+      "duration": 88
     }
   ],
   "ncrs": [],
