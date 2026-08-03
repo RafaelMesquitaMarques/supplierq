@@ -13014,6 +13014,51 @@
       "createdAt": "2026-08-03T12:32:49.451Z",
       "updatedAt": "2026-08-03T12:32:49.451Z",
       "duration": 201
+    },
+    {
+      "id": 1785760580906,
+      "ref": "NL20260731-10-0212958",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 10,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "212958",
+      "description": "Hinge Inset SC w restrictor w dowel CN",
+      "delivery": "410001836870",
+      "hu": [
+        "500191748"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 100,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 100,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:36:20.906Z",
+      "updatedAt": "2026-08-03T12:36:20.906Z",
+      "duration": 91
     }
   ],
   "ncrs": [],
