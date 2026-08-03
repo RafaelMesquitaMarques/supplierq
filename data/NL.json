@@ -13059,6 +13059,51 @@
       "createdAt": "2026-08-03T12:36:20.906Z",
       "updatedAt": "2026-08-03T12:36:20.906Z",
       "duration": 91
+    },
+    {
+      "id": 1785760711561,
+      "ref": "NL20260731-11-0200702",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 11,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "200702",
+      "description": "Plate Square Coat Hook M201-SN FB",
+      "delivery": "410001836870",
+      "hu": [
+        "500191752"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 120,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 120,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:38:31.561Z",
+      "updatedAt": "2026-08-03T12:38:31.561Z",
+      "duration": 118
     }
   ],
   "ncrs": [],
