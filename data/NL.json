@@ -13182,6 +13182,52 @@
       "createdAt": "2026-08-03T14:59:10.597Z",
       "updatedAt": "2026-08-03T14:59:10.597Z",
       "duration": 4494
+    },
+    {
+      "id": 1785787662484,
+      "ref": "NL20260803-02-0213744",
+      "site": "NL",
+      "date": "2026-08-03",
+      "dailyN": 2,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500089807",
+      "productNo": "213744",
+      "description": "Wooden Base 23.25\" Savannah F165",
+      "delivery": "410001842155",
+      "hu": [
+        "900824510",
+        "900824511"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-30",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 50,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 50,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T20:07:42.484Z",
+      "updatedAt": "2026-08-03T20:07:42.484Z",
+      "duration": 119
     }
   ],
   "ncrs": [],
