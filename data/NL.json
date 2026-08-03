@@ -13820,6 +13820,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785760156611,
+      "timestamp": "2026-08-03T12:29:16.611Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260731-08-0201241",
+      "site": "NL",
+      "details": "Amazon | 201241 | Decision: approved",
+      "duration": 233
+    },
+    {
       "id": 1785759840748,
       "timestamp": "2026-08-03T12:24:00.748Z",
       "user": "Dominic Dotson",
@@ -19142,17 +19153,6 @@
       "ref": "—",
       "site": "NL",
       "details": "Role: inspector | Sites: NL"
-    },
-    {
-      "id": 1784147359425,
-      "timestamp": "2026-07-15T20:29:19.425Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260709-01-0216120",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216120 | Decision: approved",
-      "duration": 0
     }
   ]
 }
