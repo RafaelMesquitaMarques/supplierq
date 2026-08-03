@@ -13363,6 +13363,54 @@
       "createdAt": "2026-08-03T20:21:05.977Z",
       "updatedAt": "2026-08-03T20:21:05.977Z",
       "duration": 75
+    },
+    {
+      "id": 1785788726375,
+      "ref": "NL20260803-06-0211482",
+      "site": "NL",
+      "date": "2026-08-03",
+      "dailyN": 6,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091044",
+      "productNo": "211482",
+      "description": "MTL TB Side 24.5\" M003-PCM",
+      "delivery": "410001843193",
+      "hu": [
+        "500189534",
+        "900825337",
+        "900825338",
+        "900825339"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 77,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 77,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T20:25:26.375Z",
+      "updatedAt": "2026-08-03T20:25:26.375Z",
+      "duration": 129
     }
   ],
   "ncrs": [],
