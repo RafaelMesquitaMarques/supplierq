@@ -5714,6 +5714,57 @@
       "createdAt": "2026-08-03T12:27:07.108Z",
       "updatedAt": "2026-08-03T12:27:07.108Z",
       "duration": 88
+    },
+    {
+      "id": 1785765653485,
+      "ref": "QM20260803-01-0216130",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090171",
+      "productNo": "216130",
+      "description": "MTL Sofa Frame 81.5\" M003-PCM",
+      "delivery": "410001828162",
+      "hu": [
+        "500191058"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 2
+        }
+      ],
+      "issues": "Dimensions are not as drawing states",
+      "notes": "Widht dimensions are not the same as in the drawing",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 2,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T14:00:53.485Z",
+      "updatedAt": "2026-08-03T14:00:53.485Z",
+      "duration": 340
     }
   ],
   "ncrs": [],
