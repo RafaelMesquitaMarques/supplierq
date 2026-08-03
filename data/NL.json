@@ -12879,6 +12879,51 @@
       "createdAt": "2026-08-03T12:21:55.014Z",
       "updatedAt": "2026-08-03T12:21:55.014Z",
       "duration": 173
+    },
+    {
+      "id": 1785759796974,
+      "ref": "NL20260731-07-0212155",
+      "site": "NL",
+      "date": "2026-07-31",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "212155",
+      "description": "Driver Taped LED Lights 12W W/Plast Clip",
+      "delivery": "410001836870",
+      "hu": [
+        "500191742"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 100,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 100,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T12:23:16.974Z",
+      "updatedAt": "2026-08-03T12:23:16.974Z",
+      "duration": 65
     }
   ],
   "ncrs": [],
