@@ -5810,6 +5810,51 @@
       "createdAt": "2026-08-03T18:28:44.581Z",
       "updatedAt": "2026-08-03T18:28:44.581Z",
       "duration": 116
+    },
+    {
+      "id": 1785784232479,
+      "ref": "QM20260803-01-0214286",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "214286",
+      "description": "MTL Mirror wardrobe",
+      "delivery": "410001844645",
+      "hu": [
+        "500192796"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 560,
+      "qtyInspected": 48,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 560,
+          "inspected": 48,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T19:10:32.479Z",
+      "updatedAt": "2026-08-03T19:10:32.479Z",
+      "duration": 116
     }
   ],
   "ncrs": [],
