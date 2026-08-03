@@ -6411,6 +6411,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785756754423,
+      "timestamp": "2026-08-03T11:32:34.423Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260803-01-0216156",
+      "site": "QM",
+      "details": "Consun Furniture Hardware Factory | 216156 | Decision: approved",
+      "duration": 97
+    },
+    {
       "id": 1785755746698,
       "timestamp": "2026-08-03T11:15:46.698Z",
       "user": "Milena Correia",
