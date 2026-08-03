@@ -13318,6 +13318,51 @@
       "createdAt": "2026-08-03T20:19:08.432Z",
       "updatedAt": "2026-08-03T20:19:08.432Z",
       "duration": 224
+    },
+    {
+      "id": 1785788465977,
+      "ref": "NL20260803-05-0214009",
+      "site": "NL",
+      "date": "2026-08-03",
+      "dailyN": 5,
+      "supplier": "Amazon",
+      "po": "4500093943",
+      "productNo": "214009",
+      "description": "MTL BRKT Wardrobe Pole 1\" M195-PL",
+      "delivery": "410001839706",
+      "hu": [
+        "900823293"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-29",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 25,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Supplier not found, replace with Richelieu Hardware (Pacific NW) / Mount when possible.",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T20:21:05.977Z",
+      "updatedAt": "2026-08-03T20:21:05.977Z",
+      "duration": 75
     }
   ],
   "ncrs": [],
