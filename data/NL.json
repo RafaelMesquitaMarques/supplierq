@@ -14079,6 +14079,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785787665531,
+      "timestamp": "2026-08-03T20:07:45.531Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260803-02-0213744",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 213744 | Decision: approved",
+      "duration": 119
+    },
+    {
       "id": 1785769158220,
       "timestamp": "2026-08-03T14:59:18.220Z",
       "user": "Dominic Dotson",
@@ -19403,17 +19414,6 @@
       "ref": "Fabric Innovations by Covington / Calhou",
       "site": "NL",
       "details": "Fabric Innovations by Covington / Calhou | China"
-    },
-    {
-      "id": 1784211458087,
-      "timestamp": "2026-07-16T14:17:38.087Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260714-02-7000007227",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000007227 | Decision: approved",
-      "duration": 126
     }
   ]
 }
