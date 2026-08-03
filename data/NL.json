@@ -14079,6 +14079,16 @@
   ],
   "auditLog": [
     {
+      "id": 1785787917863,
+      "timestamp": "2026-08-03T20:11:57.863Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "NL",
+      "details": "Role: inspector | Sites: NL"
+    },
+    {
       "id": 1785787665531,
       "timestamp": "2026-08-03T20:07:45.531Z",
       "user": "Dominic Dotson",
@@ -19404,16 +19414,6 @@
       "site": "NL",
       "details": "Fabric Innovations by Covington / Calhou | 212513 | Decision: approved",
       "duration": 163
-    },
-    {
-      "id": 1784211686381,
-      "timestamp": "2026-07-16T14:21:26.381Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "supplier_created",
-      "ref": "Fabric Innovations by Covington / Calhou",
-      "site": "NL",
-      "details": "Fabric Innovations by Covington / Calhou | China"
     }
   ]
 }
