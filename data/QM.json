@@ -5765,6 +5765,51 @@
       "createdAt": "2026-08-03T14:00:53.485Z",
       "updatedAt": "2026-08-03T14:00:53.485Z",
       "duration": 340
+    },
+    {
+      "id": 1785781724581,
+      "ref": "QM20260803-01-0215317",
+      "site": "QM",
+      "date": "2026-08-03",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090373",
+      "productNo": "215317",
+      "description": "MTL Leg Adj Bed Base M242-PC",
+      "delivery": "410001839822",
+      "hu": [
+        "500192339"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 8,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-03T18:28:44.581Z",
+      "updatedAt": "2026-08-03T18:28:44.581Z",
+      "duration": 116
     }
   ],
   "ncrs": [],
