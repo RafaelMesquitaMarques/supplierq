@@ -14566,6 +14566,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785865206216,
+      "timestamp": "2026-08-04T17:40:06.216Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260804-01-7000008839",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 7000008839 | Decision: waiting",
+      "duration": 602
+    },
+    {
       "id": 1785849463167,
       "timestamp": "2026-08-04T13:17:43.167Z",
       "user": "Dominic Dotson",
@@ -19893,17 +19904,6 @@
       "site": "NL",
       "details": "CULP Inc | 214225 | Decision: approved",
       "duration": 229
-    },
-    {
-      "id": 1784214028776,
-      "timestamp": "2026-07-16T15:00:28.776Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260713-03-0212514",
-      "site": "NL",
-      "details": "Fil Doux Textiles | 212514 | Decision: approved",
-      "duration": 165
     }
   ]
 }
