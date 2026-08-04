@@ -5900,6 +5900,53 @@
       "createdAt": "2026-08-04T11:24:22.640Z",
       "updatedAt": "2026-08-04T11:24:22.640Z",
       "duration": 77
+    },
+    {
+      "id": 1785849013332,
+      "ref": "QM20260804-01-0214033",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "214033",
+      "description": "MTL Legs Kit L/R 2x23x29.25\" M003-ST",
+      "delivery": "410001844645",
+      "hu": [
+        "500192783",
+        "500192784",
+        "500192785"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 110,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 110,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T13:10:13.332Z",
+      "updatedAt": "2026-08-04T13:10:13.333Z",
+      "duration": 166
     }
   ],
   "ncrs": [],
