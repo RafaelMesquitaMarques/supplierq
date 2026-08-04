@@ -6144,6 +6144,51 @@
       "createdAt": "2026-08-04T17:25:13.700Z",
       "updatedAt": "2026-08-04T17:25:13.700Z",
       "duration": 76
+    },
+    {
+      "id": 1785865794815,
+      "ref": "QM20260804-01-0214129",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "214129",
+      "description": "MTL Towel Bar 15.25x2.625x2.25\" M003-ST",
+      "delivery": "410001844645",
+      "hu": [
+        "500192773"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 559,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 559,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T17:49:54.815Z",
+      "updatedAt": "2026-08-04T17:49:54.815Z",
+      "duration": 115
     }
   ],
   "ncrs": [],
