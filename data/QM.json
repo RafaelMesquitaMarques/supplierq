@@ -6049,6 +6049,56 @@
       "createdAt": "2026-08-04T14:21:08.055Z",
       "updatedAt": "2026-08-04T15:00:52.311Z",
       "duration": 251
+    },
+    {
+      "id": 1785863087159,
+      "ref": "QM20260804-01-7000000385",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091029",
+      "productNo": "7000000385",
+      "description": "HB Steel Adj 36x38\" M003-ST",
+      "delivery": "410001844644",
+      "hu": [
+        "500192802",
+        "500192803",
+        "500192804",
+        "500192805",
+        "500192806",
+        "500192807"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-04",
+      "inspector": "Milena Correia",
+      "qtyReceived": 300,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Metal Pins #6 in a box bottom of palette",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T17:04:47.159Z",
+      "updatedAt": "2026-08-04T17:04:47.159Z",
+      "duration": 169
     }
   ],
   "ncrs": [],
