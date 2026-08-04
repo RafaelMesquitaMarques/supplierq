@@ -5998,6 +5998,57 @@
       "createdAt": "2026-08-04T13:58:41.104Z",
       "updatedAt": "2026-08-04T13:58:41.104Z",
       "duration": 2902
+    },
+    {
+      "id": 1785853268055,
+      "ref": "QM20260804-02-0216074",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 2,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "216074",
+      "description": "MTL Clothes Rod Kit 31.5 M003-ST",
+      "delivery": "410001844645",
+      "hu": [
+        "500192772"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 560,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 560,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 50
+        }
+      ],
+      "issues": "Dimensions are not as drawing states",
+      "notes": "Clothes rod ends is 55.13mm but should be 50mm",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 49,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T14:21:08.055Z",
+      "updatedAt": "2026-08-04T14:21:08.055Z",
+      "duration": 251
     }
   ],
   "ncrs": [],
