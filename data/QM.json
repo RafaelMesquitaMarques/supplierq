@@ -6099,6 +6099,51 @@
       "createdAt": "2026-08-04T17:04:47.159Z",
       "updatedAt": "2026-08-04T17:04:47.159Z",
       "duration": 169
+    },
+    {
+      "id": 1785864313700,
+      "ref": "QM20260804-01-0215033",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090894",
+      "productNo": "215033",
+      "description": "MTL Fra Work TB 22x15x27.25\" M008-PC",
+      "delivery": "410001844647",
+      "hu": [
+        "500192788"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 6,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T17:25:13.700Z",
+      "updatedAt": "2026-08-04T17:25:13.700Z",
+      "duration": 76
     }
   ],
   "ncrs": [],
