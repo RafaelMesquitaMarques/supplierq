@@ -14307,6 +14307,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785844919714,
+      "timestamp": "2026-08-04T12:01:59.714Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260803-07-0208807",
+      "site": "NL",
+      "details": "Fujian Dav Technologies Co. Ltd. | 208807 | Decision: approved",
+      "duration": 132
+    },
+    {
       "id": 1785788729058,
       "timestamp": "2026-08-03T20:25:29.058Z",
       "user": "Dominic Dotson",
@@ -19633,17 +19644,6 @@
       "ref": "Fil Doux Textiles",
       "site": "NL",
       "details": "Fil Doux Textiles | Chile"
-    },
-    {
-      "id": 1784213720219,
-      "timestamp": "2026-07-16T14:55:20.219Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260713-02-0212152",
-      "site": "NL",
-      "details": "Fabric Innovations by Covington | 212152 | Decision: approved",
-      "duration": 0
     }
   ]
 }
