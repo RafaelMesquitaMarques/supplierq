@@ -14453,6 +14453,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785849463167,
+      "timestamp": "2026-08-04T13:17:43.167Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260803-08-7000009844",
+      "site": "NL",
+      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000009844 | Decision: rejected",
+      "duration": 1025
+    },
+    {
       "id": 1785844919714,
       "timestamp": "2026-08-04T12:01:59.714Z",
       "user": "Dominic Dotson",
@@ -19780,16 +19791,6 @@
       "site": "NL",
       "details": "Fil Doux Textiles | 212514 | Decision: approved",
       "duration": 165
-    },
-    {
-      "id": 1784213852976,
-      "timestamp": "2026-07-16T14:57:32.976Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "supplier_created",
-      "ref": "Fil Doux Textiles",
-      "site": "NL",
-      "details": "Fil Doux Textiles | Chile"
     }
   ]
 }
