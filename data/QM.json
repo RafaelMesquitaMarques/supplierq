@@ -5947,6 +5947,57 @@
       "createdAt": "2026-08-04T13:10:13.332Z",
       "updatedAt": "2026-08-04T13:10:13.333Z",
       "duration": 166
+    },
+    {
+      "id": 1785851921104,
+      "ref": "QM20260804-01-0215441",
+      "site": "QM",
+      "date": "2026-08-04",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "215441",
+      "description": "Steel Stru Duracraft 2S 25x46\" M003-ST",
+      "delivery": "410001844642",
+      "hu": [
+        "500192808"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 4,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 4
+        }
+      ],
+      "issues": "Dimensions are not as drawing states",
+      "notes": "From frame to spring should be 1'', but received 1 5/16",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 4,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-04T13:58:41.104Z",
+      "updatedAt": "2026-08-04T13:58:41.104Z",
+      "duration": 2902
     }
   ],
   "ncrs": [],
