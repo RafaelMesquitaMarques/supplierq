@@ -13895,6 +13895,51 @@
       "createdAt": "2026-08-05T12:32:52.385Z",
       "updatedAt": "2026-08-05T12:32:52.385Z",
       "duration": 138
+    },
+    {
+      "id": 1785933411480,
+      "ref": "NL20260804-06-7000002673",
+      "site": "NL",
+      "date": "2026-08-04",
+      "dailyN": 6,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000002673",
+      "description": "TB Coffee Wood 48\" Blue And Taupe",
+      "delivery": "410001835785",
+      "hu": [
+        "900822995"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T12:36:51.480Z",
+      "updatedAt": "2026-08-05T12:36:51.481Z",
+      "duration": 187
     }
   ],
   "ncrs": [],
