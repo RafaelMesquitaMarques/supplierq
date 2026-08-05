@@ -13850,6 +13850,51 @@
       "createdAt": "2026-08-05T12:26:34.314Z",
       "updatedAt": "2026-08-05T12:26:34.314Z",
       "duration": 80
+    },
+    {
+      "id": 1785932905113,
+      "ref": "NL20260803-05-7000007262",
+      "site": "NL",
+      "date": "2026-08-03",
+      "dailyN": 5,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000007262",
+      "description": "WD BS RD Cof TB F216 (TD 39/10040 W S-M)",
+      "delivery": "410001835785",
+      "hu": [
+        "900823000"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T12:28:25.113Z",
+      "updatedAt": "2026-08-05T12:28:25.113Z",
+      "duration": 85
     }
   ],
   "ncrs": [],
