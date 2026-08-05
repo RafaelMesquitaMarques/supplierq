@@ -14656,6 +14656,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785932306215,
+      "timestamp": "2026-08-05T12:18:26.215Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260804-03-7000003319",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000003319 | Decision: approved",
+      "duration": 187
+    },
+    {
       "id": 1785932088987,
       "timestamp": "2026-08-05T12:14:48.987Z",
       "user": "Dominic Dotson",
@@ -19983,17 +19994,6 @@
       "site": "NL",
       "details": "Symmetry Resources | 214215 | Decision: approved",
       "duration": 125
-    },
-    {
-      "id": 1784216128276,
-      "timestamp": "2026-07-16T15:35:28.276Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260715-03-0214228",
-      "site": "NL",
-      "details": "CULP Inc | 214228 | Decision: approved",
-      "duration": 95
     }
   ]
 }
