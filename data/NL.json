@@ -14701,6 +14701,16 @@
   ],
   "auditLog": [
     {
+      "id": 1785932701339,
+      "timestamp": "2026-08-05T12:25:01.339Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260803-05-7000007382",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000007382"
+    },
+    {
       "id": 1785932602854,
       "timestamp": "2026-08-05T12:23:22.854Z",
       "user": "Dominic Dotson",
@@ -20028,17 +20038,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 215415 | Decision: approved",
       "duration": 16150
-    },
-    {
-      "id": 1784218726889,
-      "timestamp": "2026-07-16T16:18:46.889Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260715-05-0209517",
-      "site": "NL",
-      "details": "Fabric Innovations by Covington | 209517 | Decision: approved",
-      "duration": 2398
     }
   ]
 }
