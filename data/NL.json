@@ -13805,6 +13805,51 @@
       "createdAt": "2026-08-05T12:18:05.726Z",
       "updatedAt": "2026-08-05T12:18:05.726Z",
       "duration": 187
+    },
+    {
+      "id": 1785932794314,
+      "ref": "NL20260804-04-7000007382",
+      "site": "NL",
+      "date": "2026-08-04",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000007382",
+      "description": "Console Media 78\" F262/M003-PCM",
+      "delivery": "410001835785",
+      "hu": [
+        "900823001"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T12:26:34.314Z",
+      "updatedAt": "2026-08-05T12:26:34.314Z",
+      "duration": 80
     }
   ],
   "ncrs": [],
