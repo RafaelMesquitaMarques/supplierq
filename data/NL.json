@@ -13715,6 +13715,51 @@
       "createdAt": "2026-08-04T17:39:58.654Z",
       "updatedAt": "2026-08-04T17:39:58.654Z",
       "duration": 602
+    },
+    {
+      "id": 1785932070934,
+      "ref": "NL20260804-02-7000003320",
+      "site": "NL",
+      "date": "2026-08-04",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000003320",
+      "description": "Shelves Guest Laundry 32\" F235/M195-PL",
+      "delivery": "410001835785",
+      "hu": [
+        "900822997"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T12:14:30.934Z",
+      "updatedAt": "2026-08-05T12:14:30.934Z",
+      "duration": 163
     }
   ],
   "ncrs": [],
