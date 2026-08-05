@@ -14701,6 +14701,17 @@
   ],
   "auditLog": [
     {
+      "id": 1785932602854,
+      "timestamp": "2026-08-05T12:23:22.854Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260803-05-7000007382",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000007382 | Decision: approved",
+      "duration": 98
+    },
+    {
       "id": 1785932306215,
       "timestamp": "2026-08-05T12:18:26.215Z",
       "user": "Dominic Dotson",
@@ -20028,17 +20039,6 @@
       "site": "NL",
       "details": "Fabric Innovations by Covington | 209517 | Decision: approved",
       "duration": 2398
-    },
-    {
-      "id": 1784216306755,
-      "timestamp": "2026-07-16T15:38:26.755Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260715-04-0214215",
-      "site": "NL",
-      "details": "Symmetry Resources | 214215 | Decision: approved",
-      "duration": 125
     }
   ]
 }
