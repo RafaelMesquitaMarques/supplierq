@@ -13940,6 +13940,51 @@
       "createdAt": "2026-08-05T12:36:51.480Z",
       "updatedAt": "2026-08-05T12:36:51.481Z",
       "duration": 187
+    },
+    {
+      "id": 1785933566639,
+      "ref": "NL20260804-07-7000002658",
+      "site": "NL",
+      "date": "2026-08-04",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000002658",
+      "description": "WD Frame Ash Coffee Station 71\" F239",
+      "delivery": "410001835785",
+      "hu": [
+        "900822994"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T12:39:26.639Z",
+      "updatedAt": "2026-08-05T12:39:26.639Z",
+      "duration": 93
     }
   ],
   "ncrs": [],
