@@ -2972,6 +2972,51 @@
       "createdAt": "2026-08-05T19:44:51.128Z",
       "updatedAt": "2026-08-05T19:44:51.128Z",
       "duration": 46
+    },
+    {
+      "id": 1785959138847,
+      "ref": "QS20260805-01-0216081",
+      "site": "QS",
+      "date": "2026-08-05",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500089817",
+      "productNo": "216081",
+      "description": "WD Base RD Side TB 18.75\"DIA F003",
+      "delivery": "410001844662",
+      "hu": [
+        "500192902"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-05T19:45:38.848Z",
+      "updatedAt": "2026-08-05T19:45:38.848Z",
+      "duration": 36
     }
   ],
   "ncrs": [],
