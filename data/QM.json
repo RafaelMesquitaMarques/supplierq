@@ -6324,6 +6324,51 @@
       "createdAt": "2026-08-06T13:12:03.637Z",
       "updatedAt": "2026-08-06T13:12:03.637Z",
       "duration": 85
+    },
+    {
+      "id": 1786025265225,
+      "ref": "QM20260806-01-7000009230",
+      "site": "QM",
+      "date": "2026-08-06",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091762",
+      "productNo": "7000009230",
+      "description": "Mtl Stretcher Kit Soren TB 55\" M003-ST",
+      "delivery": "410001844646",
+      "hu": [
+        "500192781"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 6,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T14:07:45.225Z",
+      "updatedAt": "2026-08-06T14:07:45.225Z",
+      "duration": 97
     }
   ],
   "ncrs": [],
