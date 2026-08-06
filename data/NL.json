@@ -14714,6 +14714,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786021216749,
+      "timestamp": "2026-08-06T13:00:16.749Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260805-09-7000009103",
+      "site": "NL",
+      "details": "NHAN HOANG FURNITURE CORPORATION / Ho Ch | 7000009103 | Decision: approved",
+      "duration": 506
+    },
+    {
       "id": 1786020699868,
       "timestamp": "2026-08-06T12:51:39.868Z",
       "user": "Dominic Dotson",
@@ -20039,17 +20050,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 202195 | Decision: approved",
       "duration": 137
-    },
-    {
-      "id": 1784220314797,
-      "timestamp": "2026-07-16T16:45:14.797Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-06-0202064",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 202064 | Decision: approved",
-      "duration": 100
     }
   ]
 }
