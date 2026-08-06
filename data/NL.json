@@ -14352,6 +14352,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786018052347,
+      "timestamp": "2026-08-06T12:07:32.347Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260805-01-7000006431",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000006431 | Decision: approved",
+      "duration": 193
+    },
+    {
       "id": 1786017525731,
       "timestamp": "2026-08-06T11:58:45.731Z",
       "user": "Dominic Dotson",
@@ -19678,17 +19689,6 @@
       "site": "NL",
       "details": "CULP Inc | 214225 | Decision: approved",
       "duration": 229
-    },
-    {
-      "id": 1784214028776,
-      "timestamp": "2026-07-16T15:00:28.776Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260713-03-0212514",
-      "site": "NL",
-      "details": "Fil Doux Textiles | 212514 | Decision: approved",
-      "duration": 165
     }
   ]
 }
