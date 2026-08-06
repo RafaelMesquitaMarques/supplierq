@@ -6414,6 +6414,57 @@
       "createdAt": "2026-08-06T14:44:59.447Z",
       "updatedAt": "2026-08-06T14:44:59.447Z",
       "duration": 141
+    },
+    {
+      "id": 1786030552140,
+      "ref": "QM20260806-01-0215444",
+      "site": "QM",
+      "date": "2026-08-06",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "215444",
+      "description": "Steel Stru Duracraft ME-S 22x53\" M003-ST",
+      "delivery": "410001844642",
+      "hu": [
+        "500192782"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 3,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [
+        {
+          "key": "dimensional",
+          "label": "Drawing / Dimensional",
+          "qty": 3
+        }
+      ],
+      "issues": "Dimensions are not as drawing states",
+      "notes": "All 3 have different measurements from frame to spring",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 3,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T15:35:52.140Z",
+      "updatedAt": "2026-08-06T15:35:52.140Z",
+      "duration": 179
     }
   ],
   "ncrs": [],
