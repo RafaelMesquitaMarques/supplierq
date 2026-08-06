@@ -6600,6 +6600,52 @@
       "createdAt": "2026-08-06T18:36:02.681Z",
       "updatedAt": "2026-08-06T18:36:02.681Z",
       "duration": 93
+    },
+    {
+      "id": 1786043386461,
+      "ref": "QM20260806-01-0201673",
+      "site": "QM",
+      "date": "2026-08-06",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090379",
+      "productNo": "201673",
+      "description": "Footboard Bed Metal 15.50x36\" M003-ST",
+      "delivery": "410001839824",
+      "hu": [
+        "500192311",
+        "500192312"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Milena Correia",
+      "qtyReceived": 160,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 160,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T19:09:46.462Z",
+      "updatedAt": "2026-08-06T19:09:46.462Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
