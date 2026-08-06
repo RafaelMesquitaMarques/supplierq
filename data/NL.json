@@ -13546,6 +13546,51 @@
       "createdAt": "2026-08-06T12:13:48.847Z",
       "updatedAt": "2026-08-06T12:13:48.847Z",
       "duration": 202
+    },
+    {
+      "id": 1786018555671,
+      "ref": "NL20260805-03-7000003241",
+      "site": "NL",
+      "date": "2026-08-05",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000003241",
+      "description": "Mirror W/Wood Frame23.75x18.75x4\" F234",
+      "delivery": "8000006087",
+      "hu": [
+        "900822992"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-07-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 3,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T12:15:55.671Z",
+      "updatedAt": "2026-08-06T12:15:55.671Z",
+      "duration": 113
     }
   ],
   "ncrs": [],
