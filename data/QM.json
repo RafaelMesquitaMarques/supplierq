@@ -6279,6 +6279,51 @@
       "createdAt": "2026-08-06T12:15:41.031Z",
       "updatedAt": "2026-08-06T12:15:41.031Z",
       "duration": 77
+    },
+    {
+      "id": 1786021923637,
+      "ref": "QM20260806-01-7000009432",
+      "site": "QM",
+      "date": "2026-08-06",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091762",
+      "productNo": "7000009432",
+      "description": "Mtl Leg Kit Soren TB 29x29\" M003-ST",
+      "delivery": "410001844646",
+      "hu": [
+        "500192771"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 3,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 3,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T13:12:03.637Z",
+      "updatedAt": "2026-08-06T13:12:03.637Z",
+      "duration": 85
     }
   ],
   "ncrs": [],
