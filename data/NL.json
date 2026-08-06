@@ -13816,6 +13816,53 @@
       "createdAt": "2026-08-06T12:51:35.872Z",
       "updatedAt": "2026-08-06T12:51:35.872Z",
       "duration": 66
+    },
+    {
+      "id": 1786021210502,
+      "ref": "NL20260805-09-7000009103",
+      "site": "NL",
+      "date": "2026-08-05",
+      "dailyN": 9,
+      "supplier": "NHAN HOANG FURNITURE CORPORATION / Ho Ch",
+      "po": "4500089870",
+      "productNo": "7000009103",
+      "description": "Uph Ottoman Tygart Sand/Navy 18\" V2",
+      "delivery": "410001845620",
+      "hu": [
+        "900825856",
+        "900825857",
+        "900825886"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 157,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 157,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T13:00:10.502Z",
+      "updatedAt": "2026-08-06T13:00:10.502Z",
+      "duration": 506
     }
   ],
   "ncrs": [],
