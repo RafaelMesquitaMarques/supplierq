@@ -6369,6 +6369,51 @@
       "createdAt": "2026-08-06T14:07:45.225Z",
       "updatedAt": "2026-08-06T14:07:45.225Z",
       "duration": 97
+    },
+    {
+      "id": 1786027499447,
+      "ref": "QM20260806-01-0215462",
+      "site": "QM",
+      "date": "2026-08-06",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500089547",
+      "productNo": "215462",
+      "description": "MTL Frame Desk 84x26x36\" M003-ST",
+      "delivery": "410001822841",
+      "hu": [
+        "500190158"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-06-30",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T14:44:59.447Z",
+      "updatedAt": "2026-08-06T14:44:59.447Z",
+      "duration": 141
     }
   ],
   "ncrs": [],
