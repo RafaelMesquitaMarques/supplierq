@@ -13456,6 +13456,51 @@
       "createdAt": "2026-08-04T12:01:51.514Z",
       "updatedAt": "2026-08-04T12:01:51.514Z",
       "duration": 132
+    },
+    {
+      "id": 1786018047570,
+      "ref": "NL20260805-01-7000006431",
+      "site": "NL",
+      "date": "2026-08-05",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006087",
+      "productNo": "7000006431",
+      "description": "PL Mateo Chair WO arms/Mtl Base Black",
+      "delivery": "410001835785",
+      "hu": [
+        "900822990"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-25",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 5,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-06T12:07:27.570Z",
+      "updatedAt": "2026-08-06T12:07:27.570Z",
+      "duration": 193
     }
   ],
   "ncrs": [],
