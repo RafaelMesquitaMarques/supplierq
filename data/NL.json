@@ -14931,6 +14931,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786113169734,
+      "timestamp": "2026-08-07T14:32:49.734Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260806-04-0202659",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 202659 | Decision: approved",
+      "duration": 75
+    },
+    {
       "id": 1786113082216,
       "timestamp": "2026-08-07T14:31:22.216Z",
       "user": "Dominic Dotson",
@@ -20256,17 +20267,6 @@
       "site": "NL",
       "details": "CULP Inc | 214225 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1784223621789,
-      "timestamp": "2026-07-16T17:40:21.789Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-11-0211888",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 211888 | Decision: approved",
-      "duration": 754
     }
   ]
 }
