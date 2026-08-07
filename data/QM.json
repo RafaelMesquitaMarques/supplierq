@@ -6442,28 +6442,34 @@
           "inspected": 3,
           "nonConf": 0,
           "pct": 0
+        },
+        {
+          "round": 2,
+          "inspected": 10,
+          "nonConf": 10,
+          "pct": 100
         }
       ],
       "defects": [
         {
           "key": "dimensional",
           "label": "Drawing / Dimensional",
-          "qty": 3
+          "qty": 13
         }
       ],
       "issues": "Dimensions are not as drawing states",
-      "notes": "All 3 have different measurements from frame to spring",
+      "notes": "All 3 have different measurements from frame to spring / Inspected 10 more and all have different dimensions also , add 5 more pictures to the report",
       "decision": "waiting",
       "qtyUseAsIs": 0,
       "qtyRework": 0,
       "qtyRejected": 0,
-      "qtyWaiting": 3,
+      "qtyWaiting": 13,
       "hasNC": true,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-08-06T15:35:52.140Z",
-      "updatedAt": "2026-08-06T15:35:52.140Z",
+      "updatedAt": "2026-08-07T17:45:28.555Z",
       "duration": 179
     },
     {
