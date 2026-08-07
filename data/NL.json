@@ -14170,6 +14170,51 @@
       "createdAt": "2026-08-07T14:38:03.709Z",
       "updatedAt": "2026-08-07T14:38:03.709Z",
       "duration": 106
+    },
+    {
+      "id": 1786113903674,
+      "ref": "NL20260806-07-0201872",
+      "site": "NL",
+      "date": "2026-08-06",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "1500003787",
+      "productNo": "201872",
+      "description": "Bolt Zinc RH Phill M4x40mm",
+      "delivery": "410001843691",
+      "hu": [
+        "801682909"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T14:45:03.674Z",
+      "updatedAt": "2026-08-07T14:45:03.674Z",
+      "duration": 415
     }
   ],
   "ncrs": [],
