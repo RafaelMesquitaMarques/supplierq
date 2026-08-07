@@ -14804,6 +14804,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786110714352,
+      "timestamp": "2026-08-07T13:51:54.352Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260806-01-7000007201",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000007201 | Decision: approved",
+      "duration": 250
+    },
+    {
       "id": 1786021532215,
       "timestamp": "2026-08-06T13:05:32.215Z",
       "user": "Dominic Dotson",
@@ -20129,17 +20140,6 @@
       "site": "NL",
       "details": "Xiamen Yiree Smart Industried Co. Ltd | 214713 | Decision: approved",
       "duration": 1105
-    },
-    {
-      "id": 1784221066357,
-      "timestamp": "2026-07-16T16:57:46.357Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-08-7000002659",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 7000002659 | Decision: approved",
-      "duration": 569
     }
   ]
 }
