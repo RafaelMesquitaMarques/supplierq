@@ -6875,6 +6875,51 @@
       "createdAt": "2026-08-07T12:55:11.682Z",
       "updatedAt": "2026-08-07T12:55:11.682Z",
       "duration": 107
+    },
+    {
+      "id": 1786110516306,
+      "ref": "QM20260807-01-0216038",
+      "site": "QM",
+      "date": "2026-08-07",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "216038",
+      "description": "MTL Leg Kit L/R Lock 1x2x35.25\" M003-ST",
+      "delivery": "410001847751",
+      "hu": [
+        "500193223"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Milena Correia",
+      "qtyReceived": 56,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 56,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T13:48:36.306Z",
+      "updatedAt": "2026-08-07T13:48:36.306Z",
+      "duration": 117
     }
   ],
   "ncrs": [],
