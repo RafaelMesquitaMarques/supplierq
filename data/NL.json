@@ -15112,6 +15112,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786114141266,
+      "timestamp": "2026-08-07T14:49:01.266Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "NL20260806-02-0200564",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 200564 | Decision: approved",
+      "duration": 0
+    },
+    {
       "id": 1786114067896,
       "timestamp": "2026-08-07T14:47:47.896Z",
       "user": "Dominic Dotson",
@@ -20437,17 +20448,6 @@
       "site": "NL",
       "details": "Xiamen Yiree Smart Industried Co. Ltd | 211897 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1784229997735,
-      "timestamp": "2026-07-16T19:26:37.735Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-13-0201750",
-      "site": "NL",
-      "details": "Allen Furniture Vietnam Co., Ltd | 201750 | Decision: approved",
-      "duration": 359
     }
   ]
 }
