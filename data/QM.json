@@ -6926,6 +6926,53 @@
       "createdAt": "2026-08-07T13:48:36.306Z",
       "updatedAt": "2026-08-07T13:48:36.306Z",
       "duration": 117
+    },
+    {
+      "id": 1786125080759,
+      "ref": "QM20260807-01-0214331",
+      "site": "QM",
+      "date": "2026-08-07",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "214331",
+      "description": "MTL Leg 1x2x23.25\" M003-ST",
+      "delivery": "410001847751",
+      "hu": [
+        "500193286",
+        "500193287",
+        "500193290"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Milena Correia",
+      "qtyReceived": 4200,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4200,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T17:51:20.759Z",
+      "updatedAt": "2026-08-07T17:51:20.759Z",
+      "duration": 340
     }
   ],
   "ncrs": [],
