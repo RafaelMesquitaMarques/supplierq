@@ -14125,6 +14125,51 @@
       "createdAt": "2026-08-07T14:36:03.122Z",
       "updatedAt": "2026-08-07T14:36:03.122Z",
       "duration": 191
+    },
+    {
+      "id": 1786113483709,
+      "ref": "NL20260806-06-0203283",
+      "site": "NL",
+      "date": "2026-08-06",
+      "dailyN": 6,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "1500003787",
+      "productNo": "203283",
+      "description": "Washer Zinc Fender 5/16x1-1/4\"",
+      "delivery": "410001843691",
+      "hu": [
+        "801682840"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4000,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4000,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T14:38:03.709Z",
+      "updatedAt": "2026-08-07T14:38:03.709Z",
+      "duration": 106
     }
   ],
   "ncrs": [],
