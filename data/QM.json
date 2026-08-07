@@ -6830,6 +6830,51 @@
       "createdAt": "2026-08-07T12:18:31.526Z",
       "updatedAt": "2026-08-07T12:18:31.526Z",
       "duration": 104
+    },
+    {
+      "id": 1786107311682,
+      "ref": "QM20260807-01-0214477",
+      "site": "QM",
+      "date": "2026-08-07",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500089892",
+      "productNo": "214477",
+      "description": "MTL Leg Adj ADA Bed Base M242-PC",
+      "delivery": "410001825288",
+      "hu": [
+        "500190457"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-06",
+      "inspector": "Milena Correia",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T12:55:11.682Z",
+      "updatedAt": "2026-08-07T12:55:11.682Z",
+      "duration": 107
     }
   ],
   "ncrs": [],
