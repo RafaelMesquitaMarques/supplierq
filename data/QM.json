@@ -7019,6 +7019,51 @@
       "createdAt": "2026-08-07T18:23:02.546Z",
       "updatedAt": "2026-08-07T18:23:02.546Z",
       "duration": 128
+    },
+    {
+      "id": 1786129332543,
+      "ref": "QM20260807-01-0215030",
+      "site": "QM",
+      "date": "2026-08-07",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090894",
+      "productNo": "215030",
+      "description": "MTL Cocktail TB Base 17.25\" M008-PC",
+      "delivery": "410001844647",
+      "hu": [
+        "500192787"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-03",
+      "inspector": "Milena Correia",
+      "qtyReceived": 5,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-07T19:02:12.543Z",
+      "updatedAt": "2026-08-07T19:02:12.543Z",
+      "duration": 99
     }
   ],
   "ncrs": [],
