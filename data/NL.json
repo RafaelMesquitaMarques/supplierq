@@ -15477,6 +15477,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786378692332,
+      "timestamp": "2026-08-10T16:18:12.332Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260807-08-0214820",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214820 | Decision: approved",
+      "duration": 147
+    },
+    {
       "id": 1786372484595,
       "timestamp": "2026-08-10T14:34:44.595Z",
       "user": "Dominic Dotson",
@@ -20806,17 +20817,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214240 | Decision: approved",
       "duration": 189
-    },
-    {
-      "id": 1784289966898,
-      "timestamp": "2026-07-17T12:06:06.898Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-01-0201750",
-      "site": "NL",
-      "details": "Allen Furniture Vietnam Co., Ltd | 201750 | Decision: approved",
-      "duration": 342
     }
   ]
 }
