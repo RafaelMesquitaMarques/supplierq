@@ -15885,6 +15885,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786392767861,
+      "timestamp": "2026-08-10T20:12:47.861Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260807-17-0202655",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 202655 | Decision: approved",
+      "duration": 81
+    },
+    {
       "id": 1786392679710,
       "timestamp": "2026-08-10T20:11:19.710Z",
       "user": "Dominic Dotson",
@@ -21213,17 +21224,6 @@
       "ref": "NL20260715-02-0214225",
       "site": "NL",
       "details": "CULP Inc | 214225 | Decision: use-as-is",
-      "duration": 0
-    },
-    {
-      "id": 1784295295052,
-      "timestamp": "2026-07-17T13:34:55.052Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260715-03-0214228",
-      "site": "NL",
-      "details": "CULP Inc | 214228 | Decision: use-as-is",
       "duration": 0
     }
   ]
