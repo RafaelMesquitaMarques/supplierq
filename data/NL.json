@@ -14809,6 +14809,51 @@
       "createdAt": "2026-08-10T16:39:30.310Z",
       "updatedAt": "2026-08-10T16:39:30.310Z",
       "duration": 430
+    },
+    {
+      "id": 1786380224604,
+      "ref": "NL20260807-13-0215409",
+      "site": "NL",
+      "date": "2026-08-07",
+      "dailyN": 13,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003769",
+      "productNo": "215409",
+      "description": "MTL Fra Alt Storage Bench 81\" M240-PC",
+      "delivery": "410001836870",
+      "hu": [
+        "500191758"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-07-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-10T16:43:44.604Z",
+      "updatedAt": "2026-08-10T16:43:44.604Z",
+      "duration": 246
     }
   ],
   "ncrs": [],
