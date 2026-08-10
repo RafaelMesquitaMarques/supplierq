@@ -14762,6 +14762,53 @@
       "createdAt": "2026-08-10T16:27:06.481Z",
       "updatedAt": "2026-08-10T16:27:06.481Z",
       "duration": 143
+    },
+    {
+      "id": 1786379970310,
+      "ref": "NL20260807-12-0212796",
+      "site": "NL",
+      "date": "2026-08-07",
+      "dailyN": 12,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091759",
+      "productNo": "212796",
+      "description": "Mtl Plate Counterweight 12mm M003-ST",
+      "delivery": "410001847809",
+      "hu": [
+        "900826372",
+        "900826373",
+        "900826374"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1500,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1500,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-10T16:39:30.310Z",
+      "updatedAt": "2026-08-10T16:39:30.310Z",
+      "duration": 430
     }
   ],
   "ncrs": [],
