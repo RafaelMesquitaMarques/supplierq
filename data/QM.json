@@ -7254,6 +7254,51 @@
       "createdAt": "2026-08-10T15:59:43.870Z",
       "updatedAt": "2026-08-10T15:59:43.870Z",
       "duration": 101
+    },
+    {
+      "id": 1786388685771,
+      "ref": "QM20260810-01-0201249",
+      "site": "QM",
+      "date": "2026-08-10",
+      "dailyN": 1,
+      "supplier": "Huizhou Chengfei Industrial Co",
+      "po": "4500091753",
+      "productNo": "201249",
+      "description": "Threaded Sleeve M4 15mm Zinc",
+      "delivery": "410001849211",
+      "hu": [
+        "500193351"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 82685,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 82685,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-10T19:04:45.771Z",
+      "updatedAt": "2026-08-10T19:04:45.771Z",
+      "duration": 100
     }
   ],
   "ncrs": [],
