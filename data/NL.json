@@ -14487,6 +14487,54 @@
       "createdAt": "2026-08-10T14:28:40.034Z",
       "updatedAt": "2026-08-10T14:28:40.034Z",
       "duration": 166
+    },
+    {
+      "id": 1786372301528,
+      "ref": "NL20260807-06-0207837",
+      "site": "NL",
+      "date": "2026-08-07",
+      "dailyN": 6,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091759",
+      "productNo": "207837",
+      "description": "Base TB Cocktail/Coffee M003-ST",
+      "delivery": "410001847809",
+      "hu": [
+        "900826371",
+        "900826368",
+        "900826369",
+        "900826370"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 70,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 70,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-10T14:31:41.528Z",
+      "updatedAt": "2026-08-10T14:31:41.528Z",
+      "duration": 172
     }
   ],
   "ncrs": [],
