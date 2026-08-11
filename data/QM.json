@@ -7540,6 +7540,53 @@
       "createdAt": "2026-08-11T15:33:53.349Z",
       "updatedAt": "2026-08-11T15:33:53.349Z",
       "duration": 115
+    },
+    {
+      "id": 1786466560211,
+      "ref": "QM20260811-01-0202915",
+      "site": "QM",
+      "date": "2026-08-11",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090894",
+      "productNo": "202915",
+      "description": "MTL Leg Tubular 2-1/2x28-15/16 M003-ST",
+      "delivery": "410001849353",
+      "hu": [
+        "500193445",
+        "500193446",
+        "500193447"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-11",
+      "inspector": "Milena Correia",
+      "qtyReceived": 504,
+      "qtyInspected": 24,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 504,
+          "inspected": 24,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-11T16:42:40.211Z",
+      "updatedAt": "2026-08-11T16:42:40.211Z",
+      "duration": 191
     }
   ],
   "ncrs": [],
