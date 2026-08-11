@@ -8222,6 +8222,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786449976827,
+      "timestamp": "2026-08-11T12:06:16.827Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260811-01-0200264",
+      "site": "QM",
+      "details": "Huizhou Chengfei Industrial Co | 200264 | Decision: approved",
+      "duration": 117
+    },
+    {
       "id": 1786447274091,
       "timestamp": "2026-08-11T11:21:14.091Z",
       "user": "Milena Correia",
