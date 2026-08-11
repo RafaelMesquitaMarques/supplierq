@@ -7344,6 +7344,51 @@
       "createdAt": "2026-08-11T11:21:12.940Z",
       "updatedAt": "2026-08-11T11:21:12.941Z",
       "duration": 157
+    },
+    {
+      "id": 1786449975620,
+      "ref": "QM20260811-01-0200264",
+      "site": "QM",
+      "date": "2026-08-11",
+      "dailyN": 1,
+      "supplier": "Huizhou Chengfei Industrial Co",
+      "po": "4500090901",
+      "productNo": "200264",
+      "description": "Pull Matt Chrome Black Foliot PG1-105",
+      "delivery": "410001849212",
+      "hu": [
+        "500193354"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 5000,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5000,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-11T12:06:15.620Z",
+      "updatedAt": "2026-08-11T12:06:15.620Z",
+      "duration": 117
     }
   ],
   "ncrs": [],
