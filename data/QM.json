@@ -7414,18 +7414,22 @@
         "500193398",
         "500193399",
         "500193401",
-        "500193404"
+        "500193404",
+        "500193434",
+        "500193436",
+        "500193437",
+        "500193438"
       ],
       "country": "China",
       "plant": "",
       "receptionDate": "2026-08-11",
       "inspector": "Milena Correia",
-      "qtyReceived": 152,
+      "qtyReceived": 200,
       "qtyInspected": 8,
       "rounds": [
         {
           "round": 1,
-          "recv": 152,
+          "recv": 200,
           "inspected": 8,
           "nonConf": 0,
           "pct": 0
@@ -7444,7 +7448,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-08-11T12:42:37.673Z",
-      "updatedAt": "2026-08-11T12:42:37.673Z",
+      "updatedAt": "2026-08-11T12:54:47.544Z",
       "duration": 179
     }
   ],
