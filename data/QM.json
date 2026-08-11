@@ -7299,6 +7299,51 @@
       "createdAt": "2026-08-10T19:04:45.771Z",
       "updatedAt": "2026-08-10T19:04:45.771Z",
       "duration": 100
+    },
+    {
+      "id": 1786447272940,
+      "ref": "QM20260811-01-0216184",
+      "site": "QM",
+      "date": "2026-08-11",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090667",
+      "productNo": "216184",
+      "description": "WD Sled Base Kit Coffee TB 22.5\" F165",
+      "delivery": "410001846052",
+      "hu": [
+        "500193317"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Milena Correia",
+      "qtyReceived": 80,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 80,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-11T11:21:12.940Z",
+      "updatedAt": "2026-08-11T11:21:12.941Z",
+      "duration": 157
     }
   ],
   "ncrs": [],
