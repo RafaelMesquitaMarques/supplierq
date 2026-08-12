@@ -16827,6 +16827,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786565977751,
+      "timestamp": "2026-08-12T20:19:37.751Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260810-08-7000000385",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000000385 | Decision: approved",
+      "duration": 67
+    },
+    {
       "id": 1786565892345,
       "timestamp": "2026-08-12T20:18:12.345Z",
       "user": "Dominic Dotson",
@@ -22164,16 +22175,6 @@
       "ref": "NL20260709-01-0216120",
       "site": "NL",
       "details": "Vinag7 Joint Stock Company | 216120"
-    },
-    {
-      "id": 1784298735651,
-      "timestamp": "2026-07-17T14:32:15.651Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_deleted",
-      "ref": "NL20260709-03-0216119",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216119"
     }
   ]
 }
