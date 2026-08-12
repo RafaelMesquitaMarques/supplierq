@@ -15656,6 +15656,51 @@
       "createdAt": "2026-08-12T12:17:53.636Z",
       "updatedAt": "2026-08-12T12:17:53.636Z",
       "duration": 311
+    },
+    {
+      "id": 1786537193020,
+      "ref": "NL20260811-03-7000007199",
+      "site": "NL",
+      "date": "2026-08-11",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006105",
+      "productNo": "7000007199",
+      "description": "MTL Frame Height DK 30\" KD M003-ST",
+      "delivery": "410001848424",
+      "hu": [
+        "900827332"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-12T12:19:53.020Z",
+      "updatedAt": "2026-08-12T12:19:53.020Z",
+      "duration": 95
     }
   ],
   "ncrs": [],
