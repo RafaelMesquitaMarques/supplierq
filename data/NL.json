@@ -16643,6 +16643,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786537961263,
+      "timestamp": "2026-08-12T12:32:41.263Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260811-05-0207006",
+      "site": "NL",
+      "details": "Hongruifeng Home Trading Co.,Ltd / 36102 | 207006 | Decision: approved",
+      "duration": 216
+    },
+    {
       "id": 1786537324916,
       "timestamp": "2026-08-12T12:22:04.916Z",
       "user": "Dominic Dotson",
@@ -21976,16 +21987,6 @@
       "site": "NL",
       "details": "Vinag7 Joint Stock Company | 216120 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1784298275650,
-      "timestamp": "2026-07-17T14:24:35.650Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_deleted",
-      "ref": "NL20260709-01-0216120",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216120"
     }
   ]
 }
