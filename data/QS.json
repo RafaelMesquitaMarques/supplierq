@@ -3801,15 +3801,14 @@
   ],
   "auditLog": [
     {
-      "id": 1786535641358,
-      "timestamp": "2026-08-12T11:54:01.358Z",
+      "id": 1786562016690,
+      "timestamp": "2026-08-12T19:13:36.690Z",
       "user": "Natalya Robles",
       "userEmail": "qsqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "QS20260812-01-0216619",
+      "action": "user_login",
+      "ref": "—",
       "site": "QS",
-      "details": "Hafele Canada Inc  | 216619 | Decision: approved",
-      "duration": 38
+      "details": "Role: inspector | Sites: QS"
     },
     {
       "id": 1786535592242,
