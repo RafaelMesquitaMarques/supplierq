@@ -2926,6 +2926,51 @@
       "createdAt": "2026-08-12T11:53:50.172Z",
       "updatedAt": "2026-08-12T11:53:50.172Z",
       "duration": 38
+    },
+    {
+      "id": 1786562065404,
+      "ref": "QS20260812-01-0211970",
+      "site": "QS",
+      "date": "2026-08-12",
+      "dailyN": 1,
+      "supplier": "9392-4116 Québec Inc ",
+      "po": "4500086608",
+      "productNo": "211970",
+      "description": "MTL Pull Foliot 2.0 PG1-167 Black",
+      "delivery": "410001846847",
+      "hu": [
+        "801687876"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 5000,
+      "qtyInspected": 25,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 5000,
+          "inspected": 25,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-12T19:14:25.404Z",
+      "updatedAt": "2026-08-12T19:14:25.404Z",
+      "duration": 47
     }
   ],
   "ncrs": [],
