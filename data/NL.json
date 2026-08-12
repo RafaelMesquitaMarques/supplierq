@@ -15931,6 +15931,51 @@
       "createdAt": "2026-08-12T20:18:09.991Z",
       "updatedAt": "2026-08-12T20:18:09.991Z",
       "duration": 412
+    },
+    {
+      "id": 1786565975302,
+      "ref": "NL20260810-08-7000000385",
+      "site": "NL",
+      "date": "2026-08-10",
+      "dailyN": 8,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006105",
+      "productNo": "7000000385",
+      "description": "HB Steel Adj 36x38\" M003-ST",
+      "delivery": "410001848424",
+      "hu": [
+        "900827333"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 44,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 44,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-12T20:19:35.302Z",
+      "updatedAt": "2026-08-12T20:19:35.302Z",
+      "duration": 67
     }
   ],
   "ncrs": [],
