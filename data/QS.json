@@ -2971,6 +2971,51 @@
       "createdAt": "2026-08-12T19:14:25.404Z",
       "updatedAt": "2026-08-12T19:14:25.404Z",
       "duration": 47
+    },
+    {
+      "id": 1786562290595,
+      "ref": "QS20260812-01-0216413",
+      "site": "QS",
+      "date": "2026-08-12",
+      "dailyN": 1,
+      "supplier": "Lafab",
+      "po": "4500093914",
+      "productNo": "216413",
+      "description": "MTL Square Base King Nightstand M010-ST",
+      "delivery": "410001850353",
+      "hu": [
+        "801691533"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 6,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "Approved by Mathieu St-Laurent, they arrived w/o levelers, I replaced them.",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-12T19:18:10.595Z",
+      "updatedAt": "2026-08-12T19:18:10.595Z",
+      "duration": 65
     }
   ],
   "ncrs": [],
