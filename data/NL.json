@@ -16692,6 +16692,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786539503445,
+      "timestamp": "2026-08-12T12:58:23.445Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260811-06-0201780",
+      "site": "NL",
+      "details": "Fujian Dav Technologies Co. Ltd. | 201780 | Decision: approved",
+      "duration": 1530
+    },
+    {
       "id": 1786537961263,
       "timestamp": "2026-08-12T12:32:41.263Z",
       "user": "Dominic Dotson",
@@ -22025,17 +22036,6 @@
       "ref": "—",
       "site": "NL",
       "details": "Session ended"
-    },
-    {
-      "id": 1784298447123,
-      "timestamp": "2026-07-17T14:27:27.123Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260709-08-0216120",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216120 | Decision: approved",
-      "duration": 0
     }
   ]
 }
