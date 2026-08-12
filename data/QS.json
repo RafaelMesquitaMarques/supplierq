@@ -3756,6 +3756,16 @@
   ],
   "auditLog": [
     {
+      "id": 1786535592242,
+      "timestamp": "2026-08-12T11:53:12.242Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Hafele Canada Inc ",
+      "site": "QS",
+      "details": "Hafele Canada Inc  | —"
+    },
+    {
       "id": 1786535561832,
       "timestamp": "2026-08-12T11:52:41.832Z",
       "user": "Natalya Robles",
