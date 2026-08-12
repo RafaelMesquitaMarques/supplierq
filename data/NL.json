@@ -15566,6 +15566,51 @@
       "createdAt": "2026-08-11T20:28:11.089Z",
       "updatedAt": "2026-08-11T20:28:11.089Z",
       "duration": 108
+    },
+    {
+      "id": 1786536720652,
+      "ref": "NL20260811-01-0215021",
+      "site": "NL",
+      "date": "2026-08-11",
+      "dailyN": 1,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090366",
+      "productNo": "215021",
+      "description": "WD Strip Luggage Bench 1x3/8x21.75\" F257",
+      "delivery": "410001849997",
+      "hu": [
+        "900827669"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-11",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-12T12:12:00.652Z",
+      "updatedAt": "2026-08-12T12:12:00.652Z",
+      "duration": 175
     }
   ],
   "ncrs": [],
