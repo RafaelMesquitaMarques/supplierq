@@ -16161,6 +16161,53 @@
       "createdAt": "2026-08-13T12:07:43.257Z",
       "updatedAt": "2026-08-13T12:07:43.257Z",
       "duration": 154
+    },
+    {
+      "id": 1786623043424,
+      "ref": "NL20260812-02-7000007189",
+      "site": "NL",
+      "date": "2026-08-12",
+      "dailyN": 2,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500091750",
+      "productNo": "7000007189",
+      "description": "MTL R Floating SH 24'' M256-PCM",
+      "delivery": "410001849548",
+      "hu": [
+        "900827482",
+        "900827483",
+        "900827484"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 90,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 90,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-13T12:10:43.424Z",
+      "updatedAt": "2026-08-13T12:10:43.424Z",
+      "duration": 175
     }
   ],
   "ncrs": [],
