@@ -16111,6 +16111,56 @@
       "createdAt": "2026-08-13T12:04:53.154Z",
       "updatedAt": "2026-08-13T12:04:53.154Z",
       "duration": 138
+    },
+    {
+      "id": 1786622863257,
+      "ref": "NL20260812-01-0200543",
+      "site": "NL",
+      "date": "2026-08-12",
+      "dailyN": 1,
+      "supplier": "Hongruifeng Home Trading Co.,Ltd / 36102",
+      "po": "4500091658",
+      "productNo": "200543",
+      "description": "TB Corner Triangular Black",
+      "delivery": "410001849547",
+      "hu": [
+        "900827462",
+        "900827463",
+        "900827464",
+        "900827465",
+        "900827466",
+        "900827468"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 20000,
+      "qtyInspected": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20000,
+          "inspected": 15,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-13T12:07:43.257Z",
+      "updatedAt": "2026-08-13T12:07:43.257Z",
+      "duration": 154
     }
   ],
   "ncrs": [],
