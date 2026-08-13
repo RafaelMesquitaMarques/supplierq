@@ -17059,6 +17059,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786623046422,
+      "timestamp": "2026-08-13T12:10:46.422Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260812-02-7000007189",
+      "site": "NL",
+      "details": "Hongruifeng Home Trading Co.,Ltd / 36102 | 7000007189 | Decision: approved",
+      "duration": 175
+    },
+    {
       "id": 1786622865478,
       "timestamp": "2026-08-13T12:07:45.478Z",
       "user": "Dominic Dotson",
@@ -22399,17 +22410,6 @@
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 207793 | Decision: approved",
       "duration": 388
-    },
-    {
-      "id": 1784299281544,
-      "timestamp": "2026-07-17T14:41:21.544Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-12-0201623",
-      "site": "NL",
-      "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
-      "duration": 181
     }
   ]
 }
