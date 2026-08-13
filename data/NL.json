@@ -16208,6 +16208,52 @@
       "createdAt": "2026-08-13T12:10:43.424Z",
       "updatedAt": "2026-08-13T12:10:43.424Z",
       "duration": 175
+    },
+    {
+      "id": 1786623220303,
+      "ref": "NL20260812-03-7000006757",
+      "site": "NL",
+      "date": "2026-08-12",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006105",
+      "productNo": "7000006757",
+      "description": "WD 2 Positions Chair W/Seat F037 TL",
+      "delivery": "410001848424",
+      "hu": [
+        "900827426",
+        "900827427"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-13T12:13:40.303Z",
+      "updatedAt": "2026-08-13T12:13:40.303Z",
+      "duration": 170
     }
   ],
   "ncrs": [],
