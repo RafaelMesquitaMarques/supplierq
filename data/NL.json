@@ -17012,6 +17012,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786622865478,
+      "timestamp": "2026-08-13T12:07:45.478Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260812-01-0200543",
+      "site": "NL",
+      "details": "Hongruifeng Home Trading Co.,Ltd / 36102 | 200543 | Decision: approved",
+      "duration": 154
+    },
+    {
       "id": 1786622695596,
       "timestamp": "2026-08-13T12:04:55.596Z",
       "user": "Dominic Dotson",
@@ -22352,17 +22363,6 @@
       "site": "NL",
       "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
       "duration": 181
-    },
-    {
-      "id": 1784299095066,
-      "timestamp": "2026-07-17T14:38:15.066Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260716-11-0200018",
-      "site": "NL",
-      "details": "Fastenal | 200018 | Decision: approved",
-      "duration": 974
     }
   ]
 }
