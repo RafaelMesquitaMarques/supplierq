@@ -7950,6 +7950,51 @@
       "createdAt": "2026-08-14T12:27:43.376Z",
       "updatedAt": "2026-08-14T12:27:43.376Z",
       "duration": 318
+    },
+    {
+      "id": 1786712840919,
+      "ref": "QM20260814-01-0214622",
+      "site": "QM",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091043",
+      "productNo": "214622",
+      "description": "MTL Leg Mobile DS 9x19x28.5\" M240-PC",
+      "delivery": "410001852202",
+      "hu": [
+        "500193707"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 46,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 46,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T13:07:20.919Z",
+      "updatedAt": "2026-08-14T13:07:20.919Z",
+      "duration": 120
     }
   ],
   "ncrs": [],
