@@ -3936,6 +3936,17 @@
   ],
   "auditLog": [
     {
+      "id": 1786719906874,
+      "timestamp": "2026-08-14T15:05:06.874Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260814-01-7000007589",
+      "site": "QS",
+      "details": "Foliot Furniture Wilson / NC | 7000007589 | Decision: approved",
+      "duration": 44
+    },
+    {
       "id": 1786719836798,
       "timestamp": "2026-08-14T15:03:56.798Z",
       "user": "Natalya Robles",
