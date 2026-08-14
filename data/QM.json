@@ -8130,6 +8130,52 @@
       "createdAt": "2026-08-14T15:02:42.909Z",
       "updatedAt": "2026-08-14T15:02:42.909Z",
       "duration": 101
+    },
+    {
+      "id": 1786732536203,
+      "ref": "QM20260814-01-7000008643",
+      "site": "QM",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091043",
+      "productNo": "7000008643",
+      "description": "MTL Art Bar 60\"H M262/M264/M265-PC",
+      "delivery": "410001852202",
+      "hu": [
+        "500193753",
+        "500193754"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 110,
+      "qtyInspected": 11,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 110,
+          "inspected": 11,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T18:35:36.203Z",
+      "updatedAt": "2026-08-14T18:35:36.203Z",
+      "duration": 92
     }
   ],
   "ncrs": [],
