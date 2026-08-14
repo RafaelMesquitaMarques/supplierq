@@ -7905,6 +7905,51 @@
       "createdAt": "2026-08-14T11:37:11.982Z",
       "updatedAt": "2026-08-14T11:37:11.982Z",
       "duration": 151
+    },
+    {
+      "id": 1786710463376,
+      "ref": "QM20260814-01-0201773",
+      "site": "QM",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090894",
+      "productNo": "201773",
+      "description": "TB Base Steel X RD Ends 26x41\" Black",
+      "delivery": "410001844647",
+      "hu": [
+        "500192779"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Milena Correia",
+      "qtyReceived": 10,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T12:27:43.376Z",
+      "updatedAt": "2026-08-14T12:27:43.376Z",
+      "duration": 318
     }
   ],
   "ncrs": [],
