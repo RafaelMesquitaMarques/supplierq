@@ -8040,6 +8040,51 @@
       "createdAt": "2026-08-14T13:57:59.357Z",
       "updatedAt": "2026-08-14T13:57:59.357Z",
       "duration": 87
+    },
+    {
+      "id": 1786718328869,
+      "ref": "QM20260814-01-0215034",
+      "site": "QM",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090894",
+      "productNo": "215034",
+      "description": "MTL VNTY Fra 32.5\" M240-PC",
+      "delivery": "410001852201",
+      "hu": [
+        "500193740"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T14:38:48.870Z",
+      "updatedAt": "2026-08-14T14:38:48.870Z",
+      "duration": 79
     }
   ],
   "ncrs": [],
