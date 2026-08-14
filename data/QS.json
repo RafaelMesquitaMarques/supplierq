@@ -3016,6 +3016,51 @@
       "createdAt": "2026-08-12T19:18:10.595Z",
       "updatedAt": "2026-08-12T19:18:10.595Z",
       "duration": 65
+    },
+    {
+      "id": 1786719903462,
+      "ref": "QS20260814-01-7000007589",
+      "site": "QS",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "4500090887",
+      "productNo": "7000007589",
+      "description": "Chair Motion Fully Assembled V2",
+      "delivery": "410001851007",
+      "hu": [
+        "801692809"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 200,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T15:05:03.462Z",
+      "updatedAt": "2026-08-14T15:05:03.462Z",
+      "duration": 44
     }
   ],
   "ncrs": [],
