@@ -7995,6 +7995,51 @@
       "createdAt": "2026-08-14T13:07:20.919Z",
       "updatedAt": "2026-08-14T13:07:20.919Z",
       "duration": 120
+    },
+    {
+      "id": 1786715879357,
+      "ref": "QM20260814-01-0212130",
+      "site": "QM",
+      "date": "2026-08-14",
+      "dailyN": 1,
+      "supplier": "Consun Furniture Hardware Factory",
+      "po": "4500090908",
+      "productNo": "212130",
+      "description": "MTL Handle 10.5625 PG1-170 M248-PC",
+      "delivery": "410001851632",
+      "hu": [
+        "500193637"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1000,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-14T13:57:59.357Z",
+      "updatedAt": "2026-08-14T13:57:59.357Z",
+      "duration": 87
     }
   ],
   "ncrs": [],
