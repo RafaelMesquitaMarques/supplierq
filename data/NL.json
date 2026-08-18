@@ -16391,6 +16391,53 @@
       "createdAt": "2026-08-18T12:39:21.246Z",
       "updatedAt": "2026-08-18T12:39:21.246Z",
       "duration": 266
+    },
+    {
+      "id": 1787056940885,
+      "ref": "NL20260813-04-7000001418",
+      "site": "NL",
+      "date": "2026-08-13",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006105",
+      "productNo": "7000001418",
+      "description": "Chair Oslo New Mechanism WO Arms",
+      "delivery": "410001848424",
+      "hu": [
+        "900827516",
+        "900827517",
+        "900827518"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-10",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 105,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 105,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-18T12:42:20.885Z",
+      "updatedAt": "2026-08-18T12:42:20.885Z",
+      "duration": 162
     }
   ],
   "ncrs": [],
