@@ -11486,7 +11486,7 @@
           "qty": 80
         }
       ],
-      "issues": "",
+      "issues": "Labeled as 216242",
       "notes": "",
       "decision": "use-as-is",
       "qtyUseAsIs": 80,
@@ -11498,7 +11498,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-07-29T18:52:44.473Z",
-      "updatedAt": "2026-07-29T18:52:44.473Z",
+      "updatedAt": "2026-08-18T17:23:15.459Z",
       "duration": 97
     },
     {
