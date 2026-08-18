@@ -16618,6 +16618,51 @@
       "createdAt": "2026-08-18T15:52:26.389Z",
       "updatedAt": "2026-08-18T15:52:26.389Z",
       "duration": 152
+    },
+    {
+      "id": 1787068431093,
+      "ref": "NL20260806-09-7000003868",
+      "site": "NL",
+      "date": "2026-08-06",
+      "dailyN": 9,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "7000003868",
+      "description": "TB Mtl Coffee SQ W/Top 36\" F261/M003-PCM",
+      "delivery": "410001841205",
+      "hu": [
+        "500126945"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-18T15:53:51.093Z",
+      "updatedAt": "2026-08-18T15:53:51.093Z",
+      "duration": 72
     }
   ],
   "ncrs": [],
