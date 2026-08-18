@@ -16299,6 +16299,52 @@
       "createdAt": "2026-08-18T12:12:17.099Z",
       "updatedAt": "2026-08-18T12:12:36.203Z",
       "duration": 199
+    },
+    {
+      "id": 1787056487183,
+      "ref": "NL20260813-02-0211495",
+      "site": "NL",
+      "date": "2026-08-13",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture inc. (Transfert de St-Jérôme)",
+      "po": "1500003805",
+      "productNo": "211495",
+      "description": "Steel Connecting Bolt 15mmx60mm Allen",
+      "delivery": "410001848188, 410001848190",
+      "hu": [
+        "801687975",
+        "801686356"
+      ],
+      "country": "Taiwan",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 200,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 200,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-18T12:34:47.183Z",
+      "updatedAt": "2026-08-18T12:34:47.183Z",
+      "duration": 316
     }
   ],
   "ncrs": [],
