@@ -16573,6 +16573,51 @@
       "createdAt": "2026-08-18T15:49:45.278Z",
       "updatedAt": "2026-08-18T15:49:45.278Z",
       "duration": 89
+    },
+    {
+      "id": 1787068346389,
+      "ref": "NL20260813-08-0200353",
+      "site": "NL",
+      "date": "2026-08-13",
+      "dailyN": 8,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "200353",
+      "description": "Duracraft Steel 3S 64.75x22.25\" M003-ST",
+      "delivery": "410001841205",
+      "hu": [
+        "500192354"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 8,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 8,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-18T15:52:26.389Z",
+      "updatedAt": "2026-08-18T15:52:26.389Z",
+      "duration": 152
     }
   ],
   "ncrs": [],
