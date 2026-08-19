@@ -3061,6 +3061,51 @@
       "createdAt": "2026-08-14T15:05:03.462Z",
       "updatedAt": "2026-08-14T15:05:03.462Z",
       "duration": 44
+    },
+    {
+      "id": 1787139247394,
+      "ref": "QS20260819-01-0215684",
+      "site": "QS",
+      "date": "2026-08-19",
+      "dailyN": 1,
+      "supplier": "Self Electronics USA Corporation",
+      "po": "4500094127",
+      "productNo": "215684",
+      "description": "Outlet 2PG/1USB/1USB-C W/Black Cov",
+      "delivery": "410001846902",
+      "hu": [
+        "801687853"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 105,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 105,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-19T11:34:07.395Z",
+      "updatedAt": "2026-08-19T11:34:07.395Z",
+      "duration": 50
     }
   ],
   "ncrs": [],
