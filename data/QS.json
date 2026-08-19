@@ -3987,6 +3987,16 @@
   ],
   "auditLog": [
     {
+      "id": 1787143842543,
+      "timestamp": "2026-08-19T12:50:42.543Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "supplier_created",
+      "ref": "Finition SMB ",
+      "site": "QS",
+      "details": "Finition SMB  | —"
+    },
+    {
       "id": 1787141798110,
       "timestamp": "2026-08-19T12:16:38.110Z",
       "user": "Dominic Dotson",
