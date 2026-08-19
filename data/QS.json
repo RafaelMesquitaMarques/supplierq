@@ -4181,6 +4181,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787144238104,
+      "timestamp": "2026-08-19T12:57:18.104Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260819-01-0203264",
+      "site": "QS",
+      "details": "Finition SMB  | 203264 | Decision: waiting",
+      "duration": 380
+    },
+    {
       "id": 1787143842543,
       "timestamp": "2026-08-19T12:50:42.543Z",
       "user": "Natalya Robles",
