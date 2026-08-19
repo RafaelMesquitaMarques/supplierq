@@ -17604,6 +17604,16 @@
   ],
   "auditLog": [
     {
+      "id": 1787140762196,
+      "timestamp": "2026-08-19T11:59:22.196Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "NL",
+      "details": "Role: inspector | Sites: NL"
+    },
+    {
       "id": 1787073798529,
       "timestamp": "2026-08-18T17:23:18.529Z",
       "user": "Dominic Dotson",
@@ -22951,16 +22961,6 @@
     {
       "id": 1784304969951,
       "timestamp": "2026-07-17T16:16:09.951Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
-    {
-      "id": 1784303498295,
-      "timestamp": "2026-07-17T15:51:38.295Z",
       "user": "Dominic Dotson",
       "userEmail": "nlqualityreceiving@foliot.com",
       "action": "user_login",
