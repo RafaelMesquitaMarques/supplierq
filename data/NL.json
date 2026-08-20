@@ -18099,6 +18099,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787246354767,
+      "timestamp": "2026-08-20T17:19:14.767Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-11-11187x4150",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | MDF F248 GR UDo HL PG1-201 11.87x41.50\" | Decision: approved",
+      "duration": 150
+    },
+    {
       "id": 1787246197550,
       "timestamp": "2026-08-20T17:16:37.550Z",
       "user": "Dominic Dotson",
@@ -23455,17 +23466,6 @@
       "ref": "NL20260716-12-0201623",
       "site": "NL",
       "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784314435544,
-      "timestamp": "2026-07-17T18:53:55.544Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260716-12-0211897",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 211897 | Decision: approved",
       "duration": 0
     }
   ]
