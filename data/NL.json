@@ -16843,6 +16843,51 @@
       "createdAt": "2026-08-20T13:14:15.969Z",
       "updatedAt": "2026-08-20T13:14:15.969Z",
       "duration": 106
+    },
+    {
+      "id": 1787232414261,
+      "ref": "NL20260819-03-0213270",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 3,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091492",
+      "productNo": "213270",
+      "description": "MTL Leg TB 6.5x32.125x32.875 M003-PCM",
+      "delivery": "410001847808",
+      "hu": [
+        "900826380"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-20T13:26:54.261Z",
+      "updatedAt": "2026-08-20T13:26:54.261Z",
+      "duration": 131
     }
   ],
   "ncrs": [],
