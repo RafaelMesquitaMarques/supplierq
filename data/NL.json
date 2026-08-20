@@ -17784,6 +17784,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787244638583,
+      "timestamp": "2026-08-20T16:50:38.583Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-04-0216027",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216027 | Decision: approved",
+      "duration": 12180
+    },
+    {
       "id": 1787232437494,
       "timestamp": "2026-08-20T13:27:17.494Z",
       "user": "Dominic Dotson",
@@ -23139,17 +23150,6 @@
       "site": "NL",
       "details": "Amazon | 203283 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1784309774500,
-      "timestamp": "2026-07-17T17:36:14.500Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260717-17-0215049",
-      "site": "NL",
-      "details": "Fujian Dav Technologies Co. Ltd. | 215049 | Decision: approved",
-      "duration": 440
     }
   ]
 }
