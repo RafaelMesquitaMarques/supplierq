@@ -18099,6 +18099,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787246503983,
+      "timestamp": "2026-08-20T17:21:43.983Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-11-0216110",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216110 | Decision: approved",
+      "duration": 66
+    },
+    {
       "id": 1787246431691,
       "timestamp": "2026-08-20T17:20:31.691Z",
       "user": "Dominic Dotson",
@@ -23455,17 +23466,6 @@
       "ref": "NL20260716-13-0207793",
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 207793 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784315338195,
-      "timestamp": "2026-07-17T19:08:58.195Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260716-09-0203283",
-      "site": "NL",
-      "details": "Amazon | 203283 | Decision: approved",
       "duration": 0
     }
   ]
