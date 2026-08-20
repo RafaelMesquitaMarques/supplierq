@@ -16798,6 +16798,51 @@
       "createdAt": "2026-08-20T12:11:45.710Z",
       "updatedAt": "2026-08-20T12:11:45.710Z",
       "duration": 250
+    },
+    {
+      "id": 1787231655969,
+      "ref": "NL20260814-02-0213270",
+      "site": "NL",
+      "date": "2026-08-14",
+      "dailyN": 2,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500091492",
+      "productNo": "213270",
+      "description": "MTL Leg TB 6.5x32.125x32.875 M003-PCM",
+      "delivery": "410001847808",
+      "hu": [
+        "900826380"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-06",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-20T13:14:15.969Z",
+      "updatedAt": "2026-08-20T13:14:15.969Z",
+      "duration": 106
     }
   ],
   "ncrs": [],
