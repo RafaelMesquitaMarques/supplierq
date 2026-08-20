@@ -17023,6 +17023,51 @@
       "createdAt": "2026-08-20T16:59:52.967Z",
       "updatedAt": "2026-08-20T17:00:26.751Z",
       "duration": 104
+    },
+    {
+      "id": 1787245747535,
+      "ref": "NL20260814-02-0201163",
+      "site": "NL",
+      "date": "2026-08-14",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003803",
+      "productNo": "201163",
+      "description": "MTL Bed Leg  W/Leveler M003-ST",
+      "delivery": "410001845723",
+      "hu": [
+        "500192814"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 24,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 24,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-20T17:09:07.535Z",
+      "updatedAt": "2026-08-20T17:09:07.535Z",
+      "duration": 213
     }
   ],
   "ncrs": [],
