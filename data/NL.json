@@ -18189,6 +18189,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787246826129,
+      "timestamp": "2026-08-20T17:27:06.129Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-13-0216111",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216111 | Decision: approved",
+      "duration": 161
+    },
+    {
       "id": 1787246652052,
       "timestamp": "2026-08-20T17:24:12.052Z",
       "user": "Dominic Dotson",
@@ -23545,17 +23556,6 @@
       "ref": "NL20260716-13-0201750",
       "site": "NL",
       "details": "Allen Furniture Vietnam Co., Ltd | 201750 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784315579416,
-      "timestamp": "2026-07-17T19:12:59.416Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260716-08-7000004491",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 7000004491 | Decision: approved",
       "duration": 0
     }
   ]
