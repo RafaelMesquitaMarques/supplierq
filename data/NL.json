@@ -18054,6 +18054,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787246197550,
+      "timestamp": "2026-08-20T17:16:37.550Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-10-0216109",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216109 | Decision: approved",
+      "duration": 75
+    },
+    {
       "id": 1787246073466,
       "timestamp": "2026-08-20T17:14:33.466Z",
       "user": "Dominic Dotson",
@@ -23410,17 +23421,6 @@
       "ref": "NL20260716-12-0211897",
       "site": "NL",
       "details": "Xiamen Yiree Smart Industried Co. Ltd | 211897 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784314415827,
-      "timestamp": "2026-07-17T18:53:35.827Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260716-11-0200018",
-      "site": "NL",
-      "details": "Fastenal | 200018 | Decision: approved",
       "duration": 0
     }
   ]
