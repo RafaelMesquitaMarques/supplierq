@@ -16935,51 +16935,6 @@
       "duration": 12180
     },
     {
-      "id": 1787244831296,
-      "ref": "NL20260814-02-0216029",
-      "site": "NL",
-      "date": "2026-08-14",
-      "dailyN": 2,
-      "supplier": "Vinag7 Joint Stock Company",
-      "po": "4500090557",
-      "productNo": "216029",
-      "description": "MDF F248 GR UDo HL PG1-201 13.37x28.50\"",
-      "delivery": "410001851500",
-      "hu": [
-        "900828442"
-      ],
-      "country": "Vietnam",
-      "plant": "",
-      "receptionDate": "2026-08-13",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 7,
-      "qtyInspected": 3,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 7,
-          "inspected": 3,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-08-20T16:53:51.296Z",
-      "updatedAt": "2026-08-20T16:53:51.296Z",
-      "duration": 165
-    },
-    {
       "id": 1787244954537,
       "ref": "NL20260814-06-0216029",
       "site": "NL",
@@ -17963,6 +17918,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1787245277030,
+      "timestamp": "2026-08-20T17:01:17.030Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "NL20260814-02-0216029",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216029"
+    },
     {
       "id": 1787245230201,
       "timestamp": "2026-08-20T17:00:30.201Z",
@@ -23323,16 +23288,6 @@
       "site": "NL",
       "details": "Foliot Furniture (Mirabel) | 207794 | Decision: approved",
       "duration": 0
-    },
-    {
-      "id": 1784314271253,
-      "timestamp": "2026-07-17T18:51:11.253Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
     }
   ]
 }
