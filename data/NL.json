@@ -18234,6 +18234,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787313949166,
+      "timestamp": "2026-08-21T12:05:49.166Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260814-14-0216113",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216113 | Decision: approved",
+      "duration": 77
+    },
+    {
       "id": 1787313860839,
       "timestamp": "2026-08-21T12:04:20.839Z",
       "user": "Dominic Dotson",
@@ -23589,17 +23600,6 @@
       "ref": "NL20260716-12-0201623",
       "site": "NL",
       "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784315738819,
-      "timestamp": "2026-07-17T19:15:38.819Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260716-13-0207793",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 207793 | Decision: approved",
       "duration": 0
     }
   ]
