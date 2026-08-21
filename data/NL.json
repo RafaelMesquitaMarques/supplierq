@@ -17608,6 +17608,51 @@
       "createdAt": "2026-08-21T12:17:44.407Z",
       "updatedAt": "2026-08-21T12:17:44.407Z",
       "duration": 120
+    },
+    {
+      "id": 1787314824958,
+      "ref": "NL20260814-20-7000004491",
+      "site": "NL",
+      "date": "2026-08-14",
+      "dailyN": 20,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090557",
+      "productNo": "7000004491",
+      "description": "WD End Cap 28x96x0.75\" F248",
+      "delivery": "410001851500",
+      "hu": [
+        "900828466"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 7,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 7,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-21T12:20:24.958Z",
+      "updatedAt": "2026-08-21T12:20:24.958Z",
+      "duration": 112
     }
   ],
   "ncrs": [],
