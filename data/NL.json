@@ -17518,6 +17518,51 @@
       "createdAt": "2026-08-21T12:13:46.127Z",
       "updatedAt": "2026-08-21T12:13:46.128Z",
       "duration": 140
+    },
+    {
+      "id": 1787314530695,
+      "ref": "NL20260814-18-7000004483",
+      "site": "NL",
+      "date": "2026-08-14",
+      "dailyN": 18,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500090557",
+      "productNo": "7000004483",
+      "description": "WD Filler Cabinet 12.5x47.75'' F248",
+      "delivery": "410001851500",
+      "hu": [
+        "900828464"
+      ],
+      "country": "",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 32,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 32,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-21T12:15:30.695Z",
+      "updatedAt": "2026-08-21T12:15:30.695Z",
+      "duration": 92
     }
   ],
   "ncrs": [],
