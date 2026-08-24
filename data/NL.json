@@ -18164,6 +18164,51 @@
       "createdAt": "2026-08-24T19:42:35.274Z",
       "updatedAt": "2026-08-24T19:42:35.274Z",
       "duration": 82
+    },
+    {
+      "id": 1787600779027,
+      "ref": "NL20260817-11-0206176",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 11,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "206176",
+      "description": "Outlet 15A/3PG/2USB",
+      "delivery": "410001841205",
+      "hu": [
+        "500192269"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 500,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 500,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T19:46:19.027Z",
+      "updatedAt": "2026-08-24T19:46:19.027Z",
+      "duration": 73
     }
   ],
   "ncrs": [],
