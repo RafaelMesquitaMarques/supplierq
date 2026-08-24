@@ -17743,6 +17743,53 @@
       "createdAt": "2026-08-24T19:11:48.579Z",
       "updatedAt": "2026-08-24T19:11:48.579Z",
       "duration": 102
+    },
+    {
+      "id": 1787598824065,
+      "ref": "NL20260817-02-0214967",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 2,
+      "supplier": "Guangdong Hardware Industry",
+      "po": "4500090888",
+      "productNo": "214967",
+      "description": "Slide Drawer WO PVC Dowels 16\" Zinc GD",
+      "delivery": "410001850703, 410001850704",
+      "hu": [
+        "900827988",
+        "900827989",
+        "900828009"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6000,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6000,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T19:13:44.065Z",
+      "updatedAt": "2026-08-24T19:13:44.065Z",
+      "duration": 108
     }
   ],
   "ncrs": [],
