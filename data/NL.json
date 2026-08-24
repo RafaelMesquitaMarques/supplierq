@@ -18395,6 +18395,51 @@
       "createdAt": "2026-08-24T20:03:44.665Z",
       "updatedAt": "2026-08-24T20:03:44.665Z",
       "duration": 78
+    },
+    {
+      "id": 1787602169404,
+      "ref": "NL20260817-16-0212892",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 16,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003810",
+      "productNo": "212892",
+      "description": "MTL Handle PG1-181 8\" M242-PC",
+      "delivery": "410001850833",
+      "hu": [
+        "500193539"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T20:09:29.404Z",
+      "updatedAt": "2026-08-24T20:09:29.404Z",
+      "duration": 90
     }
   ],
   "ncrs": [],
