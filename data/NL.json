@@ -18029,6 +18029,51 @@
       "createdAt": "2026-08-24T19:33:58.676Z",
       "updatedAt": "2026-08-24T19:33:58.676Z",
       "duration": 77
+    },
+    {
+      "id": 1787600295211,
+      "ref": "NL20260817-08-0211086",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 8,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "211086",
+      "description": "Mtl Base Dining TB 28.5\" M221-PC",
+      "delivery": "410001841205",
+      "hu": [
+        "500192357"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 7,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 7,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T19:38:15.211Z",
+      "updatedAt": "2026-08-24T19:38:15.211Z",
+      "duration": 175
     }
   ],
   "ncrs": [],
