@@ -18459,9 +18459,17 @@
       "plant": "",
       "receptionDate": "2026-08-17",
       "inspector": "Dominic Dotson",
-      "qtyReceived": 0,
-      "qtyInspected": 0,
-      "rounds": [],
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
       "defects": [],
       "issues": "",
       "notes": "Change to Richelieu Hardware (Pacific NW) / Mount\n when possible ",
@@ -18475,7 +18483,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-08-24T20:13:22.276Z",
-      "updatedAt": "2026-08-24T20:13:22.276Z",
+      "updatedAt": "2026-08-24T20:13:40.941Z",
       "duration": 137
     }
   ],
