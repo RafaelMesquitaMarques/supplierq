@@ -18530,6 +18530,51 @@
       "createdAt": "2026-08-24T20:20:04.083Z",
       "updatedAt": "2026-08-24T20:20:04.083Z",
       "duration": 86
+    },
+    {
+      "id": 1787603018041,
+      "ref": "NL20260817-19-0214430",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 19,
+      "supplier": "Amazon",
+      "po": "4500093125",
+      "productNo": "214430",
+      "description": "Mtl Flip T-B W/C 26\" M010-PC",
+      "delivery": "410001846684",
+      "hu": [
+        "800825866"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-08-05",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 38,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 38,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T20:23:38.041Z",
+      "updatedAt": "2026-08-24T20:23:38.041Z",
+      "duration": 203
     }
   ],
   "ncrs": [],
