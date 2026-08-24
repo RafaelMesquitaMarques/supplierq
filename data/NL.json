@@ -17698,6 +17698,51 @@
       "createdAt": "2026-08-21T12:22:38.597Z",
       "updatedAt": "2026-08-21T12:22:38.597Z",
       "duration": 119
+    },
+    {
+      "id": 1787575630571,
+      "ref": "NL20260817-17-0200650",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 17,
+      "supplier": "Guangdong Hardware Industry",
+      "po": "4500090888",
+      "productNo": "200650",
+      "description": "Support Metal Drawer Foliot M003-ST",
+      "delivery": "410001850704",
+      "hu": [
+        "900828010"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1047,
+      "qtyInspected": 6,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1047,
+          "inspected": 6,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T12:47:10.571Z",
+      "updatedAt": "2026-08-24T12:47:10.571Z",
+      "duration": 176
     }
   ],
   "ncrs": [],
@@ -18548,16 +18593,6 @@
     }
   ],
   "auditLog": [
-    {
-      "id": 1787572731972,
-      "timestamp": "2026-08-24T11:58:51.972Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
-    },
     {
       "id": 1787572728705,
       "timestamp": "2026-08-24T11:58:48.705Z",
@@ -23917,6 +23952,17 @@
       "ref": "—",
       "site": "NL",
       "details": "Role: inspector | Sites: NL"
+    },
+    {
+      "id": 1784317438018,
+      "timestamp": "2026-07-17T19:43:58.018Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260717-19-0200353",
+      "site": "NL",
+      "details": "Foliot Furniture (Mirabel) | 200353 | Decision: approved",
+      "duration": 95
     }
   ]
 }
