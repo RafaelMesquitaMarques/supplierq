@@ -18347,6 +18347,54 @@
       "createdAt": "2026-08-24T20:02:02.006Z",
       "updatedAt": "2026-08-24T20:02:02.006Z",
       "duration": 248
+    },
+    {
+      "id": 1787601824665,
+      "ref": "NL20260817-15-0214162",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 15,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "214162",
+      "description": "Wooden Base 23.25\" Savannah F037",
+      "delivery": "410001841205",
+      "hu": [
+        "500165807",
+        "500167495",
+        "500167510",
+        "500167712"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 59,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 59,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T20:03:44.665Z",
+      "updatedAt": "2026-08-24T20:03:44.665Z",
+      "duration": 78
     }
   ],
   "ncrs": [],
