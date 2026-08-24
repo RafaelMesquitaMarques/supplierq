@@ -18074,6 +18074,51 @@
       "createdAt": "2026-08-24T19:38:15.211Z",
       "updatedAt": "2026-08-24T19:38:15.211Z",
       "duration": 175
+    },
+    {
+      "id": 1787600355990,
+      "ref": "NL20260817-09-7000002659",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 9,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "7000002659",
+      "description": "TB Base Metal Dinning 24\" M210-BR",
+      "delivery": "410001841205",
+      "hu": [
+        "500192363"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T19:39:15.990Z",
+      "updatedAt": "2026-08-24T19:39:15.990Z",
+      "duration": 53
     }
   ],
   "ncrs": [],
