@@ -18485,6 +18485,51 @@
       "createdAt": "2026-08-24T20:13:22.276Z",
       "updatedAt": "2026-08-24T20:13:40.941Z",
       "duration": 137
+    },
+    {
+      "id": 1787602685554,
+      "ref": "NL20260817-08-0203477",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 8,
+      "supplier": "Amazon",
+      "po": "4500090085",
+      "productNo": "203477",
+      "description": "Attachment Clip Plastic Mirror 1/8\"",
+      "delivery": "410001850990",
+      "hu": [
+        "900828297"
+      ],
+      "country": "Taiwan",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1000,
+      "qtyInspected": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 15,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Replace supplier with Richelieu Hardware (Pacific NW) / Mount when possible\n",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T20:18:05.554Z",
+      "updatedAt": "2026-08-24T20:18:05.554Z",
+      "duration": 244
     }
   ],
   "ncrs": [],
