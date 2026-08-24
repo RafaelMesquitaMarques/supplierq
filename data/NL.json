@@ -18485,6 +18485,51 @@
       "createdAt": "2026-08-24T20:13:22.276Z",
       "updatedAt": "2026-08-24T20:13:40.941Z",
       "duration": 137
+    },
+    {
+      "id": 1787602804083,
+      "ref": "NL20260817-18-0203477",
+      "site": "NL",
+      "date": "2026-08-17",
+      "dailyN": 18,
+      "supplier": "Amazon",
+      "po": "4500090085",
+      "productNo": "203477",
+      "description": "Mtl Flip T-B W/C 26\" M010-PC",
+      "delivery": "410001850990",
+      "hu": [
+        "900828297"
+      ],
+      "country": "Taiwan",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1000,
+      "qtyInspected": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 15,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Replace supplier with Richelieu Hardware (Pacific NW) / Mount when possible",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-24T20:20:04.083Z",
+      "updatedAt": "2026-08-24T20:20:04.083Z",
+      "duration": 86
     }
   ],
   "ncrs": [],
