@@ -17700,11 +17700,11 @@
       "duration": 119
     },
     {
-      "id": 1787575630571,
-      "ref": "NL20260817-17-0200650",
+      "id": 1787598708579,
+      "ref": "NL20260817-01-0200650",
       "site": "NL",
       "date": "2026-08-17",
-      "dailyN": 17,
+      "dailyN": 1,
       "supplier": "Guangdong Hardware Industry",
       "po": "4500090888",
       "productNo": "200650",
@@ -17740,9 +17740,9 @@
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
-      "createdAt": "2026-08-24T12:47:10.571Z",
-      "updatedAt": "2026-08-24T12:47:10.571Z",
-      "duration": 176
+      "createdAt": "2026-08-24T19:11:48.579Z",
+      "updatedAt": "2026-08-24T19:11:48.579Z",
+      "duration": 102
     }
   ],
   "ncrs": [],
