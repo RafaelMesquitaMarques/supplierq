@@ -3981,6 +3981,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787743424029,
+      "timestamp": "2026-08-26T11:23:44.029Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260826-01-0201648",
+      "site": "QS",
+      "details": "Fujian Dav Technologies Co. Ltd. | 201648 | Decision: approved",
+      "duration": 42
+    },
+    {
       "id": 1787743373987,
       "timestamp": "2026-08-26T11:22:53.987Z",
       "user": "Natalya Robles",
