@@ -19343,6 +19343,51 @@
       "createdAt": "2026-08-26T13:22:04.848Z",
       "updatedAt": "2026-08-26T13:22:04.848Z",
       "duration": 2813
+    },
+    {
+      "id": 1787774682160,
+      "ref": "NL20260819-04-0215030",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003810",
+      "productNo": "215030",
+      "description": "MTL Cocktail TB Base 17.25\" M008-PC",
+      "delivery": "410001850837",
+      "hu": [
+        "500193361"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 1,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-26T20:04:42.160Z",
+      "updatedAt": "2026-08-26T20:04:42.160Z",
+      "duration": 294
     }
   ],
   "ncrs": [],
