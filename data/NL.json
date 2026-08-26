@@ -20512,6 +20512,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787776038742,
+      "timestamp": "2026-08-26T20:27:18.742Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260819-10-0216011",
+      "site": "NL",
+      "details": "Furnlite / Groupe Dekko, Inc. | 216011 | Decision: approved",
+      "duration": 122
+    },
+    {
       "id": 1787775835500,
       "timestamp": "2026-08-26T20:23:55.500Z",
       "user": "Dominic Dotson",
@@ -25879,17 +25890,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 202700 | Decision: approved",
       "duration": 351
-    },
-    {
-      "id": 1784551174990,
-      "timestamp": "2026-07-20T12:39:34.990Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260720-02-0203512",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 203512 | Decision: approved",
-      "duration": 0
     }
   ]
 }
