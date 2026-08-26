@@ -19616,6 +19616,51 @@
       "createdAt": "2026-08-26T20:23:29.493Z",
       "updatedAt": "2026-08-26T20:23:29.493Z",
       "duration": 179
+    },
+    {
+      "id": 1787776034695,
+      "ref": "NL20260819-10-0216011",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 10,
+      "supplier": "Furnlite / Groupe Dekko, Inc.",
+      "po": "4500091950",
+      "productNo": "216011",
+      "description": "Outlet 5.4A/1PG/1USB/1USB-C Black",
+      "delivery": "410001854927",
+      "hu": [
+        "900830001"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-19",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 7,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 7,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-26T20:27:14.695Z",
+      "updatedAt": "2026-08-26T20:27:14.695Z",
+      "duration": 122
     }
   ],
   "ncrs": [],
