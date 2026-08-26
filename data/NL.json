@@ -19249,6 +19249,54 @@
       "createdAt": "2026-08-26T12:29:35.469Z",
       "updatedAt": "2026-08-26T12:29:35.469Z",
       "duration": 267
+    },
+    {
+      "id": 1787747701875,
+      "ref": "NL20260819-02-0201672",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003804",
+      "productNo": "201672",
+      "description": "Stru Steel 2 Drawers/3 Rails Bed M003-ST",
+      "delivery": "410001845723",
+      "hu": [
+        "500170766",
+        "500184746",
+        "500184754",
+        "500192815"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-18",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 75,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 75,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-26T12:35:01.875Z",
+      "updatedAt": "2026-08-26T12:35:01.875Z",
+      "duration": 110
     }
   ],
   "ncrs": [],
