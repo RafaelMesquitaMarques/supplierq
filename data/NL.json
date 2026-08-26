@@ -19480,6 +19480,52 @@
       "createdAt": "2026-08-26T20:15:50.788Z",
       "updatedAt": "2026-08-26T20:15:50.788Z",
       "duration": 305
+    },
+    {
+      "id": 1787775428378,
+      "ref": "NL20260819-07-0211974",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003803",
+      "productNo": "211974",
+      "description": "Outlet 15A/2PG/1USB/1USB-C Black",
+      "delivery": "410001845729",
+      "hu": [
+        "500192625",
+        "500193160"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-15",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 216,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 216,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-26T20:17:08.378Z",
+      "updatedAt": "2026-08-26T20:17:08.378Z",
+      "duration": 71
     }
   ],
   "ncrs": [],
