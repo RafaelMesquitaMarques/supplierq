@@ -19297,6 +19297,52 @@
       "createdAt": "2026-08-26T12:35:01.875Z",
       "updatedAt": "2026-08-26T12:35:01.875Z",
       "duration": 110
+    },
+    {
+      "id": 1787750524848,
+      "ref": "NL20260819-03-0200058",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003805",
+      "productNo": "200058",
+      "description": "Stru Steel Captain Bed XT75 Black",
+      "delivery": "410001845723",
+      "hu": [
+        "500187418",
+        "500192813"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-18",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 17,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 17,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-26T13:22:04.848Z",
+      "updatedAt": "2026-08-26T13:22:04.848Z",
+      "duration": 2813
     }
   ],
   "ncrs": [],
