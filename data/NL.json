@@ -20580,6 +20580,51 @@
       "createdAt": "2026-08-27T18:46:08.928Z",
       "updatedAt": "2026-08-27T18:46:08.928Z",
       "duration": 87
+    },
+    {
+      "id": 1787856578074,
+      "ref": "NL20260820-18-0201035",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 18,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003803",
+      "productNo": "201035",
+      "description": "Drapery Rod Closet Kit 45-60\" H2",
+      "delivery": "410001845729",
+      "hu": [
+        "500192627"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-15",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 95,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 95,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T18:49:38.074Z",
+      "updatedAt": "2026-08-27T18:49:38.074Z",
+      "duration": 197
     }
   ],
   "ncrs": [],
