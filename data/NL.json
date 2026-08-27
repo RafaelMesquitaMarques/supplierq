@@ -19701,10 +19701,10 @@
       "duration": 174
     },
     {
-      "id": 1787849882368,
-      "ref": "NL20260829-12-0216228",
+      "id": 1787849971311,
+      "ref": "NL20260819-12-0216228",
       "site": "NL",
-      "date": "2026-08-29",
+      "date": "2026-08-19",
       "dailyN": 12,
       "supplier": "Vinag7 Joint Stock Company",
       "po": "4500091414",
@@ -19748,9 +19748,9 @@
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
-      "createdAt": "2026-08-27T16:58:02.368Z",
-      "updatedAt": "2026-08-27T16:58:02.368Z",
-      "duration": 71
+      "createdAt": "2026-08-27T16:59:31.311Z",
+      "updatedAt": "2026-08-27T16:59:31.311Z",
+      "duration": 70
     }
   ],
   "ncrs": [],
