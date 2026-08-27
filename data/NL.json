@@ -19811,6 +19811,51 @@
       "createdAt": "2026-08-27T17:00:58.494Z",
       "updatedAt": "2026-08-27T17:00:58.494Z",
       "duration": 79
+    },
+    {
+      "id": 1787850300573,
+      "ref": "NL20260820-01-0213617",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091869",
+      "productNo": "213617",
+      "description": "MTL Frame LB 47,25\" M003-ST",
+      "delivery": "410001854857",
+      "hu": [
+        "900830067"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-19",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 30,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 30,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T17:05:00.573Z",
+      "updatedAt": "2026-08-27T17:05:00.573Z",
+      "duration": 203
     }
   ],
   "ncrs": [],
