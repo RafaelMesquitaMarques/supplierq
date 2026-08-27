@@ -20490,6 +20490,51 @@
       "createdAt": "2026-08-27T18:39:59.499Z",
       "updatedAt": "2026-08-27T18:39:59.499Z",
       "duration": 187
+    },
+    {
+      "id": 1787856250723,
+      "ref": "NL20260820-16-0202855",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 16,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "202855",
+      "description": "BRKT Steel Angle 21.2x44mm M003-PC",
+      "delivery": "410001841205",
+      "hu": [
+        "500192249"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 27000,
+      "qtyInspected": 15,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 27000,
+          "inspected": 15,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T18:44:10.723Z",
+      "updatedAt": "2026-08-27T18:44:10.723Z",
+      "duration": 166
     }
   ],
   "ncrs": [],
