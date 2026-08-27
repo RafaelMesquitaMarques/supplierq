@@ -20081,6 +20081,52 @@
       "createdAt": "2026-08-27T17:23:35.954Z",
       "updatedAt": "2026-08-27T17:23:35.954Z",
       "duration": 144
+    },
+    {
+      "id": 1787851857216,
+      "ref": "NL20260820-07-0212893",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 7,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003811",
+      "productNo": "212893",
+      "description": "MTL Handle PG1-179 6\" M242-PC",
+      "delivery": "410001852219 410001850837",
+      "hu": [
+        "801691189",
+        "500193139"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 139,
+      "qtyInspected": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 139,
+          "inspected": 7,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T17:30:57.216Z",
+      "updatedAt": "2026-08-27T17:30:57.216Z",
+      "duration": 272
     }
   ],
   "ncrs": [],
