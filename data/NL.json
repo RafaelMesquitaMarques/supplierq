@@ -20398,6 +20398,52 @@
       "createdAt": "2026-08-27T17:55:46.773Z",
       "updatedAt": "2026-08-27T17:55:46.773Z",
       "duration": 282
+    },
+    {
+      "id": 1787855632229,
+      "ref": "NL20260820-14-0215527",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 14,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003810",
+      "productNo": "215527",
+      "description": "MTL Cleat BRKT 2\" M003-PC",
+      "delivery": "410001830126 410001850837",
+      "hu": [
+        "500193137",
+        "500190993"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 25,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 25,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T18:33:52.229Z",
+      "updatedAt": "2026-08-27T18:33:52.229Z",
+      "duration": 176
     }
   ],
   "ncrs": [],
