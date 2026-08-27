@@ -21113,6 +21113,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787852349923,
+      "timestamp": "2026-08-27T17:39:09.923Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260824-10-0201267",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 201267 | Decision: approved",
+      "duration": 87
+    },
+    {
       "id": 1787852247134,
       "timestamp": "2026-08-27T17:37:27.134Z",
       "user": "Dominic Dotson",
@@ -26483,17 +26494,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214176 | Decision: approved",
       "duration": 293
-    },
-    {
-      "id": 1784560718894,
-      "timestamp": "2026-07-20T15:18:38.894Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260720-12-0202407",
-      "site": "NL",
-      "details": "Robby Hardware | 202407 | Decision: approved",
-      "duration": 1040
     }
   ]
 }
