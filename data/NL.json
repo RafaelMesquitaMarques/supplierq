@@ -20887,6 +20887,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787851265447,
+      "timestamp": "2026-08-27T17:21:05.447Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260820-05-0207714",
+      "site": "NL",
+      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 207714 | Decision: approved",
+      "duration": 88
+    },
+    {
       "id": 1787851157499,
       "timestamp": "2026-08-27T17:19:17.499Z",
       "user": "Dominic Dotson",
@@ -26256,17 +26267,6 @@
       "site": "NL",
       "details": "McMaster-Carr (L V) | 201264 | Decision: approved",
       "duration": 184
-    },
-    {
-      "id": 1784559261361,
-      "timestamp": "2026-07-20T14:54:21.361Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260714-04-0215979",
-      "site": "NL",
-      "details": "Foliot Furniture (Mirabel) | 215979 | Decision: approved",
-      "duration": 123
     }
   ]
 }
