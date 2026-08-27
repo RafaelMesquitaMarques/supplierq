@@ -20535,6 +20535,51 @@
       "createdAt": "2026-08-27T18:44:10.723Z",
       "updatedAt": "2026-08-27T18:44:10.723Z",
       "duration": 166
+    },
+    {
+      "id": 1787856368928,
+      "ref": "NL20260820-17-0214244",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 17,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003810",
+      "productNo": "214244",
+      "description": "MTL Clothes Rod Kit 10\" M003-PCM",
+      "delivery": "410001850837",
+      "hu": [
+        "500193158"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T18:46:08.928Z",
+      "updatedAt": "2026-08-27T18:46:08.928Z",
+      "duration": 87
     }
   ],
   "ncrs": [],
