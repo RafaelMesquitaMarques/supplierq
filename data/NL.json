@@ -20602,6 +20602,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787849885772,
+      "timestamp": "2026-08-27T16:58:05.772Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260829-12-0216228",
+      "site": "NL",
+      "details": "Vinag7 Joint Stock Company | 216228 | Decision: approved",
+      "duration": 71
+    },
+    {
       "id": 1787849808535,
       "timestamp": "2026-08-27T16:56:48.535Z",
       "user": "Dominic Dotson",
@@ -25969,17 +25980,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 202699 | Decision: approved",
       "duration": 208
-    },
-    {
-      "id": 1784554445663,
-      "timestamp": "2026-07-20T13:34:05.663Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260720-04-0216015",
-      "site": "NL",
-      "details": "Vinag7 Joint Stock Company | 216015 | Decision: approved",
-      "duration": 2409
     }
   ]
 }
