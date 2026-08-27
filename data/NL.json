@@ -20672,6 +20672,51 @@
       "createdAt": "2026-08-27T18:55:39.942Z",
       "updatedAt": "2026-08-27T18:55:39.942Z",
       "duration": 354
+    },
+    {
+      "id": 1787857162150,
+      "ref": "NL20260820-20-0212906",
+      "site": "NL",
+      "date": "2026-08-20",
+      "dailyN": 20,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500091745",
+      "productNo": "212906",
+      "description": "WD ADA DK Frame 42\" F280/M244-PC",
+      "delivery": "410001854968",
+      "hu": [
+        "900830064"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-19",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 33,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 33,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T18:59:22.150Z",
+      "updatedAt": "2026-08-27T18:59:22.150Z",
+      "duration": 205
     }
   ],
   "ncrs": [],
