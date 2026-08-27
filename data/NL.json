@@ -19751,6 +19751,58 @@
       "createdAt": "2026-08-27T16:59:31.311Z",
       "updatedAt": "2026-08-27T16:59:31.311Z",
       "duration": 70
+    },
+    {
+      "id": 1787850058494,
+      "ref": "NL20260819-13-0216229",
+      "site": "NL",
+      "date": "2026-08-19",
+      "dailyN": 13,
+      "supplier": "Vinag7 Joint Stock Company",
+      "po": "4500091414",
+      "productNo": "216229",
+      "description": "WD Drop Leaf Pedestal 30\"H F165",
+      "delivery": "410001852789",
+      "hu": [
+        "900829039",
+        "900829040",
+        "900829041",
+        "900829042",
+        "900829043",
+        "900829044",
+        "900829045",
+        "900829046"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-15",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 90,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 90,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-27T17:00:58.494Z",
+      "updatedAt": "2026-08-27T17:00:58.494Z",
+      "duration": 79
     }
   ],
   "ncrs": [],
