@@ -21078,6 +21078,51 @@
       "createdAt": "2026-08-28T12:57:50.100Z",
       "updatedAt": "2026-08-28T12:57:50.100Z",
       "duration": 109
+    },
+    {
+      "id": 1787922134221,
+      "ref": "NL20260821-09-0212903",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 9,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500092650",
+      "productNo": "212903",
+      "description": "MTL Pen Tray 11,5'' M242-PC",
+      "delivery": "410001855847",
+      "hu": [
+        "900830857"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 60,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:02:14.221Z",
+      "updatedAt": "2026-08-28T13:02:14.221Z",
+      "duration": 177
     }
   ],
   "ncrs": [],
