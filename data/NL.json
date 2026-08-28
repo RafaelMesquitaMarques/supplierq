@@ -20852,6 +20852,51 @@
       "createdAt": "2026-08-28T12:38:17.049Z",
       "updatedAt": "2026-08-28T12:38:17.049Z",
       "duration": 87
+    },
+    {
+      "id": 1787920845497,
+      "ref": "NL20260821-04-0215858",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 4,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500092143",
+      "productNo": "215858",
+      "description": "MTL Frame Vnty 53.5 M242-PC",
+      "delivery": "410001855849",
+      "hu": [
+        "900830819"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 30,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 30,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T12:40:45.497Z",
+      "updatedAt": "2026-08-28T12:40:45.497Z",
+      "duration": 134
     }
   ],
   "ncrs": [],
