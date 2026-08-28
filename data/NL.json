@@ -21033,6 +21033,51 @@
       "createdAt": "2026-08-28T12:55:47.454Z",
       "updatedAt": "2026-08-28T12:55:47.454Z",
       "duration": 103
+    },
+    {
+      "id": 1787921870100,
+      "ref": "NL20260821-08-0213689",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 8,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091869",
+      "productNo": "213689",
+      "description": "MTL VNTY Leg Cubby 1x19x35,25\" M003-ST",
+      "delivery": "410001855850",
+      "hu": [
+        "900830867"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 126,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 126,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T12:57:50.100Z",
+      "updatedAt": "2026-08-28T12:57:50.100Z",
+      "duration": 109
     }
   ],
   "ncrs": [],
