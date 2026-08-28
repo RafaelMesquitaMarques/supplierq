@@ -3981,6 +3981,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787933310031,
+      "timestamp": "2026-08-28T16:08:30.031Z",
+      "user": "Natalya Robles",
+      "userEmail": "qsqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QS20260828-01-0211234",
+      "site": "QS",
+      "details": "Quinc. Richelieu Inc. | 211234 | Decision: approved",
+      "duration": 34
+    },
+    {
       "id": 1787933263899,
       "timestamp": "2026-08-28T16:07:43.899Z",
       "user": "Natalya Robles",
