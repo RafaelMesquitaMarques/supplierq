@@ -22563,6 +22563,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787932376696,
+      "timestamp": "2026-08-28T15:52:56.696Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260824-03-0215021",
+      "site": "NL",
+      "details": "Fujian Dav Technologies Co. Ltd. | 215021 | Decision: approved",
+      "duration": 215
+    },
+    {
       "id": 1787932133360,
       "timestamp": "2026-08-28T15:48:53.360Z",
       "user": "Dominic Dotson",
@@ -27944,17 +27955,6 @@
       "ref": "—",
       "site": "NL",
       "details": "Role: inspector | Sites: NL"
-    },
-    {
-      "id": 1784583957588,
-      "timestamp": "2026-07-20T21:45:57.588Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260720-31-7000006737",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000006737 | Decision: approved",
-      "duration": 290
     }
   ]
 }
