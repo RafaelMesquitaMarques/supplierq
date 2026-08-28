@@ -20942,51 +20942,6 @@
       "createdAt": "2026-08-28T12:41:52.416Z",
       "updatedAt": "2026-08-28T12:41:52.416Z",
       "duration": 61
-    },
-    {
-      "id": 1787921550239,
-      "ref": "NL20260821-05-0201002",
-      "site": "NL",
-      "date": "2026-08-21",
-      "dailyN": 5,
-      "supplier": "Fujian Dav Technologies Co. Ltd.",
-      "po": "4500091869",
-      "productNo": "201002",
-      "description": "Duracraft Steel 1S 20.75x22.25\" M003-ST",
-      "delivery": "201002\t900830868\t4500091869\t410001855850",
-      "hu": [
-        "900830868"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-08-21",
-      "inspector": "Dominic Dotson",
-      "qtyReceived": 200,
-      "qtyInspected": 2,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 200,
-          "inspected": 2,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-08-28T12:52:30.239Z",
-      "updatedAt": "2026-08-28T12:52:30.239Z",
-      "duration": 95
     }
   ],
   "ncrs": [],
