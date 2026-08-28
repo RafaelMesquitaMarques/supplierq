@@ -21361,6 +21361,51 @@
       "createdAt": "2026-08-28T13:45:00.299Z",
       "updatedAt": "2026-08-28T13:45:00.299Z",
       "duration": 760
+    },
+    {
+      "id": 1787924877995,
+      "ref": "NL20260821-15-0213517",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 15,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003792",
+      "productNo": "213517",
+      "description": "WD Frame Stockholm Chair F165",
+      "delivery": "410001841205",
+      "hu": [
+        "500192302"
+      ],
+      "country": "Vietnam",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 2,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:47:57.995Z",
+      "updatedAt": "2026-08-28T13:47:57.995Z",
+      "duration": 166
     }
   ],
   "ncrs": [],
