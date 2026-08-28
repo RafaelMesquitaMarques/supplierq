@@ -20987,6 +20987,52 @@
       "createdAt": "2026-08-28T12:53:58.120Z",
       "updatedAt": "2026-08-28T12:53:58.120Z",
       "duration": 52
+    },
+    {
+      "id": 1787921747454,
+      "ref": "NL20260821-07-0214280",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 7,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091869, 4500092582",
+      "productNo": "214280",
+      "description": "MTL Profil Lugg Bench Strip 34\" M003-PC",
+      "delivery": "\"410001855846, 410001854857\"",
+      "hu": [
+        "900830068",
+        "900830858"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T12:55:47.454Z",
+      "updatedAt": "2026-08-28T12:55:47.454Z",
+      "duration": 103
     }
   ],
   "ncrs": [],
