@@ -3061,6 +3061,51 @@
       "createdAt": "2026-08-14T15:05:03.462Z",
       "updatedAt": "2026-08-14T15:05:03.462Z",
       "duration": 44
+    },
+    {
+      "id": 1787933306254,
+      "ref": "QS20260828-01-0211234",
+      "site": "QS",
+      "date": "2026-08-28",
+      "dailyN": 1,
+      "supplier": "Quinc. Richelieu Inc.",
+      "po": "4500095288",
+      "productNo": "211234",
+      "description": "MTL Pull Half-Moon M195-PL",
+      "delivery": "410001858553",
+      "hu": [
+        "801699272"
+      ],
+      "country": "Canada",
+      "plant": "",
+      "receptionDate": "2026-08-25",
+      "inspector": "",
+      "qtyReceived": 45,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 45,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T16:08:26.254Z",
+      "updatedAt": "2026-08-28T16:08:26.254Z",
+      "duration": 34
     }
   ],
   "ncrs": [],
