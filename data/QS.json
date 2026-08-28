@@ -3061,51 +3061,6 @@
       "createdAt": "2026-08-14T15:05:03.462Z",
       "updatedAt": "2026-08-14T15:05:03.462Z",
       "duration": 44
-    },
-    {
-      "id": 1787743420570,
-      "ref": "QS20260826-01-0201648",
-      "site": "QS",
-      "date": "2026-08-26",
-      "dailyN": 1,
-      "supplier": "Fujian Dav Technologies Co. Ltd.",
-      "po": "4500093584",
-      "productNo": "201648",
-      "description": "Rail Sofa Metal Tubular 2S Kit M003-ST",
-      "delivery": "410001857848",
-      "hu": [
-        "801698702"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-08-24",
-      "inspector": "Natalya Robles",
-      "qtyReceived": 2,
-      "qtyInspected": 1,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 2,
-          "inspected": 1,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-08-26T11:23:40.570Z",
-      "updatedAt": "2026-08-26T11:23:40.570Z",
-      "duration": 42
     }
   ],
   "ncrs": [],
@@ -3981,19 +3936,8 @@
   ],
   "auditLog": [
     {
-      "id": 1787743424029,
-      "timestamp": "2026-08-26T11:23:44.029Z",
-      "user": "Natalya Robles",
-      "userEmail": "qsqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "QS20260826-01-0201648",
-      "site": "QS",
-      "details": "Fujian Dav Technologies Co. Ltd. | 201648 | Decision: approved",
-      "duration": 42
-    },
-    {
-      "id": 1787743373987,
-      "timestamp": "2026-08-26T11:22:53.987Z",
+      "id": 1787933263899,
+      "timestamp": "2026-08-28T16:07:43.899Z",
       "user": "Natalya Robles",
       "userEmail": "qsqualityreceiving@foliot.com",
       "action": "user_login",
