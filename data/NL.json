@@ -21315,6 +21315,52 @@
       "createdAt": "2026-08-28T13:32:08.605Z",
       "updatedAt": "2026-08-28T13:32:08.605Z",
       "duration": 730
+    },
+    {
+      "id": 1787924700299,
+      "ref": "NL20260821-14-7000007381",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 14,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "7000007381",
+      "description": "MTL TB Sofa W/Top 60\" F262/M003-PCM",
+      "delivery": "410001841205",
+      "hu": [
+        "500123062",
+        "500192279"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-12",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 21,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 21,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:45:00.299Z",
+      "updatedAt": "2026-08-28T13:45:00.299Z",
+      "duration": 760
     }
   ],
   "ncrs": [],
