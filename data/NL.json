@@ -21264,6 +21264,57 @@
       "createdAt": "2026-08-28T13:14:53.708Z",
       "updatedAt": "2026-08-28T13:14:53.708Z",
       "duration": 59
+    },
+    {
+      "id": 1787923928605,
+      "ref": "NL20260821-13-0214622",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 13,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "4500091759, 1500003810",
+      "productNo": "214622",
+      "description": "MTL Leg Mobile DS 9x19x28.5\" M240-PC",
+      "delivery": "410001854858, 410001847809, 410001850837 ",
+      "hu": [
+        "900830077",
+        "500187581",
+        "500191063",
+        "500191082",
+        "900826361",
+        "900826362",
+        "900829819"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 242,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 242,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:32:08.605Z",
+      "updatedAt": "2026-08-28T13:32:08.605Z",
+      "duration": 730
     }
   ],
   "ncrs": [],
