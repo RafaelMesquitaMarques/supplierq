@@ -21217,6 +21217,53 @@
       "createdAt": "2026-08-28T13:12:44.723Z",
       "updatedAt": "2026-08-28T13:13:28.346Z",
       "duration": 149
+    },
+    {
+      "id": 1787922893708,
+      "ref": "NL20260821-12-7000008522",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 12,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091870",
+      "productNo": "7000008522",
+      "description": "MTL Bed Frame W/Mesh BB 39x75 M003-ST",
+      "delivery": "410001855848",
+      "hu": [
+        "900830875",
+        "900830876",
+        "900830880"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:14:53.708Z",
+      "updatedAt": "2026-08-28T13:14:53.708Z",
+      "duration": 59
     }
   ],
   "ncrs": [],
