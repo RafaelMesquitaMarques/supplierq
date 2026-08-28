@@ -21406,6 +21406,53 @@
       "createdAt": "2026-08-28T13:47:57.995Z",
       "updatedAt": "2026-08-28T13:47:57.995Z",
       "duration": 166
+    },
+    {
+      "id": 1787925093794,
+      "ref": "NL20260821-16-0200624",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 16,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091869",
+      "productNo": "200624",
+      "description": "Duracraft Steel 2S 42.75x22.25\" M003-ST",
+      "delivery": "410001854857",
+      "hu": [
+        "900830069",
+        "900830070",
+        "900830071"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-19",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:51:33.794Z",
+      "updatedAt": "2026-08-28T13:51:33.794Z",
+      "duration": 207
     }
   ],
   "ncrs": [],
