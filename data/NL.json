@@ -21838,6 +21838,17 @@
   ],
   "auditLog": [
     {
+      "id": 1787921641419,
+      "timestamp": "2026-08-28T12:54:01.419Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260821-06-0201002",
+      "site": "NL",
+      "details": "Fujian Dav Technologies Co. Ltd. | 201002 | Decision: approved",
+      "duration": 52
+    },
+    {
       "id": 1787921576916,
       "timestamp": "2026-08-28T12:52:56.916Z",
       "user": "Dominic Dotson",
@@ -27212,16 +27223,6 @@
       "ref": "NL20260720-23-0213848",
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 213848"
-    },
-    {
-      "id": 1784566461658,
-      "timestamp": "2026-07-20T16:54:21.658Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_login",
-      "ref": "—",
-      "site": "NL",
-      "details": "Role: inspector | Sites: NL"
     }
   ]
 }
