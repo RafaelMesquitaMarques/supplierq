@@ -21667,6 +21667,51 @@
       "createdAt": "2026-08-28T15:48:49.520Z",
       "updatedAt": "2026-08-28T15:48:49.520Z",
       "duration": 111
+    },
+    {
+      "id": 1787932372848,
+      "ref": "NL20260824-03-0215021",
+      "site": "NL",
+      "date": "2026-08-24",
+      "dailyN": 3,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091745",
+      "productNo": "215021",
+      "description": "WD Strip Luggage Bench 1x3/8x21.75\" F257",
+      "delivery": "410001854968",
+      "hu": [
+        "900830587"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-20",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 300,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 300,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T15:52:52.848Z",
+      "updatedAt": "2026-08-28T15:52:52.848Z",
+      "duration": 215
     }
   ],
   "ncrs": [],
