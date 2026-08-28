@@ -21123,6 +21123,53 @@
       "createdAt": "2026-08-28T13:02:14.221Z",
       "updatedAt": "2026-08-28T13:02:14.221Z",
       "duration": 177
+    },
+    {
+      "id": 1787922581779,
+      "ref": "NL20260821-10-7000008539",
+      "site": "NL",
+      "date": "2026-08-21",
+      "dailyN": 10,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "410001855848",
+      "productNo": "7000008539",
+      "description": "Kit Hardware Bunk Bed",
+      "delivery": "4500091870",
+      "hu": [
+        "900830875",
+        "900830876",
+        "900830880"
+      ],
+      "country": "Switzerland",
+      "plant": "",
+      "receptionDate": "2026-08-21",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 150,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 150,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-28T13:09:41.779Z",
+      "updatedAt": "2026-08-28T13:09:41.779Z",
+      "duration": 396
     }
   ],
   "ncrs": [],
