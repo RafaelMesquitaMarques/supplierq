@@ -21986,6 +21986,51 @@
       "createdAt": "2026-08-31T13:11:35.668Z",
       "updatedAt": "2026-08-31T13:11:35.668Z",
       "duration": 198
+    },
+    {
+      "id": 1788182023986,
+      "ref": "NL20260826-03-7000004567",
+      "site": "NL",
+      "date": "2026-08-26",
+      "dailyN": 3,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500091861",
+      "productNo": "7000004567",
+      "description": "WD TB Com Bar W/Power 108\" F235",
+      "delivery": "410001859228",
+      "hu": [
+        "900832059"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-26",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 4,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 4,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T13:13:43.986Z",
+      "updatedAt": "2026-08-31T13:13:43.986Z",
+      "duration": 120
     }
   ],
   "ncrs": [],
