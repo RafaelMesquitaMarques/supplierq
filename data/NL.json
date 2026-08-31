@@ -23063,6 +23063,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788183681742,
+      "timestamp": "2026-08-31T13:41:21.742Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260827-03-0201623",
+      "site": "NL",
+      "details": "Stafast Products, Inc. Ontario | 201623 | Decision: approved",
+      "duration": 160
+    },
+    {
       "id": 1788183510667,
       "timestamp": "2026-08-31T13:38:30.667Z",
       "user": "Dominic Dotson",
@@ -28446,17 +28457,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214515 | Decision: approved",
       "duration": 146
-    },
-    {
-      "id": 1784647620878,
-      "timestamp": "2026-07-21T15:27:00.878Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260701-04-0214510",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214510 | Decision: approved",
-      "duration": 170
     }
   ]
 }
