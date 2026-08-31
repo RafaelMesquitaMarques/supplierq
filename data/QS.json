@@ -3106,6 +3106,51 @@
       "createdAt": "2026-08-31T16:56:23.532Z",
       "updatedAt": "2026-08-31T16:56:23.532Z",
       "duration": 47
+    },
+    {
+      "id": 1788195736649,
+      "ref": "QS20260831-01-0215047",
+      "site": "QS",
+      "date": "2026-08-31",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091043",
+      "productNo": "215047",
+      "description": "MTL Fra VNTY Base STD 44\" M240-PC",
+      "delivery": "410001860619",
+      "hu": [
+        "500193764"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-28",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 6,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Transfer from QM",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T17:02:16.650Z",
+      "updatedAt": "2026-08-31T17:02:16.650Z",
+      "duration": 44
     }
   ],
   "ncrs": [],
