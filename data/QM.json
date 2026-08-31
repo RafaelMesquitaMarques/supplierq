@@ -8524,6 +8524,51 @@
       "createdAt": "2026-08-31T15:30:34.366Z",
       "updatedAt": "2026-08-31T15:30:34.366Z",
       "duration": 200
+    },
+    {
+      "id": 1788191912164,
+      "ref": "QM20260831-01-0213958",
+      "site": "QM",
+      "date": "2026-08-31",
+      "dailyN": 1,
+      "supplier": "Dongguan Yoan intelligent lock Co.,Ltd.",
+      "po": "4500091491",
+      "productNo": "213958",
+      "description": "HASP Lock Black DGNOP-005",
+      "delivery": "410001851636",
+      "hu": [
+        "500193641"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-13",
+      "inspector": "Milena Correia",
+      "qtyReceived": 2000,
+      "qtyInspected": 50,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 2000,
+          "inspected": 50,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T15:58:32.164Z",
+      "updatedAt": "2026-08-31T15:58:32.164Z",
+      "duration": 111
     }
   ],
   "ncrs": [],
