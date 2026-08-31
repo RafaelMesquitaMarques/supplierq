@@ -8221,6 +8221,51 @@
       "createdAt": "2026-08-14T19:03:33.830Z",
       "updatedAt": "2026-08-14T19:03:33.830Z",
       "duration": 85
+    },
+    {
+      "id": 1788177066390,
+      "ref": "QM20260831-01-0215851",
+      "site": "QM",
+      "date": "2026-08-31",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091761",
+      "productNo": "215851",
+      "description": "Union Plate Steel W/12 Holes8x3-1/2\"x2mm",
+      "delivery": "410001860504",
+      "hu": [
+        "500194908"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1000,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1000,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T11:51:06.390Z",
+      "updatedAt": "2026-08-31T11:51:06.390Z",
+      "duration": 119
     }
   ],
   "ncrs": [],
