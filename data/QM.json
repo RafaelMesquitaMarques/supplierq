@@ -9402,6 +9402,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788191913796,
+      "timestamp": "2026-08-31T15:58:33.796Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260831-01-0213958",
+      "site": "QM",
+      "details": "Dongguan Yoan intelligent lock Co.,Ltd. | 213958 | Decision: approved",
+      "duration": 111
+    },
+    {
       "id": 1788190235827,
       "timestamp": "2026-08-31T15:30:35.827Z",
       "user": "Milena Correia",
