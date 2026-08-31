@@ -22122,6 +22122,51 @@
       "createdAt": "2026-08-31T13:35:18.929Z",
       "updatedAt": "2026-08-31T13:35:18.929Z",
       "duration": 193
+    },
+    {
+      "id": 1788183504349,
+      "ref": "NL20260824-02-0200933",
+      "site": "NL",
+      "date": "2026-08-24",
+      "dailyN": 2,
+      "supplier": "Amazon",
+      "po": "4500095264",
+      "productNo": "200933",
+      "description": "Magnetic Catch W/Strike Plate White",
+      "delivery": "410001858409",
+      "hu": [
+        "900832231"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-24",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 350,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 350,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "change to Richelieu Hardware (Pacific NW) / Mount when possible",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T13:38:24.349Z",
+      "updatedAt": "2026-08-31T13:38:24.349Z",
+      "duration": 171
     }
   ],
   "ncrs": [],
