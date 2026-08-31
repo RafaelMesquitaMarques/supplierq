@@ -3061,6 +3061,51 @@
       "createdAt": "2026-08-14T15:05:03.462Z",
       "updatedAt": "2026-08-14T15:05:03.462Z",
       "duration": 44
+    },
+    {
+      "id": 1788195383532,
+      "ref": "QS20260831-01-7000007703",
+      "site": "QS",
+      "date": "2026-08-31",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091870",
+      "productNo": "7000007703",
+      "description": "Mtl Lw HB for Child BB M003-ST",
+      "delivery": "410001859543",
+      "hu": [
+        "900832191"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-31",
+      "inspector": "Natalya Robles",
+      "qtyReceived": 28,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 28,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Transfer from NL",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T16:56:23.532Z",
+      "updatedAt": "2026-08-31T16:56:23.532Z",
+      "duration": 47
     }
   ],
   "ncrs": [],
