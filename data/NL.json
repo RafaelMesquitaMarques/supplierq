@@ -22837,6 +22837,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788181900615,
+      "timestamp": "2026-08-31T13:11:40.615Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260826-02-0212220",
+      "site": "NL",
+      "details": "Foliot Furniture (Mirabel) | 212220 | Decision: approved",
+      "duration": 198
+    },
+    {
       "id": 1787935834978,
       "timestamp": "2026-08-28T16:50:34.978Z",
       "user": "Dominic Dotson",
@@ -28220,16 +28231,6 @@
       "site": "NL",
       "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000006737 | Decision: approved",
       "duration": 98
-    },
-    {
-      "id": 1784641059386,
-      "timestamp": "2026-07-21T13:37:39.386Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "user_logout",
-      "ref": "—",
-      "site": "NL",
-      "details": "Session ended"
     }
   ]
 }
