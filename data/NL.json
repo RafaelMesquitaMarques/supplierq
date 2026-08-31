@@ -22882,6 +22882,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788182029101,
+      "timestamp": "2026-08-31T13:13:49.101Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260826-03-7000004567",
+      "site": "NL",
+      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000004567 | Decision: approved",
+      "duration": 120
+    },
+    {
       "id": 1788181900615,
       "timestamp": "2026-08-31T13:11:40.615Z",
       "user": "Dominic Dotson",
@@ -28265,17 +28276,6 @@
       "site": "NL",
       "details": "Symmetry Resources | 215473 | Decision: approved",
       "duration": 279
-    },
-    {
-      "id": 1784643742686,
-      "timestamp": "2026-07-21T14:22:22.686Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260721-03-7000006737",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000006737 | Decision: approved",
-      "duration": 98
     }
   ]
 }
