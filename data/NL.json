@@ -23232,6 +23232,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788188927376,
+      "timestamp": "2026-08-31T15:08:47.376Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260827-02-0200933",
+      "site": "NL",
+      "details": "Amazon | 200933 | Decision: approved",
+      "duration": 173
+    },
+    {
       "id": 1788188734545,
       "timestamp": "2026-08-31T15:05:34.545Z",
       "user": "Dominic Dotson",
@@ -28614,17 +28625,6 @@
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214179 | Decision: approved",
       "duration": 50
-    },
-    {
-      "id": 1784648118979,
-      "timestamp": "2026-07-21T15:35:18.979Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260702-02-0215484",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 215484 | Decision: approved",
-      "duration": 88
     }
   ]
 }
