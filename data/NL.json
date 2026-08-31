@@ -22335,6 +22335,52 @@
       "createdAt": "2026-08-31T15:01:20.788Z",
       "updatedAt": "2026-08-31T15:01:20.788Z",
       "duration": 554
+    },
+    {
+      "id": 1788188715996,
+      "ref": "NL20260827-04-0215034",
+      "site": "NL",
+      "date": "2026-08-27",
+      "dailyN": 4,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003815",
+      "productNo": "215034",
+      "description": "MTL VNTY Fra 32.5\" M240-PC",
+      "delivery": "410001854978",
+      "hu": [
+        "500193444",
+        "500193740"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-27",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 6,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 6,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T15:05:15.996Z",
+      "updatedAt": "2026-08-31T15:05:15.996Z",
+      "duration": 65
     }
   ],
   "ncrs": [],
