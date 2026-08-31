@@ -21941,6 +21941,51 @@
       "createdAt": "2026-08-28T16:50:30.164Z",
       "updatedAt": "2026-08-28T16:50:30.164Z",
       "duration": 1809
+    },
+    {
+      "id": 1788181895668,
+      "ref": "NL20260826-02-0212220",
+      "site": "NL",
+      "date": "2026-08-26",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture (Mirabel)",
+      "po": "1500003791",
+      "productNo": "212220",
+      "description": "Fabric Tradition Regal C-ZERO CAL117FRLC",
+      "delivery": "410001841205",
+      "hu": [
+        "500192281"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-07",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 400,
+      "qtyInspected": 7,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 400,
+          "inspected": 7,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-08-31T13:11:35.668Z",
+      "updatedAt": "2026-08-31T13:11:35.668Z",
+      "duration": 198
     }
   ],
   "ncrs": [],
