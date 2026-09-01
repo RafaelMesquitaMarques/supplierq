@@ -22827,6 +22827,51 @@
       "createdAt": "2026-09-01T16:29:02.110Z",
       "updatedAt": "2026-09-01T16:29:02.110Z",
       "duration": 84
+    },
+    {
+      "id": 1788280247293,
+      "ref": "NL20260828-09-0200020",
+      "site": "NL",
+      "date": "2026-08-28",
+      "dailyN": 9,
+      "supplier": "Right Fame LTD (Zhonggu) Hardware",
+      "po": "4500092526",
+      "productNo": "200020",
+      "description": "Screw Confirmat Nibs Qx #2 7x55mm Black",
+      "delivery": "410001861069",
+      "hu": [
+        "900833139"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-27",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 30800,
+      "qtyInspected": 10,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 30800,
+          "inspected": 10,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T16:30:47.293Z",
+      "updatedAt": "2026-09-01T16:30:47.293Z",
+      "duration": 56
     }
   ],
   "ncrs": [],
