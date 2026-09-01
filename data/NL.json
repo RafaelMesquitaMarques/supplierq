@@ -22471,6 +22471,51 @@
       "createdAt": "2026-08-31T19:29:19.751Z",
       "updatedAt": "2026-08-31T19:29:19.751Z",
       "duration": 246
+    },
+    {
+      "id": 1788264213786,
+      "ref": "NL20260828-02-7000007677",
+      "site": "NL",
+      "date": "2026-08-28",
+      "dailyN": 2,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006132",
+      "productNo": "7000007677",
+      "description": "MTL BB Adj W/Hook Phoenix 39x80 M003-ST",
+      "delivery": "410001857003",
+      "hu": [
+        "900833109"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 44,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 44,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T12:03:33.786Z",
+      "updatedAt": "2026-09-01T12:03:33.786Z",
+      "duration": 221
     }
   ],
   "ncrs": [],
