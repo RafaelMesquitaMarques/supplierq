@@ -22691,6 +22691,52 @@
       "createdAt": "2026-09-01T12:13:17.276Z",
       "updatedAt": "2026-09-01T12:13:17.276Z",
       "duration": 68
+    },
+    {
+      "id": 1788265122428,
+      "ref": "NL20260828-07-0210267",
+      "site": "NL",
+      "date": "2026-08-28",
+      "dailyN": 7,
+      "supplier": "Right Fame LTD (Zhonggu) Hardware",
+      "po": "4500092179",
+      "productNo": "210267",
+      "description": "Screw Euro FH Qx ZC 7mmx14mm Black",
+      "delivery": "410001860655",
+      "hu": [
+        "900833137",
+        "900833136"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 504000,
+      "qtyInspected": 8,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 504000,
+          "inspected": 8,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T12:18:42.428Z",
+      "updatedAt": "2026-09-01T12:18:42.428Z",
+      "duration": 78
     }
   ],
   "ncrs": [],
