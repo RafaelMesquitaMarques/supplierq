@@ -8986,6 +8986,51 @@
       "createdAt": "2026-09-01T15:28:38.854Z",
       "updatedAt": "2026-09-01T15:28:38.854Z",
       "duration": 78
+    },
+    {
+      "id": 1788276988952,
+      "ref": "QM20260901-01-0214383",
+      "site": "QM",
+      "date": "2026-09-01",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091441",
+      "productNo": "214383",
+      "description": "MTL Plate Cabinet 1\" M003-ST",
+      "delivery": "410001851930",
+      "hu": [
+        "500193802"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Milena Correia",
+      "qtyReceived": 1200,
+      "qtyInspected": 100,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 1200,
+          "inspected": 100,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T15:36:28.953Z",
+      "updatedAt": "2026-09-01T15:36:28.953Z",
+      "duration": 86
     }
   ],
   "ncrs": [],
