@@ -23768,6 +23768,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788280572277,
+      "timestamp": "2026-09-01T16:36:12.277Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_updated",
+      "ref": "NL20260828-09-0200020",
+      "site": "NL",
+      "details": "Right Fame LTD (Zhonggu) Hardware | 200020 | Decision: approved",
+      "duration": 0
+    },
+    {
       "id": 1788280508926,
       "timestamp": "2026-09-01T16:35:08.926Z",
       "user": "Dominic Dotson",
@@ -29150,17 +29161,6 @@
       "site": "NL",
       "details": "Xiamen Yiree Smart Industried Co. Ltd | 7000007455 | Decision: approved",
       "duration": 96
-    },
-    {
-      "id": 1784659791074,
-      "timestamp": "2026-07-21T18:49:51.074Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_created",
-      "ref": "NL20260721-04-0211889",
-      "site": "NL",
-      "details": "Xiamen Yiree Smart Industried Co. Ltd | 211889 | Decision: approved",
-      "duration": 348
     }
   ]
 }
