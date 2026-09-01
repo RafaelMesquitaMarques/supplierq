@@ -22600,6 +22600,52 @@
       "createdAt": "2026-09-01T12:07:40.220Z",
       "updatedAt": "2026-09-01T12:07:40.220Z",
       "duration": 89
+    },
+    {
+      "id": 1788264571716,
+      "ref": "NL20260828-05-7000009192",
+      "site": "NL",
+      "date": "2026-08-28",
+      "dailyN": 5,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006132",
+      "productNo": "7000009192",
+      "description": "MTL HB Bed 38.75\" Phoenix M003-ST V2",
+      "delivery": "410001857003",
+      "hu": [
+        "900833110",
+        "900833111"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 142,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 142,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T12:09:31.716Z",
+      "updatedAt": "2026-09-01T12:09:31.716Z",
+      "duration": 91
     }
   ],
   "ncrs": [],
