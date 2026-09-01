@@ -8614,6 +8614,51 @@
       "createdAt": "2026-09-01T12:18:01.446Z",
       "updatedAt": "2026-09-01T12:18:01.446Z",
       "duration": 84
+    },
+    {
+      "id": 1788265407343,
+      "ref": "QM20260901-01-0214252",
+      "site": "QM",
+      "date": "2026-09-01",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500090673",
+      "productNo": "214252",
+      "description": "MTL Leg Kit L/R 1x2x71.25\" M003-ST",
+      "delivery": "410001852200",
+      "hu": [
+        "500193742"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-09-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 7,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 7,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T12:23:27.343Z",
+      "updatedAt": "2026-09-01T12:23:27.343Z",
+      "duration": 97
     }
   ],
   "ncrs": [],
