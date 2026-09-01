@@ -23497,6 +23497,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788264581043,
+      "timestamp": "2026-09-01T12:09:41.043Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260828-05-7000009192",
+      "site": "NL",
+      "details": "Foliot Furniture Wilson / NC | 7000009192 | Decision: approved",
+      "duration": 91
+    },
+    {
       "id": 1788264471060,
       "timestamp": "2026-09-01T12:07:51.060Z",
       "user": "Dominic Dotson",
@@ -28878,17 +28889,6 @@
       "ref": "NL20260701-06-0214860",
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214860 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784649240970,
-      "timestamp": "2026-07-21T15:54:00.970Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260702-01-0214861",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214861 | Decision: approved",
       "duration": 0
     }
   ]
