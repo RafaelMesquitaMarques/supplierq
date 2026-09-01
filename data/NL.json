@@ -23588,6 +23588,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788265130881,
+      "timestamp": "2026-09-01T12:18:50.881Z",
+      "user": "Dominic Dotson",
+      "userEmail": "nlqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "NL20260828-07-0210267",
+      "site": "NL",
+      "details": "Right Fame LTD (Zhonggu) Hardware | 210267 | Decision: approved",
+      "duration": 78
+    },
+    {
       "id": 1788264805214,
       "timestamp": "2026-09-01T12:13:25.214Z",
       "user": "Dominic Dotson",
@@ -28969,17 +28980,6 @@
       "ref": "NL20260701-05-0214515",
       "site": "NL",
       "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 214515 | Decision: approved",
-      "duration": 0
-    },
-    {
-      "id": 1784649293212,
-      "timestamp": "2026-07-21T15:54:53.212Z",
-      "user": "Dominic Dotson",
-      "userEmail": "nlqualityreceiving@foliot.com",
-      "action": "inspection_updated",
-      "ref": "NL20260702-02-0215484",
-      "site": "NL",
-      "details": "Foliot Furniture inc. (Transfert de St-Jérôme) | 215484 | Decision: approved",
       "duration": 0
     }
   ]
