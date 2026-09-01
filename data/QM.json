@@ -8755,6 +8755,51 @@
       "createdAt": "2026-09-01T12:43:02.537Z",
       "updatedAt": "2026-09-01T12:45:53.041Z",
       "duration": 94
+    },
+    {
+      "id": 1788269301748,
+      "ref": "QM20260901-01-0214822",
+      "site": "QM",
+      "date": "2026-09-01",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091515",
+      "productNo": "214822",
+      "description": "MTL Footboard W Hook M003-ST",
+      "delivery": "410001851932",
+      "hu": [
+        "500193806"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Milena Correia",
+      "qtyReceived": 60,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 60,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T13:28:21.748Z",
+      "updatedAt": "2026-09-01T13:28:21.748Z",
+      "duration": 96
     }
   ],
   "ncrs": [],
