@@ -22516,6 +22516,52 @@
       "createdAt": "2026-09-01T12:03:33.786Z",
       "updatedAt": "2026-09-01T12:03:33.786Z",
       "duration": 221
+    },
+    {
+      "id": 1788264350996,
+      "ref": "NL20260828-03-7000008617",
+      "site": "NL",
+      "date": "2026-08-28",
+      "dailyN": 3,
+      "supplier": "Foliot Furniture Wilson / NC",
+      "po": "8000006132",
+      "productNo": "7000008617",
+      "description": "LAM Bed Platform 24x79 F003",
+      "delivery": "410001857003",
+      "hu": [
+        "900833115",
+        "900833116"
+      ],
+      "country": "USA",
+      "plant": "",
+      "receptionDate": "2026-08-28",
+      "inspector": "Dominic Dotson",
+      "qtyReceived": 160,
+      "qtyInspected": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 160,
+          "inspected": 3,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T12:05:50.996Z",
+      "updatedAt": "2026-09-01T12:05:50.996Z",
+      "duration": 102
     }
   ],
   "ncrs": [],
