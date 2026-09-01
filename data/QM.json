@@ -9031,6 +9031,51 @@
       "createdAt": "2026-09-01T15:36:28.953Z",
       "updatedAt": "2026-09-01T15:36:28.953Z",
       "duration": 86
+    },
+    {
+      "id": 1788278279993,
+      "ref": "QM20260901-01-0212954",
+      "site": "QM",
+      "date": "2026-09-01",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091761",
+      "productNo": "212954",
+      "description": "MTL Base Drink TB 11.5x1.875x2.25M194-BR",
+      "delivery": "410001860504",
+      "hu": [
+        "500194911"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-27",
+      "inspector": "Milena Correia",
+      "qtyReceived": 12,
+      "qtyInspected": 5,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 12,
+          "inspected": 5,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "Dirt marks are easily removed with windex and white spoonge",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-01T15:57:59.993Z",
+      "updatedAt": "2026-09-01T15:57:59.993Z",
+      "duration": 113
     }
   ],
   "ncrs": [],
