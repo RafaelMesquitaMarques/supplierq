@@ -10196,6 +10196,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788353713846,
+      "timestamp": "2026-09-02T12:55:13.846Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260902-01-0213320",
+      "site": "QM",
+      "details": "Jiaxing Rest Furniture & Appliance Co. Ltd. | 213320 | Decision: approved",
+      "duration": 186
+    },
+    {
       "id": 1788352563924,
       "timestamp": "2026-09-02T12:36:03.924Z",
       "user": "Milena Correia",
