@@ -9309,60 +9309,6 @@
       "createdAt": "2026-09-02T12:35:14.522Z",
       "updatedAt": "2026-09-02T12:36:02.779Z",
       "duration": 119
-    },
-    {
-      "id": 1788353712564,
-      "ref": "QM20260902-01-0213320",
-      "site": "QM",
-      "date": "2026-09-02",
-      "dailyN": 1,
-      "supplier": "Jiaxing Rest Furniture & Appliance Co. Ltd.",
-      "po": "4500089757",
-      "productNo": "213320",
-      "description": "Mechanism Full Sleeper #2760",
-      "delivery": "410001820247",
-      "hu": [
-        "500189997",
-        "500189998",
-        "500190000",
-        "500190001",
-        "500190002",
-        "500190005",
-        "500190006",
-        "500190007",
-        "500190008",
-        "500190009"
-      ],
-      "country": "China",
-      "plant": "",
-      "receptionDate": "2026-06-29",
-      "inspector": "Milena Correia",
-      "qtyReceived": 100,
-      "qtyInspected": 2,
-      "rounds": [
-        {
-          "round": 1,
-          "recv": 100,
-          "inspected": 2,
-          "nonConf": 0,
-          "pct": 0
-        }
-      ],
-      "defects": [],
-      "issues": "",
-      "notes": "Visual inspection only",
-      "decision": "approved",
-      "qtyUseAsIs": 0,
-      "qtyRework": 0,
-      "qtyRejected": 0,
-      "qtyWaiting": 0,
-      "hasNC": false,
-      "photos": [],
-      "drawings": [],
-      "drawingNotes": "",
-      "createdAt": "2026-09-02T12:55:12.564Z",
-      "updatedAt": "2026-09-02T12:55:12.564Z",
-      "duration": 186
     }
   ],
   "ncrs": [],
@@ -10195,6 +10141,16 @@
     }
   ],
   "auditLog": [
+    {
+      "id": 1788354254407,
+      "timestamp": "2026-09-02T13:04:14.407Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_deleted",
+      "ref": "QM20260902-01-0213320",
+      "site": "QM",
+      "details": "Jiaxing Rest Furniture & Appliance Co. Ltd. | 213320"
+    },
     {
       "id": 1788354195996,
       "timestamp": "2026-09-02T13:03:15.996Z",
