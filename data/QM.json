@@ -9405,6 +9405,51 @@
       "createdAt": "2026-09-02T15:38:18.356Z",
       "updatedAt": "2026-09-02T15:38:18.356Z",
       "duration": 143
+    },
+    {
+      "id": 1788369711306,
+      "ref": "QM20260902-01-0215046",
+      "site": "QM",
+      "date": "2026-09-02",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091043",
+      "productNo": "215046",
+      "description": "MTL Fra VNTY Base ADA RS 44.625 M240-PC",
+      "delivery": "410001852202",
+      "hu": [
+        "500193760"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 20,
+      "qtyInspected": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 20,
+          "inspected": 2,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-02T17:21:51.307Z",
+      "updatedAt": "2026-09-02T17:21:51.307Z",
+      "duration": 83
     }
   ],
   "ncrs": [],
