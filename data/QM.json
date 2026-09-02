@@ -10283,6 +10283,17 @@
   ],
   "auditLog": [
     {
+      "id": 1788369712443,
+      "timestamp": "2026-09-02T17:21:52.443Z",
+      "user": "Milena Correia",
+      "userEmail": "qmqualityreceiving@foliot.com",
+      "action": "inspection_created",
+      "ref": "QM20260902-01-0215046",
+      "site": "QM",
+      "details": "Fujian Dav Technologies Co. Ltd. | 215046 | Decision: approved",
+      "duration": 83
+    },
+    {
       "id": 1788363499715,
       "timestamp": "2026-09-02T15:38:19.715Z",
       "user": "Milena Correia",
