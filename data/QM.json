@@ -9495,6 +9495,51 @@
       "createdAt": "2026-09-03T13:01:44.451Z",
       "updatedAt": "2026-09-03T13:05:57.785Z",
       "duration": 140
+    },
+    {
+      "id": 1788441173513,
+      "ref": "QM20260903-01-0214249",
+      "site": "QM",
+      "date": "2026-09-03",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091441",
+      "productNo": "214249",
+      "description": "MTL Leg 1x2x17\" Stack M003-ST",
+      "delivery": "410001858571",
+      "hu": [
+        "500194676"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-26",
+      "inspector": "Milena Correia",
+      "qtyReceived": 48,
+      "qtyInspected": 4,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 48,
+          "inspected": 4,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-03T13:12:53.513Z",
+      "updatedAt": "2026-09-03T13:12:53.513Z",
+      "duration": 72
     }
   ],
   "ncrs": [],
