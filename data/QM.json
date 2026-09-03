@@ -9641,6 +9641,55 @@
       "createdAt": "2026-09-03T15:27:33.398Z",
       "updatedAt": "2026-09-03T15:27:33.398Z",
       "duration": 146
+    },
+    {
+      "id": 1788455388727,
+      "ref": "QM20260903-01-0213279",
+      "site": "QM",
+      "date": "2026-09-03",
+      "dailyN": 1,
+      "supplier": "Xiamen Yiree Smart Industried Co. Ltd",
+      "po": "4500091042",
+      "productNo": "213279",
+      "description": "MTL Base VNTY 50.49\" M248-PC",
+      "delivery": "410001850890",
+      "hu": [
+        "500193670",
+        "500193671",
+        "500193672",
+        "500193673",
+        "500193674"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 110,
+      "qtyInspected": 38,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 110,
+          "inspected": 38,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "1 metal structure is missing 4 levelers",
+      "notes": "missing levelers for 1 structure",
+      "decision": "waiting",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 1,
+      "hasNC": true,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-03T17:09:48.727Z",
+      "updatedAt": "2026-09-03T17:09:48.727Z",
+      "duration": 215
     }
   ],
   "ncrs": [],
