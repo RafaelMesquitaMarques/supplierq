@@ -9463,19 +9463,18 @@
       "description": "MTL Leg 1x2x17\" Stack M003-ST",
       "delivery": "410001851930",
       "hu": [
-        "500193787",
         "500193788"
       ],
       "country": "China",
       "plant": "",
       "receptionDate": "2026-08-17",
       "inspector": "Milena Correia",
-      "qtyReceived": 1972,
+      "qtyReceived": 852,
       "qtyInspected": 80,
       "rounds": [
         {
           "round": 1,
-          "recv": 1972,
+          "recv": 852,
           "inspected": 80,
           "nonConf": 0,
           "pct": 0
@@ -9494,7 +9493,7 @@
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-09-03T13:01:44.451Z",
-      "updatedAt": "2026-09-03T13:02:37.314Z",
+      "updatedAt": "2026-09-03T13:05:57.785Z",
       "duration": 140
     }
   ],
