@@ -9596,6 +9596,51 @@
       "createdAt": "2026-09-03T14:10:01.157Z",
       "updatedAt": "2026-09-03T14:10:01.157Z",
       "duration": 161
+    },
+    {
+      "id": 1788449253398,
+      "ref": "QM20260903-01-7000008645",
+      "site": "QM",
+      "date": "2026-09-03",
+      "dailyN": 1,
+      "supplier": "Fujian Dav Technologies Co. Ltd.",
+      "po": "4500091043",
+      "productNo": "7000008645",
+      "description": "MTL Ac ArtBar 60\"H M262/264/265-PC",
+      "delivery": "410001852202",
+      "hu": [
+        "500193766"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-14",
+      "inspector": "Milena Correia",
+      "qtyReceived": 10,
+      "qtyInspected": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 10,
+          "inspected": 1,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-03T15:27:33.398Z",
+      "updatedAt": "2026-09-03T15:27:33.398Z",
+      "duration": 146
     }
   ],
   "ncrs": [],
