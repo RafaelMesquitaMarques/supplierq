@@ -2738,6 +2738,16 @@
   ],
   "auditLog": [
     {
+      "id": 1788527607390,
+      "timestamp": "2026-09-04T13:13:27.390Z",
+      "user": "Admin",
+      "userEmail": "admin@foliot.com",
+      "action": "user_login",
+      "ref": "—",
+      "site": "QS",
+      "details": "Role: admin | Sites: QS, NL, QM"
+    },
+    {
       "id": 1788522162217,
       "timestamp": "2026-09-04T11:42:42.217Z",
       "user": "Milena Correia",
