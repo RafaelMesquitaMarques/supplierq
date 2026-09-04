@@ -9675,20 +9675,26 @@
           "pct": 0
         }
       ],
-      "defects": [],
+      "defects": [
+        {
+          "key": "missing",
+          "label": "Missing part",
+          "qty": 1
+        }
+      ],
       "issues": "1 metal structure is missing 4 levelers",
       "notes": "missing levelers for 1 structure (received the 4 levelers Use As Is)",
-      "decision": "waiting",
+      "decision": "use-as-is",
       "qtyUseAsIs": 1,
       "qtyRework": 0,
       "qtyRejected": 0,
       "qtyWaiting": 0,
-      "hasNC": true,
+      "hasNC": false,
       "photos": [],
       "drawings": [],
       "drawingNotes": "",
       "createdAt": "2026-09-03T17:09:48.727Z",
-      "updatedAt": "2026-09-04T11:46:18.811Z",
+      "updatedAt": "2026-09-04T11:47:09.347Z",
       "duration": 215
     },
     {
