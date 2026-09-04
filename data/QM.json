@@ -9690,6 +9690,52 @@
       "createdAt": "2026-09-03T17:09:48.727Z",
       "updatedAt": "2026-09-03T17:09:48.727Z",
       "duration": 215
+    },
+    {
+      "id": 1788522304491,
+      "ref": "QM20260904-01-0206699",
+      "site": "QM",
+      "date": "2026-09-04",
+      "dailyN": 1,
+      "supplier": "Guangzhou ilin lighting & Electrical",
+      "po": "4500091030",
+      "productNo": "206699",
+      "description": "Foliot Outlet 15A 2PG 2USB 1SW Black",
+      "delivery": "410001852639",
+      "hu": [
+        "500193770",
+        "500193771"
+      ],
+      "country": "China",
+      "plant": "",
+      "receptionDate": "2026-08-17",
+      "inspector": "Milena Correia",
+      "qtyReceived": 918,
+      "qtyInspected": 30,
+      "rounds": [
+        {
+          "round": 1,
+          "recv": 918,
+          "inspected": 30,
+          "nonConf": 0,
+          "pct": 0
+        }
+      ],
+      "defects": [],
+      "issues": "",
+      "notes": "",
+      "decision": "approved",
+      "qtyUseAsIs": 0,
+      "qtyRework": 0,
+      "qtyRejected": 0,
+      "qtyWaiting": 0,
+      "hasNC": false,
+      "photos": [],
+      "drawings": [],
+      "drawingNotes": "",
+      "createdAt": "2026-09-04T11:45:04.491Z",
+      "updatedAt": "2026-09-04T11:45:04.491Z",
+      "duration": 102
     }
   ],
   "ncrs": [],
